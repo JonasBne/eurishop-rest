@@ -12,7 +12,7 @@ render(
     <Routes>
       <Route path="*" element={<p>There is nothing here!</p>} />
       <Route path="/" element={<App />} />
-      <Route path="products" element={<ProductOverview />} />
+      <Route path="home" element={<ProductOverview />} />
       <Route path="products/:productId" element={<ProductDetail />} />
       <Route path="products/admin" element={<ProductTable />} />
     </Routes>
