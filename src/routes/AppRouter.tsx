@@ -1,21 +1,15 @@
 import React from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function AppRouter() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/home">
-          <div>Homepage goes here</div>
-        </Route>
-        <Route path="/products">
-          <div>Product overview goes here</div>
-        </Route>
-        <Route path="/products/productId">
-          <div>Product detail goes here</div>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <div>
+      <h1>Bookkeeper</h1>
+      <nav>
+        <Link to="/invoices">Invoices</Link> |{" "}
+        <Link to="/expenses">Expenses</Link>
+      </nav>
+    </div>
   );
 }
 
