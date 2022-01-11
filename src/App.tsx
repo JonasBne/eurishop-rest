@@ -1,8 +1,13 @@
 import React from "react";
 import "./App.css";
+import AppRouter from "./routes/AppRouter";
 
 function App() {
-  return <div className="App">This app is live on Netlify</div>;
+  return (
+    <div className="App">
+      <AppRouter />
+    </div>
+  );
 }
 
 export default App;
