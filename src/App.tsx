@@ -1,9 +1,8 @@
 import React from "react";
 import "./App.css";
-import AppRouter from "./routes/AppRouter";
 
 function App() {
-  return <AppRouter />;
+  return <div>This page has no specific content</div>;
 }
 
 export default App;
