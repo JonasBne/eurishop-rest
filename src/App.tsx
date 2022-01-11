@@ -1,8 +1,9 @@
 import React from "react";
 import "./App.css";
+import Navbar from "./components/general/Navbar";
 
 function App() {
-  return <div>This page has no specific content</div>;
+  return <Navbar />;
 }
 
 export default App;
