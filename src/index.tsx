@@ -10,10 +10,19 @@ const rootElement = document.getElementById("root");
 render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />} />
-      <Route path="products" element={<ProductOverview />} />
-      <Route path="products/:productId" element={<ProductDetail />} />
-      <Route path="admin" element={<ProductTable />} />
+      <Route path="https://euri-webshop.netlify.app/" element={<App />} />
+      <Route
+        path="https://euri-webshop.netlify.app/products"
+        element={<ProductOverview />}
+      />
+      <Route
+        path="https://euri-webshop.netlify.app/products/:productId"
+        element={<ProductDetail />}
+      />
+      <Route
+        path="https://euri-webshop.netlify.app/admin"
+        element={<ProductTable />}
+      />
     </Routes>
   </BrowserRouter>,
   rootElement
