@@ -13,7 +13,7 @@ render(
       <Route path="/" element={<App />} />
       <Route path="products" element={<ProductOverview />} />
       <Route path="products/:productId" element={<ProductDetail />} />
-      <Route path="admin" element={<ProductTable />} />
+      <Route path="products/admin" element={<ProductTable />} />
     </Routes>
   </BrowserRouter>,
   rootElement
