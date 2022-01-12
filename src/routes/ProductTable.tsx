@@ -1,7 +1,13 @@
 import React from "react";
+import Navbar from "../components/general/Navbar";
 
 function ProductTable() {
-  return <div>Product table for admin goes here</div>;
+  return (
+    <>
+      <Navbar />
+      <div>PRODUCTS FOR ADMIN HERE</div>
+    </>
+  );
 }
 
 export default ProductTable;
