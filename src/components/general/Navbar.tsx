@@ -4,7 +4,7 @@ import styled from "styled-components";
 import { space, SpaceProps } from "styled-system";
 
 const Nav = styled.nav`
-  background-color: #1d3557;
+  background-color: #012a4a;
   display: flex;
   align-items: center;
 `;
