@@ -21,9 +21,8 @@ function ProductTable() {
 
   return (
     <>
-      <PageNotFound />
-      {loading && <LoadingSpinner />}
-      {error && <div>Error...</div>}
+      {loading && !error && <LoadingSpinner />}
+      {error && <PageNotFound errorMessage={error} />}
       {!loading && !error && (
         <TableContainer m="2rem" p="1rem">
           <thead>

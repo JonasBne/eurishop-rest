@@ -19,7 +19,7 @@ function ProductsContextProvider({ children }: ProductsContextProviderProps) {
     error,
     data: products,
   } = useGetProducts(
-    "https://euricom-test-api.herokuapp.com/api/products?page=0&pageSize=100"
+    "https://euricom-test-api.herokuapppp.com/api/products?page=0&pageSize=100"
   ) as ProductsResponse;
 
   return (
