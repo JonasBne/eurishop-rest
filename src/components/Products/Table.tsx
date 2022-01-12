@@ -1,15 +1,20 @@
-import React from "react";
-import useGetProducts from "../../hooks/useGetProducts";
+import React, { useContext } from "react";
+import ProductsContext, {
+  ProductsContextProps,
+} from "../../store/ProductsContext";
 
 function Table() {
-  // TODO: refactor code and introduce context + remove console.log
-  const { loading, error, data } = useGetProducts(
-    "https://euricom-test-api.herokuapp.com/api/products?page=0&pageSize=100"
+  const { loading, error, products } =
+    useContext<ProductsContextProps>(ProductsContext);
+
+  return (
+    <>
+      {loading && <div>Loading...</div>}
+      {!loading && products.length <= 0 && <div>Loading...</div>}
+      {error && <div>Error...</div>}
+      {!loading && !error && <div>Success...</div>}
+    </>
   );
-
-  console.log(loading, error, data);
-
-  return <div>Table here</div>;
 }
 
 export default Table;
