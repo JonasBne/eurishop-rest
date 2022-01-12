@@ -6,6 +6,7 @@ import ProductsContext, {
 } from "../../store/ProductsContext";
 import Product from "../../types/Product";
 import LoadingSpinner from "../general/LoadingSpinner";
+import PageNotFound from "../general/PageNotFound";
 
 const TableContainer = styled.table<SpaceProps>`
   ${space};
@@ -20,8 +21,8 @@ function ProductTable() {
 
   return (
     <>
+      <PageNotFound />
       {loading && <LoadingSpinner />}
-      {!loading && products.length <= 0 && <div>Loading...</div>}
       {error && <div>Error...</div>}
       {!loading && !error && (
         <TableContainer m="2rem" p="1rem">
