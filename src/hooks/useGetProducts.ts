@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 
+// TODO: introduce further typecasting
 function useGetProducts(url: string) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
