@@ -1,32 +1,40 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function useGetProducts(url: string) {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
   // TODO: typecast the useState hook
   const [fetchedData, setFetchedData] = useState([]);
 
   async function fetchProducts() {
-    setIsLoading(true);
-    const response = await fetch(url);
-
-    if (!response.ok) {
-      setError(
-        `The useGetProducts call could not be completed: ${response.status}`
+    try {
+      setLoading(true);
+      const response = await fetch(
+        // TODO: this a dirty fix for fetching all products
+        url
       );
-      throw new Error(error);
-    } else {
-      setFetchedData(await response.json());
-      setIsLoading(false);
+      if (response.ok) {
+        const data = await response.json();
+        setFetchedData(data);
+      } else if (!response.ok) {
+        throw new Error(`A problem occured while fetching the data.`);
+      }
+    } catch (e: any) {
+      setError(`A problem occured while fetching the data (${e})`);
+      console.error(
+        `The useGetProducts call could not be completed. Error: ${e}`
+      );
     }
+    setLoading(false);
   }
 
   useEffect(() => {
+    console.log("useEffect runs...");
     fetchProducts();
-  });
+  }, []);
 
   return {
-    loading: isLoading,
+    loading,
     error,
     data: fetchedData,
   };
