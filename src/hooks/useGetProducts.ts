@@ -3,7 +3,6 @@ import Product from "../types/Product";
 
 type Data = Product[];
 
-// TODO: introduce further typecasting
 function useGetProducts(url: string) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
@@ -12,10 +11,7 @@ function useGetProducts(url: string) {
   async function fetchProducts() {
     try {
       setLoading(true);
-      const response = await fetch(
-        // TODO: this a dirty fix for fetching all products
-        url
-      );
+      const response = await fetch(url);
       if (response.ok) {
         const data = await response.json();
         setFetchedData(data);
@@ -24,15 +20,12 @@ function useGetProducts(url: string) {
       }
     } catch (e: any) {
       setError(`A problem occured while fetching the data (${e})`);
-      console.error(
-        `The useGetProducts call could not be completed. Error: ${e}`
-      );
+      throw new Error(`A problem occured while fetching the data. Error: ${e}`);
     }
     setLoading(false);
   }
 
   useEffect(() => {
-    console.log("useEffect runs...");
     fetchProducts();
   }, []);
 
