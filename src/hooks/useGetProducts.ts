@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
 import Product from "../types/Product";
+import ProductData from "../types/ProductData";
 
-type Data = Product[];
+type Response = ProductData;
+type FetchedData = Product[];
 
 function useGetProducts(url: string) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
-  const [fetchedData, setFetchedData] = useState<Data>([]);
+  const [fetchedData, setFetchedData] = useState<FetchedData>([]);
 
   async function fetchProducts() {
     try {
       setLoading(true);
       const response = await fetch(url);
       if (response.ok) {
-        const data = await response.json();
-        setFetchedData(data);
+        const data: Response = await response.json();
+        setFetchedData(data.selectedProducts);
       } else if (!response.ok) {
         throw new Error(`A problem occured while fetching the data.`);
       }
