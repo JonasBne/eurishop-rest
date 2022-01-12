@@ -23,6 +23,8 @@ function ProductsContextProvider({ children }: ProductsContextProviderProps) {
   ) as ProductsResponse;
 
   return (
+    // TODO: is useMemo() really necessary in this case?
+    // eslint-disable-next-line react/jsx-no-constructed-context-values
     <ProductsContext.Provider value={{ loading, error, products }}>
       {children}
     </ProductsContext.Provider>
