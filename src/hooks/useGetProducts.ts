@@ -10,6 +10,7 @@ function useGetProducts(url: string) {
   const [error, setError] = useState<string>("");
   const [fetchedData, setFetchedData] = useState<FetchedData>([]);
 
+  // TODO: add a unit test for this api call
   async function fetchProducts() {
     try {
       setLoading(true);
