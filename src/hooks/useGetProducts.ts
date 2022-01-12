@@ -11,7 +11,9 @@ function useGetProducts(url: string) {
     const response = await fetch(url);
 
     if (!response.ok) {
-      setError(`An error has occured: ${response.status}`);
+      setError(
+        `The useGetProducts call could not be completed: ${response.status}`
+      );
       throw new Error(error);
     } else {
       setFetchedData(await response.json());
