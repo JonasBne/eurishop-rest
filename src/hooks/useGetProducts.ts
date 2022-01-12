@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
+import Product from "../types/Product";
+
+type Data = Product[];
 
 // TODO: introduce further typecasting
 function useGetProducts(url: string) {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string>("");
-  // TODO: typecast the useState hook
-  const [fetchedData, setFetchedData] = useState([]);
+  const [fetchedData, setFetchedData] = useState<Data>([]);
 
   async function fetchProducts() {
     try {
