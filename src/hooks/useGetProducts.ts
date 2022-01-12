@@ -23,7 +23,7 @@ function useGetProducts(url: string) {
 
   useEffect(() => {
     fetchProducts();
-  }, [fetchProducts]);
+  });
 
   return {
     loading: isLoading,
