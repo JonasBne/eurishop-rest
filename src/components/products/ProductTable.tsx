@@ -13,7 +13,7 @@ const TableContainer = styled.table<SpaceProps>`
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
 `;
 
-function Table() {
+function ProductTable() {
   const { loading, error, products } =
     useContext<ProductsContextProps>(ProductsContext);
 
@@ -54,4 +54,4 @@ function Table() {
   );
 }
 
-export default Table;
+export default ProductTable;

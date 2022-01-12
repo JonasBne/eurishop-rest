@@ -1,15 +1,15 @@
 import React from "react";
 import Navbar from "../components/general/Navbar";
-import Table from "../components/products/Table";
+import ProductTable from "../components/products/ProductTable";
 import ProductsContextProvider from "../store/ProductsContextProvider";
 
-function ProductTable() {
+function ProductTableAdmin() {
   return (
     <ProductsContextProvider>
       <Navbar />
-      <Table />
+      <ProductTable />
     </ProductsContextProvider>
   );
 }
 
-export default ProductTable;
+export default ProductTableAdmin;
