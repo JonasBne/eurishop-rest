@@ -5,6 +5,7 @@ import ProductsContext, {
   ProductsContextProps,
 } from "../../store/ProductsContext";
 import Product from "../../types/Product";
+import LoadingSpinner from "../general/LoadingSpinner";
 
 const TableContainer = styled.table<SpaceProps>`
   ${space};
@@ -19,7 +20,7 @@ function ProductTable() {
 
   return (
     <>
-      {loading && <div>Loading...</div>}
+      {loading && <LoadingSpinner />}
       {!loading && products.length <= 0 && <div>Loading...</div>}
       {error && <div>Error...</div>}
       {!loading && !error && (
