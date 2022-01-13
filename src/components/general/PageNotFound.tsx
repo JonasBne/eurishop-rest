@@ -1,6 +1,7 @@
 import React from "react";
 import styled, { keyframes } from "styled-components";
 import { space, SpaceProps } from "styled-system";
+import { Link } from "react-router-dom";
 
 const AstronautAnimation = keyframes`
 0% {
@@ -29,11 +30,21 @@ const HeaderContainer = styled.div`
   align-items: center;
 `;
 
-interface PageNotFoundProps {
-  errorMessage: string;
-}
+const ReturnBtn = styled(Link)<SpaceProps>`
+  width: 10rem;
+  height: 1.5rem;
+  background: #4e9caf;
+  text-align: center;
+  border-radius: 5px;
+  color: white;
+  text-transform: uppercase;
+  line-height: 25px;
+  text-decoration: none;
+  font-size: 1rem;
+  ${space};
+`;
 
-function PageNotFound({ errorMessage }: PageNotFoundProps) {
+function PageNotFound() {
   return (
     <Container>
       <Astronaut
@@ -119,7 +130,9 @@ function PageNotFound({ errorMessage }: PageNotFoundProps) {
       </Astronaut>
       <HeaderContainer>
         <h1>Houston, we have a problem.</h1>
-        <h5>{errorMessage}</h5>
+        <ReturnBtn to="/home" p="0.5rem">
+          Return home
+        </ReturnBtn>
       </HeaderContainer>
     </Container>
   );

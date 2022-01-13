@@ -22,7 +22,7 @@ function ProductTable() {
   return (
     <>
       {loading && !error && <LoadingSpinner />}
-      {error && <PageNotFound errorMessage={error} />}
+      {error && <PageNotFound />}
       {!loading && !error && (
         <TableContainer m="2rem" p="1rem">
           <thead>
