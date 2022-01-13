@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { space, SpaceProps } from "styled-system";
 // TODO: error thrown by TS: 'can't resolve @fortawesome/react-fontawesome or it's type declarations' but packages are installed?
@@ -44,10 +44,34 @@ const Icon = styled(FontAwesomeIcon)`
   }
 `;
 
+interface SortConfig {
+  key: string;
+  order: string;
+}
+
 function ProductTable() {
+  const [sortConfig, setSortConfig] = useState<SortConfig | null>(null);
+
   const { loading, error, products } =
     useContext<ProductsContextProps>(ProductsContext);
 
+  const sortedProducts = [...products];
+  if (sortConfig !== null) {
+    sortedProducts.sort((a: any, b: any) => {
+      // TODO: find a better alternative to typecast this
+      if (a[sortConfig.key] < b[sortConfig.key]) {
+        return sortConfig.order === "ascending" ? -1 : 1;
+      }
+      if (a[sortConfig.key] > b[sortConfig.key]) {
+        return sortConfig.order === "ascending" ? 1 : -1;
+      }
+      return 0;
+    });
+  }
+
+  console.log(sortedProducts);
+
+  // TODO: add an icon which shows the current sorting order
   return (
     <>
       {loading && !error && <LoadingSpinner />}
@@ -56,12 +80,22 @@ function ProductTable() {
         <TableContainer m="2rem">
           <thead>
             <TableRowHeader>
-              <TableHead>Title</TableHead>
-              <TableHead>Description</TableHead>
+              <TableHead onClick={() => setSortedField("title")}>
+                Title
+              </TableHead>
+              <TableHead onClick={() => setSortedField("desc")}>
+                Description
+              </TableHead>
               <TableHead>Image</TableHead>
-              <TableHead>Stock</TableHead>
-              <TableHead>Baseprice</TableHead>
-              <TableHead>price</TableHead>
+              <TableHead onClick={() => setSortedField("stocked")}>
+                Stock
+              </TableHead>
+              <TableHead onClick={() => setSortedField("basePrice")}>
+                Baseprice
+              </TableHead>
+              <TableHead onClick={() => setSortedField("price")}>
+                price
+              </TableHead>
               <TableHead>Actions</TableHead>
             </TableRowHeader>
           </thead>
