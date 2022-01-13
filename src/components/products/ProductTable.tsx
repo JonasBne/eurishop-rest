@@ -15,6 +15,15 @@ const TableContainer = styled.table<SpaceProps>`
     rgba(0, 0, 0, 0.22) 0px 15px 12px;
 `;
 
+const TableRowHeader = styled.tr`
+  color: white;
+`;
+
+const TableHead = styled.th`
+  background-color: #0077b6;
+  padding: 1rem;
+`;
+
 function ProductTable() {
   const { loading, error, products } =
     useContext<ProductsContextProps>(ProductsContext);
@@ -24,16 +33,17 @@ function ProductTable() {
       {loading && !error && <LoadingSpinner />}
       {error && <PageNotFound />}
       {!loading && !error && (
-        <TableContainer m="2rem" p="1rem">
+        <TableContainer m="2rem">
           <thead>
-            <tr>
-              <th>Title</th>
-              <th>Description</th>
-              <th>Image</th>
-              <th>Stock</th>
-              <th>Baseprice</th>
-              <th>price</th>
-            </tr>
+            <TableRowHeader>
+              <TableHead>Title</TableHead>
+              <TableHead>Description</TableHead>
+              <TableHead>Image</TableHead>
+              <TableHead>Stock</TableHead>
+              <TableHead>Baseprice</TableHead>
+              <TableHead>price</TableHead>
+              <TableHead>Actions</TableHead>
+            </TableRowHeader>
           </thead>
           <tbody>
             {products.map((product: Product) => {
