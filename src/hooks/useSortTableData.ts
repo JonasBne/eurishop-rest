@@ -6,18 +6,21 @@ interface SortConfig {
   order: string;
 }
 
-function useSortTableData(data: Product[], key: string) {
-  const [sortConfig, setSortConfig] = useState<SortConfig | null>(null);
+function useSortTableData(data: Product[]) {
+  const [sortConfig, setSortConfig] = useState<SortConfig>({
+    key: "",
+    order: "default",
+  });
 
-  function requestedSorting() {
+  function requestedSorting(key: string) {
     let order = "default";
-    if (sortConfig?.key === key && sortConfig.order === "default") {
+    if (sortConfig.key === key && sortConfig.order === "default") {
       order = "ascending";
     }
-    if (sortConfig?.key === key && sortConfig.order === "ascending") {
+    if (sortConfig.key === key && sortConfig.order === "ascending") {
       order = "descending";
     }
-    if (sortConfig?.key === key && sortConfig.order === "descending") {
+    if (sortConfig.key === key && sortConfig.order === "descending") {
       order = "default";
     }
     setSortConfig({ key, order });
