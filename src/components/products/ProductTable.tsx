@@ -1,6 +1,10 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
 import { space, SpaceProps } from "styled-system";
+// TODO: error thrown by TS: 'can't resolve @fortawesome/react-fontawesome or it's type declarations' but packages are installed?
+// @ts-ignore
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
 import ProductsContext, {
   ProductsContextProps,
 } from "../../store/ProductsContext";
@@ -55,6 +59,10 @@ function ProductTable() {
                   <td>{product.stocked ? "Available" : "Out of stock"}</td>
                   <td>{product.basePrice}</td>
                   <td>{product.price}</td>
+                  <td>
+                    <FontAwesomeIcon icon={faPen} />
+                    <FontAwesomeIcon icon={faTrash} />
+                  </td>
                 </tr>
               );
             })}
