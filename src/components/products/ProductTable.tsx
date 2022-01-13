@@ -23,9 +23,9 @@ const TableRowHeader = styled.tr`
   color: white;
 `;
 
-const TableHead = styled.th`
+const TableHead = styled.th<SpaceProps>`
   background-color: #0077b6;
-  padding: 1rem;
+  ${space}
 `;
 
 const TableData = styled.td<SpaceProps>`
@@ -91,23 +91,23 @@ function ProductTable() {
         <TableContainer m="2rem">
           <thead>
             <TableRowHeader>
-              <TableHead onClick={() => requestedSorting("title")}>
+              <TableHead onClick={() => requestedSorting("title")} p="1rem">
                 Title
               </TableHead>
-              <TableHead onClick={() => requestedSorting("desc")}>
+              <TableHead onClick={() => requestedSorting("desc")} p="1rem">
                 Description
               </TableHead>
               <TableHead>Image</TableHead>
-              <TableHead onClick={() => requestedSorting("stocked")}>
+              <TableHead onClick={() => requestedSorting("stocked")} p="1rem">
                 Stock
               </TableHead>
-              <TableHead onClick={() => requestedSorting("basePrice")}>
+              <TableHead onClick={() => requestedSorting("basePrice")} p="1rem">
                 Baseprice
               </TableHead>
-              <TableHead onClick={() => requestedSorting("price")}>
+              <TableHead onClick={() => requestedSorting("price")} p="1rem">
                 price
               </TableHead>
-              <TableHead>Actions</TableHead>
+              <TableHead p="1rem">Actions</TableHead>
             </TableRowHeader>
           </thead>
           <tbody>
