@@ -63,8 +63,10 @@ function ProductTable() {
     setSortConfig({ key, order });
   }
 
+  // TODO: transfer this to a custom hook
+  const sortedProducts = [...products];
+
   useMemo(() => {
-    const sortedProducts = [...products];
     if (sortConfig !== null) {
       sortedProducts.sort((a: any, b: any) => {
         // TODO: find a better alternative to typecast this
@@ -109,7 +111,7 @@ function ProductTable() {
             </TableRowHeader>
           </thead>
           <tbody>
-            {products.map((product: Product) => {
+            {sortedProducts.map((product: Product) => {
               return (
                 <tr key={product.id}>
                   <TableData p="1rem">{product.title}</TableData>
