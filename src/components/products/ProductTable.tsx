@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useMemo, useState } from "react";
 import styled from "styled-components";
 import { space, SpaceProps } from "styled-system";
 // TODO: error thrown by TS: 'can't resolve @fortawesome/react-fontawesome or it's type declarations' but packages are installed?
@@ -55,21 +55,30 @@ function ProductTable() {
   const { loading, error, products } =
     useContext<ProductsContextProps>(ProductsContext);
 
-  const sortedProducts = [...products];
-  if (sortConfig !== null) {
-    sortedProducts.sort((a: any, b: any) => {
-      // TODO: find a better alternative to typecast this
-      if (a[sortConfig.key] < b[sortConfig.key]) {
-        return sortConfig.order === "ascending" ? -1 : 1;
-      }
-      if (a[sortConfig.key] > b[sortConfig.key]) {
-        return sortConfig.order === "ascending" ? 1 : -1;
-      }
-      return 0;
-    });
+  function requestedSorting(key: string) {
+    let order = "ascending";
+    if (sortConfig?.key === key && sortConfig.order === "ascending") {
+      order = "descending";
+    }
+    setSortConfig({ key, order });
   }
 
-  console.log(sortedProducts);
+  useMemo(() => {
+    const sortedProducts = [...products];
+    if (sortConfig !== null) {
+      sortedProducts.sort((a: any, b: any) => {
+        // TODO: find a better alternative to typecast this
+        if (a[sortConfig.key] < b[sortConfig.key]) {
+          return sortConfig.order === "ascending" ? -1 : 1;
+        }
+        if (a[sortConfig.key] > b[sortConfig.key]) {
+          return sortConfig.order === "ascending" ? 1 : -1;
+        }
+        return 0;
+      });
+    }
+    return sortedProducts;
+  }, [products, sortConfig]);
 
   // TODO: add an icon which shows the current sorting order
   return (
@@ -80,20 +89,20 @@ function ProductTable() {
         <TableContainer m="2rem">
           <thead>
             <TableRowHeader>
-              <TableHead onClick={() => setSortedField("title")}>
+              <TableHead onClick={() => requestedSorting("title")}>
                 Title
               </TableHead>
-              <TableHead onClick={() => setSortedField("desc")}>
+              <TableHead onClick={() => requestedSorting("desc")}>
                 Description
               </TableHead>
               <TableHead>Image</TableHead>
-              <TableHead onClick={() => setSortedField("stocked")}>
+              <TableHead onClick={() => requestedSorting("stocked")}>
                 Stock
               </TableHead>
-              <TableHead onClick={() => setSortedField("basePrice")}>
+              <TableHead onClick={() => requestedSorting("basePrice")}>
                 Baseprice
               </TableHead>
-              <TableHead onClick={() => setSortedField("price")}>
+              <TableHead onClick={() => requestedSorting("price")}>
                 price
               </TableHead>
               <TableHead>Actions</TableHead>
