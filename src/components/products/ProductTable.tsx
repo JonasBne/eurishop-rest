@@ -62,60 +62,13 @@ const SortIcon = styled(FontAwesomeIcon)<SpaceProps>`
   ${space}
 `;
 
-// interface SortConfig {
-//   key: string;
-//   order: string;
-// }
-
 function ProductTable() {
-  // const [sortConfig, setSortConfig] = useState<SortConfig>({
-  //   key: "",
-  //   order: "default",
-  // });
-
   const { loading, error, products } =
     useContext<ProductsContextProps>(ProductsContext);
 
   const { sortConfig, sortedData, requestedSorting } =
     useSortTableData(products);
 
-  // function requestedSorting(key: string) {
-  //   let order = "default";
-  //   if (sortConfig.key === key && sortConfig.order === "default") {
-  //     order = "ascending";
-  //   }
-  //   if (sortConfig.key === key && sortConfig.order === "ascending") {
-  //     order = "descending";
-  //   }
-  //   if (sortConfig.key === key && sortConfig.order === "descending") {
-  //     order = "default";
-  //   }
-  //   setSortConfig({ key, order });
-  // }
-
-  // // TODO: transfer this to a custom hook
-  // const sortedProducts = [...products];
-
-  // useMemo(() => {
-  //   if (sortConfig !== null && sortConfig.order !== "default") {
-  //     sortedProducts.sort((a: any, b: any) => {
-  //       // TODO: find a better alternative to typecast this
-  //       if (a[sortConfig.key] < b[sortConfig.key]) {
-  //         return sortConfig.order === "ascending" ? -1 : 1;
-  //       }
-  //       if (a[sortConfig.key] > b[sortConfig.key]) {
-  //         return sortConfig.order === "ascending" ? 1 : -1;
-  //       }
-  //       return 0;
-  //     });
-  //   }
-  //   if (sortConfig !== null && sortConfig.order === "default") {
-  //     sortedProducts.sort((a: any) => a);
-  //   }
-  //   return sortedProducts;
-  // }, [products, sortConfig]);
-
-  // TODO: add an icon which shows the current sorting order
   return (
     <>
       {loading && !error && <LoadingSpinner />}
