@@ -6,12 +6,14 @@ import ProductsContext, {
 } from "../store/ProductsContext";
 import LoadingSpinner from "../components/general/LoadingSpinner";
 import PageNotFound from "../components/general/PageNotFound";
+import ProductForm from "../components/products/ProductForm";
 
 function ProductDetail() {
   const { productId } = useParams<string>();
   const { loading, error, products } =
     useContext<ProductsContextProps>(ProductsContext);
-  const product = products.find((prod) => prod.id.toString() === productId);
+  // TODO: is there a better solution to resolve the error "type Product | undefined is not assignable to type Product"
+  const product = products.find((prod) => prod.id.toString() === productId)!;
 
   return (
     <>
@@ -19,7 +21,10 @@ function ProductDetail() {
       {loading && !error && <LoadingSpinner />}
       {error && <PageNotFound />}
       {!loading && !error && (
-        <h3>{`Product detail: ${product?.title} (${product?.sku})`}</h3>
+        <div>
+          <h3>{`Product detail: ${product?.title} (${product?.sku})`}</h3>
+          <ProductForm product={product} />
+        </div>
       )}
     </>
   );
