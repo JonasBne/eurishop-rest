@@ -56,9 +56,15 @@ function ProductTable() {
     useContext<ProductsContextProps>(ProductsContext);
 
   function requestedSorting(key: string) {
-    let order = "ascending";
+    let order = "default";
+    if (sortConfig?.key === key && sortConfig.order === "default") {
+      order = "ascending";
+    }
     if (sortConfig?.key === key && sortConfig.order === "ascending") {
       order = "descending";
+    }
+    if (sortConfig?.key === key && sortConfig.order === "descending") {
+      order = "default";
     }
     setSortConfig({ key, order });
   }
@@ -67,7 +73,7 @@ function ProductTable() {
   const sortedProducts = [...products];
 
   useMemo(() => {
-    if (sortConfig !== null) {
+    if (sortConfig !== null && sortConfig.order !== "default") {
       sortedProducts.sort((a: any, b: any) => {
         // TODO: find a better alternative to typecast this
         if (a[sortConfig.key] < b[sortConfig.key]) {
@@ -78,6 +84,9 @@ function ProductTable() {
         }
         return 0;
       });
+    }
+    if (sortConfig !== null && sortConfig.order === "default") {
+      sortedProducts.sort((a: any) => a);
     }
     return sortedProducts;
   }, [products, sortConfig]);
