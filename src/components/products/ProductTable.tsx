@@ -26,6 +26,9 @@ const TableRowHeader = styled.tr`
 const TableHead = styled.th<SpaceProps>`
   background-color: #0077b6;
   ${space}
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const TableData = styled.td<SpaceProps>`
