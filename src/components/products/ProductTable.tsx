@@ -9,6 +9,7 @@ import {
   faTrash,
   faSortDown,
   faSortUp,
+  faSort,
 } from "@fortawesome/free-solid-svg-icons";
 import ProductsContext, {
   ProductsContextProps,
@@ -50,6 +51,13 @@ const Icon = styled(FontAwesomeIcon)`
   &:hover {
     cursor: pointer;
   }
+`;
+
+const SortIcon = styled(FontAwesomeIcon)<SpaceProps>`
+  &:hover {
+    cursor: pointer;
+  }
+  ${space}
 `;
 
 interface SortConfig {
@@ -113,19 +121,64 @@ function ProductTable() {
             <TableRowHeader>
               <TableHead onClick={() => requestedSorting("title")} p="1rem">
                 Title
+                {sortConfig.order === "default" && (
+                  <SortIcon icon={faSort} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "ascending" && (
+                  <SortIcon icon={faSortUp} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "descending" && (
+                  <SortIcon icon={faSortDown} m="auto" pl="1rem" />
+                )}
               </TableHead>
               <TableHead onClick={() => requestedSorting("desc")} p="1rem">
                 Description
+                {sortConfig.order === "default" && (
+                  <SortIcon icon={faSort} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "ascending" && (
+                  <SortIcon icon={faSortUp} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "descending" && (
+                  <SortIcon icon={faSortDown} m="auto" pl="1rem" />
+                )}
               </TableHead>
               <TableHead>Image</TableHead>
               <TableHead onClick={() => requestedSorting("stocked")} p="1rem">
                 Stock
+                {sortConfig.order === "default" && (
+                  <SortIcon icon={faSort} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "ascending" && (
+                  <SortIcon icon={faSortUp} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "descending" && (
+                  <SortIcon icon={faSortDown} m="auto" pl="1rem" />
+                )}
               </TableHead>
               <TableHead onClick={() => requestedSorting("basePrice")} p="1rem">
                 Baseprice
+                {sortConfig.order === "default" && (
+                  <SortIcon icon={faSort} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "ascending" && (
+                  <SortIcon icon={faSortUp} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "descending" && (
+                  <SortIcon icon={faSortDown} m="auto" pl="1rem" />
+                )}
               </TableHead>
               <TableHead onClick={() => requestedSorting("price")} p="1rem">
                 price
+                {sortConfig.order === "default" && (
+                  <SortIcon icon={faSort} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "ascending" && (
+                  <SortIcon icon={faSortUp} m="auto" pl="1rem" />
+                )}
+                {sortConfig.order === "descending" && (
+                  <SortIcon icon={faSortDown} m="auto" pl="1rem" />
+                )}
               </TableHead>
               <TableHead p="1rem">Actions</TableHead>
             </TableRowHeader>
