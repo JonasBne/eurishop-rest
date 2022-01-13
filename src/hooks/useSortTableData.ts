@@ -48,6 +48,7 @@ function useSortTableData(data: Product[]) {
   }, [data, sortConfig]);
 
   return {
+    sortConfig,
     requestedSorting,
     sortedData,
   };
