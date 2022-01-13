@@ -28,6 +28,22 @@ const TableHead = styled.th`
   padding: 1rem;
 `;
 
+const TableData = styled.td<SpaceProps>`
+  ${space}
+`;
+
+const IconsContainer = styled.td<SpaceProps>`
+  display: flex;
+  justify-content: space-around;
+  ${space}
+`;
+
+const Icon = styled(FontAwesomeIcon)`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 function ProductTable() {
   const { loading, error, products } =
     useContext<ProductsContextProps>(ProductsContext);
@@ -53,16 +69,18 @@ function ProductTable() {
             {products.map((product: Product) => {
               return (
                 <tr key={product.id}>
-                  <td>{product.title}</td>
-                  <td>{product.desc}</td>
-                  <td>{product.image}</td>
-                  <td>{product.stocked ? "Available" : "Out of stock"}</td>
-                  <td>{product.basePrice}</td>
-                  <td>{product.price}</td>
-                  <td>
-                    <FontAwesomeIcon icon={faPen} />
-                    <FontAwesomeIcon icon={faTrash} />
-                  </td>
+                  <TableData p="1rem">{product.title}</TableData>
+                  <TableData p="1rem">{product.desc}</TableData>
+                  <TableData p="1rem">{product.image}</TableData>
+                  <TableData p="1rem">
+                    {product.stocked ? "Available" : "Out of stock"}
+                  </TableData>
+                  <TableData p="1rem">{product.basePrice}</TableData>
+                  <TableData p="1rem">{product.price}</TableData>
+                  <IconsContainer p="1rem">
+                    <Icon icon={faPen} />
+                    <Icon icon={faTrash} />
+                  </IconsContainer>
                 </tr>
               );
             })}
