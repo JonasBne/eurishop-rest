@@ -7,6 +7,7 @@ import {
   faSort,
   faEye,
 } from "@fortawesome/free-solid-svg-icons";
+import { useNavigate } from "react-router-dom";
 import ProductsContext, {
   ProductsContextProps,
 } from "../../store/ProductsContext";
@@ -25,6 +26,8 @@ import {
 } from "./ProductTable.styles";
 
 function ProductTable() {
+  const navigate = useNavigate();
+
   const { loading, error, products } =
     useContext<ProductsContextProps>(ProductsContext);
 
@@ -122,7 +125,11 @@ function ProductTable() {
                   <IconsContainer p="1.5rem">
                     <Icon icon={faPen} px="0.5rem" />
                     <Icon icon={faTrash} px="0.5rem" />
-                    <Icon icon={faEye} px="0.5rem" />
+                    <Icon
+                      icon={faEye}
+                      px="0.5rem"
+                      onClick={() => navigate(`/products/${product.id}`)}
+                    />
                   </IconsContainer>
                 </tr>
               );
