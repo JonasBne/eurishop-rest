@@ -4,7 +4,12 @@ import { space, SpaceProps } from "styled-system";
 // TODO: error thrown by TS: 'can't resolve @fortawesome/react-fontawesome or it's type declarations' but packages are installed?
 // @ts-ignore
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPen,
+  faTrash,
+  faSortDown,
+  faSortUp,
+} from "@fortawesome/free-solid-svg-icons";
 import ProductsContext, {
   ProductsContextProps,
 } from "../../store/ProductsContext";
@@ -53,20 +58,23 @@ interface SortConfig {
 }
 
 function ProductTable() {
-  const [sortConfig, setSortConfig] = useState<SortConfig | null>(null);
+  const [sortConfig, setSortConfig] = useState<SortConfig>({
+    key: "",
+    order: "default",
+  });
 
   const { loading, error, products } =
     useContext<ProductsContextProps>(ProductsContext);
 
   function requestedSorting(key: string) {
     let order = "default";
-    if (sortConfig?.key === key && sortConfig.order === "default") {
+    if (sortConfig.key === key && sortConfig.order === "default") {
       order = "ascending";
     }
-    if (sortConfig?.key === key && sortConfig.order === "ascending") {
+    if (sortConfig.key === key && sortConfig.order === "ascending") {
       order = "descending";
     }
-    if (sortConfig?.key === key && sortConfig.order === "descending") {
+    if (sortConfig.key === key && sortConfig.order === "descending") {
       order = "default";
     }
     setSortConfig({ key, order });
