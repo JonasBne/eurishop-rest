@@ -6,8 +6,16 @@ interface ProductFormProps {
 }
 
 function ProductForm({ product }: ProductFormProps) {
-  console.log(product);
-  return <div>test</div>;
+  return (
+    <form>
+      <input type="text" defaultValue={product.sku} />
+      <input type="text" defaultValue={product.title} />
+      <input type="text" defaultValue={product.desc} />
+      <input type="text" defaultValue={product.stocked ? "Yes" : "No"} />
+      <input type="text" defaultValue={product.basePrice} />
+      <input type="text" defaultValue={product.price} />
+    </form>
+  );
 }
 
 export default ProductForm;
