@@ -34,6 +34,7 @@ interface ProductFormProps {
   product: Product;
 }
 
+// TODO: refactor code to grid
 function ProductForm({ product }: ProductFormProps) {
   return (
     <Form p="1rem" width="fit-content">
