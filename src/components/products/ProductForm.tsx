@@ -10,16 +10,22 @@ function ProductForm({ product }: ProductFormProps) {
     <form>
       <label htmlFor="number">
         Number
-        <input id="number" type="text" defaultValue={product.sku} />
+        <input id="number" type="text" defaultValue={product.sku} disabled />
       </label>
 
       <label htmlFor="title">
-        Title <input id="title" type="text" defaultValue={product.title} />
+        Title{" "}
+        <input id="title" type="text" defaultValue={product.title} disabled />
       </label>
 
       <label htmlFor="description">
         Description
-        <input id="description" type="text" defaultValue={product.desc} />
+        <input
+          id="description"
+          type="text"
+          defaultValue={product.desc}
+          disabled
+        />
       </label>
 
       <label htmlFor="stocked">
@@ -28,16 +34,23 @@ function ProductForm({ product }: ProductFormProps) {
           id="stocked"
           type="text"
           defaultValue={product.stocked ? "Yes" : "No"}
+          disabled
         />
       </label>
 
       <label htmlFor="base-price">
         Base price
-        <input id="base-price" type="text" defaultValue={product.basePrice} />
+        <input
+          id="base-price"
+          type="text"
+          defaultValue={product.basePrice}
+          disabled
+        />
       </label>
 
       <label htmlFor="price">
-        Unit price <input id="price" type="text" defaultValue={product.price} />
+        Unit price{" "}
+        <input id="price" type="text" defaultValue={product.price} disabled />
       </label>
     </form>
   );
