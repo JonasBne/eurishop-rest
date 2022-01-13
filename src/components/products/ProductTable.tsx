@@ -5,6 +5,7 @@ import {
   faSortDown,
   faSortUp,
   faSort,
+  faEye,
 } from "@fortawesome/free-solid-svg-icons";
 import ProductsContext, {
   ProductsContextProps,
@@ -118,9 +119,10 @@ function ProductTable() {
                   </TableData>
                   <TableData p="1rem">{product.basePrice}</TableData>
                   <TableData p="1rem">{product.price}</TableData>
-                  <IconsContainer p="1rem">
-                    <Icon icon={faPen} />
-                    <Icon icon={faTrash} />
+                  <IconsContainer p="1.5rem">
+                    <Icon icon={faPen} px="0.5rem" />
+                    <Icon icon={faTrash} px="0.5rem" />
+                    <Icon icon={faEye} px="0.5rem" />
                   </IconsContainer>
                 </tr>
               );

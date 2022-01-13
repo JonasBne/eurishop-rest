@@ -32,10 +32,11 @@ const IconsContainer = styled.td<SpaceProps>`
   ${space}
 `;
 
-const Icon = styled(FontAwesomeIcon)`
+const Icon = styled(FontAwesomeIcon)<SpaceProps>`
   &:hover {
     cursor: pointer;
   }
+  ${space}
 `;
 
 const SortIcon = styled(FontAwesomeIcon)<SpaceProps>`
