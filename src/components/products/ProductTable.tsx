@@ -126,10 +126,10 @@ function ProductTable() {
                   <SortIcon icon={faSort} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "ascending" && (
-                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "descending" && (
-                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
                 )}
               </TableHead>
               <TableHead
@@ -142,10 +142,10 @@ function ProductTable() {
                   <SortIcon icon={faSort} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "ascending" && (
-                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "descending" && (
-                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
                 )}
               </TableHead>
               <TableHead>Image</TableHead>
@@ -155,10 +155,10 @@ function ProductTable() {
                   <SortIcon icon={faSort} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "ascending" && (
-                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "descending" && (
-                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
                 )}
               </TableHead>
               <TableHead onClick={() => requestedSorting("basePrice")} p="1rem">
@@ -167,10 +167,10 @@ function ProductTable() {
                   <SortIcon icon={faSort} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "ascending" && (
-                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "descending" && (
-                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
                 )}
               </TableHead>
               <TableHead onClick={() => requestedSorting("price")} p="1rem">
@@ -179,10 +179,10 @@ function ProductTable() {
                   <SortIcon icon={faSort} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "ascending" && (
-                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
                 )}
                 {sortConfig.order === "descending" && (
-                  <SortIcon icon={faSortDown} m="auto" pl="0.5rem" />
+                  <SortIcon icon={faSortUp} m="auto" pl="0.5rem" />
                 )}
               </TableHead>
               <TableHead p="1rem">Actions</TableHead>
