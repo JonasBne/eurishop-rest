@@ -60,6 +60,19 @@ const Input = styled.input`
   height: 2rem;
 `;
 
+const TextArea = styled.textarea<LayoutProps>`
+  ${layout}
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  resize: none;
+`;
+
 interface ProductFormProps {
   product: Product;
 }
@@ -105,12 +118,7 @@ function ProductForm({ product }: ProductFormProps) {
 
       <DescriptionLabel htmlFor="description" m="1rem">
         Description
-        <Input
-          id="description"
-          type="text"
-          defaultValue={product.desc}
-          disabled
-        />
+        <TextArea id="description" defaultValue={product.desc} disabled />
       </DescriptionLabel>
     </Form>
   );
