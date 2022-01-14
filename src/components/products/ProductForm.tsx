@@ -1,74 +1,25 @@
 import React from "react";
-import styled from "styled-components";
-import { layout, LayoutProps, space, SpaceProps } from "styled-system";
 import Product from "../../types/Product";
-
-// TODO: move to view as sub component
-const Form = styled.form<LayoutProps>`
-  ${layout}
-  display: grid;
-  grid-template-areas:
-    "number title . . "
-    "stock basePrice . ."
-    "unitPrice . . ."
-    "desc desc desc desc";
-  grid-gap: 2rem;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-  -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-  -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-`;
-
-const NumberLabel = styled.label<SpaceProps>`
-  ${space}
-  grid-area: number
-`;
-
-const TitleLabel = styled.label<SpaceProps>`
-  ${space}
-  grid-area: title
-`;
-
-const StockLabel = styled.label<SpaceProps>`
-  ${space}
-  grid-area: stock
-`;
-
-const BasePriceLabel = styled.label<SpaceProps>`
-  ${space}
-  grid-area: basePrice
-`;
-
-const UnitPriceLabel = styled.label<SpaceProps>`
-  ${space}
-  grid-area: unitPrice
-`;
-
-const DescriptionLabel = styled.label<SpaceProps>`
-  ${space}
-  grid-area: desc
-`;
-
-const Input = styled.input`
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  display: block;
-  width: 100%;
-  border: none;
-  border-bottom: 1px solid #ddd;
-  background: transparent;
-  height: 2rem;
-`;
+import {
+  Form,
+  NumberLabel,
+  TitleLabel,
+  StockLabel,
+  BasePriceLabel,
+  UnitPriceLabel,
+  DescriptionLabel,
+  Input,
+  TextArea,
+  EditBtn,
+} from "./ProductForm.styles";
 
 interface ProductFormProps {
   product: Product;
 }
 
-// TODO: refactor code to grid
 function ProductForm({ product }: ProductFormProps) {
   return (
-    <Form width="40rem">
+    <Form height="30rem" width="40rem" p="1rem">
       <NumberLabel htmlFor="number" m="1rem">
         Number
         <Input id="number" type="text" defaultValue={product.sku} disabled />
@@ -106,13 +57,17 @@ function ProductForm({ product }: ProductFormProps) {
 
       <DescriptionLabel htmlFor="description" m="1rem">
         Description
-        <Input
+        <TextArea
           id="description"
-          type="text"
           defaultValue={product.desc}
           disabled
+          width="100%"
+          height="100%"
+          mb="2rem"
+          lineHeight="1.5rem"
         />
       </DescriptionLabel>
+      <EditBtn>Edit</EditBtn>
     </Form>
   );
 }
