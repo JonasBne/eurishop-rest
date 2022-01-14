@@ -80,9 +80,12 @@ const TextArea = styled.textarea<SpaceProps | LayoutProps | TypographyProps>`
 `;
 
 const EditBtn = styled.button<SpaceProps | LayoutProps>`
-  ${layout}
-  ${space}
-  grid-area: btn
+  ${layout};
+  ${space};
+  grid-area: btn;
+  background-color: #457b9d;
+  border-radius: 0.5rem;
+  color: white;
 `;
 
 export {
