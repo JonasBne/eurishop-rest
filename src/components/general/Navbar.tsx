@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { space, SpaceProps } from "styled-system";
+import Header1 from "./header/Header1";
 
 const Nav = styled.nav`
   background-color: #012a4a;
@@ -23,11 +24,6 @@ const NavListItem = styled.li<SpaceProps>`
 const NavLink = styled(Link)`
   text-decoration: none;
   color: white;
-`;
-
-const Header1 = styled.h1<SpaceProps>`
-  color: white;
-  ${space}
 `;
 
 function Navbar() {
