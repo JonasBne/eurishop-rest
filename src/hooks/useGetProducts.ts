@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Product from "../types/Product";
 import ProductData from "../types/ProductData";
 
+// TODO: don't create alias type (in this case)
 type Response = ProductData;
 type FetchedData = Product[];
 

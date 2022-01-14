@@ -25,6 +25,9 @@ import {
   TableRowHeader,
 } from "./ProductTable.styles";
 
+// TODO: move to view as sub component
+// ProductTable should be presentation only
+
 function ProductTable() {
   const navigate = useNavigate();
 

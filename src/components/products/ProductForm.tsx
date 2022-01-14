@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { layout, LayoutProps, space, SpaceProps } from "styled-system";
 import Product from "../../types/Product";
 
+// TODO: move to view as sub component
 const Form = styled.form<LayoutProps>`
   ${layout}
   display: grid;

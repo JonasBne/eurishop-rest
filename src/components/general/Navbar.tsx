@@ -25,6 +25,7 @@ const NavLink = styled(Link)`
   color: white;
 `;
 
+// TODO: move to ./components/Header
 const Header1 = styled.h1<SpaceProps>`
   color: white;
   ${space}

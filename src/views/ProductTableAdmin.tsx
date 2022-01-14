@@ -7,6 +7,7 @@ import ProductsContext, {
 
 function ProductTableAdmin() {
   const { error } = useContext<ProductsContextProps>(ProductsContext);
+  // TODO: load data here and pass it to ProductTable
   return (
     <>
       {!error && <Navbar />}

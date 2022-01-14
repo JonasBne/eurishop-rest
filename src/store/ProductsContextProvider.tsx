@@ -14,6 +14,7 @@ interface ProductsResponse {
 }
 
 function ProductsContextProvider({ children }: ProductsContextProviderProps) {
+  // TODO: a provider should only store data, no behavior
   const {
     loading,
     error,

@@ -6,6 +6,8 @@ interface SortConfig {
   order: string;
 }
 
+// TODO: extract to sort function (and unit test)
+// TODO: combine key & sort to one sortExpression (-name)
 function useSortTableData(data: Product[]) {
   const [sortConfig, setSortConfig] = useState<SortConfig>({
     key: "",

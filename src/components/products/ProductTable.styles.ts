@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { space, SpaceProps, layout, LayoutProps } from "styled-system";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+// TODO: move to Table component
+// TODO: avoid styled system on custom styled components,
+//       only provided it on top level shared components
+
 const TableContainer = styled.table<SpaceProps>`
   ${space};
   font-size: 0.9rem;
@@ -32,12 +36,15 @@ const IconsContainer = styled.td<SpaceProps>`
   ${space}
 `;
 
+// TODO: MOVE to Assets
 const Icon = styled(FontAwesomeIcon)<SpaceProps>`
   &:hover {
     cursor: pointer;
   }
   ${space}
 `;
+
+// TODO: MOVE to Assets
 
 const SortIcon = styled(FontAwesomeIcon)<SpaceProps>`
   &:hover {
