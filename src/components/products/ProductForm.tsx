@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import Product from "../../types/Product";
 import {
   Form,
@@ -18,6 +18,13 @@ interface ProductFormProps {
 }
 
 function ProductForm({ product }: ProductFormProps) {
+  const [editMode, setEditMode] = useState<boolean>(false);
+
+  const handleFormButtonClick = useCallback((event: React.MouseEvent) => {
+    event.preventDefault();
+    setEditMode((prevState) => !prevState);
+  }, []);
+
   return (
     <Form height="30rem" width="40rem" p="1rem">
       <NumberLabel htmlFor="number" m="1rem">
@@ -67,7 +74,9 @@ function ProductForm({ product }: ProductFormProps) {
           lineHeight="1.5rem"
         />
       </DescriptionLabel>
-      <EditBtn>Edit</EditBtn>
+      <EditBtn onClick={handleFormButtonClick} type="submit">
+        {editMode ? "Save" : "Edit"}
+      </EditBtn>
     </Form>
   );
 }
