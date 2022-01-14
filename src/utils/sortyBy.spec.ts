@@ -1,9 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import path from "path";
-
-const sortby = (ar: any[], expression: string) => {
-  return ar;
-};
+import sortby from "./sortBy";
 
 describe("my first test", () => {
   test("test", () => {

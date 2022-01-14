@@ -6,7 +6,14 @@ function App() {
   return (
     <>
       <Navbar />
-      <div>This will be the home page</div>
+      <Routes>
+        <Route path="*" element={<p>There is nothing here!</p>} />
+        <Route path="/" element={<App />} />
+        <Route path="/" element={<ProductOverview />} />
+        <Route path="products" element={<ProductOverview />} />
+        <Route path="products/:productId" element={<ProductDetail />} />
+        <Route path="products/admin" element={<ProductTableAdmin />} />
+      </Routes>
     </>
   );
 }

@@ -14,14 +14,7 @@ const root = ReactDOM.createRoot(container);
 root.render(
   <ProductsContextProvider>
     <BrowserRouter>
-      <Routes>
-        <Route path="*" element={<p>There is nothing here!</p>} />
-        <Route path="/" element={<App />} />
-        <Route path="home" element={<ProductOverview />} />
-        <Route path="products" element={<ProductOverview />} />
-        <Route path="products/:productId" element={<ProductDetail />} />
-        <Route path="products/admin" element={<ProductTableAdmin />} />
-      </Routes>
+      <App />
     </BrowserRouter>
   </ProductsContextProvider>
 );

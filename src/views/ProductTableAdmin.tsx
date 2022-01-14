@@ -6,12 +6,24 @@ import ProductsContext, {
 } from "../store/ProductsContext";
 
 function ProductTableAdmin() {
-  const { error } = useContext<ProductsContextProps>(ProductsContext);
+  const { data, error, pending } = useGetProducts("http://domain/products");
+  const [sortBy, setSortBy] = useState();
+
+  // const { error } = useContext<ProductsContextProps>(ProductsContext);
   // TODO: load data here and pass it to ProductTable
+
+  const sortedData = sortBy(sortBy);
+
+  const handleSort = (expression) => {
+    setSortBy(expression);
+  };
+
   return (
     <>
+      {loading && !error && <LoadingSpinner />}
+      {error && <PageNotFound />}
       {!error && <Navbar />}
-      <ProductTable />
+      <ProductTable data={sortedData} sortBy={sortBy} onSort={handleSort} />
     </>
   );
 }

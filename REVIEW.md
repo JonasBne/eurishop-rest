@@ -3,6 +3,7 @@
 ## General
 
 - [ ] Follow Conventional Commits (https://www.conventionalcommits.org/)
+- [ ] Add lint script (command line)
 - [ ] Use Yarn 
 - [ ] Extra ProductTable to Table component
 - [ ] Create custom errors, eg; RequestError
@@ -11,3 +12,4 @@
 - [ ] Where are the unit tests?  :)
 - [ ] Make quick start doc available (on top) 
 - [ ] Create following folders folder (domain, api, utils)
+
