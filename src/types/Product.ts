@@ -1,3 +1,5 @@
+// TODO: move to ./domain/types
+
 interface Product {
   id: number;
   sku: string;

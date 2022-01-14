@@ -7,6 +7,8 @@ export interface ProductsContextProps {
   products: Product[];
 }
 
+// TODO: keep loading and error local
+// or create a global error context (only context)
 const ProductsContext = createContext<ProductsContextProps>({
   loading: false,
   error: "",

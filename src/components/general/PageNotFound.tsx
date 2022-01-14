@@ -12,6 +12,7 @@ const AstronautAnimation = keyframes`
 }
 `;
 
+// TODO: create SVG component
 const Astronaut = styled.svg<SpaceProps>`
   width: 12rem;
   height: 12rem;
