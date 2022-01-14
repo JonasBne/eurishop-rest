@@ -11,7 +11,6 @@ const Form = styled.form<LayoutProps>`
     "stock basePrice . ."
     "unitPrice . . ."
     "desc desc desc desc";
-  grid-gap: 2rem;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
   -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
   -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
@@ -53,7 +52,6 @@ const Input = styled.input`
   -moz-box-sizing: border-box;
   outline: none;
   display: block;
-  width: 100%;
   border: none;
   border-bottom: 1px solid #ddd;
   background: transparent;
@@ -80,7 +78,7 @@ interface ProductFormProps {
 // TODO: refactor code to grid
 function ProductForm({ product }: ProductFormProps) {
   return (
-    <Form width="40rem">
+    <Form height="30rem" width="40rem">
       <NumberLabel htmlFor="number" m="1rem">
         Number
         <Input id="number" type="text" defaultValue={product.sku} disabled />
