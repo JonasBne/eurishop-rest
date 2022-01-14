@@ -1,20 +1,50 @@
 import React from "react";
 import styled from "styled-components";
-import { layout, space, SpaceProps, LayoutProps } from "styled-system";
+import { layout, LayoutProps, space, SpaceProps } from "styled-system";
 import Product from "../../types/Product";
 
-const Form = styled.form<SpaceProps | LayoutProps>`
-  display: flex;
-  flex-direction: column;
+const Form = styled.form<LayoutProps>`
+  ${layout}
+  display: grid;
+  grid-template-areas:
+    "number title . . "
+    "stock basePrice . ."
+    "unitPrice . . ."
+    "desc desc desc desc";
+  grid-gap: 2rem;
   box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
   -moz-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
   -webkit-box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.22);
-  ${space}
-  ${layout}
 `;
 
-const Label = styled.label<SpaceProps>`
+const NumberLabel = styled.label<SpaceProps>`
   ${space}
+  grid-area: number
+`;
+
+const TitleLabel = styled.label<SpaceProps>`
+  ${space}
+  grid-area: title
+`;
+
+const StockLabel = styled.label<SpaceProps>`
+  ${space}
+  grid-area: stock
+`;
+
+const BasePriceLabel = styled.label<SpaceProps>`
+  ${space}
+  grid-area: basePrice
+`;
+
+const UnitPriceLabel = styled.label<SpaceProps>`
+  ${space}
+  grid-area: unitPrice
+`;
+
+const DescriptionLabel = styled.label<SpaceProps>`
+  ${space}
+  grid-area: desc
 `;
 
 const Input = styled.input`
@@ -37,28 +67,18 @@ interface ProductFormProps {
 // TODO: refactor code to grid
 function ProductForm({ product }: ProductFormProps) {
   return (
-    <Form p="1rem" width="fit-content">
-      <Label htmlFor="number" m="1rem">
+    <Form width="40rem">
+      <NumberLabel htmlFor="number" m="1rem">
         Number
         <Input id="number" type="text" defaultValue={product.sku} disabled />
-      </Label>
+      </NumberLabel>
 
-      <Label htmlFor="title" m="1rem">
-        Title{" "}
+      <TitleLabel htmlFor="title" m="1rem">
+        Title
         <Input id="title" type="text" defaultValue={product.title} disabled />
-      </Label>
+      </TitleLabel>
 
-      <Label htmlFor="description" m="1rem">
-        Description
-        <Input
-          id="description"
-          type="text"
-          defaultValue={product.desc}
-          disabled
-        />
-      </Label>
-
-      <Label htmlFor="stocked" m="1rem">
+      <StockLabel htmlFor="stocked" m="1rem">
         In stock
         <Input
           id="stocked"
@@ -66,9 +86,9 @@ function ProductForm({ product }: ProductFormProps) {
           defaultValue={product.stocked ? "Yes" : "No"}
           disabled
         />
-      </Label>
+      </StockLabel>
 
-      <Label htmlFor="base-price" m="1rem">
+      <BasePriceLabel htmlFor="base-price" m="1rem">
         Base price
         <Input
           id="base-price"
@@ -76,12 +96,22 @@ function ProductForm({ product }: ProductFormProps) {
           defaultValue={product.basePrice}
           disabled
         />
-      </Label>
+      </BasePriceLabel>
 
-      <Label htmlFor="price" m="1rem">
+      <UnitPriceLabel htmlFor="price" m="1rem">
         Unit price{" "}
         <Input id="price" type="text" defaultValue={product.price} disabled />
-      </Label>
+      </UnitPriceLabel>
+
+      <DescriptionLabel htmlFor="description" m="1rem">
+        Description
+        <Input
+          id="description"
+          type="text"
+          defaultValue={product.desc}
+          disabled
+        />
+      </DescriptionLabel>
     </Form>
   );
 }
