@@ -27,6 +27,11 @@ const NumberLabel = styled.label<SpaceProps>`
   grid-area: number
 `;
 
+const Label = styled.label<SpaceProps>`
+  ${space}
+  grid-area: number
+`;
+
 const TitleLabel = styled.label<SpaceProps>`
   ${space}
   grid-area: title

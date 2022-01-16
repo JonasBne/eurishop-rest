@@ -27,10 +27,13 @@ function ProductForm({ product }: ProductFormProps) {
 
   return (
     <Form height="30rem" width="40rem" p="1rem">
-      <NumberLabel htmlFor="number" m="1rem">
-        Number
-        <Input id="number" type="text" defaultValue={product.sku} disabled />
-      </NumberLabel>
+      <Box p="10px">
+        <Label htmlFor="number" m="1rem">
+          Number
+          <Input id="number" type="text" defaultValue={product.sku} disabled />
+          <Input id="number" type="text" value={} onChange={} disabled />
+        </Label>
+      </Box>
 
       <TitleLabel htmlFor="title" m="1rem">
         Title

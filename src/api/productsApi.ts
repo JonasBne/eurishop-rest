@@ -1,5 +1,9 @@
 // import { parser } from 'date-fns';
 
+// DELETE http://domain/api/products/1
+// http://domain/api/users
+// http://domain/api/basket
+
 interface ProductDTO {
   id: number;
   sku: string;
@@ -19,6 +23,9 @@ export interface ProductsDTO {
 }
 
 /*
+
+const url = 'api/products'
+
 function productMapper(dto: ProductDto): Product {
   return {
     ...dto
@@ -26,8 +33,17 @@ function productMapper(dto: ProductDto): Product {
   }
 }
 
-function useGetProducts(url: string) {
-  const { loading, error, data } = useFetch(url);
+function updateGetProduct(id: string) {
+
+}
+
+
+function useGetProduct(id: string) {
+
+}
+
+function useGetProducts() {
+  const { loading, error, data } = useFetch(`${rootUrl}{url}`);
   return {
     loading,
     error,

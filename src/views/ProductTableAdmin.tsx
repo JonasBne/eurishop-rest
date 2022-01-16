@@ -12,7 +12,7 @@ function ProductTableAdmin() {
   // const { error } = useContext<ProductsContextProps>(ProductsContext);
   // TODO: load data here and pass it to ProductTable
 
-  const sortedData = sortBy(sortBy);
+  const sortedData = sortBy(data, sortBy);
 
   const handleSort = (expression) => {
     setSortBy(expression);

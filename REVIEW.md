@@ -5,7 +5,7 @@
 - [ ] Follow Conventional Commits (https://www.conventionalcommits.org/)
 - [ ] Add lint script (command line)
 - [ ] Use Yarn 
-- [ ] Extra ProductTable to Table component
+- [ ] Extract ProductTable to Table component
 - [ ] Create custom errors, eg; RequestError
 - [ ] Create a generic fetch hook and re-use
 - [ ] Avoid magic string (ascending, ...)
