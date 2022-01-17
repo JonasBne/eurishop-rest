@@ -1,19 +1,9 @@
-import React, { useContext } from "react";
-import Navbar from "../Navigation/Navbar";
-import ProductTable from "../../components/products/ProductTable";
-import ProductsContext, {
-  ProductsContextProps,
-} from "../../store/ProductsContext";
+import React from "react";
+// import ProductTable from "../../components/products/ProductTable";
 
 function ProductList() {
-  const { error } = useContext<ProductsContextProps>(ProductsContext);
   // TODO: load data here and pass it to ProductTable
-  return (
-    <>
-      {!error && <Navbar />}
-      <ProductTable />
-    </>
-  );
+  return <>test{/* <ProductTable /> */}</>;
 }
 
 export default ProductList;
