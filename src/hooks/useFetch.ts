@@ -37,7 +37,6 @@ const useFetch = <T>(url: string) => {
         return;
       }
       const data: T[] = await response.json();
-      // axios: const data = await get<ProductsDTO>(url);
       setFetchedData(data);
     } catch (e: any) {
       setError(new CommunicationError(e));
