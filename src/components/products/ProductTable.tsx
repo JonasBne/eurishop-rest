@@ -12,8 +12,8 @@ import ProductsContext, {
   ProductsContextProps,
 } from "../../store/ProductsContext";
 import Product from "../../types/Product";
-import LoadingSpinner from "../general/LoadingSpinner";
-import PageNotFound from "../general/PageNotFound";
+import LoadingSpinner from "../LoadingSpinner";
+import PageNotFound from "../PageNotFound";
 import useSortTableData from "../../hooks/useSortTableData";
 import {
   Icon,

@@ -4,8 +4,8 @@ import Navbar from "./Navigation/Navbar";
 import ProductsContext, {
   ProductsContextProps,
 } from "../store/ProductsContext";
-import LoadingSpinner from "../components/general/LoadingSpinner";
-import PageNotFound from "../components/general/PageNotFound";
+import LoadingSpinner from "../components/LoadingSpinner";
+import PageNotFound from "../components/PageNotFound";
 import ProductForm from "../components/products/ProductForm";
 
 function ProductDetail() {

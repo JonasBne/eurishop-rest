@@ -10,6 +10,17 @@ const AstronautAnimation = keyframes`
   transform: rotate(-360deg);
 }
 `;
+/*
+import { ReactComponent as AstronautSvg} from './assets/svg/astronaut.svg';
+
+const Astronaut = styled(AstronautSvg)`
+  width: 12rem;
+  height: 12rem;
+  animation: ${AstronautAnimation} 20s linear infinite;
+  ${space}
+`;
+
+*/
 
 const Astronaut = styled.svg<SpaceProps>`
   width: 12rem;

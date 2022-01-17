@@ -2,7 +2,7 @@ import React, { useState, createRef } from "react";
 import styled from "styled-components";
 import Burger from "./Burger/Burger";
 import Menu from "./Menu/Menu";
-import Header1 from "../../components/general/header/Header1";
+import Header1 from "../../components/Header1";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const StyledNav = styled.nav`
