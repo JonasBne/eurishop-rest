@@ -21,16 +21,25 @@ export interface ProductsDTO {
 
 const url = "api/products";
 
-const useGetProducts = () => {
+export const useGetProduct = (productId: string) => {
+  const { loading, error, data } = useFetch<ProductDTO>(
+    `${rootUrl}${url}/${productId}`
+  );
+  return {
+    loading,
+    error,
+    product: data,
+  };
+};
+
+export const useGetProducts = () => {
   const { loading, error, data } = useFetch<ProductsDTO>(`${rootUrl}${url}`);
   return {
     loading,
     error,
-    data: data?.selectedProducts,
+    products: data?.selectedProducts,
   };
 };
-
-export default useGetProducts;
 
 /*
 
