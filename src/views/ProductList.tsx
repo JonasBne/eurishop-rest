@@ -5,7 +5,7 @@ import ProductsContext, {
   ProductsContextProps,
 } from "../store/ProductsContext";
 
-function ProductTableAdmin() {
+function ProductList() {
   const { error } = useContext<ProductsContextProps>(ProductsContext);
   // TODO: load data here and pass it to ProductTable
   return (
@@ -16,4 +16,4 @@ function ProductTableAdmin() {
   );
 }
 
-export default ProductTableAdmin;
+export default ProductList;
