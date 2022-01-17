@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "../components/general/Navbar";
+import Navbar from "./Navigation/Navbar";
 
 function ProductOverview() {
   return (

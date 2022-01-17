@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import theme from "./theme";
-import Navbar from "./components/general/Navbar";
+import Navbar from "./views/Navigation/Navbar";
 import Home from "./views/Home";
 import ProductDetail from "./views/ProductDetail";
 import ProductList from "./views/ProductList";

@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router";
-import Navbar from "../components/general/Navbar";
+import Navbar from "./Navigation/Navbar";
 import ProductsContext, {
   ProductsContextProps,
 } from "../store/ProductsContext";

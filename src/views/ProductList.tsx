@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import Navbar from "../components/general/Navbar";
+import Navbar from "./Navigation/Navbar";
 import ProductTable from "../components/products/ProductTable";
 import ProductsContext, {
   ProductsContextProps,
