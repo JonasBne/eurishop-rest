@@ -5,7 +5,7 @@ import Menu from "./Menu";
 import Header1 from "../../components/general/header/Header1";
 
 const StyledNav = styled.nav`
-  background: ${({ theme }) => theme.primaryDark};
+  background: ${({ theme }) => theme.secondaryDark};
   display: flex;
   justify-content: space-between;
   align-items: center;
