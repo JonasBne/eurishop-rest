@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 
 interface StyledBurgerProps {
@@ -36,19 +35,4 @@ const StyledBurger = styled.button`
   }
 `;
 
-interface BurgerProps {
-  open: boolean;
-  setOpen: (prevState: boolean) => void;
-}
-
-function Burger({ open, setOpen }: BurgerProps) {
-  return (
-    <StyledBurger open={open} onClick={() => setOpen(!open)}>
-      <div />
-      <div />
-      <div />
-    </StyledBurger>
-  );
-}
-
-export default Burger;
+export default StyledBurger;

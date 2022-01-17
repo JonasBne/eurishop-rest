@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -37,17 +36,4 @@ const StyledLink = styled(Link)`
   }
 `;
 
-interface MenuProps {
-  open: boolean;
-}
-
-function Menu({ open }: MenuProps) {
-  return (
-    <StyledMenu open={open}>
-      <StyledLink to="/home">HOME</StyledLink>
-      <StyledLink to="/products/admin">PRODUCTS (ADMIN)</StyledLink>
-    </StyledMenu>
-  );
-}
-
-export default Menu;
+export { StyledMenu, StyledLink };

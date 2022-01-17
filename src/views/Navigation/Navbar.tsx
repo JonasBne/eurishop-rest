@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Burger from "./Burger";
-import Menu from "./Menu";
+import Burger from "./Burger/Burger";
+import Menu from "./Menu/Menu";
 import Header1 from "../../components/general/header/Header1";
 
 const StyledNav = styled.nav`
@@ -16,11 +16,11 @@ function Navbar() {
 
   return (
     <StyledNav>
+      <Header1 mx="auto">EURISHOP</Header1>
       <div>
         <Burger open={open} setOpen={setOpen} />
         <Menu open={open} />
       </div>
-      <Header1 mx="auto">EURISHOP</Header1>
     </StyledNav>
   );
 }
