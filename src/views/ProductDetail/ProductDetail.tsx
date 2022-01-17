@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { useParams } from "react-router";
-import Navbar from "./Navigation/Navbar";
+import Navbar from "../Navigation/Navbar";
 import ProductsContext, {
   ProductsContextProps,
-} from "../store/ProductsContext";
-import LoadingSpinner from "../components/LoadingSpinner";
-import PageNotFound from "../components/PageNotFound";
-import ProductForm from "../components/products/ProductForm";
+} from "../../store/ProductsContext";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import PageNotFound from "../../components/PageNotFound";
+import ProductForm from "../../components/products/ProductForm";
 
 function ProductDetail() {
   const { productId } = useParams<string>();

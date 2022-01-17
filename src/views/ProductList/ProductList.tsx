@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import Navbar from "./Navigation/Navbar";
-import ProductTable from "../components/products/ProductTable";
+import Navbar from "../Navigation/Navbar";
+import ProductTable from "../../components/products/ProductTable";
 import ProductsContext, {
   ProductsContextProps,
-} from "../store/ProductsContext";
+} from "../../store/ProductsContext";
 
 function ProductList() {
   const { error } = useContext<ProductsContextProps>(ProductsContext);
