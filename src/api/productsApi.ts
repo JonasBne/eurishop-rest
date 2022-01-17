@@ -1,6 +1,7 @@
 import rootUrl from "./rootUrl";
+import useFetch from "../hooks/useFetch";
 
-interface ProductDTO {
+export interface ProductDTO {
   id: number;
   sku: string;
   title: string;
@@ -17,6 +18,19 @@ export interface ProductsDTO {
   pageSize: number;
   selectedProducts: ProductDTO[];
 }
+
+const url = "api/products";
+
+const useGetProducts = () => {
+  const { loading, error, data } = useFetch<ProductsDTO>(`${rootUrl}${url}`);
+  return {
+    loading,
+    error,
+    data: data?.selectedProducts,
+  };
+};
+
+export default useGetProducts;
 
 /*
 

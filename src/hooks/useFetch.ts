@@ -26,7 +26,7 @@ class CommunicationError extends Error {
 const useFetch = <T>(url: string) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
-  const [fetchedData, setFetchedData] = useState<T[]>([]);
+  const [fetchedData, setFetchedData] = useState<T>();
 
   async function fetchData() {
     try {
@@ -36,7 +36,7 @@ const useFetch = <T>(url: string) => {
         setError(new RequestError(response.status));
         return;
       }
-      const data: T[] = await response.json();
+      const data: T = await response.json();
       setFetchedData(data);
     } catch (e: any) {
       setError(new CommunicationError(e));
