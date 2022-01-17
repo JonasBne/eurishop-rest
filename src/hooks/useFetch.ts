@@ -1,27 +1,7 @@
 /* eslint-disable max-classes-per-file */
 import { useState, useEffect } from "react";
-
-class RequestError extends Error {
-  status: number;
-
-  constructor(status: number, message: string = "HttpError") {
-    super(message);
-    this.name = "RequestError";
-    this.message = message;
-    this.status = status;
-  }
-}
-
-class CommunicationError extends Error {
-  error: Error;
-
-  constructor(error: Error, message: string = "CommunicationError") {
-    super(message);
-    this.name = "RequestError";
-    this.message = message;
-    this.error = error;
-  }
-}
+import RequestError from "../errors/RequestError";
+import CommunicationError from "../errors/CommunicationError";
 
 const useFetch = <T>(url: string) => {
   const [loading, setLoading] = useState<boolean>(true);

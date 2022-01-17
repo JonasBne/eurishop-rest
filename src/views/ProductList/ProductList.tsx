@@ -1,12 +1,18 @@
 import React from "react";
 // import ProductTable from "../../components/products/ProductTable";
-import { useGetProduct } from "../../api/productsApi";
+import { useGetProducts } from "../../api/productsApi";
+import LoadingSpinner from "../../components/LoadingSpinner";
 
 function ProductList() {
-  const { product } = useGetProduct("1");
-  console.log(product);
-  // TODO: load data here and pass it to ProductTable
-  return <>test{/* <ProductTable /> */}</>;
+  const { loading, error, products } = useGetProducts();
+  console.log(products);
+
+  return (
+    <>
+      {loading && !error && <LoadingSpinner />}
+      {!loading && error && <div>Something went wrong...</div>}
+    </>
+  );
 }
 
 export default ProductList;
