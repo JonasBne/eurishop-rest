@@ -21,6 +21,12 @@ export interface ProductsDTO {
 
 const url = "api/products";
 
+const productMapper = (dto: ProductDTO) => {
+  return {
+    ...dto,
+  };
+};
+
 export const useGetProduct = (productId: string) => {
   const { loading, error, data } = useFetch<ProductDTO>(
     `${rootUrl}${url}/${productId}`
@@ -37,7 +43,9 @@ export const useGetProducts = () => {
   return {
     loading,
     error,
-    products: data?.selectedProducts,
+    products: data?.selectedProducts.map((product: ProductDTO) =>
+      productMapper(product)
+    ),
   };
 };
 
