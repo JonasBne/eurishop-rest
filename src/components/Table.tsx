@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import styled from "styled-components";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import FaIcon from "../assets/FaIcon";
 import FlexBox from "./FlexBox";
 
 const StyledTable = styled.table`
@@ -43,12 +43,6 @@ const TableData = styled.td`
   margin: 1rem;
 `;
 
-// TODO: is it ok to put styling of the icons here since it is table-specific?
-const Icon = styled(FontAwesomeIcon)`
-  color: ${({ theme }) => theme.secondaryDark};
-  padding-inline: 0.25rem;
-`;
-
 interface TableProps {
   data: any[];
   onSort: (sortByField: string) => void;
@@ -80,8 +74,8 @@ function Table({ data, onSort }: TableProps) {
                   );
                 })}
                 <TableData>
-                  <Icon icon={faPenSquare} />
-                  <Icon icon={faTrash} />
+                  <FaIcon icon={faPenSquare} px="0.25rem" />
+                  <FaIcon icon={faTrash} px="0.25rem" />
                 </TableData>
               </TableRow>
             );

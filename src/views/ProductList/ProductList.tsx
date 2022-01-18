@@ -6,7 +6,7 @@ import sortBy from "../../utils/sortBy";
 
 function ProductList() {
   const { loading, error, products } = useGetProducts();
-  const [sortExpression, setSortExpression] = useState<string>("-stocked");
+  const [sortExpression, setSortExpression] = useState<string>("");
 
   const handleSort = (sortByField: string) => {
     setSortExpression((prevSortExp) => {
@@ -20,12 +20,11 @@ function ProductList() {
     });
   };
 
+  // TODO: is there a better way to do this?
   let sortedProducts = [];
   if (products !== undefined) {
     sortedProducts = sortBy(products, sortExpression);
   }
-
-  console.log(sortedProducts);
 
   return (
     <>
