@@ -35,4 +35,8 @@ describe("sortBy function sorts data", () => {
     expect(result.length).toBe(4);
     expect(result[0].id).toBe(1);
   });
+  test("Everything keeps running when an empty array is passed into the sortBy function", () => {
+    const result = sortBy([], undefined);
+    expect(result.length).toBe(0);
+  });
 });
