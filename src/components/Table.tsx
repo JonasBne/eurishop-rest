@@ -1,14 +1,9 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
-import {
-  faPenSquare,
-  faTrash,
-  faSortDown,
-  faSortUp,
-  faSort,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import FaIcon from "../assets/FaIcon";
 import FlexBox from "./FlexBox";
+import SortableTableHead from "./SortableTableHead";
 import { StyledTable, TableRow, TableHead, TableData } from "./Table.styles";
 
 interface TableProps {
@@ -24,22 +19,12 @@ function Table({ data, onSort, sortExpression }: TableProps) {
         <thead>
           <TableRow>
             {Object.keys(data[0]).map((title, index) => (
-              <TableHead key={`header${index}`} onClick={() => onSort(title)}>
-                <FlexBox flexDirection="row">
-                  {title}
-                  <FaIcon
-                    icon={
-                      // eslint-disable-next-line no-nested-ternary
-                      sortExpression.includes("+")
-                        ? faSortDown
-                        : sortExpression.includes("-")
-                        ? faSortUp
-                        : faSort
-                    }
-                    px="1rem"
-                  />
-                </FlexBox>
-              </TableHead>
+              <SortableTableHead
+                title={title}
+                index={index}
+                onSort={onSort}
+                sortExpression={sortExpression}
+              />
             ))}
             <TableHead>actions</TableHead>
           </TableRow>
