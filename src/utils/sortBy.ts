@@ -1,10 +1,10 @@
-const sortBy = (data: any[], sortExpression: string) => {
+const sortBy = (data: any[], sortExpression: string | null | undefined) => {
   const sortedData = [...data];
   sortedData.sort(() => {
-    if (sortExpression.includes("+")) {
+    if (sortExpression?.includes("+")) {
       return 1;
     }
-    if (sortExpression.includes("-")) {
+    if (sortExpression?.includes("-")) {
       return -1;
     }
     return 0;

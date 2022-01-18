@@ -25,4 +25,14 @@ describe("sortBy function sorts data", () => {
     const result = sortBy(data, "+name");
     expect(result[0].id).toBe(1);
   });
+  test("Array length and order remains unchanged when the sort expression is null", () => {
+    const result = sortBy(data, null);
+    expect(result.length).toBe(4);
+    expect(result[0].id).toBe(1);
+  });
+  test("Array length and order remains unchanged when the sort expression is undefined", () => {
+    const result = sortBy(data, undefined);
+    expect(result.length).toBe(4);
+    expect(result[0].id).toBe(1);
+  });
 });
