@@ -1,6 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import styled from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import FlexBox from "./FlexBox";
 
 const StyledTable = styled.table`
@@ -26,6 +28,10 @@ const StyledTableRow = styled.tr`
   color: #808080;
   line-height: 1.2;
 
+  &:hover {
+    cursor: pointer;
+  }
+
   &:nth-child(even) {
     background-color: #f5f5f5;
   }
@@ -35,6 +41,12 @@ const StyledTableData = styled.td`
   width: fit-content;
   padding: 1rem;
   margin: 1rem;
+`;
+
+// TODO: is it ok to put styling of the icons here since it is table-specific?
+const Icon = styled(FontAwesomeIcon)`
+  color: ${({ theme }) => theme.secondaryDark};
+  padding-inline: 0.25rem;
 `;
 
 interface TableProps {
@@ -50,6 +62,7 @@ function Table({ data }: TableProps) {
             {Object.keys(data[0]).map((title, index) => (
               <StyledTableHead key={`header${index}`}>{title}</StyledTableHead>
             ))}
+            <StyledTableHead>actions</StyledTableHead>
           </StyledTableRow>
         </thead>
         <tbody>
@@ -63,6 +76,10 @@ function Table({ data }: TableProps) {
                     </StyledTableData>
                   );
                 })}
+                <StyledTableData>
+                  <Icon icon={faPenSquare} />
+                  <Icon icon={faTrash} />
+                </StyledTableData>
               </StyledTableRow>
             );
           })}
