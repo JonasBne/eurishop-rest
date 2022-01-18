@@ -16,14 +16,14 @@ const StyledTable = styled.table`
     rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
 `;
 
-const StyledTableHead = styled.th`
+const TableHead = styled.th`
   background: ${({ theme }) => theme.secondaryDark};
   color: white;
   padding: 1rem;
   text-align: left;
 `;
 
-const StyledTableRow = styled.tr`
+const TableRow = styled.tr`
   height: 3.5rem;
   color: #808080;
   line-height: 1.2;
@@ -37,7 +37,7 @@ const StyledTableRow = styled.tr`
   }
 `;
 
-const StyledTableData = styled.td`
+const TableData = styled.td`
   width: fit-content;
   padding: 1rem;
   margin: 1rem;
@@ -58,29 +58,29 @@ function Table({ data }: TableProps) {
     <FlexBox m="1rem" p="1rem">
       <StyledTable>
         <thead>
-          <StyledTableRow>
+          <TableRow>
             {Object.keys(data[0]).map((title, index) => (
-              <StyledTableHead key={`header${index}`}>{title}</StyledTableHead>
+              <TableHead key={`header${index}`}>{title}</TableHead>
             ))}
-            <StyledTableHead>actions</StyledTableHead>
-          </StyledTableRow>
+            <TableHead>actions</TableHead>
+          </TableRow>
         </thead>
         <tbody>
           {data.map((item: any, dataIndex) => {
             return (
-              <StyledTableRow key={`row${dataIndex}`}>
+              <TableRow key={`row${dataIndex}`}>
                 {Object.keys(data[0]).map((title: any, index) => {
                   return (
-                    <StyledTableData key={`item${index}${dataIndex}`}>
+                    <TableData key={`item${index}${dataIndex}`}>
                       {item[title]}
-                    </StyledTableData>
+                    </TableData>
                   );
                 })}
-                <StyledTableData>
+                <TableData>
                   <Icon icon={faPenSquare} />
                   <Icon icon={faTrash} />
-                </StyledTableData>
-              </StyledTableRow>
+                </TableData>
+              </TableRow>
             );
           })}
         </tbody>
