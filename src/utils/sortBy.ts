@@ -1,11 +1,15 @@
 const sortBy = (data: any[], sortExpression: string | null | undefined) => {
   const sortedData = [...data];
-  sortedData.sort(() => {
-    if (sortExpression?.includes("-")) {
-      return -1;
-    }
+  sortedData.sort((a: any, b: any) => {
     if (sortExpression?.includes("+")) {
-      return 1;
+      if (a[sortExpression.substring(1)] < b[sortExpression.substring(1)]) {
+        return -1;
+      }
+    }
+    if (sortExpression?.includes("-")) {
+      if (b[sortExpression.substring(1)] < a[sortExpression.substring(1)]) {
+        return -1;
+      }
     }
     return 0;
   });
