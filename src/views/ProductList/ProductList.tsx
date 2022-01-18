@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { useGetProducts } from "../../api/productsApi";
-import Table from "../../components/Table";
+// import Table from "../../components/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import sortBy from "../../utils/sortBy";
+// import sortBy from "../../utils/sortBy";
 
 function ProductList() {
   const { loading, error, products } = useGetProducts();
-  const [sortBy, setSortBy] = useState<string | undefined>("");
+  console.log(products);
+  // const [sortBy, setSortBy] = useState<string | undefined>("");
 
   // TODO: is there a better way to avoid the ?. notation?
   // const tableData = products?.map((product) => {
@@ -16,26 +17,26 @@ function ProductList() {
   //   };
   // });
 
-  const handleSort = (sortByField: string) => {
-    setSortBy((prevSortBy) => {
-      if (prevSortBy?.includes("+")) {
-        return `-${sortByField}`;
-      }
-      if (prevSortBy?.includes("-")) {
-        return ``;
-      }
-      return sortByField;
-    });
-  };
+  // const handleSort = (sortByField: string) => {
+  //   setSortBy((prevSortBy) => {
+  //     if (prevSortBy?.includes("+")) {
+  //       return `-${sortByField}`;
+  //     }
+  //     if (prevSortBy?.includes("-")) {
+  //       return ``;
+  //     }
+  //     return sortByField;
+  //   });
+  // };
 
   return (
     <>
       {loading && !error && <LoadingSpinner />}
       {!loading && error && <div>Something went wrong...</div>}
       {/* TODO: is there a more clean way to check that products has been loaded and the array is available */}
-      {!loading && !error && tableData !== undefined && (
+      {/* {!loading && !error && tableData !== undefined && (
         <Table data={tableData} onSort={handleSort} />
-      )}
+      )} */}
     </>
   );
 }
