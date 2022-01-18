@@ -1,42 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 import { useGetProducts } from "../../api/productsApi";
-// import Table from "../../components/Table";
+import Table from "../../components/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
-// import sortBy from "../../utils/sortBy";
+import sortBy from "../../utils/sortBy";
 
 function ProductList() {
   const { loading, error, products } = useGetProducts();
-  console.log(products);
-  // const [sortBy, setSortBy] = useState<string | undefined>("");
+  const [sortExpression, setSortExpression] = useState<string>("-stocked");
 
-  // TODO: is there a better way to avoid the ?. notation?
-  // const tableData = products?.map((product) => {
-  //   return {
-  //     ...product,
-  //     stocked: product.stocked ? "Yes" : "No",
-  //   };
-  // });
+  const handleSort = (sortByField: string) => {
+    setSortExpression((prevSortExp) => {
+      if (prevSortExp?.includes("+")) {
+        return `-${sortByField}`;
+      }
+      if (prevSortExp?.includes("-")) {
+        return ``;
+      }
+      return `+${sortByField}`;
+    });
+  };
 
-  // const handleSort = (sortByField: string) => {
-  //   setSortBy((prevSortBy) => {
-  //     if (prevSortBy?.includes("+")) {
-  //       return `-${sortByField}`;
-  //     }
-  //     if (prevSortBy?.includes("-")) {
-  //       return ``;
-  //     }
-  //     return sortByField;
-  //   });
-  // };
+  let sortedProducts = [];
+  if (products !== undefined) {
+    sortedProducts = sortBy(products, sortExpression);
+  }
+
+  console.log(sortedProducts);
 
   return (
     <>
       {loading && !error && <LoadingSpinner />}
       {!loading && error && <div>Something went wrong...</div>}
       {/* TODO: is there a more clean way to check that products has been loaded and the array is available */}
-      {/* {!loading && !error && tableData !== undefined && (
-        <Table data={tableData} onSort={handleSort} />
-      )} */}
+      {!loading && !error && products !== undefined && (
+        <Table data={sortedProducts} onSort={handleSort} />
+      )}
     </>
   );
 }
