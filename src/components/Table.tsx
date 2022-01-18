@@ -1,7 +1,13 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import styled from "styled-components";
-import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenSquare,
+  faTrash,
+  faSortDown,
+  faSortUp,
+  faSort,
+} from "@fortawesome/free-solid-svg-icons";
 import FaIcon from "../assets/FaIcon";
 import FlexBox from "./FlexBox";
 
@@ -41,14 +47,16 @@ const TableData = styled.td`
   width: fit-content;
   padding: 1rem;
   margin: 1rem;
+  text-align: center;
 `;
 
 interface TableProps {
   data: any[];
   onSort: (sortByField: string) => void;
+  sortExpression: string;
 }
 
-function Table({ data, onSort }: TableProps) {
+function Table({ data, onSort, sortExpression }: TableProps) {
   return (
     <FlexBox m="1rem" p="1rem">
       <StyledTable>
@@ -56,7 +64,20 @@ function Table({ data, onSort }: TableProps) {
           <TableRow>
             {Object.keys(data[0]).map((title, index) => (
               <TableHead key={`header${index}`} onClick={() => onSort(title)}>
-                {title}
+                <FlexBox flexDirection="row">
+                  {title}
+                  <FaIcon
+                    icon={
+                      // eslint-disable-next-line no-nested-ternary
+                      sortExpression.includes("+")
+                        ? faSortDown
+                        : sortExpression.includes("-")
+                        ? faSortUp
+                        : faSort
+                    }
+                    px="1rem"
+                  />
+                </FlexBox>
               </TableHead>
             ))}
             <TableHead>actions</TableHead>
