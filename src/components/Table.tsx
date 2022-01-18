@@ -9,10 +9,13 @@ import { StyledTable, TableRow, TableHead, TableData } from "./Table.styles";
 interface TableProps {
   data: any[];
   onSort: (sortByField: string) => void;
+  // eslint-disable-next-line react/require-default-props
+  // TODO: think about a way to pass this function optionally
+  onRedirect: (productId: string) => void;
   sortExpression: string;
 }
 
-function Table({ data, onSort, sortExpression }: TableProps) {
+function Table({ data, onSort, sortExpression, onRedirect }: TableProps) {
   return (
     <FlexBox m="1rem" p="1rem">
       <StyledTable>
@@ -32,7 +35,10 @@ function Table({ data, onSort, sortExpression }: TableProps) {
         <tbody>
           {data.map((item: any, dataIndex) => {
             return (
-              <TableRow key={`row${dataIndex}`}>
+              <TableRow
+                key={`row${dataIndex}`}
+                onClick={() => onRedirect(item.id)}
+              >
                 {Object.keys(data[0]).map((title: any, index) => {
                   return (
                     <TableData key={`item${index}${dataIndex}`}>

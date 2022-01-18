@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import { useGetProducts } from "../../api/productsApi";
 import Table from "../../components/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import sortBy from "../../utils/sortBy";
 
 function ProductList() {
+  const navigate = useNavigate();
   const { loading, error, products } = useGetProducts();
   const [sortExpression, setSortExpression] = useState<string>("");
 
@@ -18,6 +20,11 @@ function ProductList() {
       }
       return `+${sortByField}`;
     });
+  };
+
+  // TODO: is it ok to store the handler here since this is the smart component?
+  const handleRedirect = (productId: string) => {
+    navigate(`/products/${productId}`);
   };
 
   // TODO: is there a better way to do this?
@@ -36,6 +43,7 @@ function ProductList() {
           data={sortedProducts}
           onSort={handleSort}
           sortExpression={sortExpression}
+          onRedirect={handleRedirect}
         />
       )}
     </>
