@@ -21,8 +21,12 @@ function SortableTableHead({
   onSort,
   sortExpression,
 }: SortableTableHeadProps) {
+  const handleClick = () => {
+    onSort(title);
+  };
+
   return (
-    <TableHead key={`header${index}`} onClick={() => onSort(title)}>
+    <TableHead key={`header${index}`} onClick={handleClick}>
       <FlexBox flexDirection="row">
         {title}
         <FaIcon
