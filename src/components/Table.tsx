@@ -51,16 +51,19 @@ const Icon = styled(FontAwesomeIcon)`
 
 interface TableProps {
   data: any[];
+  onSort: (sortByField: string) => void;
 }
 
-function Table({ data }: TableProps) {
+function Table({ data, onSort }: TableProps) {
   return (
     <FlexBox m="1rem" p="1rem">
       <StyledTable>
         <thead>
           <TableRow>
             {Object.keys(data[0]).map((title, index) => (
-              <TableHead key={`header${index}`}>{title}</TableHead>
+              <TableHead key={`header${index}`} onClick={() => onSort(title)}>
+                {title}
+              </TableHead>
             ))}
             <TableHead>actions</TableHead>
           </TableRow>

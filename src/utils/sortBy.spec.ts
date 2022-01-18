@@ -1,10 +1,10 @@
 import sortBy from "./sortBy";
 
 const data = [
-  { id: 1, name: "test" },
-  { id: 2, name: "test2" },
-  { id: 3, name: "test3" },
-  { id: 4, name: "test4" },
+  { id: 1, name: "test", description: "A" },
+  { id: 2, name: "test2", description: "B" },
+  { id: 3, name: "test3", description: "C" },
+  { id: 4, name: "test4", description: "D" },
 ];
 
 describe("sortBy function sorts data", () => {
