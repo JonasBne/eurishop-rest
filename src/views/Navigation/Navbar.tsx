@@ -6,7 +6,7 @@ import Header1 from "../../components/Header1";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const StyledNav = styled.nav`
-  background: ${({ theme }) => theme.secondaryDark};
+  background: ${({ theme }) => theme.primaryDark};
   display: flex;
   justify-content: space-between;
   align-items: center;

@@ -1,5 +1,41 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
+import styled from "styled-components";
+import FlexBox from "./FlexBox";
+
+const StyledTable = styled.table`
+  border-spacing: 1;
+  border-collapse: collapse;
+  border-radius: 1rem;
+  overflow: hidden;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px,
+    rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+`;
+
+const StyledTableHead = styled.th`
+  background: ${({ theme }) => theme.secondaryDark};
+  color: white;
+  padding: 1rem;
+  text-align: left;
+`;
+
+const StyledTableRow = styled.tr`
+  height: 3.5rem;
+  color: #808080;
+  line-height: 1.2;
+
+  &:nth-child(even) {
+    background-color: #f5f5f5;
+  }
+`;
+
+const StyledTableData = styled.td`
+  width: fit-content;
+  padding: 1rem;
+  margin: 1rem;
+`;
 
 interface TableProps {
   data: any[];
@@ -7,26 +43,32 @@ interface TableProps {
 
 function Table({ data }: TableProps) {
   return (
-    <table>
-      <thead>
-        <tr>
-          {Object.keys(data[0]).map((title, index) => (
-            <th key={`header${index}`}>{title}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {data.map((item: any, dataIndex) => {
-          return (
-            <tr key={`row${dataIndex}`}>
-              {Object.keys(data[0]).map((title: any, index) => {
-                return <td key={`item${index}${dataIndex}`}>{item[title]}</td>;
-              })}
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
+    <FlexBox m="1rem" p="1rem">
+      <StyledTable>
+        <thead>
+          <StyledTableRow>
+            {Object.keys(data[0]).map((title, index) => (
+              <StyledTableHead key={`header${index}`}>{title}</StyledTableHead>
+            ))}
+          </StyledTableRow>
+        </thead>
+        <tbody>
+          {data.map((item: any, dataIndex) => {
+            return (
+              <StyledTableRow key={`row${dataIndex}`}>
+                {Object.keys(data[0]).map((title: any, index) => {
+                  return (
+                    <StyledTableData key={`item${index}${dataIndex}`}>
+                      {item[title]}
+                    </StyledTableData>
+                  );
+                })}
+              </StyledTableRow>
+            );
+          })}
+        </tbody>
+      </StyledTable>
+    </FlexBox>
   );
 }
 

@@ -1,6 +1,5 @@
 import React from "react";
 import Table from "../../components/Table";
-// import ProductTable from "../../components/products/ProductTable";
 import { useGetProducts } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
