@@ -3,13 +3,18 @@ import { StyledMenu, StyledLink } from "./Menu.styles";
 
 interface MenuProps {
   open: boolean;
+  setOpen: (prevState: boolean) => void;
 }
 
-function Menu({ open }: MenuProps) {
+function Menu({ open, setOpen }: MenuProps) {
   return (
     <StyledMenu open={open}>
-      <StyledLink to="/home">HOME</StyledLink>
-      <StyledLink to="/products/admin">PRODUCTS (ADMIN)</StyledLink>
+      <StyledLink to="/home" onClick={() => setOpen(!open)}>
+        HOME
+      </StyledLink>
+      <StyledLink to="/products/admin" onClick={() => setOpen(!open)}>
+        PRODUCTS (ADMIN)
+      </StyledLink>
     </StyledMenu>
   );
 }

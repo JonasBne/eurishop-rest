@@ -22,7 +22,7 @@ function Navbar() {
       <Header1 mx="auto">EURISHOP</Header1>
       <div ref={node}>
         <Burger open={open} setOpen={setOpen} />
-        <Menu open={open} />
+        <Menu open={open} setOpen={setOpen} />
       </div>
     </StyledNav>
   );
