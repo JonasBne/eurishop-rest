@@ -36,7 +36,7 @@ const TableData = styled.td`
   width: fit-content;
   padding: 1rem;
   margin: 1rem;
-  text-align: center;
+  text-align: left;
 `;
 
 export { StyledTable, TableHead, TableRow, TableData };
