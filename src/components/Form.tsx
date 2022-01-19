@@ -14,6 +14,8 @@ import GridContainer from "./GridContainer";
 // TODO: move to Form.styles.ts
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 1px solid black;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   ${space}
   ${layout}
 `;
