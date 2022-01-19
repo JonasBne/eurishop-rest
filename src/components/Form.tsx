@@ -1,15 +1,9 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import styled from "styled-components";
-import {
-  space,
-  SpaceProps,
-  layout,
-  LayoutProps,
-  gridArea,
-  GridAreaProps,
-} from "styled-system";
+import { space, SpaceProps, layout, LayoutProps } from "styled-system";
 import GridContainer from "./GridContainer";
+import Label from "./Label";
 import Header4 from "./Header4";
 
 // TODO: move to Form.styles.ts
@@ -19,11 +13,6 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   ${space}
   ${layout}
-`;
-
-const Label = styled.label<SpaceProps | GridAreaProps>`
-  ${space}
-  ${gridArea}
 `;
 
 // TODO: extract as a separate component
