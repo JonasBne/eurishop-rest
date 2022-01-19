@@ -11,6 +11,19 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
   ${layout}
 `;
 
+// TODO: extract as a separate component
+const Input = styled.input`
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  outline: none;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #ddd;
+  background: transparent;
+  height: 2rem;
+`;
+
 // TODO: move outside to components
 const Header4 = styled.h4<SpaceProps | LayoutProps>`
   ${space}
@@ -19,32 +32,48 @@ const Header4 = styled.h4<SpaceProps | LayoutProps>`
 `;
 
 interface FormProps {
-  formTitle: string;
+  title: string;
   data: any[] | Object;
+  width: string;
+  gridTemplateAreas: string;
+  gridRowGap: string;
 }
 
-function Form({ formTitle, data }: FormProps) {
-  console.log(Object.entries(data));
-
+function Form({
+  title,
+  width,
+  data,
+  gridTemplateAreas,
+  gridRowGap,
+}: FormProps) {
   const handleChange = () => {
     console.log("changing...");
   };
 
   return (
-    <StyledForm m="2rem" width="40rem">
-      <Header4 m="1rem auto" p="0.25rem" width="10rem" minWidth="fit-content">
-        {formTitle}
+    <StyledForm m="2rem" width={width}>
+      <Header4
+        m="1rem auto 2rem auto"
+        p="0.25rem"
+        width="10rem"
+        minWidth="fit-content"
+      >
+        {title}
       </Header4>
-      <GridContainer>
+      <GridContainer
+        gridTemplateAreas={gridTemplateAreas}
+        gridRowGap={gridRowGap}
+      >
         {Object.entries(data).map(([key, value]) => {
           return (
             <label htmlFor={key}>
               {key}
-              <input
+              <Input
                 id={key}
                 type="text"
                 value={value}
                 onChange={handleChange}
+                readOnly
               />
             </label>
           );

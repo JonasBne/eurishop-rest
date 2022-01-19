@@ -7,7 +7,13 @@ import PageNotFound from "../../components/PageNotFound";
 function ProductDetail() {
   const { loading, error, product } = useGetProduct("2");
 
-  console.log(product);
+  const gridTemplateAreas = `
+  "number title . . "
+  "stock basePrice . ."
+  "unitPrice . . ."
+  "desc desc desc desc"
+  " . . btn ."
+  `;
 
   // TODO: is this a clean way for guarding the undefined state?
   return (
@@ -16,7 +22,13 @@ function ProductDetail() {
       {loading && !error && <LoadingSpinner />}
       {!loading && error && <PageNotFound />}
       {!loading && !error && product !== undefined && (
-        <Form formTitle="TITLE" data={product} />
+        <Form
+          data={product}
+          title="TITLE"
+          width="50rem"
+          gridTemplateAreas={gridTemplateAreas}
+          gridRowGap="1.25rem"
+        />
       )}
     </>
   );
