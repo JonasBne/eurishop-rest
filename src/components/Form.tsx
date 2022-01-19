@@ -1,3 +1,5 @@
+/* eslint-disable react/require-default-props */
+/* eslint-disable react/no-unused-prop-types */
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import styled from "styled-components";
@@ -23,8 +25,8 @@ interface FormProps {
   margin: string;
   gridTemplateAreas: string;
   gridRowGap: string;
-  buttonAction: string;
   buttonMargin: string;
+  onEdit: () => void;
 }
 
 // TODO: it would be cleaner if the description would be placed inside a textarea, but how do we determine this dynamically?
@@ -33,12 +35,17 @@ function Form({
   title,
   width,
   margin,
-  buttonAction,
   buttonMargin,
   data,
   gridTemplateAreas,
   gridRowGap,
+  onEdit,
 }: FormProps) {
+  const handleEdit = (event: React.MouseEvent) => {
+    event.preventDefault();
+    onEdit();
+  };
+
   const handleChange = () => {
     console.log("changing...");
   };
@@ -65,7 +72,7 @@ function Form({
                 id={key}
                 type="text"
                 value={value}
-                size={value.length + 1}
+                size={parseInt(value.length + 1, 10)}
                 onChange={handleChange}
                 readOnly
               />
@@ -73,7 +80,9 @@ function Form({
           );
         })}
       </GridContainer>
-      <Button m={buttonMargin}>{buttonAction}</Button>
+      <Button m={buttonMargin} onClick={handleEdit}>
+        Edit
+      </Button>
     </StyledForm>
   );
 }
