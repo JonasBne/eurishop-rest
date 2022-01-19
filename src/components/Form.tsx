@@ -8,7 +8,7 @@ import Label from "./Label";
 import Header4 from "./Header4";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
-  border: 1px solid black;
+  border: 2px solid ${({ theme }) => theme.secondaryDark};
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   ${space}
@@ -23,6 +23,8 @@ interface FormProps {
   gridTemplateAreas: string;
   gridRowGap: string;
 }
+
+// TODO: it would be cleaner if the description would be placed inside a textarea, but how do we determine this dynamically?
 
 function Form({
   title,
