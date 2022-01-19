@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Form from "../../components/Form";
 import { useGetProduct } from "../../api/productsApi";
@@ -8,7 +8,9 @@ import PageNotFound from "../../components/PageNotFound";
 function ProductDetail() {
   const [editMode, setEditMode] = useState<boolean>(false);
 
-  console.log(editMode);
+  useEffect(() => {
+    console.log(editMode);
+  }, [editMode]);
 
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(

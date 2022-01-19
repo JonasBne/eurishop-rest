@@ -66,13 +66,13 @@ function Form({
       >
         {Object.entries(data).map(([key, value]) => {
           return (
-            <Label htmlFor={key} m="1rem" gridArea={key}>
+            <Label htmlFor={key} m="1rem" gridArea={key} key={key}>
               {key}
               <Input
                 id={key}
                 type="text"
                 value={value}
-                size={parseInt(value.length + 1, 10)}
+                size={parseInt(value.toString().length + 1, 10)}
                 onChange={handleChange}
                 readOnly
               />
