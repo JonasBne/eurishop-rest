@@ -1,11 +1,15 @@
 import React from "react";
+import { useParams } from "react-router";
 import Form from "../../components/Form";
 import { useGetProduct } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import PageNotFound from "../../components/PageNotFound";
 
 function ProductDetail() {
-  const { loading, error, product } = useGetProduct("1");
+  const { productId } = useParams<string>();
+  const { loading, error, product } = useGetProduct(
+    `${productId !== undefined ? productId : ""}`
+  );
 
   const gridTemplateAreas = `
   "id sku title . "
