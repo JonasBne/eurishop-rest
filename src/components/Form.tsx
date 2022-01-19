@@ -1,7 +1,14 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from "react";
 import styled from "styled-components";
-import { space, SpaceProps, layout, LayoutProps } from "styled-system";
+import {
+  space,
+  SpaceProps,
+  layout,
+  LayoutProps,
+  gridArea,
+  GridAreaProps,
+} from "styled-system";
 import GridContainer from "./GridContainer";
 
 // TODO: move to Form.styles.ts
@@ -9,6 +16,11 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 1px solid black;
   ${space}
   ${layout}
+`;
+
+const Label = styled.label<SpaceProps | GridAreaProps>`
+  ${space}
+  ${gridArea}
 `;
 
 // TODO: extract as a separate component
@@ -35,6 +47,7 @@ interface FormProps {
   title: string;
   data: any[] | Object;
   width: string;
+  margin: string;
   gridTemplateAreas: string;
   gridRowGap: string;
 }
@@ -42,6 +55,7 @@ interface FormProps {
 function Form({
   title,
   width,
+  margin,
   data,
   gridTemplateAreas,
   gridRowGap,
@@ -51,7 +65,7 @@ function Form({
   };
 
   return (
-    <StyledForm m="2rem" width={width}>
+    <StyledForm m={margin} width={width}>
       <Header4
         m="1rem auto 2rem auto"
         p="0.25rem"
@@ -66,7 +80,7 @@ function Form({
       >
         {Object.entries(data).map(([key, value]) => {
           return (
-            <label htmlFor={key}>
+            <Label htmlFor={key} m="1rem" gridArea={key}>
               {key}
               <Input
                 id={key}
@@ -75,7 +89,7 @@ function Form({
                 onChange={handleChange}
                 readOnly
               />
-            </label>
+            </Label>
           );
         })}
       </GridContainer>

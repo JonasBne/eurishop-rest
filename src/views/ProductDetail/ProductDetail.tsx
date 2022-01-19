@@ -8,12 +8,13 @@ function ProductDetail() {
   const { loading, error, product } = useGetProduct("2");
 
   const gridTemplateAreas = `
-  "number title . . "
-  "stock basePrice . ."
-  "unitPrice . . ."
+  "id sku title . "
+  "basePrice price stocked ."
+  "image . . ."
   "desc desc desc desc"
-  " . . btn ."
   `;
+
+  console.log(product);
 
   // TODO: is this a clean way for guarding the undefined state?
   return (
@@ -26,6 +27,7 @@ function ProductDetail() {
           data={product}
           title="TITLE"
           width="50rem"
+          margin="2rem auto"
           gridTemplateAreas={gridTemplateAreas}
           gridRowGap="1.25rem"
         />
