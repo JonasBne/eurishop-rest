@@ -5,7 +5,7 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import PageNotFound from "../../components/PageNotFound";
 
 function ProductDetail() {
-  const { loading, error, product } = useGetProduct("1");
+  const { loading, error, product } = useGetProduct("2");
 
   console.log(product);
 
@@ -15,9 +15,7 @@ function ProductDetail() {
       <div>PRODUCT DETAIL HERE</div>
       {loading && !error && <LoadingSpinner />}
       {!loading && error && <PageNotFound />}
-      {!loading && !error && product !== undefined && (
-        <Form formTitle="TITLE" data={product} />
-      )}
+      {!loading && !error && <Form formTitle="TITLE" data={product} />}
     </>
   );
 }
