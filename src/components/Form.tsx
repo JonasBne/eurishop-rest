@@ -3,6 +3,7 @@ import React from "react";
 import styled from "styled-components";
 import { space, SpaceProps, layout, LayoutProps } from "styled-system";
 import GridContainer from "./GridContainer";
+import Input from "./Input";
 import Label from "./Label";
 import Header4 from "./Header4";
 
@@ -13,23 +14,6 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   ${space}
   ${layout}
-`;
-
-// TODO: extract as a separate component
-const Input = styled.input`
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  display: block;
-  border: none;
-  border-bottom: 1px solid #ddd;
-  background: transparent;
-  height: 2rem;
-  min-width: 10rem;
-  word-wrap: break-word;
-  word-break: break-all;
-  width: 100%;
 `;
 
 interface FormProps {
