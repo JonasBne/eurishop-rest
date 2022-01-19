@@ -82,8 +82,9 @@ function Form({
           );
         })}
       </GridContainer>
+      {/* // TODO: find a way to pass this dynamically instead of hard coding the button actions? */}
       <Button m={buttonMargin} onClick={handleEdit}>
-        Edit
+        {editMode ? "Save" : "Edit"}
       </Button>
     </StyledForm>
   );
