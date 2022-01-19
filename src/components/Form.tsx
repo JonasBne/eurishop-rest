@@ -27,6 +27,7 @@ interface FormProps {
   gridRowGap: string;
   buttonMargin: string;
   onEdit: () => void;
+  editMode: boolean;
 }
 
 // TODO: it would be cleaner if the description would be placed inside a textarea, but how do we determine this dynamically?
@@ -40,6 +41,7 @@ function Form({
   gridTemplateAreas,
   gridRowGap,
   onEdit,
+  editMode,
 }: FormProps) {
   const handleEdit = (event: React.MouseEvent) => {
     event.preventDefault();
@@ -74,7 +76,7 @@ function Form({
                 value={value}
                 size={parseInt(value.toString().length + 1, 10)}
                 onChange={handleChange}
-                readOnly
+                readOnly={!editMode}
               />
             </Label>
           );
