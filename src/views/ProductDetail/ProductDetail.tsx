@@ -15,7 +15,9 @@ function ProductDetail() {
       <div>PRODUCT DETAIL HERE</div>
       {loading && !error && <LoadingSpinner />}
       {!loading && error && <PageNotFound />}
-      {!loading && !error && <Form formTitle="TITLE" data={product} />}
+      {!loading && !error && product !== undefined && (
+        <Form formTitle="TITLE" data={product} />
+      )}
     </>
   );
 }
