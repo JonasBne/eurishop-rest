@@ -13,18 +13,22 @@ function ProductDetail() {
     `${productId !== undefined ? productId : ""}`
   );
 
-  const [formData, setFormData] = useState(
-    product ?? {
-      id: 0,
-      sku: "",
-      title: "",
-      desc: "",
-      image: "",
-      stocked: false,
-      basePrice: 0,
-      price: 0,
+  const [formData, setFormData] = useState({
+    id: 0,
+    sku: "",
+    title: "",
+    desc: "",
+    image: "",
+    stocked: false,
+    basePrice: 0,
+    price: 0,
+  });
+
+  useEffect(() => {
+    if (product !== undefined) {
+      setFormData(product);
     }
-  );
+  }, [product]);
 
   const gridTemplateAreas = `
   "id sku title . "
@@ -48,10 +52,6 @@ function ProductDetail() {
     });
   };
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
-
   // TODO: is this a clean way for guarding the undefined state?
   return (
     <>
@@ -59,7 +59,7 @@ function ProductDetail() {
       {!loading && error && <PageNotFound />}
       {!loading && !error && product !== undefined && (
         <Form
-          data={product}
+          data={formData}
           title="Product Detail"
           width="50rem"
           margin="2rem auto"
