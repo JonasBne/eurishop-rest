@@ -30,7 +30,7 @@ interface FormProps {
   editMode: boolean;
 }
 
-// TODO: it would be cleaner if the description would be placed inside a textarea, but how do we determine this dynamically?
+// TODO: it would be cleaner if the description would be placed inside a textarea instead of an input, but how do we determine this dynamically?
 
 function Form({
   title,
