@@ -29,6 +29,8 @@ function ProductDetail() {
           title="Product Detail"
           width="50rem"
           margin="2rem auto"
+          buttonAction="edit"
+          buttonMargin="2rem"
           gridTemplateAreas={gridTemplateAreas}
           gridRowGap="1.25rem"
         />

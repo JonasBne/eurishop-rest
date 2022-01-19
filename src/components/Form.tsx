@@ -6,6 +6,7 @@ import GridContainer from "./GridContainer";
 import Input from "./Input";
 import Label from "./Label";
 import Header4 from "./Header4";
+import Button from "./Button";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 2px solid ${({ theme }) => theme.secondaryDark};
@@ -22,6 +23,8 @@ interface FormProps {
   margin: string;
   gridTemplateAreas: string;
   gridRowGap: string;
+  buttonAction: string;
+  buttonMargin: string;
 }
 
 // TODO: it would be cleaner if the description would be placed inside a textarea, but how do we determine this dynamically?
@@ -30,6 +33,8 @@ function Form({
   title,
   width,
   margin,
+  buttonAction,
+  buttonMargin,
   data,
   gridTemplateAreas,
   gridRowGap,
@@ -68,6 +73,7 @@ function Form({
           );
         })}
       </GridContainer>
+      <Button m={buttonMargin}>{buttonAction}</Button>
     </StyledForm>
   );
 }
