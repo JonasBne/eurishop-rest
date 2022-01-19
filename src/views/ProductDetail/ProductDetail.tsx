@@ -1,29 +1,24 @@
-// import React, { useContext } from "react";
-// import { useParams } from "react-router";
-// import Navbar from "../Navigation/Navbar";
-// import LoadingSpinner from "../../components/LoadingSpinner";
-// import PageNotFound from "../../components/PageNotFound";
-// import ProductForm from "../../components/products/ProductForm";
 import React from "react";
+import Form from "../../components/Form";
+import { useGetProduct } from "../../api/productsApi";
+import LoadingSpinner from "../../components/LoadingSpinner";
+import PageNotFound from "../../components/PageNotFound";
 
 function ProductDetail() {
-  // const { productId } = useParams<string>();
-  // TODO: is there a better solution to resolve the error "type Product | undefined is not assignable to type Product"
-  // const product = products.find((prod) => prod.id.toString() === productId)!;
+  const { loading, error, product } = useGetProduct("1");
 
+  console.log(product);
+
+  // TODO: is this a clean way for guarding the undefined state?
   return (
-    <div>detail</div>
-    // <>
-    //   <Navbar />
-    //   {loading && !error && <LoadingSpinner />}
-    //   {error && <PageNotFound />}
-    //   {!loading && !error && (
-    //     <div>
-    //       <h3>{`Product detail: ${product?.title} (${product?.sku})`}</h3>
-    //       <ProductForm product={product} />
-    //     </div>
-    //   )}
-    // </>
+    <>
+      <div>PRODUCT DETAIL HERE</div>
+      {loading && !error && <LoadingSpinner />}
+      {!loading && error && <PageNotFound />}
+      {!loading && !error && product !== undefined && (
+        <Form formTitle="TITLE" data={product} />
+      )}
+    </>
   );
 }
 
