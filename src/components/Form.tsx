@@ -10,6 +10,7 @@ import {
   GridAreaProps,
 } from "styled-system";
 import GridContainer from "./GridContainer";
+import Header4 from "./Header4";
 
 // TODO: move to Form.styles.ts
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
@@ -40,13 +41,6 @@ const Input = styled.input`
   word-wrap: break-word;
   word-break: break-all;
   width: 100%;
-`;
-
-// TODO: move outside to components
-const Header4 = styled.h4<SpaceProps | LayoutProps>`
-  ${space}
-  ${layout}
-  text-align: center;
 `;
 
 interface FormProps {
