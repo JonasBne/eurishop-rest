@@ -34,6 +34,10 @@ const Input = styled.input`
   border-bottom: 1px solid #ddd;
   background: transparent;
   height: 2rem;
+  min-width: 10rem;
+  word-wrap: break-word;
+  word-break: break-all;
+  width: 100%;
 `;
 
 // TODO: move outside to components
@@ -86,6 +90,7 @@ function Form({
                 id={key}
                 type="text"
                 value={value}
+                size={value.length + 1}
                 onChange={handleChange}
                 readOnly
               />
