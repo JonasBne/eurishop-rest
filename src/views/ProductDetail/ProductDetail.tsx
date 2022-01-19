@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Form from "../../components/Form";
 import { useGetProduct } from "../../api/productsApi";
@@ -13,6 +13,19 @@ function ProductDetail() {
     `${productId !== undefined ? productId : ""}`
   );
 
+  const [formData, setFormData] = useState(
+    product ?? {
+      id: 0,
+      sku: "",
+      title: "",
+      desc: "",
+      image: "",
+      stocked: false,
+      basePrice: 0,
+      price: 0,
+    }
+  );
+
   const gridTemplateAreas = `
   "id sku title . "
   "basePrice price stocked ."
@@ -23,6 +36,21 @@ function ProductDetail() {
   const handleEdit = () => {
     setEditMode(!editMode);
   };
+
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { target } = event;
+    const { name } = target;
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+        [name]: target.value,
+      };
+    });
+  };
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
 
   // TODO: is this a clean way for guarding the undefined state?
   return (
@@ -40,6 +68,8 @@ function ProductDetail() {
           gridRowGap="1.25rem"
           onEdit={handleEdit}
           editMode={editMode}
+          onChange={handleInputChange}
+          formData={formData}
         />
       )}
     </>
