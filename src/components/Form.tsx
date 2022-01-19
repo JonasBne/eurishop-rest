@@ -7,7 +7,6 @@ import Input from "./Input";
 import Label from "./Label";
 import Header4 from "./Header4";
 
-// TODO: move to Form.styles.ts
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 1px solid black;
   border-radius: 1rem;
