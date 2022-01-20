@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import Form from "../../components/Form";
-import { useGetProduct } from "../../api/productsApi";
+import { useGetProduct, usePutProduct } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 
@@ -60,6 +60,11 @@ function ProductDetail() {
     });
   };
 
+  const handleSave = () => {
+    // TODO: is this an okay way to avoid the warning regarding "type undefined is not assignable to type string"?
+    usePutProduct(productId ?? "0", formData);
+  };
+
   return (
     <>
       {loading && !error && <LoadingSpinner />}
@@ -80,6 +85,7 @@ function ProductDetail() {
           editMode={editMode}
           onChange={handleInputChange}
           onCancel={handleCancel}
+          onSave={handleSave}
         />
       )}
     </>
