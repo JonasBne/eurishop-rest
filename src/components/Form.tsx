@@ -86,8 +86,14 @@ function Form({
         })}
       </GridContainer>
       {/* // TODO: find a way to pass this dynamically instead of hard coding the button actions? */}
-      {editMode ? <Button m={buttonMargin}>Cancel</Button> : null}
-      <Button onClick={handleEdit}>{editMode ? "Save" : "Edit"}</Button>
+      {editMode ? (
+        <Button backgroundColor="red" m={buttonMargin}>
+          Cancel
+        </Button>
+      ) : null}
+      <Button backgroundColor="#405cf5" m={buttonMargin} onClick={handleEdit}>
+        {editMode ? "Save" : "Edit"}
+      </Button>
     </StyledForm>
   );
 }
