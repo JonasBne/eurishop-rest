@@ -19,12 +19,12 @@ function Home() {
           <FlexBox
             flexDirection="row"
             flexWrap="wrap"
-            justifyContent="space-between"
+            justifyContent="space-evenly"
             flexBasis="90%"
           >
             {products.map((product) => {
               return (
-                <Box mx="0.5rem" flexBasis="33.33333%">
+                <Box m="0.5rem" flexBasis="33.33333%">
                   {product.title}
                 </Box>
               );
