@@ -37,11 +37,7 @@ function ProductList() {
   return (
     <>
       {loading && !error && <LoadingSpinner />}
-      {error && (
-        <ErrorModal>
-          <span>Something went wrong...</span>
-        </ErrorModal>
-      )}
+      {error && <ErrorModal />}
       {/* TODO: is there a more clean way to check that products has been loaded and the array is available */}
       {!loading && !error && products !== undefined && (
         <Table

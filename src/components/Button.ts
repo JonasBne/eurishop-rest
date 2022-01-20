@@ -1,9 +1,10 @@
 import styled from "styled-components";
-import { space, SpaceProps } from "styled-system";
+import { space, SpaceProps, layout, LayoutProps } from "styled-system";
 
-const Button = styled.button<SpaceProps>`
-  border-radius: 0.25rem;
+const Button = styled.button<SpaceProps | LayoutProps>`
   ${space}
+  ${layout}
+  border-radius: 0.25rem;
   background-color: #405cf5;
   border-width: 0;
   box-shadow: rgba(50, 50, 93, 0.1) 0 0 0 1px inset,
