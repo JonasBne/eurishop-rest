@@ -46,7 +46,11 @@ function Table({ data, onSort, sortExpression, onRedirect }: TableProps) {
                   );
                 })}
                 <TableData>
-                  <FaIcon icon={faPenSquare} px="0.25rem" />
+                  <FaIcon
+                    icon={faPenSquare}
+                    px="0.25rem"
+                    onClick={() => onRedirect(item.id)}
+                  />
                   <FaIcon icon={faTrash} px="0.25rem" />
                 </TableData>
               </TableRow>
