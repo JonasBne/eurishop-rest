@@ -60,13 +60,13 @@ function ProductDetail() {
     });
   };
 
-  // TODO: is this a clean way for guarding the undefined state?
   return (
     <>
       {loading && !error && <LoadingSpinner />}
       {!loading && error && (
         <ErrorModal name={error.name} message={error.message} />
       )}
+      {/* // TODO: is this a clean way for guarding the undefined state? */}
       {!loading && !error && product !== undefined && (
         <Form
           data={formData}
