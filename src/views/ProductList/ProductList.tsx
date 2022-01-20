@@ -4,6 +4,7 @@ import { useGetProducts } from "../../api/productsApi";
 import Table from "../../components/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import sortBy from "../../utils/sortBy";
+import ErrorModal from "../../components/ErrorModal/ErrorModal";
 
 function ProductList() {
   const navigate = useNavigate();
@@ -36,7 +37,11 @@ function ProductList() {
   return (
     <>
       {loading && !error && <LoadingSpinner />}
-      {error && <div>Something went wrong...</div>}
+      {error && (
+        <ErrorModal>
+          <span>Something went wrong...</span>
+        </ErrorModal>
+      )}
       {/* TODO: is there a more clean way to check that products has been loaded and the array is available */}
       {!loading && !error && products !== undefined && (
         <Table

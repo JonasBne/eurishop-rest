@@ -19,7 +19,8 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-const url = "api/products";
+// TODO: fix this back
+const url = "api/productssss";
 
 const productMapper = (dto: ProductDTO) => {
   return {
