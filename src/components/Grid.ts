@@ -2,11 +2,11 @@ import styled from "styled-components";
 import { grid, GridProps } from "styled-system";
 import Box from "./Box";
 
-const GridContainer = styled(Box)<GridProps>(
+const Grid = styled(Box)<GridProps>(
   {
     display: "grid",
   },
   grid
 );
 
-export default GridContainer;
+export default Grid;

@@ -4,7 +4,7 @@
 import React from "react";
 import styled from "styled-components";
 import { space, SpaceProps, layout, LayoutProps } from "styled-system";
-import GridContainer from "./GridContainer";
+import GridContainer from "./Grid";
 import Input from "./Input";
 import Label from "./Label";
 import Header4 from "./Header4";
