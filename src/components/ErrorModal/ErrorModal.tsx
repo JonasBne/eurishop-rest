@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { useNavigate } from "react-router";
 import styled from "styled-components";
 import Button from "../Button";
 import FlexBox from "../FlexBox";
@@ -13,6 +14,8 @@ const Span = styled.span`
 `;
 
 function ErrorModal() {
+  const navigate = useNavigate();
+
   return (
     <>
       {ReactDOM.createPortal(<Backdrop />, portalElement)}
@@ -20,7 +23,11 @@ function ErrorModal() {
         <Overlay>
           <FlexBox flexDirection="column">
             <Span>It looks like something went wrong...</Span>
-            <Button width="fit-content" m="1rem auto 0 auto">
+            <Button
+              width="fit-content"
+              m="1rem auto 0 auto"
+              onClick={() => navigate("/home")}
+            >
               Return home
             </Button>
           </FlexBox>
