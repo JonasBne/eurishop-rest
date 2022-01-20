@@ -1,17 +1,23 @@
 import React from "react";
+import Box from "./Box";
 import Button from "./Button";
 import Header4 from "./Header4";
-// import styled from "styled-components";
 
 interface CardProps {
+  margin?: string;
+  padding?: string;
+  flexBasis?: string;
   title: string;
   content: string;
-  image: string;
+  image?: string;
   imageDescription: string;
   buttonAction: string;
 }
 
 function Card({
+  margin,
+  padding,
+  flexBasis,
   title,
   content,
   image,
@@ -19,15 +25,22 @@ function Card({
   buttonAction,
 }: CardProps) {
   return (
-    <div>
-      <img src={image} alt={imageDescription} />
+    <Box m={margin} p={padding} flexBasis={flexBasis}>
+      {image !== undefined && <img src={image} alt={imageDescription} />}
       <div>
         <Header4>{title}</Header4>
         <p>{content}</p>
         <Button>{buttonAction}</Button>
       </div>
-    </div>
+    </Box>
   );
 }
+
+Card.defaultProps = {
+  margin: "2rem",
+  padding: "1rem",
+  flexBasis: "",
+  image: undefined,
+};
 
 export default Card;
