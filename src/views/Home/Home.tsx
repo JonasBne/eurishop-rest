@@ -1,15 +1,12 @@
 import React from "react";
 import { useGetProducts } from "../../api/productsApi";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
-import Grid from "../../components/Grid";
+import FlexBox from "../../components/FlexBox";
+import Box from "../../components/Box";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
 function Home() {
   const { loading, error, products } = useGetProducts();
-
-  const gridTemplateAreas = `
-  "product basket basket"
-  `;
 
   return (
     <>
@@ -18,12 +15,25 @@ function Home() {
         <ErrorModal name={error.name} message={error.message} />
       )}
       {!loading && !error && products !== undefined && (
-        <Grid gridTemplateAreas={gridTemplateAreas}>
-          {products.map((product) => {
-            return <div>{product.title}</div>;
-          })}
-          <div>BASKET</div>
-        </Grid>
+        <FlexBox justifyContent="space-between" mt="1rem" mx="2rem">
+          <FlexBox
+            flexDirection="row"
+            flexWrap="wrap"
+            justifyContent="space-between"
+            flexBasis="90%"
+          >
+            {products.map((product) => {
+              return (
+                <Box mx="0.5rem" flexBasis="33.33333%">
+                  {product.title}
+                </Box>
+              );
+            })}
+          </FlexBox>
+          <Box m="auto" flexBasis="10%">
+            BASKET
+          </Box>
+        </FlexBox>
       )}
     </>
   );
