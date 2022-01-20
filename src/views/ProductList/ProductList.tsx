@@ -45,6 +45,7 @@ function ProductList() {
           onSort={handleSort}
           sortExpression={sortExpression}
           onRedirect={handleRedirect}
+          margin="4rem auto"
         />
       )}
     </>
