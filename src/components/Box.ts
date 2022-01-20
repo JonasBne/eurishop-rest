@@ -8,10 +8,12 @@ import {
   GridAreaProps,
   flexBasis,
   FlexBasisProps,
+  border,
+  BorderProps,
 } from "styled-system";
 
 const Box = styled.div<
-  SpaceProps | LayoutProps | GridAreaProps | FlexBasisProps
+  SpaceProps | LayoutProps | GridAreaProps | FlexBasisProps | BorderProps
 >(
   {
     boxSizing: "border-box",
@@ -20,7 +22,8 @@ const Box = styled.div<
   space,
   layout,
   gridArea,
-  flexBasis
+  flexBasis,
+  border
 );
 
 export default Box;

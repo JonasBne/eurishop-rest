@@ -4,6 +4,7 @@ import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import FlexBox from "../../components/FlexBox";
 import Box from "../../components/Box";
 import LoadingSpinner from "../../components/LoadingSpinner";
+import Card from "../../components/Card";
 
 function Home() {
   const { loading, error, products } = useGetProducts();
@@ -24,9 +25,16 @@ function Home() {
           >
             {products.map((product) => {
               return (
-                <Box m="0.5rem" flexBasis="33.33333%">
-                  {product.title}
-                </Box>
+                <Card
+                  margin="0.5rem"
+                  padding="1rem"
+                  flexBasis="33.33333%"
+                  title={product.title}
+                  image={product.image}
+                  imageDescription={product.title}
+                  content={product.desc}
+                  buttonAction="Add +"
+                />
               );
             })}
           </FlexBox>
