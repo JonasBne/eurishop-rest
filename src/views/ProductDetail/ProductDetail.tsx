@@ -43,11 +43,10 @@ function ProductDetail() {
 
   const handleCancel = () => {
     setEditMode(!editMode);
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-      };
-    });
+    // TODO: is this a clean way of setting the data back to the original content (and is this a undefined check)?
+    if (product !== undefined) {
+      setFormData(product);
+    }
   };
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
