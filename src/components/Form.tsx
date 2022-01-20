@@ -29,6 +29,7 @@ interface FormProps {
   onEdit: () => void;
   editMode: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onCancel: () => void;
 }
 
 // TODO: it would be cleaner if the description would be placed inside a textarea instead of an input, but how do we determine this dynamically?
@@ -44,10 +45,16 @@ function Form({
   onEdit,
   editMode,
   onChange,
+  onCancel,
 }: FormProps) {
   const handleEdit = (event: React.MouseEvent) => {
     event.preventDefault();
     onEdit();
+  };
+
+  const handleCancel = (event: React.MouseEvent) => {
+    event.preventDefault();
+    onCancel();
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -87,7 +94,7 @@ function Form({
       </GridContainer>
       {/* // TODO: find a way to pass this dynamically instead of hard coding the button actions? */}
       {editMode ? (
-        <Button backgroundColor="red" m={buttonMargin}>
+        <Button backgroundColor="red" m={buttonMargin} onClick={handleCancel}>
           Cancel
         </Button>
       ) : null}

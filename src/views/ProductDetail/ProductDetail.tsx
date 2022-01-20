@@ -41,6 +41,15 @@ function ProductDetail() {
     setEditMode(!editMode);
   };
 
+  const handleCancel = () => {
+    setEditMode(!editMode);
+    setFormData((prevFormData) => {
+      return {
+        ...prevFormData,
+      };
+    });
+  };
+
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = event;
     const { name } = target;
@@ -71,6 +80,7 @@ function ProductDetail() {
           onEdit={handleEdit}
           editMode={editMode}
           onChange={handleInputChange}
+          onCancel={handleCancel}
         />
       )}
     </>
