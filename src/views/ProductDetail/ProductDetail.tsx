@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import Form from "../../components/Form";
 import { useGetProduct } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
-import PageNotFound from "../../components/PageNotFound";
+import ErrorModal from "../../components/ErrorModal/ErrorModal";
 
 function ProductDetail() {
   const [editMode, setEditMode] = useState<boolean>(false);
@@ -56,7 +56,7 @@ function ProductDetail() {
   return (
     <>
       {loading && !error && <LoadingSpinner />}
-      {!loading && error && <PageNotFound />}
+      {!loading && error && <ErrorModal />}
       {!loading && !error && product !== undefined && (
         <Form
           data={formData}
