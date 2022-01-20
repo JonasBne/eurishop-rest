@@ -5,6 +5,7 @@ import Table from "../../components/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import sortBy from "../../utils/sortBy";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
+import Button from "../../components/Button";
 
 function ProductList() {
   const navigate = useNavigate();
@@ -40,13 +41,17 @@ function ProductList() {
       {error && <ErrorModal name={error.name} message={error.message} />}
       {/* TODO: is there a more clean way to check that products has been loaded and the array is available */}
       {!loading && !error && products !== undefined && (
-        <Table
-          data={sortedProducts}
-          onSort={handleSort}
-          sortExpression={sortExpression}
-          onRedirect={handleRedirect}
-          margin="4rem auto"
-        />
+        <>
+          <Button backgroundColor="#28a745" m="2rem 0 0 2rem">
+            Add product +
+          </Button>
+          <Table
+            data={sortedProducts}
+            onSort={handleSort}
+            sortExpression={sortExpression}
+            onRedirect={handleRedirect}
+          />
+        </>
       )}
     </>
   );
