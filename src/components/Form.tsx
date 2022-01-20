@@ -98,15 +98,9 @@ function Form({
           Cancel
         </Button>
       ) : null}
-      {editMode ? (
-        <Button backgroundColor="#405cf5" m={buttonMargin} onClick={handleEdit}>
-          Save
-        </Button>
-      ) : (
-        <Button backgroundColor="#405cf5" m={buttonMargin} onClick={handleEdit}>
-          Edit
-        </Button>
-      )}
+      <Button backgroundColor="#405cf5" m={buttonMargin} onClick={handleEdit}>
+        {editMode ? "Save" : "Edit"}
+      </Button>
     </StyledForm>
   );
 }
