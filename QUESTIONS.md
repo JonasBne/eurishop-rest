@@ -15,20 +15,7 @@ Enkele struikelblokken:
   - Cancel (om terug te keren naar de originele state van het product)
   - Save (om een put request te verzenden)
 
-De buttons zijn ook hard gecodeerd, waardoor ik dit formulier niet kan herbruiken bij bijvoorbeeld het aanmaken van nieuwe producten. Ik heb dan bijvoorbeeld geen edit knop nodig, maar enkel een save en cancel. Als alternatieve oplossing was ik aan het denken om een array met objecten mee te geven en daarover te loopen om de buttons te genereren, iets in de trend van:
-
-[{
-content: "Edit",
-color: "green",
-...
-}, {
-content: "Cancel",
-color: "red"
-}]
-
-Buttons zou ik dan kunnen maken met buttonArr.map((button) => {
-return <Button backgroundColor={button.color}>{button.content}</Button>
-});
+De buttons zijn ook hard gecodeerd, waardoor ik dit formulier niet kan herbruiken bij bijvoorbeeld het aanmaken van nieuwe producten. Ik heb dan bijvoorbeeld geen edit knop nodig, maar enkel een save en cancel. Als alternatieve oplossing was ik aan het denken om een array met objecten mee te geven en daarover te loopen om de buttons te genereren. Ik heb dit gedaan voor mijn Card component als voorbeeld.
 
 Maar ik heb ook onClick handlers nodig op de verschillende buttons, dewelke afhankelijk zijn van de content (i.e. edit, save,...) --> Is het een oplossing om dit ook als prop mee te geven aan Form?
 
