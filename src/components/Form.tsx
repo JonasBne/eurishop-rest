@@ -63,7 +63,8 @@ function Form({
     onChange(event);
   };
 
-  const handleSave = () => {
+  const handleSave = (event: React.MouseEvent) => {
+    event.preventDefault();
     onSave();
   };
 

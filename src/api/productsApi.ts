@@ -1,6 +1,6 @@
+/* eslint-disable no-useless-return */
 import rootUrl from "./rootUrl";
 import useFetch from "../hooks/useFetch";
-import usePut from "../hooks/usePut";
 
 export interface ProductDTO {
   id: number;
@@ -51,16 +51,16 @@ export const useGetProducts = () => {
   };
 };
 
-export const usePutProduct = (productId: string, data: ProductDTO) => {
-  const { loading, error } = usePut<ProductDTO>(
-    `${rootUrl}${url}/${productId}`,
-    data
-  );
-  return {
-    loading,
-    error,
-  };
-};
+// export const updateProduct = (productId: string, data: ProductDTO) => {
+//   const { loading, error } = usePut<ProductDTO>(
+//     `${rootUrl}${url}/${productId}`,
+//     data
+//   );
+//   return {
+//     loading,
+//     error,
+//   };
+// };
 
 /*
 
