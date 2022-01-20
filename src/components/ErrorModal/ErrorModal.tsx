@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import styled from "styled-components";
 import Button from "../Button";
 import FlexBox from "../FlexBox";
+import Header4 from "../Header4";
 import Backdrop from "./Backdrop";
 import Overlay from "./Overlay";
 
@@ -13,7 +14,12 @@ const Span = styled.span`
   text-align: center;
 `;
 
-function ErrorModal() {
+interface ErrorModalProps {
+  name: string;
+  message: string;
+}
+
+function ErrorModal({ name, message }: ErrorModalProps) {
   const navigate = useNavigate();
 
   return (
@@ -22,7 +28,8 @@ function ErrorModal() {
       {ReactDOM.createPortal(
         <Overlay>
           <FlexBox flexDirection="column">
-            <Span>It looks like something went wrong...</Span>
+            <Header4>{name}</Header4>
+            <Span>The following problem occured: {message}</Span>
             <Button
               width="fit-content"
               m="1rem auto 0 auto"

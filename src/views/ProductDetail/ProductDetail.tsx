@@ -56,7 +56,9 @@ function ProductDetail() {
   return (
     <>
       {loading && !error && <LoadingSpinner />}
-      {!loading && error && <ErrorModal />}
+      {!loading && error && (
+        <ErrorModal name={error.name} message={error.message} />
+      )}
       {!loading && !error && product !== undefined && (
         <Form
           data={formData}
