@@ -62,7 +62,6 @@ function ProductDetail() {
 
   const handleSave = () => {
     // TODO: add put request
-    console.log("Update...");
   };
 
   return (
