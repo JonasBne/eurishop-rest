@@ -15,6 +15,12 @@ const Text = styled.p`
   font-size: 1rem;
   line-height: 2rem;
 `;
+
+interface ButtonArr {
+  action: string;
+  color: string;
+}
+
 interface CardProps {
   margin?: string;
   padding?: string;
@@ -23,7 +29,7 @@ interface CardProps {
   content: string;
   image?: string;
   imageDescription: string;
-  buttonAction: string;
+  buttons: ButtonArr[];
 }
 
 function Card({
@@ -34,7 +40,7 @@ function Card({
   content,
   image,
   imageDescription,
-  buttonAction,
+  buttons,
 }: CardProps) {
   return (
     <Box
@@ -50,7 +56,13 @@ function Card({
       <div>
         <Header4>{title}</Header4>
         <Text>{content}</Text>
-        <Button backgroundColor="#405cf5">{buttonAction}</Button>
+        {buttons.map((button) => {
+          return (
+            <Button m="1rem" backgroundColor={button.color}>
+              {button.action}
+            </Button>
+          );
+        })}
       </div>
     </Box>
   );

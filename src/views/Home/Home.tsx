@@ -33,7 +33,10 @@ function Home() {
                   image={product.image}
                   imageDescription={product.title}
                   content={product.desc}
-                  buttonAction="Add +"
+                  buttons={[
+                    { action: "Detail", color: "#007bff" },
+                    { action: "Add +", color: "#405cf5" },
+                  ]}
                 />
               );
             })}
