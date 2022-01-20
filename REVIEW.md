@@ -4,10 +4,10 @@
 
 - [x] Follow Conventional Commits (https://www.conventionalcommits.org/)
 - [x] Use Yarn
-- [ ] Extra ProductTable to Table component
-- [ ] Create custom errors, eg; RequestError
-- [ ] Create a generic fetch hook and re-use
-- [ ] Avoid magic string (ascending, ...)
-- [ ] Where are the unit tests? :)
-- [ ] Make quick start doc available (on top)
-- [ ] Create following folders folder (domain, api, utils)
+- [x] Extra ProductTable to Table component
+- [x] Create custom errors, eg; RequestError
+- [x] Create a generic fetch hook and re-use
+- [x] Avoid magic string (ascending, ...)
+- [x] Where are the unit tests? :)
+- [x] Make quick start doc available (on top)
+- [x] Create following folders folder (domain, api, utils)
