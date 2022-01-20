@@ -9,7 +9,6 @@ import Input from "./Input";
 import Label from "./Label";
 import Header4 from "./Header4";
 import Button from "./Button";
-import { ProductDTO } from "../api/productsApi";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 2px solid ${({ theme }) => theme.secondaryDark};
@@ -30,7 +29,6 @@ interface FormProps {
   onEdit: () => void;
   editMode: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  formData: ProductDTO;
 }
 
 // TODO: it would be cleaner if the description would be placed inside a textarea instead of an input, but how do we determine this dynamically?
@@ -46,10 +44,7 @@ function Form({
   onEdit,
   editMode,
   onChange,
-  formData,
 }: FormProps) {
-  console.log(formData);
-
   const handleEdit = (event: React.MouseEvent) => {
     event.preventDefault();
     onEdit();

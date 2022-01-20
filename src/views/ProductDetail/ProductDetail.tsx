@@ -69,7 +69,6 @@ function ProductDetail() {
           onEdit={handleEdit}
           editMode={editMode}
           onChange={handleInputChange}
-          formData={formData}
         />
       )}
     </>
