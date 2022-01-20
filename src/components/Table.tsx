@@ -12,11 +12,20 @@ interface TableProps {
   // TODO: think about a way to pass this function optionally
   onRedirect: (productId: string) => void;
   sortExpression: string;
+  margin?: string;
+  padding?: string;
 }
 
-function Table({ data, onSort, sortExpression, onRedirect }: TableProps) {
+function Table({
+  data,
+  onSort,
+  sortExpression,
+  onRedirect,
+  margin,
+  padding,
+}: TableProps) {
   return (
-    <FlexBox m="1rem" p="1rem">
+    <FlexBox m={margin} p={padding}>
       <StyledTable>
         <thead>
           <TableRow>
@@ -61,5 +70,10 @@ function Table({ data, onSort, sortExpression, onRedirect }: TableProps) {
     </FlexBox>
   );
 }
+
+Table.defaultProps = {
+  margin: "auto",
+  padding: "2rem",
+};
 
 export default Table;
