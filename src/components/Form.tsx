@@ -24,14 +24,16 @@ interface FormProps {
   width: string;
   margin: string;
   gridTemplateAreas: string;
-  gridRowGap: string;
-  buttonMargin: string;
+  gridRowGap?: string;
+  buttonMargin?: string;
   onEdit: () => void;
   editMode: boolean;
   onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   onCancel: () => void;
   onSave: () => void;
 }
+
+// How can I make Form reusable (for example for adding the products)?
 
 // TODO: it would be cleaner if the description would be placed inside a textarea instead of an input, but how do we determine this dynamically?
 

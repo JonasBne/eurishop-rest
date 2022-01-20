@@ -33,6 +33,7 @@ function ErrorModal({ name, message }: ErrorModalProps) {
             <Button
               width="fit-content"
               m="1rem auto 0 auto"
+              backgroundColor="red"
               onClick={() => navigate("/home")}
             >
               Return home

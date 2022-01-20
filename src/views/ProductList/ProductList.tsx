@@ -10,6 +10,8 @@ import Button from "../../components/Button";
 function ProductList() {
   const navigate = useNavigate();
   const { loading, error, products } = useGetProducts();
+  const [showForm, setShowForm] = useState<boolean>(false);
+
   const [sortExpression, setSortExpression] = useState<string>("");
 
   const handleSort = (sortByField: string) => {
@@ -35,6 +37,10 @@ function ProductList() {
     sortedProducts = sortBy(products, sortExpression);
   }
 
+  const handleAddProductClick = () => {
+    setShowForm(!showForm);
+  };
+
   return (
     <>
       {loading && !error && <LoadingSpinner />}
@@ -42,7 +48,11 @@ function ProductList() {
       {/* TODO: is there a more clean way to check that products has been loaded and the array is available */}
       {!loading && !error && products !== undefined && (
         <>
-          <Button backgroundColor="#28a745" m="2rem 0 0 2rem">
+          <Button
+            backgroundColor="#28a745"
+            m="2rem 0 0 2rem"
+            onClick={handleAddProductClick}
+          >
             Add product +
           </Button>
           <Table

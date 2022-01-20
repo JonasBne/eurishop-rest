@@ -20,7 +20,7 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-const url = "api/products/?pageSize=100";
+const url = "api/products";
 
 const productMapper = (dto: ProductDTO) => {
   return {
