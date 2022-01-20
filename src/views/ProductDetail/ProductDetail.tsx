@@ -71,8 +71,7 @@ function ProductDetail() {
       {!loading && error && (
         <ErrorModal name={error.name} message={error.message} />
       )}
-      {/* // TODO: is this a clean way for guarding the undefined state? */}
-      {!loading && !error && product !== undefined && (
+      {!loading && !error && (
         <Form
           data={formData}
           title="Product Detail"

@@ -45,8 +45,7 @@ function ProductList() {
     <>
       {loading && !error && <LoadingSpinner />}
       {error && <ErrorModal name={error.name} message={error.message} />}
-      {/* TODO: is there a more clean way to check that products has been loaded and the array is available */}
-      {!loading && !error && products !== undefined && (
+      {!loading && !error && (
         <>
           <Button
             backgroundColor="#28a745"
