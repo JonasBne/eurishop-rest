@@ -57,6 +57,7 @@ function Table({
                 index={index}
                 onSort={onSort}
                 sortExpression={sortExpression}
+                key={`head${index}`}
               />
             ))}
             <TableHead>actions</TableHead>

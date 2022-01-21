@@ -32,7 +32,6 @@ function ProductForm({
     defaultValues: initialData,
   });
 
-  // TODO: change InputField to Label and Input (separate)
   // TODO: add buttons (one with type 'submit')
   // Default values worden slechts één keer opgeladen
   return (
