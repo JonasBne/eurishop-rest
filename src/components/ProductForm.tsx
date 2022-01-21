@@ -1,16 +1,27 @@
 import React, { ReactNode } from "react";
-import { useForm, SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { ProductDTO } from "../api/productsApi";
+import Grid from "./Grid";
+import Input from "./Input";
+import Label from "./Label";
 
 interface ProductFormProps {
+  initialData?: ProductDTO;
   children: ReactNode;
+  gridTemplateAreas: string;
+  onSubmit: (data: ProductDTO) => void;
 }
 
-function ProductForm({ children }: ProductFormProps) {
-  const { register, handleSubmit } = useForm<ProductDTO>();
-  const onSubmit: SubmitHandler<ProductDTO> = (data) => console.log(data);
+function ProductForm({ gridTemplateAreas, onSubmit }: ProductFormProps) {
+  const { handleSubmit } = useForm<ProductDTO>();
 
-  return <form onSubmit={handleSubmit(onSubmit)}>{children}</form>;
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <Grid gridTemplateAreas={gridTemplateAreas}>
+        <Label>Serial Number</Label>
+      </Grid>
+    </form>
+  );
 }
 
 export default ProductForm;
