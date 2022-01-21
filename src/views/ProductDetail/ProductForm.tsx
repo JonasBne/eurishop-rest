@@ -6,88 +6,72 @@ import { space, SpaceProps, layout, LayoutProps } from "styled-system";
 import styled from "styled-components";
 import { ProductDTO } from "../../api/productsApi";
 import Grid from "../../components/Grid";
-import TextArea from "../../components/TextArea";
-import InputField from "../../components/InputField";
+import Input from "../../components/Input";
+import Label from "../../components/Label";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
+  border: 2px solid ${({ theme }) => theme.secondaryDark};
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   ${space}
   ${layout}
-  border: 2px solid black;
 `;
 
 interface ProductFormProps {
-  initialData?: ProductDTO;
+  initialData: ProductDTO;
   gridTemplateAreas: string;
   onSubmit: (data: ProductDTO) => void;
 }
 
 function ProductForm({
-  initialData = {
-    id: 0,
-    sku: "",
-    title: "",
-    desc: "",
-    image: "",
-    stocked: false,
-    basePrice: 0,
-    price: 0,
-  },
+  initialData,
   gridTemplateAreas,
   onSubmit,
 }: ProductFormProps) {
-  const { register, handleSubmit } = useForm<ProductDTO>();
+  const { register, handleSubmit } = useForm<ProductDTO>({
+    defaultValues: initialData,
+  });
 
+  // TODO: change InputField to Label and Input (separate)
+  // TODO: add buttons (one with type 'submit')
+  // Default values worden slechts één keer opgeladen
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)} m="2rem">
       <Grid gridTemplateAreas={gridTemplateAreas}>
-        <InputField
-          label="Serial Number"
-          id="sku"
-          type="text"
-          defaultValue={initialData.sku}
-          {...register("sku")}
-        />
-        <InputField
-          label="Title"
-          id="title"
-          type="text"
-          defaultValue={initialData.title}
-          {...register("title")}
-        />
-        <InputField
-          label="In stock"
-          id="stocked"
-          type="text"
-          defaultValue={initialData.stocked ? "Yes" : "No"}
-          {...register("stocked")}
-        />
-        <InputField
-          label="Base price"
-          id="basePrice"
-          type="number"
-          defaultValue={initialData.basePrice}
-          {...register("basePrice")}
-        />
-        <InputField
-          label="Unit price"
-          id="price"
-          type="number"
-          defaultValue={initialData.price}
-          {...register("price")}
-        />
-        <InputField
-          label="Image URL"
-          id="image"
-          type="text"
-          defaultValue={initialData.image}
-          {...register("image")}
-        />
-        <TextArea
-          label="Description"
-          id="desc"
-          defaultValue={initialData.desc}
-          {...register("desc")}
-        />
+        <Label gridArea="sku">
+          Serial number
+          <Input id="sku" type="text" {...register("sku")} />
+        </Label>
+
+        <Label gridArea="title">
+          Title
+          <Input id="title" type="text" {...register("title")} />
+        </Label>
+
+        {/* // TODO: checkbox */}
+        <Label gridArea="stocked">
+          In stock
+          <Input id="stocked" type="text" {...register("stocked")} />
+        </Label>
+
+        <Label gridArea="basePrice">
+          Base Price
+          <Input id="basePrice" type="text" {...register("basePrice")} />
+        </Label>
+
+        <Label gridArea="price">
+          Unit price
+          <Input id="price" type="text" {...register("price")} />
+        </Label>
+
+        <Label gridArea="image">
+          Image URL <Input id="image" type="text" {...register("image")} />
+        </Label>
+
+        <Label gridArea="desc">
+          Description
+          <textarea id="desc" {...register("desc")} />
+        </Label>
       </Grid>
     </StyledForm>
   );

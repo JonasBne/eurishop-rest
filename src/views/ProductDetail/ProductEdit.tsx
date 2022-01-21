@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useParams } from "react-router";
 import { useGetProduct, ProductDTO } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -7,32 +7,13 @@ import ProductForm from "./ProductForm";
 
 function ProductEdit() {
   const { productId } = useParams<string>();
-  const { loading, error, product } = useGetProduct(
-    `${productId !== undefined ? productId : ""}`
-  );
-
-  const [formData, setFormData] = useState({
-    id: 0,
-    sku: "",
-    title: "",
-    desc: "",
-    image: "",
-    stocked: false,
-    basePrice: 0,
-    price: 0,
-  });
-
-  useEffect(() => {
-    if (product !== undefined) {
-      setFormData(product);
-    }
-  }, [product]);
+  const { loading, error, product } = useGetProduct(productId!);
 
   const gridTemplateAreas = `
-  "id sku title . "
-  "basePrice price stocked ."
-  "image image . ."
-  "desc desc desc desc"
+  "title sku"
+  "basePrice price"
+  "stocked image"
+  "desc desc"
   `;
 
   const handleSubmit = (data: ProductDTO) => {
@@ -41,14 +22,12 @@ function ProductEdit() {
 
   return (
     <>
-      {loading && !error && <LoadingSpinner />}
-      {!loading && error && (
-        <ErrorModal name={error.name} message={error.message} />
-      )}
-      {!loading && !error && (
+      {loading && <LoadingSpinner />}
+      {error && <ErrorModal name={error.name} message={error.message} />}
+      {product && (
         <ProductForm
           gridTemplateAreas={gridTemplateAreas}
-          initialData={formData}
+          initialData={product}
           onSubmit={handleSubmit}
         />
       )}
