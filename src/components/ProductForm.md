@@ -1,5 +1,11 @@
 ```jsx
 
+
+const handleSubmit = (data: ProductDTO) => {
+  console.log(data)
+}
+
+
 interface ProductFormProps {
   initialData?: ProductDTO;
   gridTemplateAreas: string;
@@ -12,10 +18,12 @@ function ProductForm({ gridTemplateAreas, onSubmit, initialData }: ProductFormPr
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid gridTemplateAreas={gridTemplateAreas}>
-        <Label>Serial Number</Label>
-        <Input type="text">{initialData["sku"]}</Input>
-                <Label>Serial Number</Label>
-        <Input type="text">{initialData["sku"]}</Input>
+        <Label area="sku">Serial Number</Label>
+          <Input type="text">{initialData["sku"]} />
+        <Label area="title">Serial Number</Label>
+          <Input type="text">{initialData["title"]} />
+        <Label area="title">Serial Number</Label>
+          <TextArea>{initialData["desc"]} />
       </Grid>
     </form>
   );
