@@ -71,20 +71,7 @@ function ProductDetail() {
         <ErrorModal name={error.name} message={error.message} />
       )}
       {!loading && !error && (
-        <Form
-          data={formData}
-          title="Product Detail"
-          width="50rem"
-          margin="2rem auto"
-          buttonMargin="2rem"
-          gridTemplateAreas={gridTemplateAreas}
-          gridRowGap="1.25rem"
-          onEdit={handleEdit}
-          editMode={editMode}
-          onChange={handleInputChange}
-          onCancel={handleCancel}
-          onSave={handleSave}
-        />
+        <ProductForm onSubmit={handleSubmit} initialData={formData} />
       )}
     </>
   );

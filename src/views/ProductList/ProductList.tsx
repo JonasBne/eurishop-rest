@@ -9,7 +9,7 @@ import Button from "../../components/Button";
 
 function ProductList() {
   const navigate = useNavigate();
-  const { loading, error, products } = useGetProducts();
+  const { loading, error, products = [] } = useGetProducts();
   const [showForm, setShowForm] = useState<boolean>(false);
 
   const [sortExpression, setSortExpression] = useState<string>("");
@@ -32,10 +32,7 @@ function ProductList() {
   };
 
   // TODO: is there a better way to do this?
-  let sortedProducts = [];
-  if (products !== undefined) {
-    sortedProducts = sortBy(products, sortExpression);
-  }
+  const sortedProducts = sortBy(products, sortExpression);
 
   const handleAddProductClick = () => {
     setShowForm(!showForm);

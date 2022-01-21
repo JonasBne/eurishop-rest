@@ -1,4 +1,7 @@
 const sortBy = (data: any[], sortExpression: string | null | undefined) => {
+  if (!data) {
+    return data;
+  }
   const sortedData = [...data];
   sortedData.sort((a: any, b: any) => {
     if (sortExpression?.includes("+")) {

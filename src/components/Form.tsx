@@ -108,7 +108,7 @@ function Form({
         </Button>
       ) : null}
       {editMode ? (
-        <Button backgroundColor="#405cf5" m={buttonMargin} onClick={handleSave}>
+        <Button backgroundColor="#405cf5" m={buttonMargin}>
           Save
         </Button>
       ) : (
