@@ -2,10 +2,18 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { useForm } from "react-hook-form";
+import { space, SpaceProps, layout, LayoutProps } from "styled-system";
+import styled from "styled-components";
 import { ProductDTO } from "../../api/productsApi";
 import Grid from "../../components/Grid";
 import TextArea from "../../components/TextArea";
 import InputField from "../../components/InputField";
+
+const StyledForm = styled.form<SpaceProps | LayoutProps>`
+  ${space}
+  ${layout}
+  border: 2px solid black;
+`;
 
 interface ProductFormProps {
   initialData?: ProductDTO;
@@ -30,7 +38,7 @@ function ProductForm({
   const { register, handleSubmit } = useForm<ProductDTO>();
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <StyledForm onSubmit={handleSubmit(onSubmit)}>
       <Grid gridTemplateAreas={gridTemplateAreas}>
         <InputField
           label="Serial Number"
@@ -81,7 +89,7 @@ function ProductForm({
           {...register("desc")}
         />
       </Grid>
-    </form>
+    </StyledForm>
   );
 }
 

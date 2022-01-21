@@ -24,7 +24,6 @@ interface ButtonArr {
 interface CardProps {
   margin?: string;
   padding?: string;
-  flexBasis?: string;
   title: string;
   content: string;
   image?: string;
@@ -35,7 +34,6 @@ interface CardProps {
 function Card({
   margin,
   padding,
-  flexBasis,
   title,
   content,
   image,
@@ -46,7 +44,6 @@ function Card({
     <Box
       m={margin}
       p={padding}
-      flexBasis={flexBasis}
       height="fit-content"
       maxWidth="300px"
       border="2px solid #bacdd8"
@@ -71,7 +68,6 @@ function Card({
 Card.defaultProps = {
   margin: "2rem",
   padding: "1rem",
-  flexBasis: "",
   image: undefined,
 };
 

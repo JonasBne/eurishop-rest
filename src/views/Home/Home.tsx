@@ -28,7 +28,6 @@ function Home() {
                 <Card
                   margin="0.5rem"
                   padding="1rem"
-                  flexBasis="33.33333%"
                   title={product.title}
                   image={product.image}
                   imageDescription={product.title}
@@ -41,9 +40,7 @@ function Home() {
               );
             })}
           </FlexBox>
-          <Box m="auto" flexBasis="10%">
-            BASKET
-          </Box>
+          <Box m="auto">BASKET</Box>
         </FlexBox>
       )}
     </>
