@@ -1,21 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { TextareaHTMLAttributes } from "react";
-import { GridAreaProps } from "styled-system";
-import Label from "./Label";
+import React from "react";
 
-interface TextAreaProps
-  extends TextareaHTMLAttributes<HTMLTextAreaElement>,
-    GridAreaProps {
-  label: string;
-}
-
-function TextArea({ label, ...textArea }: TextAreaProps) {
-  return (
-    <Label>
-      {label}
-      <textarea {...textArea} />
-    </Label>
-  );
+// TODO: make this a styled component
+function TextArea() {
+  return <textarea />;
 }
 
 export default TextArea;

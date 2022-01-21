@@ -33,6 +33,7 @@ function ProductForm({
   });
 
   // TODO: add buttons (one with type 'submit')
+  // TODO: change type=text to checkbox
   // Default values worden slechts één keer opgeladen
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} m="2rem">
