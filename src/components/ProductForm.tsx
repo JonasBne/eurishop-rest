@@ -4,7 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ProductDTO } from "../api/productsApi";
 import Grid from "./Grid";
-import Label from "./Label";
+import TextArea from "./TextArea";
 import InputField from "./InputField";
 
 interface ProductFormProps {
@@ -74,14 +74,12 @@ function ProductForm({
           defaultValue={initialData.image}
           {...register("image")}
         />
-        <Label htmlFor="desc">
-          Description
-          <textarea
-            id="desc"
-            defaultValue={initialData.desc}
-            {...register("desc")}
-          />
-        </Label>
+        <TextArea
+          label="Description"
+          id="desc"
+          defaultValue={initialData.desc}
+          {...register("desc")}
+        />
       </Grid>
     </form>
   );
