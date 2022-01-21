@@ -1,23 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { InputHTMLAttributes } from "react";
-import styled from "styled-components";
 import Label from "./Label";
-
-const Input = styled.input`
-  box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  outline: none;
-  display: block;
-  border: none;
-  border-bottom: 1px solid #ddd;
-  background: transparent;
-  height: 2rem;
-  min-width: 10rem;
-  word-wrap: break-word;
-  word-break: break-all;
-  width: 100%;
-`;
+import Input from "./Input";
 
 interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
