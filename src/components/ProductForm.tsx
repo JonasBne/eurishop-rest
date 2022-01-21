@@ -19,6 +19,7 @@ function ProductForm({ gridTemplateAreas, onSubmit }: ProductFormProps) {
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid gridTemplateAreas={gridTemplateAreas}>
         <Label>Serial Number</Label>
+        <Input id="sku" name="sku" placeholder="test" />
       </Grid>
     </form>
   );
