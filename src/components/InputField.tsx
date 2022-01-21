@@ -1,12 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { InputHTMLAttributes } from "react";
 import styled from "styled-components";
-import { space, SpaceProps, gridArea, GridAreaProps } from "styled-system";
-
-const Label = styled.label<SpaceProps | GridAreaProps>`
-  ${space}
-  ${gridArea}
-`;
+import Label from "./Label";
 
 const Input = styled.input`
   box-sizing: border-box;

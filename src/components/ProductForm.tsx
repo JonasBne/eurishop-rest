@@ -4,8 +4,8 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { ProductDTO } from "../api/productsApi";
 import Grid from "./Grid";
-import Input from "./Input";
 import Label from "./Label";
+import InputField from "./InputField";
 
 interface ProductFormProps {
   initialData?: ProductDTO;
@@ -32,69 +32,48 @@ function ProductForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <Grid gridTemplateAreas={gridTemplateAreas}>
-        <Label htmlFor="sku">
-          Serial Number
-          <Input
-            id="sku"
-            type="text"
-            defaultValue={initialData.sku}
-            {...register("sku")}
-          />
-        </Label>
-        <Label htmlFor="title">
-          Title
-          <Input
-            id="title"
-            type="text"
-            defaultValue={initialData.title}
-            {...register("title")}
-          />
-        </Label>
-        <Label htmlFor="stocked">
-          In stock
-          <Input
-            id="stocked"
-            type="text"
-            defaultValue={initialData.stocked ? "Yes" : "No"}
-            {...register("stocked")}
-          />
-        </Label>
-        <Label htmlFor="basePrice">
-          Base price
-          <Input
-            id="basePrice"
-            type="number"
-            defaultValue={initialData.basePrice}
-            {...register("basePrice")}
-          />
-        </Label>
-        <Label htmlFor="price">
-          Unit price
-          <Input
-            id="price"
-            type="number"
-            defaultValue={initialData.price}
-            {...register("price")}
-          />
-        </Label>
-        <Label htmlFor="price">
-          Unit price
-          <Input
-            id="price"
-            type="number"
-            defaultValue={initialData.price}
-            {...register("price")}
-          />
-        </Label>
-        <Label htmlFor="image">
-          Image URL
-          <Input
-            id="image"
-            type="text"
-            defaultValue={initialData.image}
-            {...register("image")}
-          />
-        </Label>
+        <InputField
+          label="Serial Number"
+          id="sku"
+          type="text"
+          defaultValue={initialData.sku}
+          {...register("sku")}
+        />
+        <InputField
+          label="Title"
+          id="title"
+          type="text"
+          defaultValue={initialData.title}
+          {...register("title")}
+        />
+        <InputField
+          label="In stock"
+          id="stocked"
+          type="text"
+          defaultValue={initialData.stocked ? "Yes" : "No"}
+          {...register("stocked")}
+        />
+        <InputField
+          label="Base price"
+          id="basePrice"
+          type="number"
+          defaultValue={initialData.basePrice}
+          {...register("basePrice")}
+        />
+        <InputField
+          label="Unit price"
+          id="price"
+          type="number"
+          defaultValue={initialData.price}
+          {...register("price")}
+        />
+        <InputField
+          label="Image URL"
+          id="image"
+          type="text"
+          defaultValue={initialData.image}
+          {...register("image")}
+        />
         <Label htmlFor="desc">
           Description
           <textarea
