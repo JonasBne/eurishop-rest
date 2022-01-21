@@ -1,8 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { TextareaHTMLAttributes } from "react";
+import { GridAreaProps } from "styled-system";
 import Label from "./Label";
 
-interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextAreaProps
+  extends TextareaHTMLAttributes<HTMLTextAreaElement>,
+    GridAreaProps {
   label: string;
 }
 
