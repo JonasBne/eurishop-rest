@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import Form from "../../components/Form";
 import { useGetProduct } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
+import ProductForm from "./ProductForm";
 
 function ProductEdit() {
   const [editMode, setEditMode] = useState<boolean>(false);
@@ -37,54 +37,14 @@ function ProductEdit() {
   "desc desc desc desc"
   `;
 
-  const handleEdit = () => {
-    setEditMode(!editMode);
-  };
-
-  const handleCancel = () => {
-    setEditMode(!editMode);
-    // TODO: is this a clean way of setting the data back to the original content (and is this a undefined check)?
-    if (product !== undefined) {
-      setFormData(product);
-    }
-  };
-
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const { target } = event;
-    const { name } = target;
-    setFormData((prevFormData) => {
-      return {
-        ...prevFormData,
-        [name]: target.value,
-      };
-    });
-  };
-
-  const handleSave = () => {
-    // TODO: add put request
-  };
-
   return (
     <>
       {loading && !error && <LoadingSpinner />}
       {!loading && error && (
         <ErrorModal name={error.name} message={error.message} />
       )}
-      {!loading && !error && (
-        <Form
-          data={formData}
-          title="Product Detail"
-          width="50rem"
-          margin="2rem auto"
-          buttonMargin="2rem"
-          gridTemplateAreas={gridTemplateAreas}
-          gridRowGap="1.25rem"
-          onEdit={handleEdit}
-          editMode={editMode}
-          onChange={handleInputChange}
-          onCancel={handleCancel}
-          onSave={handleSave}
-        />
+      {!loading && !error && 
+      <ProductForm />
       )}
     </>
   );
