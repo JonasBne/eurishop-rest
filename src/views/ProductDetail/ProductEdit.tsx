@@ -5,7 +5,7 @@ import { useGetProduct } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 
-function ProductDetail() {
+function ProductEdit() {
   const [editMode, setEditMode] = useState<boolean>(false);
 
   const { productId } = useParams<string>();
@@ -90,4 +90,4 @@ function ProductDetail() {
   );
 }
 
-export default ProductDetail;
+export default ProductEdit;

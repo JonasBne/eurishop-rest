@@ -4,7 +4,7 @@ import { ThemeProvider } from "styled-components";
 import theme from "./theme";
 import Navbar from "./views/Navigation/Navbar";
 import Home from "./views/Home/Home";
-import ProductDetail from "./views/ProductDetail/ProductDetail";
+import ProductEdit from "./views/ProductDetail/ProductEdit";
 import ProductList from "./views/ProductList/ProductList";
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
         <Route path="*" element={<Home />} />
         <Route path="home" element={<Home />} />
         <Route path="products/admin" element={<ProductList />} />
-        <Route path="products/:productId" element={<ProductDetail />} />
+        <Route path="products/:productId" element={<ProductEdit />} />
       </Routes>
     </ThemeProvider>
   );

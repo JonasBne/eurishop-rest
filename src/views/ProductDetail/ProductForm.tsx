@@ -2,10 +2,10 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ProductDTO } from "../api/productsApi";
-import Grid from "./Grid";
-import TextArea from "./TextArea";
-import InputField from "./InputField";
+import { ProductDTO } from "../../api/productsApi";
+import Grid from "../../components/Grid";
+import TextArea from "../../components/TextArea";
+import InputField from "../../components/InputField";
 
 interface ProductFormProps {
   initialData?: ProductDTO;
