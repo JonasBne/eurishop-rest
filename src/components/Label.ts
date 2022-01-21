@@ -1,9 +1,7 @@
 import styled from "styled-components";
-import { space, SpaceProps, gridArea, GridAreaProps } from "styled-system";
 
-const Label = styled.label<SpaceProps | GridAreaProps>`
-  ${space}
-  ${gridArea}
+const Label = styled.label`
+  margin: 1rem;
 `;
 
 export default Label;

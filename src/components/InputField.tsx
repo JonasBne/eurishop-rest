@@ -1,9 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { InputHTMLAttributes } from "react";
+import { SpaceProps, GridAreaProps } from "styled-system";
 import Label from "./Label";
 import Input from "./Input";
 
-interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
+interface InputFieldProps
+  extends InputHTMLAttributes<HTMLInputElement>,
+    SpaceProps,
+    GridAreaProps {
   label: string;
 }
 
