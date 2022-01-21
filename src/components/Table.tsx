@@ -10,18 +10,40 @@ interface TableProps {
   data: any[];
   onSort: (sortByField: string) => void;
   // TODO: think about a way to pass this function optionally
+  // je kan een check doen of de onRedirect != undefined
   onRedirect: (productId: string) => void;
   sortExpression: string;
   margin?: string;
   padding?: string;
 }
 
+// TODO:
+// bad naming vor onRedirect, is application specific not Table specific
+// better = onRowClick or onRowSelect
+
+// TODO:
+// een verbetering hier is dat je naar de data ook een columns prop voorziet.
+// zo kan je een column extra props meegeven; label, sortable, ...
+/* 
+const columns = [
+  { name: 'id', label: 'ID' },
+  { name: 'name', label: 'Naam' },
+  { name: 'description', label: 'Beschrijving' },
+  { name: 'price', label: 'Prijs' },
+  { name: 'category', label: 'Categorie' },
+  { name: 'image', label: 'Afbeelding' },
+  { name: 'actions', label: 'Acties' },
+]
+<Table data={data} columns={columns} />
+
+*/
+
 function Table({
   data,
   onSort,
   sortExpression,
   onRedirect,
-  margin,
+  margin, // TODO: idem as Card, use spacing props instead
   padding,
 }: TableProps) {
   return (

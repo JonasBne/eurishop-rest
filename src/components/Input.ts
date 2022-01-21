@@ -16,4 +16,9 @@ const Input = styled.input`
   width: 100%;
 `;
 
+// TODO:
+// het kan ook interessant zijn om de Label & Input te combineren tot een nieuw component
+// <InputField label="Label" value={value} onChange={...}/>
+// omdat die toch altijd samen gebruikt worden.
+
 export default Input;

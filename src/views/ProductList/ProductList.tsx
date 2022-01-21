@@ -14,6 +14,7 @@ function ProductList() {
 
   const [sortExpression, setSortExpression] = useState<string>("");
 
+  // TODO: this logic should be inside the table (or even SortableTableHead)
   const handleSort = (sortByField: string) => {
     setSortExpression((prevSortExp) => {
       if (prevSortExp?.includes("+")) {
@@ -27,11 +28,13 @@ function ProductList() {
   };
 
   // TODO: is it ok to store the handler here since this is the smart component?
+  // YES this is the place
   const handleRedirect = (productId: string) => {
     navigate(`/products/${productId}`);
   };
 
   // TODO: is there a better way to do this?
+  // const sortedProducts = sortBy(products || [], sortExpression);
   let sortedProducts = [];
   if (products !== undefined) {
     sortedProducts = sortBy(products, sortExpression);
@@ -40,6 +43,10 @@ function ProductList() {
   const handleAddProductClick = () => {
     setShowForm(!showForm);
   };
+
+  // TODO:
+  // Better to create Button type (primary, secondary) then using
+  // backgroundColor prop
 
   return (
     <>

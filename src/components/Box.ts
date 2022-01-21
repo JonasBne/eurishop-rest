@@ -5,15 +5,19 @@ import {
   layout,
   LayoutProps,
   gridArea,
-  GridAreaProps,
+  GridProps,
   flexBasis,
-  FlexBasisProps,
+  FlexProps,
   border,
   BorderProps,
+  flex,
+  grid,
 } from "styled-system";
 
+// TODO: add flex, grid to box
+// a box should be able to be be placed in flexbox and grid
 const Box = styled.div<
-  SpaceProps | LayoutProps | GridAreaProps | FlexBasisProps | BorderProps
+  SpaceProps | LayoutProps | GridProps | FlexProps | BorderProps
 >(
   {
     boxSizing: "border-box",
@@ -23,7 +27,9 @@ const Box = styled.div<
   layout,
   gridArea,
   flexBasis,
-  border
+  border,
+  flex,
+  grid
 );
 
 export default Box;

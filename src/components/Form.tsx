@@ -10,6 +10,8 @@ import Label from "./Label";
 import Header4 from "./Header4";
 import Button from "./Button";
 
+// TODO: don't rename Grid to GridContainer
+
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 2px solid ${({ theme }) => theme.secondaryDark};
   border-radius: 1rem;
@@ -83,6 +85,7 @@ function Form({
       <GridContainer
         gridTemplateAreas={gridTemplateAreas}
         gridRowGap={gridRowGap}
+        width="0.5rem"
       >
         {Object.entries(data).map(([key, value]) => {
           return (

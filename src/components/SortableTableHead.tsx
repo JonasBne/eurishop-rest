@@ -15,6 +15,8 @@ interface SortableTableHeadProps {
   sortExpression: string;
 }
 
+// TODO: place Table.styles.ts, Table.tsx & SortableTablehead in 'table' folder
+
 function SortableTableHead({
   index,
   title,
