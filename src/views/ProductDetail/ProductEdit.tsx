@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
-import { useGetProduct } from "../../api/productsApi";
+import { useGetProduct, ProductDTO } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import ProductForm from "./ProductForm";
 
 function ProductEdit() {
-  const [editMode, setEditMode] = useState<boolean>(false);
-
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(
     `${productId !== undefined ? productId : ""}`
@@ -37,14 +35,22 @@ function ProductEdit() {
   "desc desc desc desc"
   `;
 
+  const handleSubmit = (data: ProductDTO) => {
+    console.log("DATA FROM FORM SUBMIT", data);
+  };
+
   return (
     <>
       {loading && !error && <LoadingSpinner />}
       {!loading && error && (
         <ErrorModal name={error.name} message={error.message} />
       )}
-      {!loading && !error && 
-      <ProductForm />
+      {!loading && !error && (
+        <ProductForm
+          gridTemplateAreas={gridTemplateAreas}
+          initialData={formData}
+          onSubmit={handleSubmit}
+        />
       )}
     </>
   );
