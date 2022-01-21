@@ -9,10 +9,15 @@ const StyledLabel = styled.label<SpaceProps | GridAreaProps>`
 
 interface LabelProps {
   label: string;
+  area?: string;
 }
 
-function Label({ label }: LabelProps) {
-  return <StyledLabel>{label}</StyledLabel>;
+function Label({ label, area }: LabelProps) {
+  return <StyledLabel gridArea={area}>{label}</StyledLabel>;
 }
+
+Label.defaultProps = {
+  area: "",
+};
 
 export default Label;
