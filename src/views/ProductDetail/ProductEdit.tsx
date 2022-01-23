@@ -26,6 +26,7 @@ function ProductEdit() {
       {error && <ErrorModal name={error.name} message={error.message} />}
       {product && (
         <ProductForm
+          title="Edit product"
           gridTemplateAreas={gridTemplateAreas}
           initialData={product}
           onSubmit={handleSubmit}

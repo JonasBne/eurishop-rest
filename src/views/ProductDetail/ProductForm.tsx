@@ -9,6 +9,7 @@ import Grid from "../../components/Grid";
 import Input from "../../components/Input";
 import Label from "../../components/Label";
 import TextArea from "../../components/TextArea";
+import Header4 from "../../components/Header4";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 2px solid ${({ theme }) => theme.secondaryDark};
@@ -19,6 +20,7 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
 `;
 
 interface ProductFormProps {
+  title: string;
   initialData: ProductDTO;
   gridTemplateAreas: string;
   onSubmit: (data: ProductDTO) => void;
@@ -28,6 +30,7 @@ function ProductForm({
   initialData,
   gridTemplateAreas,
   onSubmit,
+  title,
 }: ProductFormProps) {
   const { register, handleSubmit } = useForm<ProductDTO>({
     defaultValues: initialData,
@@ -38,6 +41,7 @@ function ProductForm({
   // Default values worden slechts één keer opgeladen
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
+      <Header4>{title}</Header4>
       <Grid gridTemplateAreas={gridTemplateAreas}>
         <Label gridArea="sku">
           Serial number
