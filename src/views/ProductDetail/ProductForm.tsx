@@ -38,7 +38,6 @@ function ProductForm({
     defaultValues: initialData,
   });
 
-  // TODO: add buttons (one with type 'submit')
   // Default values worden slechts één keer opgeladen
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
