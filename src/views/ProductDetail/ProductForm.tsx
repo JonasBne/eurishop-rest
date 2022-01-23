@@ -4,6 +4,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { space, SpaceProps, layout, LayoutProps } from "styled-system";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 import { ProductDTO } from "../../api/productsApi";
 import Grid from "../../components/Grid";
 import Input from "../../components/Input";
@@ -34,9 +35,14 @@ function ProductForm({
   onSubmit,
   title,
 }: ProductFormProps) {
+  const navigate = useNavigate();
   const { register, handleSubmit } = useForm<ProductDTO>({
     defaultValues: initialData,
   });
+
+  const handleCancel = () => {
+    navigate("/products/admin");
+  };
 
   // Default values worden slechts één keer opgeladen
   return (
@@ -78,7 +84,12 @@ function ProductForm({
         </Label>
       </Grid>
       <FlexBox mx="2rem" my="1rem" justifyContent="flex-end">
-        <Button backgroundColor="#dc3545" type="button" mx="0.5rem">
+        <Button
+          backgroundColor="#dc3545"
+          type="button"
+          mx="0.5rem"
+          onClick={handleCancel}
+        >
           Cancel
         </Button>
         <Button backgroundColor="#007bff" type="submit" mx="0.5rem">
