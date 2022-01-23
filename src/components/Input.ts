@@ -14,6 +14,7 @@ const Input = styled.input`
   word-wrap: break-word;
   word-break: break-all;
   width: 100%;
+  margin-top: 1rem;
 `;
 
 export default Input;
