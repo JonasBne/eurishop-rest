@@ -14,8 +14,8 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 2px solid ${({ theme }) => theme.secondaryDark};
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  ${space}
-  ${layout}
+  width: 60%;
+  ${space} ${layout};
 `;
 
 interface ProductFormProps {
