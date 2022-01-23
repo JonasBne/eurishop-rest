@@ -40,11 +40,11 @@ function ProductForm({
     defaultValues: initialData,
   });
 
+  // TODO: is it ok to add this logic here? Since the product form will always redirect a user back to the products page
   const handleCancel = () => {
     navigate("/products/admin");
   };
 
-  // Default values worden slechts één keer opgeladen
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
       <Header4 mb="3rem">{title}</Header4>
