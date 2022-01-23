@@ -53,10 +53,9 @@ function ProductForm({
           <Input id="title" type="text" {...register("title")} />
         </Label>
 
-        {/* // TODO: checkbox */}
         <Label gridArea="stocked">
           In stock
-          <Input id="stocked" type="text" {...register("stocked")} />
+          <Input id="stocked" type="checkbox" {...register("stocked")} />
         </Label>
 
         <Label gridArea="basePrice">
