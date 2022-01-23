@@ -8,6 +8,7 @@ import { ProductDTO } from "../../api/productsApi";
 import Grid from "../../components/Grid";
 import Input from "../../components/Input";
 import Label from "../../components/Label";
+import TextArea from "../../components/TextArea";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 2px solid ${({ theme }) => theme.secondaryDark};
@@ -70,7 +71,7 @@ function ProductForm({
 
         <Label gridArea="desc">
           Description
-          <textarea id="desc" {...register("desc")} />
+          <TextArea id="desc" {...register("desc")} />
         </Label>
       </Grid>
     </StyledForm>
