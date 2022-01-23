@@ -10,6 +10,8 @@ import Input from "../../components/Input";
 import Label from "../../components/Label";
 import TextArea from "../../components/TextArea";
 import Header4 from "../../components/Header4";
+import Button from "../../components/Button";
+import FlexBox from "../../components/FlexBox";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 2px solid ${({ theme }) => theme.secondaryDark};
@@ -37,7 +39,6 @@ function ProductForm({
   });
 
   // TODO: add buttons (one with type 'submit')
-  // TODO: change type=text to checkbox
   // Default values worden slechts één keer opgeladen
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
@@ -77,6 +78,14 @@ function ProductForm({
           <TextArea id="desc" {...register("desc")} />
         </Label>
       </Grid>
+      <FlexBox mx="2rem" my="1rem" justifyContent="flex-end">
+        <Button backgroundColor="#dc3545" type="button" mx="0.5rem">
+          Cancel
+        </Button>
+        <Button backgroundColor="#007bff" type="submit" mx="0.5rem">
+          Save
+        </Button>
+      </FlexBox>
     </StyledForm>
   );
 }
