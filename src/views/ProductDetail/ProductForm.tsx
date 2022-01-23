@@ -14,7 +14,7 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
   border: 2px solid ${({ theme }) => theme.secondaryDark};
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-  width: 60%;
+  width: 40%;
   ${space} ${layout};
 `;
 
@@ -37,7 +37,7 @@ function ProductForm({
   // TODO: change type=text to checkbox
   // Default values worden slechts één keer opgeladen
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)} m="2rem">
+    <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
       <Grid gridTemplateAreas={gridTemplateAreas}>
         <Label gridArea="sku">
           Serial number
