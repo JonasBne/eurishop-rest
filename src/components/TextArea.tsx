@@ -6,9 +6,9 @@ const TextArea = styled.textarea`
   -moz-box-sizing: border-box;
   border: none;
   border-bottom: 1px solid #ddd;
-  height: 2rem;
   width: 100%;
   resize: none;
+  height: 10rem;
 `;
 
 export default TextArea;
