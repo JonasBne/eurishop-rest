@@ -41,7 +41,7 @@ function ProductForm({
   // Default values worden slechts één keer opgeladen
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
-      <Header4>{title}</Header4>
+      <Header4 mb="3rem">{title}</Header4>
       <Grid gridTemplateAreas={gridTemplateAreas}>
         <Label gridArea="sku">
           Serial number
