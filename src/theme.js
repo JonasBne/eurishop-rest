@@ -1,3 +1,5 @@
+// TODO: move this to src/theme
+
 const theme = {
   primaryDark: "#012A4A",
   secondaryDark: "#013A63",

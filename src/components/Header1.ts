@@ -1,14 +1,9 @@
 import styled from "styled-components";
-import { space, SpaceProps } from "styled-system";
+import { space, SpaceProps, layout, LayoutProps } from "styled-system";
 
-const Header1 = styled.h1<SpaceProps>`
-  color: white;
+const Header1 = styled.h1<SpaceProps | LayoutProps>`
   ${space}
+  ${layout}
 `;
-
-// TODO: Header4 is niet nodig
-// je kan volgende gebruiken:
-// <Header as="h2">Heading 2</Header>
-// <Header as="h1">Heading 1</Header>
 
 export default Header1;
