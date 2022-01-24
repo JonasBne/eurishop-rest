@@ -1,6 +1,7 @@
 import React from "react";
 import { useGetProducts } from "../../api/productsApi";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
+import FlexBox from "../../components/FlexBox";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ProductCard from "./ProductCard";
 
@@ -14,11 +15,11 @@ function Home() {
         <ErrorModal name={error.name} message={error.message} />
       )}
       {products && (
-        <>
+        <FlexBox flexWrap="wrap">
           {products.map((product) => {
             return <ProductCard product={product} />;
           })}
-        </>
+        </FlexBox>
       )}
     </>
   );
