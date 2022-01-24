@@ -1,8 +1,8 @@
 import React from "react";
 import { useGetProducts } from "../../api/productsApi";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
-import FlexBox from "../../components/FlexBox";
-import Box from "../../components/Box";
+// import FlexBox from "../../components/FlexBox";
+// import Box from "../../components/Box";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import Card from "../../components/Card";
 
@@ -15,7 +15,21 @@ function Home() {
       {!loading && error && (
         <ErrorModal name={error.name} message={error.message} />
       )}
-      {!loading && !error && products !== undefined && (
+      {products && (
+        <>
+          {products.map((product) => {
+            return (
+              <Card
+                title={product.title}
+                image={product.image}
+                content={product.desc}
+                m="2rem"
+              />
+            );
+          })}
+        </>
+      )}
+      {/* {!loading && !error && products !== undefined && (
         <FlexBox justifyContent="space-between" mt="1rem" mx="2rem">
           <FlexBox
             flexDirection="row"
@@ -42,7 +56,7 @@ function Home() {
           </FlexBox>
           <Box m="auto">BASKET</Box>
         </FlexBox>
-      )}
+      )} */}
     </>
   );
 }

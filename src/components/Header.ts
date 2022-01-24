@@ -9,7 +9,7 @@ import {
   variant,
 } from "styled-system";
 
-type Variants = "primary" | "secondary";
+type Variants = "primary" | "secondary" | "tertiary";
 
 interface VariantProps {
   variant?: Variants;
@@ -32,6 +32,9 @@ const Header = styled.h1<
       secondary: {
         color: "#FFF",
         background: "#013A63",
+      },
+      tertiary: {
+        color: "#013A63",
       },
     },
   })
