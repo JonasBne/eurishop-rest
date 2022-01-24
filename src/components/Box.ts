@@ -6,14 +6,16 @@ import {
   LayoutProps,
   GridProps,
   FlexProps,
+  FlexboxProps,
   border,
   BorderProps,
   flex,
   grid,
+  flexbox,
 } from "styled-system";
 
 const Box = styled.div<
-  SpaceProps | LayoutProps | GridProps | FlexProps | BorderProps
+  SpaceProps | LayoutProps | GridProps | FlexProps | FlexboxProps | BorderProps
 >(
   {
     boxSizing: "border-box",
@@ -23,6 +25,7 @@ const Box = styled.div<
   layout,
   border,
   flex,
+  flexbox,
   grid
 );
 

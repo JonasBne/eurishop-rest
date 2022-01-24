@@ -14,7 +14,5 @@
     "sourceType": "module"
   },
   "plugins": ["react", "@typescript-eslint"],
-  "rules": {
-    "func-style": ["error", "expression"]
-  }
+  "rules": {}
 }
