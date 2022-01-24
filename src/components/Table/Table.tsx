@@ -35,7 +35,6 @@ const columns = [
 
 function Table({
   data,
-  // onSort,
   sortExpression,
   setSortExpression,
   onRowClick,
