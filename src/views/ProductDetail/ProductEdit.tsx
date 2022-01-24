@@ -16,6 +16,7 @@ function ProductEdit() {
   "desc desc"
   `;
 
+  // TODO: finalize this function
   const handleSubmit = (data: ProductDTO) => {
     console.log("DATA FROM FORM SUBMIT", data);
   };
