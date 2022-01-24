@@ -9,6 +9,7 @@ const TextArea = styled.textarea`
   resize: none;
   height: 10rem;
   margin-top: 1rem;
+  outline: none;
 `;
 
 export default TextArea;

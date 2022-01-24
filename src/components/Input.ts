@@ -6,9 +6,10 @@ const Input = styled.input`
   -moz-box-sizing: border-box;
   border: none;
   border-bottom: 1px solid #ddd;
-  height: 1rem;
+  height: 2rem;
   width: 100%;
   margin-top: 1rem;
+  outline: none;
 `;
 
 export default Input;
