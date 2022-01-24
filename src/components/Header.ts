@@ -8,6 +8,8 @@ import {
   ColorProps,
 } from "styled-system";
 
+// TODO: work with variants?
+
 const Header = styled.h1<SpaceProps | LayoutProps | ColorProps>`
   ${space}
   ${layout}
