@@ -31,7 +31,7 @@ const Button = styled("button")<SpaceProps | LayoutProps | VariantProps>(
     variants: {
       primary: {
         color: "#FFF",
-        bg: "#dc3545",
+        bg: "#007bff",
       },
       secondary: {
         color: "FFF",
