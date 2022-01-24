@@ -1,3 +1,4 @@
+/* eslint-disable react/require-default-props */
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
@@ -8,9 +9,7 @@ import { StyledTable, TableRow, TableHead, TableData } from "./Table.styles";
 
 interface TableProps {
   data: any[];
-  // TODO: think about a way to pass this function optionally
-  // je kan een check doen of de onRedirect != undefined
-  onRowClick: (productId: string) => void;
+  onRowClick?: (productId: string) => void;
   sortExpression: string;
   setSortExpression: (prevSortExp: any) => void;
   margin?: string;
@@ -69,7 +68,11 @@ function Table({
                   return (
                     <TableData
                       key={`item${index}${dataIndex}`}
-                      onClick={() => onRowClick(item.id)}
+                      onClick={() => {
+                        if (onRowClick !== undefined) {
+                          onRowClick(item.id);
+                        }
+                      }}
                     >
                       {item[title]}
                     </TableData>
@@ -79,7 +82,11 @@ function Table({
                   <FaIcon
                     icon={faPenSquare}
                     px="0.25rem"
-                    onClick={() => onRowClick(item.id)}
+                    onClick={() => {
+                      if (onRowClick !== undefined) {
+                        onRowClick(item.id);
+                      }
+                    }}
                   />
                   <FaIcon icon={faTrash} px="0.25rem" />
                 </TableData>
