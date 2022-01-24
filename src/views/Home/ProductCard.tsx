@@ -9,7 +9,12 @@ interface ProductCardProps {
 
 function ProductCard({ product }: ProductCardProps) {
   return (
-    <Card title={product.title} image={product.image} content={product.desc} />
+    <Card
+      title={product.title}
+      image={product.image}
+      content={product.desc}
+      m="2rem"
+    />
   );
 }
 
