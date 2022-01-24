@@ -30,9 +30,8 @@ function Table({
   onRowClick,
   ...space
 }: TableProps) {
-  console.log(space);
   return (
-    <StyledTable>
+    <StyledTable {...space}>
       <thead>
         <TableRow>
           {columns.map((col, index) => (
