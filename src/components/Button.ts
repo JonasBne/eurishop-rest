@@ -8,6 +8,8 @@ import {
   ColorProps,
 } from "styled-system";
 
+// TODO: use variants
+
 const Button = styled.button<SpaceProps | LayoutProps | ColorProps>`
   ${space}
   ${layout}
