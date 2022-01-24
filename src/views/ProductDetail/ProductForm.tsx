@@ -84,7 +84,12 @@ function ProductForm({
         </Label>
       </Grid>
       <FlexBox mx="2rem" my="1rem" justifyContent="flex-end">
-        <Button type="button" mx="0.5rem" onClick={handleCancel}>
+        <Button
+          type="button"
+          variant="danger"
+          mx="0.5rem"
+          onClick={handleCancel}
+        >
           Cancel
         </Button>
         <Button type="submit" mx="0.5rem">

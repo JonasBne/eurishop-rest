@@ -3,7 +3,13 @@ import { space, SpaceProps, layout, LayoutProps, variant } from "styled-system";
 
 // TODO: use variants
 
-const Button = styled("button")<SpaceProps | LayoutProps>(
+type Variants = "primary" | "secondary" | "danger" | "success";
+
+interface VariantProps {
+  variant?: Variants;
+}
+
+const Button = styled("button")<SpaceProps | LayoutProps | VariantProps>(
   {
     boxSizing: "border-box",
     borderRadius: "0.25rem",
@@ -35,7 +41,7 @@ const Button = styled("button")<SpaceProps | LayoutProps>(
         color: "#FFF",
         bg: "#dc3545",
       },
-      succes: {
+      success: {
         color: "FFF",
         bg: "#28a745",
       },
