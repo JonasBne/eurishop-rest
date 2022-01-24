@@ -19,7 +19,7 @@ function Navbar() {
 
   return (
     <StyledNav>
-      <Header mx="auto" color="#FFF">
+      <Header mx="auto" variant="primary">
         EURISHOP
       </Header>
       <div ref={node}>

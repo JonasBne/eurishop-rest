@@ -4,21 +4,33 @@ import {
   SpaceProps,
   layout,
   LayoutProps,
-  color,
-  ColorProps,
   textAlign,
   TextAlignProps,
+  variant,
 } from "styled-system";
 
-// TODO: provide variants (later stage)
+type Variants = "primary" | "secondary";
+
+interface VariantProps {
+  variant?: Variants;
+}
 
 const Header = styled.h1<
-  SpaceProps | LayoutProps | ColorProps | TextAlignProps
->`
-  ${space}
-  ${layout}
-  ${color}
-  ${textAlign}
-`;
+  SpaceProps | LayoutProps | TextAlignProps | VariantProps
+>(
+  space,
+  layout,
+  textAlign,
+  variant({
+    variants: {
+      primary: {
+        color: "#FFF",
+      },
+      secondary: {
+        color: "#748194",
+      },
+    },
+  })
+);
 
 export default Header;

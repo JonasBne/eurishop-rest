@@ -10,7 +10,6 @@ import Button from "../../components/Button";
 function ProductList() {
   const navigate = useNavigate();
   const { loading, error, products } = useGetProducts();
-  const [showForm, setShowForm] = useState<boolean>(false);
 
   const [sortExpression, setSortExpression] = useState<string>("");
 
@@ -69,7 +68,7 @@ function ProductList() {
   ];
 
   const handleAddProductClick = () => {
-    setShowForm(!showForm);
+    navigate("/products/new");
   };
 
   return (

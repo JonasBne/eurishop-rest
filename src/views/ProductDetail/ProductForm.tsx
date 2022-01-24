@@ -47,7 +47,7 @@ function ProductForm({
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
-      <Header mb="3rem" as="h4" textAlign="center">
+      <Header mb="3rem" as="h4" textAlign="center" variant="secondary">
         {title}
       </Header>
       <Grid gridTemplateAreas={gridTemplateAreas}>
