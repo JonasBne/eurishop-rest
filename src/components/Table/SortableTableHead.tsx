@@ -11,6 +11,8 @@ import FlexBox from "../FlexBox";
 interface SortableTableHeadProps {
   index: number;
   title: string;
+  name: string;
+  sortable: boolean;
   sortExpression: string;
   setSortExpression: (prevSortExp: any) => void;
 }
@@ -18,6 +20,8 @@ interface SortableTableHeadProps {
 function SortableTableHead({
   index,
   title,
+  name,
+  sortable,
   sortExpression,
   setSortExpression,
 }: SortableTableHeadProps) {
@@ -34,20 +38,29 @@ function SortableTableHead({
   };
 
   return (
-    <TableHead key={`header${index}`} onClick={() => handleSort(title)}>
+    <TableHead
+      key={`header${index}`}
+      onClick={() => {
+        if (sortable) {
+          handleSort(name);
+        }
+      }}
+    >
       <FlexBox flexDirection="row">
         {title}
-        <FaIcon
-          icon={
-            // eslint-disable-next-line no-nested-ternary
-            sortExpression.includes("+")
-              ? faSortDown
-              : sortExpression.includes("-")
-              ? faSortUp
-              : faSort
-          }
-          px="1rem"
-        />
+        {sortable && (
+          <FaIcon
+            icon={
+              // eslint-disable-next-line no-nested-ternary
+              sortExpression.includes("+")
+                ? faSortDown
+                : sortExpression.includes("-")
+                ? faSortUp
+                : faSort
+            }
+            px="1rem"
+          />
+        )}
       </FlexBox>
     </TableHead>
   );

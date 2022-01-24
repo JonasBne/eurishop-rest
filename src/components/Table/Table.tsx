@@ -5,7 +5,7 @@ import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
 import FaIcon from "../../assets/FaIcon";
 import FlexBox from "../FlexBox";
 import SortableTableHead from "./SortableTableHead";
-import { StyledTable, TableRow, TableHead, TableData } from "./Table.styles";
+import { StyledTable, TableRow, TableData } from "./Table.styles";
 
 interface Column {
   name: string;
@@ -22,23 +22,6 @@ interface TableProps {
   margin?: string;
   padding?: string;
 }
-
-// TODO:
-// een verbetering hier is dat je naar de data ook een columns prop voorziet.
-// zo kan je een column extra props meegeven; label, sortable, ...
-/* 
-const columns = [
-  { name: 'id', label: 'ID' },
-  { name: 'name', label: 'Naam' },
-  { name: 'description', label: 'Beschrijving' },
-  { name: 'price', label: 'Prijs' },
-  { name: 'category', label: 'Categorie' },
-  { name: 'image', label: 'Afbeelding' },
-  { name: 'actions', label: 'Acties' },
-]
-<Table data={data} columns={columns} />
-
-*/
 
 function Table({
   data,
@@ -58,12 +41,13 @@ function Table({
               <SortableTableHead
                 title={col.label}
                 index={index}
+                name={col.name}
+                sortable={col.sortable}
                 sortExpression={sortExpression}
                 setSortExpression={setSortExpression}
                 key={`head${index}`}
               />
             ))}
-            <TableHead>actions</TableHead>
           </TableRow>
         </thead>
         <tbody>

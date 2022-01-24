@@ -22,6 +22,11 @@ function ProductList() {
 
   const columns = [
     {
+      name: "id",
+      label: "Product ID",
+      sortable: false,
+    },
+    {
       name: "sku",
       label: "Product number",
       sortable: true,
@@ -55,6 +60,11 @@ function ProductList() {
       name: "price",
       label: "Unit price",
       sortable: true,
+    },
+    {
+      name: "actions",
+      label: "Actions",
+      sortable: false,
     },
   ];
 
