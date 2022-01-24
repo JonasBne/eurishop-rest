@@ -17,3 +17,5 @@ const sortBy = (data: any[], sortExpression: string | null | undefined) => {
 };
 
 export default sortBy;
+
+// TODO: add a test for undefined data (then just return)
