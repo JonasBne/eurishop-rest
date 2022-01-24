@@ -5,7 +5,6 @@ const GlobalStyle = createGlobalStyle({
     margin: 0,
     padding: 0,
     fontFamily: "Roboto, Open Sans, sans-serif",
-    background: "#FAF3EC",
   },
 });
 

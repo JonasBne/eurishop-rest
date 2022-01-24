@@ -15,11 +15,11 @@ import Button from "../../components/Button";
 import FlexBox from "../../components/FlexBox";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
-  border: 2px solid ${({ theme }) => theme.secondaryDark};
   border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 40%;
-  ${space} ${layout};
+  ${space}
+  ${layout};
 `;
 
 interface ProductFormProps {
@@ -47,7 +47,7 @@ function ProductForm({
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
-      <Header mb="3rem" as="h4" textAlign="center" variant="secondary">
+      <Header p="2rem" as="h2" textAlign="center" variant="secondary">
         {title}
       </Header>
       <Grid gridTemplateAreas={gridTemplateAreas}>
@@ -90,11 +90,12 @@ function ProductForm({
           type="button"
           variant="danger"
           mx="0.5rem"
+          mb="1rem"
           onClick={handleCancel}
         >
           Cancel
         </Button>
-        <Button type="submit" variant="primary" mx="0.5rem">
+        <Button type="submit" variant="primary" mx="0.5rem" mb="1rem">
           Save
         </Button>
       </FlexBox>

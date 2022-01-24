@@ -16,7 +16,7 @@ function ProductAdd() {
 
   return (
     <ProductForm
-      title="New product"
+      title="NEW PRODUCT"
       gridTemplateAreas={gridTemplateAreas}
       onSubmit={handleSubmit}
     />
