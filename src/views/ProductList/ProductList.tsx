@@ -15,7 +15,7 @@ function ProductList() {
   const [sortExpression, setSortExpression] = useState<string>("");
 
   const handleRedirect = (productId: string) => {
-    navigate(`/products/${productId}`);
+    navigate(`/products/${productId}/edit`);
   };
 
   const sortedProducts = sortBy(products ?? [], sortExpression);

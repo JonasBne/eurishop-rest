@@ -7,6 +7,7 @@ import Home from "./views/Home/Home";
 import ProductEdit from "./views/ProductDetail/ProductEdit";
 import ProductList from "./views/ProductList/ProductList";
 import GlobalStyle from "./theme/globalStyle";
+import ProductAdd from "./views/ProductDetail/ProductAdd";
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
         <Route path="*" element={<Home />} />
         <Route path="home" element={<Home />} />
         <Route path="products/admin" element={<ProductList />} />
-        <Route path="products/:productId" element={<ProductEdit />} />
+        <Route path="products/:productId/edit" element={<ProductEdit />} />
+        <Route path="products/new" element={<ProductAdd />} />
       </Routes>
     </ThemeProvider>
   );
