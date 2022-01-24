@@ -11,15 +11,11 @@ interface TableProps {
   onSort: (sortByField: string) => void;
   // TODO: think about a way to pass this function optionally
   // je kan een check doen of de onRedirect != undefined
-  onRedirect: (productId: string) => void;
+  onRowClick: (productId: string) => void;
   sortExpression: string;
   margin?: string;
   padding?: string;
 }
-
-// TODO:
-// bad naming vor onRedirect, is application specific not Table specific
-// better = onRowClick or onRowSelect
 
 // TODO:
 // een verbetering hier is dat je naar de data ook een columns prop voorziet.
@@ -42,7 +38,7 @@ function Table({
   data,
   onSort,
   sortExpression,
-  onRedirect,
+  onRowClick,
   margin, // TODO: idem as Card, use spacing props instead
   padding,
 }: TableProps) {
@@ -71,7 +67,7 @@ function Table({
                   return (
                     <TableData
                       key={`item${index}${dataIndex}`}
-                      onClick={() => onRedirect(item.id)}
+                      onClick={() => onRowClick(item.id)}
                     >
                       {item[title]}
                     </TableData>
@@ -81,7 +77,7 @@ function Table({
                   <FaIcon
                     icon={faPenSquare}
                     px="0.25rem"
-                    onClick={() => onRedirect(item.id)}
+                    onClick={() => onRowClick(item.id)}
                   />
                   <FaIcon icon={faTrash} px="0.25rem" />
                 </TableData>

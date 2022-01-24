@@ -61,7 +61,7 @@ function ProductList() {
             data={sortedProducts}
             onSort={handleSort}
             sortExpression={sortExpression}
-            onRedirect={handleRedirect}
+            onRowClick={handleRedirect}
           />
         </>
       )}
