@@ -51,7 +51,6 @@ function Table({
               <SortableTableHead
                 title={title}
                 index={index}
-                // onSort={onSort}
                 sortExpression={sortExpression}
                 setSortExpression={setSortExpression}
                 key={`head${index}`}
