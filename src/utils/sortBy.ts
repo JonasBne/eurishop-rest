@@ -1,4 +1,8 @@
 const sortBy = (data: any[], sortExpression: string | null | undefined) => {
+  if (!data) {
+    return data;
+  }
+
   const sortedData = [...data];
   sortedData.sort((a: any, b: any) => {
     if (sortExpression?.includes("+")) {
@@ -17,5 +21,3 @@ const sortBy = (data: any[], sortExpression: string | null | undefined) => {
 };
 
 export default sortBy;
-
-// TODO: add a test for undefined data (then just return)
