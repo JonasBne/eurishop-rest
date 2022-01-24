@@ -6,10 +6,12 @@ import Navbar from "./views/Navigation/Navbar";
 import Home from "./views/Home/Home";
 import ProductEdit from "./views/ProductDetail/ProductEdit";
 import ProductList from "./views/ProductList/ProductList";
+import GlobalStyle from "./theme/globalStyle";
 
 function App() {
   return (
     <ThemeProvider theme={theme}>
+      <GlobalStyle />
       <Navbar />
       <Routes>
         <Route path="*" element={<Home />} />
