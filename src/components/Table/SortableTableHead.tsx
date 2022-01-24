@@ -11,22 +11,30 @@ import FlexBox from "../FlexBox";
 interface SortableTableHeadProps {
   index: number;
   title: string;
-  onSort: (sortByField: string) => void;
   sortExpression: string;
+  setSortExpression: (prevSortExp: any) => void;
 }
 
 function SortableTableHead({
   index,
   title,
-  onSort,
   sortExpression,
+  setSortExpression,
 }: SortableTableHeadProps) {
-  const handleClick = () => {
-    onSort(title);
+  const handleSort = (sortByField: string) => {
+    setSortExpression((prevSortExp: any) => {
+      if (prevSortExp?.includes("+")) {
+        return `-${sortByField}`;
+      }
+      if (prevSortExp?.includes("-")) {
+        return ``;
+      }
+      return `+${sortByField}`;
+    });
   };
 
   return (
-    <TableHead key={`header${index}`} onClick={handleClick}>
+    <TableHead key={`header${index}`} onClick={() => handleSort(title)}>
       <FlexBox flexDirection="row">
         {title}
         <FaIcon

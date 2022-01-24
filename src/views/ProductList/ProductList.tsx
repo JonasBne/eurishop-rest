@@ -14,19 +14,6 @@ function ProductList() {
 
   const [sortExpression, setSortExpression] = useState<string>("");
 
-  // TODO: this logic should be inside the table (or even SortableTableHead)
-  const handleSort = (sortByField: string) => {
-    setSortExpression((prevSortExp) => {
-      if (prevSortExp?.includes("+")) {
-        return `-${sortByField}`;
-      }
-      if (prevSortExp?.includes("-")) {
-        return ``;
-      }
-      return `+${sortByField}`;
-    });
-  };
-
   const handleRedirect = (productId: string) => {
     navigate(`/products/${productId}`);
   };
@@ -53,8 +40,8 @@ function ProductList() {
           </Button>
           <Table
             data={sortedProducts}
-            onSort={handleSort}
             sortExpression={sortExpression}
+            setSortExpression={setSortExpression}
             onRowClick={handleRedirect}
           />
         </>

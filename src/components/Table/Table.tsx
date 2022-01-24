@@ -8,11 +8,11 @@ import { StyledTable, TableRow, TableHead, TableData } from "./Table.styles";
 
 interface TableProps {
   data: any[];
-  onSort: (sortByField: string) => void;
   // TODO: think about a way to pass this function optionally
   // je kan een check doen of de onRedirect != undefined
   onRowClick: (productId: string) => void;
   sortExpression: string;
+  setSortExpression: (prevSortExp: any) => void;
   margin?: string;
   padding?: string;
 }
@@ -36,8 +36,9 @@ const columns = [
 
 function Table({
   data,
-  onSort,
+  // onSort,
   sortExpression,
+  setSortExpression,
   onRowClick,
   margin, // TODO: idem as Card, use spacing props instead
   padding,
@@ -51,8 +52,9 @@ function Table({
               <SortableTableHead
                 title={title}
                 index={index}
-                onSort={onSort}
+                // onSort={onSort}
                 sortExpression={sortExpression}
+                setSortExpression={setSortExpression}
                 key={`head${index}`}
               />
             ))}
