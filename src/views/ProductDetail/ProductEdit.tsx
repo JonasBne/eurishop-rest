@@ -31,6 +31,8 @@ function ProductEdit() {
           gridTemplateAreas={gridTemplateAreas}
           initialData={product}
           onSubmit={handleSubmit}
+          mt="2rem"
+          mx="auto"
         />
       )}
     </>

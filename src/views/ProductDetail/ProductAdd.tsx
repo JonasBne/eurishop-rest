@@ -19,6 +19,8 @@ function ProductAdd() {
       title="NEW PRODUCT"
       gridTemplateAreas={gridTemplateAreas}
       onSubmit={handleSubmit}
+      mt="2rem"
+      mx="auto"
     />
   );
 }

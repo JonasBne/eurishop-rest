@@ -22,7 +22,7 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
   ${layout};
 `;
 
-interface ProductFormProps {
+interface ProductFormProps extends SpaceProps {
   title: string;
   initialData?: ProductDTO;
   gridTemplateAreas: string;
@@ -34,6 +34,7 @@ function ProductForm({
   gridTemplateAreas,
   onSubmit,
   title,
+  ...spacing
 }: ProductFormProps) {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<ProductDTO>({
@@ -46,7 +47,7 @@ function ProductForm({
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
+    <StyledForm onSubmit={handleSubmit(onSubmit)} {...spacing}>
       <Header p="2rem" as="h2" textAlign="center" variant="secondary">
         {title}
       </Header>
