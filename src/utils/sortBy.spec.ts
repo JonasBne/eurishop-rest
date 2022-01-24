@@ -8,41 +8,38 @@ const data = [
 ];
 
 describe("sortBy function sorts data", () => {
-  test("Array length is equal before and after sorting", () => {
+  test("No expression: no changes to data", () => {
     const result = sortBy(data, "");
     expect(result.length).toBe(4);
-  });
-  test("data is sorted in an ascending way when there is no sort expression", () => {
-    const result = sortBy(data, "");
     expect(result[0].id).toBe(1);
   });
-  test("data is sorted in a descending way when there is a - sign in the sort expression", () => {
+  test("- : descending order", () => {
     const result = sortBy(data, "-description");
     expect(result[0].id).toBe(3);
   });
-  test("data is sorted in a descending way when there is a - sign in the sort expression", () => {
+  test("- : descending order", () => {
     const result = sortBy(data, "-name");
     expect(result[0].id).toBe(3);
   });
-  test("data is sorted in an ascending way when there is a + sign in the sort expression", () => {
+  test("+ : ascending order", () => {
     const result = sortBy(data, "+description");
     expect(result[0].id).toBe(2);
   });
-  test("data is sorted in an ascending way when there is a + sign in the sort expression", () => {
+  test("+ : ascending order", () => {
     const result = sortBy(data, "+name");
     expect(result[0].id).toBe(4);
   });
-  test("Array length and order remains unchanged when the sort expression is null", () => {
+  test("Null: no changes to data ", () => {
     const result = sortBy(data, null);
     expect(result.length).toBe(4);
     expect(result[0].id).toBe(1);
   });
-  test("Array length and order remains unchanged when the sort expression is undefined", () => {
+  test("Undefined: no changes to data", () => {
     const result = sortBy(data, undefined);
     expect(result.length).toBe(4);
     expect(result[0].id).toBe(1);
   });
-  test("Everything keeps running when an empty array is passed into the sortBy function", () => {
+  test("Empty array: no changes to data and no crashes", () => {
     const result = sortBy([], undefined);
     expect(result.length).toBe(0);
   });
