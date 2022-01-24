@@ -17,7 +17,8 @@ const CardContent = styled.p`
   line-height: 2rem;
 `;
 
-interface CardProps extends Omit<SpaceProps, "p" | "pl" | "pr" | "px" | "py"> {
+export interface CardProps
+  extends Omit<SpaceProps, "p" | "pl" | "pr" | "px" | "py"> {
   title: string;
   image: string;
   content: string;

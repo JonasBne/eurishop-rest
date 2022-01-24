@@ -25,7 +25,6 @@ const url = "api/products";
 const productMapper = (dto: ProductDTO) => {
   return {
     ...dto,
-    stocked: dto.stocked ? "Yes" : "No",
   };
 };
 
