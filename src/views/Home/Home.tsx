@@ -15,10 +15,21 @@ function Home() {
         <ErrorModal name={error.name} message={error.message} />
       )}
       {products && (
-        <FlexBox flexWrap="wrap">
-          {products.map((product) => {
-            return <ProductCard product={product} />;
-          })}
+        <FlexBox>
+          <FlexBox
+            flexWrap="wrap"
+            justifyContent="start"
+            flexDirection="row"
+            order={1}
+            flexBasis="75%"
+          >
+            {products.map((product) => {
+              return <ProductCard product={product} />;
+            })}
+          </FlexBox>
+          <FlexBox order={2} flexBasis="25%">
+            BASKET
+          </FlexBox>
         </FlexBox>
       )}
     </>
