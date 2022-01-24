@@ -92,7 +92,7 @@ function ProductForm({
         >
           Cancel
         </Button>
-        <Button type="submit" variant="secondary" mx="0.5rem">
+        <Button type="submit" variant="primary" mx="0.5rem">
           Save
         </Button>
       </FlexBox>
