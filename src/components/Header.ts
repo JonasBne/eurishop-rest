@@ -30,7 +30,8 @@ const Header = styled.h1<
         color: "#FFF",
       },
       secondary: {
-        color: "#748194",
+        color: "#FFF",
+        background: "#013A63",
       },
     },
   })

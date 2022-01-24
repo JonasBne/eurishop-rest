@@ -20,14 +20,11 @@ const TableHead = styled.th`
 const TableRow = styled.tr`
   height: 3.5rem;
   color: #808080;
+  background: #fff
   line-height: 1.2;
 
   &:hover {
     cursor: pointer;
-  }
-
-  &:nth-child(even) {
-    background-color: #f5f5f5;
   }
 `;
 

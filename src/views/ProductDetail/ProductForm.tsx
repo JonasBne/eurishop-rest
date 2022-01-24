@@ -15,7 +15,6 @@ import Button from "../../components/Button";
 import FlexBox from "../../components/FlexBox";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
-  border-radius: 1rem;
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   width: 40%;
   background: #fff;
