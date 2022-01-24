@@ -18,6 +18,9 @@ interface VariantProps {
 const Header = styled.h1<
   SpaceProps | LayoutProps | TextAlignProps | VariantProps
 >(
+  {
+    letterSpacing: "3px",
+  },
   space,
   layout,
   textAlign,
