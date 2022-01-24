@@ -20,6 +20,44 @@ function ProductList() {
 
   const sortedProducts = sortBy(products ?? [], sortExpression);
 
+  const columns = [
+    {
+      name: "sku",
+      label: "Product number",
+      sortable: true,
+    },
+    {
+      name: "title",
+      label: "Title",
+      sortable: true,
+    },
+    {
+      name: "desc",
+      label: "Description",
+      sortable: false,
+    },
+    {
+      name: "image",
+      label: "Image URL",
+      sortable: false,
+    },
+    {
+      name: "stocked",
+      label: "In stock",
+      sortable: true,
+    },
+    {
+      name: "basePrice",
+      label: "Base price",
+      sortable: true,
+    },
+    {
+      name: "price",
+      label: "Unit price",
+      sortable: true,
+    },
+  ];
+
   const handleAddProductClick = () => {
     setShowForm(!showForm);
   };
@@ -40,6 +78,7 @@ function ProductList() {
           </Button>
           <Table
             data={sortedProducts}
+            columns={columns}
             sortExpression={sortExpression}
             setSortExpression={setSortExpression}
             onRowClick={handleRedirect}

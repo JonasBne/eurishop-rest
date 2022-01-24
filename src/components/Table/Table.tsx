@@ -7,11 +7,18 @@ import FlexBox from "../FlexBox";
 import SortableTableHead from "./SortableTableHead";
 import { StyledTable, TableRow, TableHead, TableData } from "./Table.styles";
 
+interface Column {
+  name: string;
+  label: string;
+  sortable: boolean;
+}
+
 interface TableProps {
   data: any[];
   onRowClick?: (productId: string) => void;
   sortExpression: string;
   setSortExpression: (prevSortExp: any) => void;
+  columns: Column[];
   margin?: string;
   padding?: string;
 }
@@ -35,6 +42,7 @@ const columns = [
 
 function Table({
   data,
+  columns,
   sortExpression,
   setSortExpression,
   onRowClick,
@@ -46,9 +54,9 @@ function Table({
       <StyledTable>
         <thead>
           <TableRow>
-            {Object.keys(data[0]).map((title, index) => (
+            {columns.map((col, index) => (
               <SortableTableHead
-                title={title}
+                title={col.label}
                 index={index}
                 sortExpression={sortExpression}
                 setSortExpression={setSortExpression}
