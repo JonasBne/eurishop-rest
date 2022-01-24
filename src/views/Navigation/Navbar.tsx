@@ -2,7 +2,7 @@ import React, { useState, createRef } from "react";
 import styled from "styled-components";
 import Burger from "./Burger/Burger";
 import Menu from "./Menu/Menu";
-import Header1 from "../../components/Header1";
+import Header from "../../components/Header";
 import useOnClickOutside from "../../hooks/useOnClickOutside";
 
 const StyledNav = styled.nav`
@@ -19,7 +19,9 @@ function Navbar() {
 
   return (
     <StyledNav>
-      <Header1 mx="auto">EURISHOP</Header1>
+      <Header mx="auto" color="#FFF">
+        EURISHOP
+      </Header>
       <div ref={node}>
         <Burger open={open} setOpen={setOpen} />
         <Menu open={open} setOpen={setOpen} />

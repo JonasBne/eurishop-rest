@@ -2,9 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router";
 import styled from "styled-components";
+import Header from "../Header";
 import Button from "../Button";
 import FlexBox from "../FlexBox";
-import Header4 from "../Header4";
 import Backdrop from "./Backdrop";
 import Overlay from "./Overlay";
 
@@ -28,7 +28,7 @@ function ErrorModal({ name, message }: ErrorModalProps) {
       {ReactDOM.createPortal(
         <Overlay>
           <FlexBox flexDirection="column">
-            <Header4>{name}</Header4>
+            <Header as="h4">{name}</Header>
             <Span>The following problem occured: {message}</Span>
             <Button
               width="fit-content"

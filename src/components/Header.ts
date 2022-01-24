@@ -1,9 +1,17 @@
 import styled from "styled-components";
-import { space, SpaceProps, layout, LayoutProps } from "styled-system";
+import {
+  space,
+  SpaceProps,
+  layout,
+  LayoutProps,
+  color,
+  ColorProps,
+} from "styled-system";
 
-const Header = styled.h1<SpaceProps | LayoutProps>`
+const Header = styled.h1<SpaceProps | LayoutProps | ColorProps>`
   ${space}
   ${layout}
+  ${color}
 `;
 
 export default Header;

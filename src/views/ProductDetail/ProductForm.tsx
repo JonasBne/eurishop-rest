@@ -10,7 +10,7 @@ import Grid from "../../components/Grid";
 import Input from "../../components/Input";
 import Label from "../../components/Label";
 import TextArea from "../../components/TextArea";
-import Header4 from "../../components/Header4";
+import Header from "../../components/Header";
 import Button from "../../components/Button";
 import FlexBox from "../../components/FlexBox";
 
@@ -47,7 +47,9 @@ function ProductForm({
 
   return (
     <StyledForm onSubmit={handleSubmit(onSubmit)} mx="auto" mt="5rem">
-      <Header4 mb="3rem">{title}</Header4>
+      <Header mb="3rem" as="h4">
+        {title}
+      </Header>
       <Grid gridTemplateAreas={gridTemplateAreas}>
         <Label gridArea="sku">
           Serial number
