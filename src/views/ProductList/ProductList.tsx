@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useGetProducts } from "../../api/productsApi";
-import Table from "../../components/Table";
+import Table from "../../components/Table/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import sortBy from "../../utils/sortBy";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";

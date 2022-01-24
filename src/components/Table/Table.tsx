@@ -1,8 +1,8 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
-import FaIcon from "../assets/FaIcon";
-import FlexBox from "./FlexBox";
+import FaIcon from "../../assets/FaIcon";
+import FlexBox from "../FlexBox";
 import SortableTableHead from "./SortableTableHead";
 import { StyledTable, TableRow, TableHead, TableData } from "./Table.styles";
 

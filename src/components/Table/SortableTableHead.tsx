@@ -5,8 +5,8 @@ import {
   faSort,
 } from "@fortawesome/free-solid-svg-icons";
 import { TableHead } from "./Table.styles";
-import FaIcon from "../assets/FaIcon";
-import FlexBox from "./FlexBox";
+import FaIcon from "../../assets/FaIcon";
+import FlexBox from "../FlexBox";
 
 interface SortableTableHeadProps {
   index: number;
