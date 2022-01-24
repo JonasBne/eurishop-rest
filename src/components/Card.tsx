@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import Box from "./Box";
 import Button from "./Button";
+import Header from "./Header";
 
 const Image = styled.img`
   width: 100%;
@@ -50,7 +51,7 @@ function Card({
     >
       {image !== undefined && <Image src={image} alt={imageDescription} />}
       <div>
-        <Header4>{title}</Header4>
+        <Header as="h4">{title}</Header>
         <Text>{content}</Text>
         {buttons.map((button) => {
           return <Button m="1rem">{button.action}</Button>;
