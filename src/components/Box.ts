@@ -4,9 +4,7 @@ import {
   SpaceProps,
   layout,
   LayoutProps,
-  gridArea,
   GridProps,
-  flexBasis,
   FlexProps,
   border,
   BorderProps,
@@ -14,8 +12,6 @@ import {
   grid,
 } from "styled-system";
 
-// TODO: add flex, grid to box
-// a box should be able to be be placed in flexbox and grid
 const Box = styled.div<
   SpaceProps | LayoutProps | GridProps | FlexProps | BorderProps
 >(
@@ -25,8 +21,6 @@ const Box = styled.div<
   },
   space,
   layout,
-  gridArea,
-  flexBasis,
   border,
   flex,
   grid
