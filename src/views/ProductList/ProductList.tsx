@@ -44,17 +44,18 @@ function ProductList() {
     setShowForm(!showForm);
   };
 
-  // TODO:
-  // Better to create Button type (primary, secondary) then using
-  // backgroundColor prop
-
   return (
     <>
       {loading && !error && <LoadingSpinner />}
       {error && <ErrorModal name={error.name} message={error.message} />}
       {!loading && !error && (
         <>
-          <Button m="2rem 0 0 2rem" onClick={handleAddProductClick}>
+          <Button
+            m="2rem 0 0 2rem"
+            p="0.5rem 2rem"
+            variant="primary"
+            onClick={handleAddProductClick}
+          >
             Add product +
           </Button>
           <Table
