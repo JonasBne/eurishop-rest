@@ -92,7 +92,8 @@ function ProductList() {
             sortExpression={sortExpression}
             setSortExpression={setSortExpression}
             onRowClick={handleRedirect}
-            mt="1rem"
+            ml="2rem"
+            mr="2rem"
           />
         </>
       )}
