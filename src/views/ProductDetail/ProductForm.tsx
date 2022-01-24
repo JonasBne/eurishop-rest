@@ -24,7 +24,7 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
 
 interface ProductFormProps {
   title: string;
-  initialData: ProductDTO;
+  initialData?: ProductDTO;
   gridTemplateAreas: string;
   onSubmit: (data: ProductDTO) => void;
 }
@@ -37,7 +37,7 @@ function ProductForm({
 }: ProductFormProps) {
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<ProductDTO>({
-    defaultValues: initialData,
+    defaultValues: initialData ?? {},
   });
 
   // TODO: is it ok to add this logic here? Since the product form will always redirect a user back to the products page
