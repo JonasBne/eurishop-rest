@@ -6,14 +6,19 @@ import {
   LayoutProps,
   color,
   ColorProps,
+  textAlign,
+  TextAlignProps,
 } from "styled-system";
 
-// TODO: work with variants?
+// TODO: provide variants (later stage)
 
-const Header = styled.h1<SpaceProps | LayoutProps | ColorProps>`
+const Header = styled.h1<
+  SpaceProps | LayoutProps | ColorProps | TextAlignProps
+>`
   ${space}
   ${layout}
   ${color}
+  ${textAlign}
 `;
 
 export default Header;
