@@ -27,7 +27,7 @@ const StyledLink = styled(Link)`
   padding: 1rem 0;
   font-weight: bold;
   letter-spacing: 0.5rem;
-  color: ${({ theme }) => theme.primaryDark};
+  color: #0d0c1d;
   text-decoration: none;
   transition: color 0.3s linear;
 
