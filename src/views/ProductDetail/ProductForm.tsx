@@ -84,15 +84,10 @@ function ProductForm({
         </Label>
       </Grid>
       <FlexBox mx="2rem" my="1rem" justifyContent="flex-end">
-        <Button
-          backgroundColor="#dc3545"
-          type="button"
-          mx="0.5rem"
-          onClick={handleCancel}
-        >
+        <Button type="button" mx="0.5rem" onClick={handleCancel}>
           Cancel
         </Button>
-        <Button backgroundColor="#007bff" type="submit" mx="0.5rem">
+        <Button type="submit" mx="0.5rem">
           Save
         </Button>
       </FlexBox>

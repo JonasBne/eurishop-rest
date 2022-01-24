@@ -54,11 +54,7 @@ function ProductList() {
       {error && <ErrorModal name={error.name} message={error.message} />}
       {!loading && !error && (
         <>
-          <Button
-            backgroundColor="#28a745"
-            m="2rem 0 0 2rem"
-            onClick={handleAddProductClick}
-          >
+          <Button m="2rem 0 0 2rem" onClick={handleAddProductClick}>
             Add product +
           </Button>
           <Table

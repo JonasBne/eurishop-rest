@@ -54,11 +54,7 @@ function Card({
         <Header4>{title}</Header4>
         <Text>{content}</Text>
         {buttons.map((button) => {
-          return (
-            <Button m="1rem" backgroundColor={button.color}>
-              {button.action}
-            </Button>
-          );
+          return <Button m="1rem">{button.action}</Button>;
         })}
       </div>
     </Box>
