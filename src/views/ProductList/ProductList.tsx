@@ -41,7 +41,7 @@ function ProductList() {
     <>
       {loading && !error && <LoadingSpinner />}
       {error && <ErrorModal name={error.name} message={error.message} />}
-      {!loading && !error && (
+      {products && (
         <>
           <Button
             m="2rem 0 0 2rem"
