@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import Box from "./Box";
 import Button from "./Button";
-import Header4 from "./Header4";
 
 const Image = styled.img`
   width: 100%;
