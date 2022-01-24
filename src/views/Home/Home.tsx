@@ -24,7 +24,7 @@ function Home() {
             flexBasis="75%"
           >
             {products.map((product) => {
-              return <ProductCard product={product} />;
+              return <ProductCard product={product} m="2rem" />;
             })}
           </FlexBox>
           <FlexBox order={2} flexBasis="25%">
