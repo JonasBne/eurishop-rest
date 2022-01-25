@@ -2,6 +2,7 @@ import React from "react";
 import Box from "../../components/Box";
 import FlexBox from "../../components/FlexBox";
 import Header from "../../components/Header";
+import Button from "../../components/Button";
 import CartItem from "./CartItem";
 
 // TODO: work with real data
@@ -49,6 +50,14 @@ function ShoppingCart() {
         {DUMMY_DATA.map((item) => {
           return <CartItem item={item} />;
         })}
+      </FlexBox>
+      <FlexBox justifyContent="center" m="2rem">
+        <Button type="button" variant="danger" mx="1rem">
+          CLEAR
+        </Button>
+        <Button type="button" variant="primary" mx="1rem">
+          ORDER
+        </Button>
       </FlexBox>
     </Box>
   );
