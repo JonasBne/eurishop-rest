@@ -1,8 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { SpaceProps } from "styled-system";
-import Card from "../../components/Card";
 import { ProductDTO } from "../../api/productsApi";
+import Card from "../../components/Card";
+import Button from "../../components/Button";
 
 interface ProductCardProps extends SpaceProps {
   product: ProductDTO;
@@ -18,7 +19,9 @@ function ProductCard({ product, ...space }: ProductCardProps) {
       content={product.desc}
       {...space}
     >
-      <button>test</button>
+      <Button type="button" variant="primary">
+        Add to cart
+      </Button>
     </Card>
   );
 }
