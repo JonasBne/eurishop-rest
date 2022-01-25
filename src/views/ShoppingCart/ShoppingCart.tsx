@@ -1,7 +1,11 @@
 import React from "react";
+import styled from "styled-components";
 import Box from "../../components/Box";
 import FlexBox from "../../components/FlexBox";
 import Header from "../../components/Header";
+import CartItem from "./CartItem";
+
+// TODO: work with real data
 
 const DUMMY_DATA = [
   {
@@ -21,6 +25,10 @@ const DUMMY_DATA = [
   },
 ];
 
+const UnorderedList = styled.ul`
+  list-style-type: none;
+`;
+
 function ShoppingCart() {
   return (
     <Box
@@ -36,6 +44,11 @@ function ShoppingCart() {
           Current # of products in cart: {DUMMY_DATA.length}
         </Header>
       </FlexBox>
+      <UnorderedList>
+        {DUMMY_DATA.map((item) => {
+          return <CartItem item={item} />;
+        })}
+      </UnorderedList>
     </Box>
   );
 }
