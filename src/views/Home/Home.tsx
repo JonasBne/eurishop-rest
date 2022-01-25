@@ -16,7 +16,6 @@ function Home() {
     console.log("added to cart");
   };
 
-  // TODO: show price on product card and stock (if not in stock not buyable)
   // TODO: add global amount (add it to ShoppingCart - not in a state)
   return (
     <>
