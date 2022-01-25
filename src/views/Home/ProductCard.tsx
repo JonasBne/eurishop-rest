@@ -18,7 +18,7 @@ function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
 
   return (
     <Card
-      title={product.title}
+      title={`${product.title} (€${product.price})`}
       image={product.image}
       content={product.desc}
       {...space}
@@ -31,7 +31,7 @@ function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
           mx="6rem"
           onClick={handleBuy}
         >
-          Add to cart
+          ADD +
         </Button>
       ) : (
         <Button type="button" variant="danger" my="2rem" mx="6rem" disabled>
