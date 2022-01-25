@@ -32,7 +32,7 @@ function Home() {
   };
 
   // TODO: add global amount (add it to ShoppingCart - not in a state)
-  // TODO: add handleRemove from cart and add handleClear and add handleOrder
+  // TODO: add following functions: handleDecrease (CartItem) handleIncrease (cartItem) handleClear (ShoppingCart) handleOrder (ShoppingCart)
   return (
     <>
       {loading && !error && <LoadingSpinner />}

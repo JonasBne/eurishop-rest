@@ -8,7 +8,7 @@ import { Item } from "../../domain/ShoppingCart";
 
 // representation only
 // TODO: calculate total sum here
-// TODO: show number of items bought
+// TODO: add the global sum here
 
 interface ShoppingCartProps {
   cartItems: Item[];
