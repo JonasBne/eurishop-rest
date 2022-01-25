@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
-import FlexBox from "../../components/FlexBox";
 import Box from "../../components/Box";
 import { Item } from "../../domain/ShoppingCart";
 
+// TODO: add quantity to cartItem (check styling in course Udemy)
+
 const ListItem = styled.li`
+  margin: 2rem auto;
   list-style-type: none;
 `;
 
@@ -22,20 +24,12 @@ function CartItem({ item }: CartItemProps) {
   return (
     <ListItem>
       <div>
-        <Header as="h3" variant="tertiary">
+        <Header as="h4" variant="tertiary">
           {item.title}
         </Header>
-        <FlexBox flexDirection="column">
-          <img
-            src="https://dummyimage.com/300x300/56cde8/FFF"
-            alt="product"
-            width="100px"
-            height="100px"
-          />
-          <Box my="0.5rem">Unit price: ${item.price}</Box>
-        </FlexBox>
+        <Box my="0.5rem">{`Unit price: ${item.price}`}</Box>
+        <Box my="0.5rem">{`#: ${item.quantity}`}</Box>
       </div>
-      {/* Is it ok in this stage that a products only gets added once? So there is no need for a + button? */}
       <Button
         type="button"
         variant="danger"

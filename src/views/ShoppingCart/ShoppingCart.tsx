@@ -20,15 +20,15 @@ function ShoppingCart({ cartItems }: ShoppingCartProps) {
       <Header as="h2" textAlign="center">
         Shopping Cart
       </Header>
-      <FlexBox justifyContent="space-around" flexWrap="wrap">
+      <ul>
         {cartItems.length > 0 ? (
           cartItems.map((item) => {
             return <CartItem item={item} />;
           })
         ) : (
-          <Box mb="1rem">Your cart looks empty...</Box>
+          <Box m="1rem auto">Your cart looks empty...</Box>
         )}
-      </FlexBox>
+      </ul>
       {cartItems.length > 0 && (
         <FlexBox justifyContent="center" m="2rem">
           <Button type="button" variant="danger" mx="1rem">
