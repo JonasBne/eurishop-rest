@@ -1,13 +1,5 @@
 import styled from "styled-components";
-import {
-  space,
-  SpaceProps,
-  layout,
-  LayoutProps,
-  position,
-  PositionProps,
-  variant,
-} from "styled-system";
+import { space, SpaceProps, layout, LayoutProps, variant } from "styled-system";
 
 type Variants = "primary" | "secondary" | "danger" | "success";
 
@@ -15,9 +7,7 @@ interface VariantProps {
   variant?: Variants;
 }
 
-const Button = styled("button")<
-  SpaceProps | LayoutProps | PositionProps | VariantProps
->(
+const Button = styled("button")<SpaceProps | LayoutProps | VariantProps>(
   {
     boxSizing: "border-box",
     borderRadius: "0.25rem",
@@ -35,7 +25,6 @@ const Button = styled("button")<
   },
   space,
   layout,
-  position,
   variant({
     variants: {
       primary: {

@@ -7,11 +7,17 @@ import Button from "../../components/Button";
 
 interface ProductCardProps extends SpaceProps {
   product: ProductDTO;
+  onBuy: () => void;
 }
 
 // TODO: add buttons for buying the product
 
-function ProductCard({ product, ...space }: ProductCardProps) {
+function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
+  const handleBuy = (event: React.MouseEvent) => {
+    event.preventDefault();
+    onBuy();
+  };
+
   return (
     <Card
       title={product.title}
@@ -19,7 +25,13 @@ function ProductCard({ product, ...space }: ProductCardProps) {
       content={product.desc}
       {...space}
     >
-      <Button type="button" variant="primary">
+      <Button
+        type="button"
+        variant="primary"
+        my="2rem"
+        mx="6rem"
+        onClick={handleBuy}
+      >
         Add to cart
       </Button>
     </Card>
