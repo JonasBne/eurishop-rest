@@ -23,15 +23,21 @@ function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
       content={product.desc}
       {...space}
     >
-      <Button
-        type="button"
-        variant="primary"
-        my="2rem"
-        mx="6rem"
-        onClick={handleBuy}
-      >
-        Add to cart
-      </Button>
+      {product.stocked === "Yes" ? (
+        <Button
+          type="button"
+          variant="primary"
+          my="2rem"
+          mx="6rem"
+          onClick={handleBuy}
+        >
+          Add to cart
+        </Button>
+      ) : (
+        <Button type="button" variant="danger" my="2rem" mx="6rem" disabled>
+          Out of stock
+        </Button>
+      )}
     </Card>
   );
 }

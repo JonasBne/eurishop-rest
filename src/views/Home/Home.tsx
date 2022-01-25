@@ -9,6 +9,7 @@ import { Item } from "../../domain/ShoppingCart";
 
 function Home() {
   const { loading, error, products } = useGetProducts();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cartItems, setCartItems] = useState<Item[]>([]);
 
   const handleBuy = () => {
