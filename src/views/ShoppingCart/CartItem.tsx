@@ -4,15 +4,20 @@ import Header from "../../components/Header";
 import Button from "../../components/Button";
 import FlexBox from "../../components/FlexBox";
 import Box from "../../components/Box";
+import { ProductDTO } from "../../api/productsApi";
 
 const ListItem = styled.li`
   list-style-type: none;
 `;
 
 // TODO: adjust types
+// Pass whole product
 
 interface CartItemProps {
-  item: any;
+  item: {
+    product: ProductDTO;
+    quantity: number;
+  };
 }
 
 function CartItem({ item }: CartItemProps) {

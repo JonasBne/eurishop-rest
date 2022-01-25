@@ -6,7 +6,9 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import ProductCard from "./ProductCard";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
-interface CartItem {
+// TODO: where to store this interface - domain folder?
+
+export interface Item {
   item: {
     product: ProductDTO;
     quantity: number;
@@ -15,7 +17,7 @@ interface CartItem {
 
 function Home() {
   const { loading, error, products } = useGetProducts();
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+  const [cartItems, setCartItems] = useState<Item[]>([]);
 
   const handleBuy = () => {
     console.log("added to cart");
@@ -45,7 +47,7 @@ function Home() {
             })}
           </FlexBox>
           <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
-            <ShoppingCart />
+            <ShoppingCart cartItems={cartItems} />
           </FlexBox>
         </FlexBox>
       )}

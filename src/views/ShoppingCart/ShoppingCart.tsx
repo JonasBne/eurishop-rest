@@ -4,52 +4,22 @@ import FlexBox from "../../components/FlexBox";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import CartItem from "./CartItem";
-
-// TODO: work with real data
-
-const DUMMY_DATA = [
-  {
-    id: "1",
-    title: "product1",
-    price: 10.0,
-  },
-  {
-    id: "2",
-    title: "product2",
-    price: 8.0,
-  },
-  {
-    id: "3",
-    title: "product3",
-    price: 6.0,
-  },
-  {
-    id: "4",
-    title: "product4",
-    price: 6.0,
-  },
-  {
-    id: "5",
-    title: "product5",
-    price: 6.0,
-  },
-  {
-    id: "6",
-    title: "product6",
-    price: 6.0,
-  },
-];
+import { Item } from "../../domain/ShoppingCart";
 
 // representation only
 // TODO: calculate total sum here
 // TODO: show number of items bought
 
-function ShoppingCart() {
+interface ShoppingCartProps {
+  cartItems: Item[];
+}
+
+function ShoppingCart({ cartItems }: ShoppingCartProps) {
   return (
     <Box width="100%" mr="1rem" border="2px solid #005f73">
-      <Header as="h2">Shopping Cart (items: {DUMMY_DATA.length})</Header>
+      <Header as="h2">Shopping Cart (items: {cartItems.length})</Header>
       <FlexBox justifyContent="space-around" flexWrap="wrap">
-        {DUMMY_DATA.map((item) => {
+        {cartItems.map((item) => {
           return <CartItem item={item} />;
         })}
       </FlexBox>
