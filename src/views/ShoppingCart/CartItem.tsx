@@ -23,10 +23,12 @@ function CartItem({ item }: CartItemProps) {
   return (
     <ListItem>
       <div>
-        <Header as="h3">{item.title}</Header>
+        <Header as="h3" variant="tertiary">
+          {item.title}
+        </Header>
         <FlexBox flexDirection="column">
           <img
-            src="https://dummyimage.com/300x300.jpg/ff4444/ffffff"
+            src="https://dummyimage.com/300x300/56cde8/FFF"
             alt="product"
             width="100px"
             height="100px"
@@ -37,12 +39,12 @@ function CartItem({ item }: CartItemProps) {
       {/* Is it ok in this stage that a products only gets added once? So there is no need for a + button? */}
       <Button
         type="button"
-        variant="primary"
+        variant="danger"
         m="1rem auto"
         // TODO: add the remove handler
         onClick={() => alert("The product should be removed")}
       >
-        -
+        Remove
       </Button>
     </ListItem>
   );

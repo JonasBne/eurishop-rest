@@ -43,10 +43,7 @@ function ShoppingCart() {
   return (
     <Box width="100%" mr="1rem" border="2px solid #005f73">
       <FlexBox flexDirection="column" alignItems="center">
-        <Header as="h2">Shopping Cart</Header>
-        <Header as="h3" variant="tertiary">
-          Current # of products in cart: {DUMMY_DATA.length}
-        </Header>
+        <Header as="h2">Shopping Cart (items: {DUMMY_DATA.length})</Header>
       </FlexBox>
       <FlexBox justifyContent="space-around" flexWrap="wrap">
         {DUMMY_DATA.map((item) => {
