@@ -32,10 +32,9 @@ function ShoppingCart() {
     >
       <FlexBox flexDirection="column" alignItems="center">
         <Header as="h2">Shopping Cart</Header>
-        <Header
-          as="h3"
-          variant="tertiary"
-        >{`Current # of products in cart: ${DUMMY_DATA.length}`}</Header>
+        <Header as="h3" variant="tertiary">
+          Current # of products in cart: {DUMMY_DATA.length}
+        </Header>
       </FlexBox>
     </Box>
   );
