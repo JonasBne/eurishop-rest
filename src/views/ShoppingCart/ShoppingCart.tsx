@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import Box from "../../components/Box";
 import FlexBox from "../../components/FlexBox";
 import Header from "../../components/Header";
@@ -23,26 +22,37 @@ const DUMMY_DATA = [
     title: "product3",
     price: 6.0,
   },
+  {
+    id: "4",
+    title: "product4",
+    price: 6.0,
+  },
+  {
+    id: "5",
+    title: "product5",
+    price: 6.0,
+  },
+  {
+    id: "6",
+    title: "product6",
+    price: 6.0,
+  },
 ];
-
-const UnorderedList = styled.ul`
-  list-style-type: none;
-`;
 
 function ShoppingCart() {
   return (
-    <Box width="100%" mr="1rem" border="2px solid gray">
+    <Box width="100%" mr="1rem" border="2px solid #005f73">
       <FlexBox flexDirection="column" alignItems="center">
         <Header as="h2">Shopping Cart</Header>
         <Header as="h3" variant="tertiary">
           Current # of products in cart: {DUMMY_DATA.length}
         </Header>
       </FlexBox>
-      <UnorderedList>
+      <FlexBox justifyContent="space-around" flexWrap="wrap">
         {DUMMY_DATA.map((item) => {
           return <CartItem item={item} />;
         })}
-      </UnorderedList>
+      </FlexBox>
     </Box>
   );
 }
