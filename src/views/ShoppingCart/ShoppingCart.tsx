@@ -40,12 +40,14 @@ const DUMMY_DATA = [
   },
 ];
 
+// representation only
+// TODO: calculate total sum here
+// TODO: show number of items bought
+
 function ShoppingCart() {
   return (
     <Box width="100%" mr="1rem" border="2px solid #005f73">
-      <FlexBox flexDirection="column" alignItems="center">
-        <Header as="h2">Shopping Cart (items: {DUMMY_DATA.length})</Header>
-      </FlexBox>
+      <Header as="h2">Shopping Cart (items: {DUMMY_DATA.length})</Header>
       <FlexBox justifyContent="space-around" flexWrap="wrap">
         {DUMMY_DATA.map((item) => {
           return <CartItem item={item} />;

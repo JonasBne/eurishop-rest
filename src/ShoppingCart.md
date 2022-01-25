@@ -10,6 +10,13 @@ function Home() {
     setCartItems(prevCartItems => [...prevCartItems, item ])
   }
 
+ // best practice: state wijzigen waar deze gedefinieerd wordt
+ // indien werken met context: state bijhouden in context, maar ook functie om state te wijzigen in deze context bijhouden
+  const handleRemove = (itemId: string) => {
+    const updatedCartItems = cartItems.filter(item => item.id !== itemId)
+    setCartItems(updatedCartItems)
+  }
+
   ...
 
     return (
@@ -28,7 +35,7 @@ function Home() {
             })}
           </FlexBox>
           <FlexBox>
-            <ShoppingCart cartItems={cartItems} setCartItems={setCartItems} />
+            <ShoppingCart cartItems={cartItems} onRemove={handleRemove} onClear={handleClear}/>
           </FlexBox>
         </FlexBox>
       )}
@@ -37,12 +44,9 @@ function Home() {
 
 // ShoppingCart.tsx
 
-function ShoppingCart({cartItems, setCartItems}) {
+function ShoppingCart({cartItems, onRemove}) {
   // all logic regarding products stored inside ShoppingCart (to make sure this logic only has to be written once)
-  const handleRemove = (itemId: string) => {
-    const updatedCartItems = cartItems.filter(item => item.id !== itemId)
-    setCartItems(updatedCartItems)
-  }
+
   
   const handleClear = () => {
     setCartItems([])

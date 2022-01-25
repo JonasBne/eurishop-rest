@@ -1,18 +1,28 @@
-import React from "react";
-import { useGetProducts } from "../../api/productsApi";
+import React, { useState } from "react";
+import { ProductDTO, useGetProducts } from "../../api/productsApi";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import FlexBox from "../../components/FlexBox";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ProductCard from "./ProductCard";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
+interface CartItem {
+  item: {
+    product: ProductDTO;
+    quantity: number;
+  };
+}
+
 function Home() {
   const { loading, error, products } = useGetProducts();
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
   const handleBuy = () => {
     console.log("added to cart");
   };
 
+  // TODO: show price on product card and stock (if not in stock not buyable)
+  // TODO: add global amount (add it to ShoppingCart - not in a state)
   return (
     <>
       {loading && !error && <LoadingSpinner />}
