@@ -1,8 +1,13 @@
 import React from "react";
+import styled from "styled-components";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import FlexBox from "../../components/FlexBox";
 import Box from "../../components/Box";
+
+const ListItem = styled.li`
+  list-style-type: none;
+`;
 
 // TODO: adjust types
 
@@ -16,7 +21,7 @@ function CartItem({ item }: CartItemProps) {
   // };
 
   return (
-    <li>
+    <ListItem>
       <div>
         <Header as="h3">{item.title}</Header>
         <FlexBox flexDirection="column">
@@ -33,13 +38,13 @@ function CartItem({ item }: CartItemProps) {
       <Button
         type="button"
         variant="primary"
-        my="1rem"
+        m="1rem auto"
         // TODO: add the remove handler
         onClick={() => alert("The product should be removed")}
       >
-        Remove
+        -
       </Button>
-    </li>
+    </ListItem>
   );
 }
 
