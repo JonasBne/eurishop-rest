@@ -10,8 +10,6 @@ interface ProductCardProps extends SpaceProps {
   onBuy: () => void;
 }
 
-// TODO: add buttons for buying the product
-
 function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
   const handleBuy = (event: React.MouseEvent) => {
     event.preventDefault();
