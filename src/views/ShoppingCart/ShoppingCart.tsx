@@ -31,13 +31,7 @@ const UnorderedList = styled.ul`
 
 function ShoppingCart() {
   return (
-    <Box
-      width="100%"
-      minHeight="fit-content"
-      height="50rem"
-      mr="1rem"
-      border="2px solid gray"
-    >
+    <Box width="100%" mr="1rem" border="2px solid gray">
       <FlexBox flexDirection="column" alignItems="center">
         <Header as="h2">Shopping Cart</Header>
         <Header as="h3" variant="tertiary">

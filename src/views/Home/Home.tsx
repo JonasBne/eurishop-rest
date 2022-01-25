@@ -34,7 +34,7 @@ function Home() {
               );
             })}
           </FlexBox>
-          <FlexBox order={2} flexBasis="25%" mt="2rem">
+          <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
             <ShoppingCart />
           </FlexBox>
         </FlexBox>
