@@ -93,6 +93,7 @@ function CartItem(item, onRemove) {
         <span>{item.price}</span>
         <span>{item.amount}</span>
       <div>
+      {/* Is it ok in this stage that a products only gets added once? So there is no need for a + button? */}
       <Button type="button" variant="primary" onClick={() => handleRemove({item.id})}>-</Button>
     </li>
   )
