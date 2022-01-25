@@ -1,5 +1,7 @@
+/* eslint-disable no-useless-return */
+/* eslint-disable consistent-return */
 import React, { useState } from "react";
-import { useGetProducts } from "../../api/productsApi";
+import { ProductDTO, useGetProducts } from "../../api/productsApi";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import FlexBox from "../../components/FlexBox";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -11,11 +13,25 @@ function Home() {
   const { loading, error, products } = useGetProducts();
   const [cartItems, setCartItems] = useState<Item[]>([]);
 
-  const handleBuy = (cartItem: any) => {
-    setCartItems((prevCartItems) => [...prevCartItems, cartItem]);
+  const handleBuy = (product: ProductDTO) => {
+    if (cartItems.find((item) => item.id === product.id)) {
+      setCartItems((prevCartItems) =>
+        prevCartItems.map((item) =>
+          item.id === product.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCartItems((prevCartItems) => [
+        ...prevCartItems,
+        {
+          ...product,
+          quantity: 1,
+        },
+      ]);
+    }
   };
-
-  console.log(cartItems);
 
   // TODO: add global amount (add it to ShoppingCart - not in a state)
   // TODO: add handleRemove from cart and add handleClear and add handleOrder
