@@ -8,6 +8,10 @@ import ProductCard from "./ProductCard";
 function Home() {
   const { loading, error, products } = useGetProducts();
 
+  const handleBuy = () => {
+    console.log("added to cart");
+  };
+
   return (
     <>
       {loading && !error && <LoadingSpinner />}
@@ -24,7 +28,9 @@ function Home() {
             flexBasis="75%"
           >
             {products.map((product) => {
-              return <ProductCard product={product} m="2rem" />;
+              return (
+                <ProductCard product={product} onBuy={handleBuy} m="2rem" />
+              );
             })}
           </FlexBox>
           <FlexBox order={2} flexBasis="25%">
