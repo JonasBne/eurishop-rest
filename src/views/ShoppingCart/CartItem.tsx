@@ -29,7 +29,7 @@ function CartItem({ item }: CartItemProps) {
     <ListItem>
       <div>
         <Header as="h3" variant="tertiary">
-          {item.title}
+          {item.product.title}
         </Header>
         <FlexBox flexDirection="column">
           <img
@@ -38,7 +38,7 @@ function CartItem({ item }: CartItemProps) {
             width="100px"
             height="100px"
           />
-          <Box my="0.5rem">Unit price: ${item.price}</Box>
+          <Box my="0.5rem">Unit price: ${item.product.price}</Box>
         </FlexBox>
       </div>
       {/* Is it ok in this stage that a products only gets added once? So there is no need for a + button? */}

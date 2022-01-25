@@ -1,19 +1,11 @@
 import React, { useState } from "react";
-import { ProductDTO, useGetProducts } from "../../api/productsApi";
+import { useGetProducts } from "../../api/productsApi";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import FlexBox from "../../components/FlexBox";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ProductCard from "./ProductCard";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
-
-// TODO: where to store this interface - domain folder?
-
-export interface Item {
-  item: {
-    product: ProductDTO;
-    quantity: number;
-  };
-}
+import { Item } from "../../domain/ShoppingCart";
 
 function Home() {
   const { loading, error, products } = useGetProducts();
