@@ -4,6 +4,7 @@ import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import FlexBox from "../../components/FlexBox";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ProductCard from "./ProductCard";
+import ShoppingCart from "../ShoppingCart/ShoppingCart";
 
 function Home() {
   const { loading, error, products } = useGetProducts();
@@ -33,8 +34,8 @@ function Home() {
               );
             })}
           </FlexBox>
-          <FlexBox order={2} flexBasis="25%">
-            BASKET
+          <FlexBox order={2} flexBasis="25%" mt="2rem">
+            <ShoppingCart />
           </FlexBox>
         </FlexBox>
       )}
