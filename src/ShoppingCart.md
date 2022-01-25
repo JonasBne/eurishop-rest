@@ -39,14 +39,11 @@ function Home() {
 
 function ShoppingCart({cartItems, setCartItems}) {
   // all logic regarding products stored inside ShoppingCart (to make sure this logic only has to be written once)
-  const handleRemove = () => {
-  
+  const handleRemove = (itemId: string) => {
+    const updatedCartItems = cartItems.filter(item => item.id !== itemId)
+    setCartItems(updatedCartItems)
   }
   
-  const handleAdd = () => {
-  
-  }
-
   const handleClear = () => {
     setCartItems([])
   }
@@ -69,7 +66,6 @@ function ShoppingCart({cartItems, setCartItems}) {
                       key={item.id}
                       item={item}
                       onRemove={handleRemove}
-                      onAdd={handleAdd}
                     />
               ))}
         </ul>
@@ -85,13 +81,9 @@ function ShoppingCart({cartItems, setCartItems}) {
 
 // CartItem.tsx
 
-function CartItem(item, onRemove, onAdd) {
+function CartItem(item, onRemove) {
   const handleRemove = (itemId: string) => {
     onRemove(itemId)
-  }
-
-  const handleAdd = () => {
-    onAdd()
   }
 
   return (
@@ -101,10 +93,7 @@ function CartItem(item, onRemove, onAdd) {
         <span>{item.price}</span>
         <span>{item.amount}</span>
       <div>
-      <div>
-          <Button type="button" variant="primary" onClick={() => handleRemove({item.id})}>-</Button>
-          <Button type="button" variant="primary" onClick={handleAdd}>+</Button>
-      </div>
+      <Button type="button" variant="primary" onClick={() => handleRemove({item.id})}>-</Button>
     </li>
   )
 }
