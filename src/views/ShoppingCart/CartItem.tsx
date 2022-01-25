@@ -4,7 +4,7 @@ import Header from "../../components/Header";
 import Button from "../../components/Button";
 import FlexBox from "../../components/FlexBox";
 import Box from "../../components/Box";
-import { ProductDTO } from "../../api/productsApi";
+import { Item } from "../../domain/ShoppingCart";
 
 const ListItem = styled.li`
   list-style-type: none;
@@ -14,10 +14,7 @@ const ListItem = styled.li`
 // Pass whole product
 
 interface CartItemProps {
-  item: {
-    product: ProductDTO;
-    quantity: number;
-  };
+  item: Item;
 }
 
 function CartItem({ item }: CartItemProps) {
@@ -29,7 +26,7 @@ function CartItem({ item }: CartItemProps) {
     <ListItem>
       <div>
         <Header as="h3" variant="tertiary">
-          {item.product.title}
+          {item.title}
         </Header>
         <FlexBox flexDirection="column">
           <img
@@ -38,7 +35,7 @@ function CartItem({ item }: CartItemProps) {
             width="100px"
             height="100px"
           />
-          <Box my="0.5rem">Unit price: ${item.product.price}</Box>
+          <Box my="0.5rem">Unit price: ${item.price}</Box>
         </FlexBox>
       </div>
       {/* Is it ok in this stage that a products only gets added once? So there is no need for a + button? */}
