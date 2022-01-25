@@ -10,9 +10,6 @@ const ListItem = styled.li`
   list-style-type: none;
 `;
 
-// TODO: adjust types
-// Pass whole product
-
 interface CartItemProps {
   item: Item;
 }

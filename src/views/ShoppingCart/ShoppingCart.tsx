@@ -21,7 +21,7 @@ function ShoppingCart({ cartItems }: ShoppingCartProps) {
         Shopping Cart
       </Header>
       <FlexBox justifyContent="space-around" flexWrap="wrap">
-        {cartItems.length === 0 ? (
+        {cartItems.length > 0 ? (
           cartItems.map((item) => {
             return <CartItem item={item} />;
           })
