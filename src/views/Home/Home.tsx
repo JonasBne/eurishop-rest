@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useGetProducts } from "../../api/productsApi";
+import { ProductDTO, useGetProducts } from "../../api/productsApi";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import FlexBox from "../../components/FlexBox";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -12,8 +12,8 @@ function Home() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cartItems, setCartItems] = useState<Item[]>([]);
 
-  const handleBuy = () => {
-    console.log("added to cart");
+  const handleBuy = (cartItem: ProductDTO) => {
+    console.log(cartItem);
   };
 
   // TODO: add global amount (add it to ShoppingCart - not in a state)

@@ -9,13 +9,13 @@ import FaIcon from "../../assets/FaIcon";
 
 interface ProductCardProps extends SpaceProps {
   product: ProductDTO;
-  onBuy: () => void;
+  onBuy: (cartItem: ProductDTO) => void;
 }
 
 function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
   const handleBuy = (event: React.MouseEvent) => {
     event.preventDefault();
-    onBuy();
+    onBuy(product);
   };
 
   return (
