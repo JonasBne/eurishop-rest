@@ -33,12 +33,23 @@ function CartItem({ item }: CartItemProps) {
       </div>
       <Button
         type="button"
-        variant="danger"
-        m="1rem auto"
+        variant="secondary"
+        m="1rem 1rem 1rem 0"
+        width="2.5rem"
         // TODO: add the remove handler
-        onClick={() => alert("The product should be removed")}
+        onClick={() => alert("The product should be decreased")}
       >
-        Remove
+        -
+      </Button>
+      <Button
+        type="button"
+        variant="secondary"
+        m="1rem 1rem 1rem 0"
+        width="2.5rem"
+        // TODO: add the remove handler
+        onClick={() => alert("The product should be increased")}
+      >
+        +
       </Button>
     </ListItem>
   );
