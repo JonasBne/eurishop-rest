@@ -39,8 +39,8 @@ function Home() {
 // CartItem.tsx
 
 function CartItem(item, onRemove, onAdd) {
-  const handleRemove = () => {
-    onRemove()
+  const handleRemove = (itemId: string) => {
+    onRemove(itemId)
   }
 
   const handleAdd = () => {
@@ -55,12 +55,14 @@ function CartItem(item, onRemove, onAdd) {
         <span>{item.amount}</span>
       <div>
       <div>
-          <Button type="button" variant="primary" onClick={handleRemove}>-</Button>
+          <Button type="button" variant="primary" onClick={() => handleRemove({item.id})}>-</Button>
           <Button type="button" variant="primary" onClick={handleAdd}>+</Button>
       </div>
     </li>
   )
 }
+
+export default CartItem;
 
 
 // ShoppingCart.tsx 
@@ -68,7 +70,26 @@ function CartItem(item, onRemove, onAdd) {
 function ShoppingCart({cartItems}) {
 
   return (
-
+    <FlexBox>
+      <Box>
+        <Header as="h2" variant="primary">Your Cart</Header>       
+        <Header as="h4" variant="secondary">`# products in cart: ${cartItems.length}`</Header>
+      </Box>
+      <ul>
+         {cartCtx.items.map((item) => (
+            <CartItem
+              key={item.id}
+              item={item}
+              onRemove={handleRemove}
+              onAdd={handleAdd}
+            />
+      ))}
+      </ul>
+      <Box>
+        <Button type="reset" variant="danger">Clear</Button>
+        <Button type="submit" variant="primary">Order</Button>
+      </Box>
+    </FlexBox>
   )
 
 }
