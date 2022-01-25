@@ -26,17 +26,19 @@ function ShoppingCart({ cartItems }: ShoppingCartProps) {
             return <CartItem item={item} />;
           })
         ) : (
-          <div>Add products to your cart</div>
+          <Box mb="1rem">Your cart looks empty...</Box>
         )}
       </FlexBox>
-      <FlexBox justifyContent="center" m="2rem">
-        <Button type="button" variant="danger" mx="1rem">
-          CLEAR
-        </Button>
-        <Button type="button" variant="primary" mx="1rem">
-          ORDER
-        </Button>
-      </FlexBox>
+      {cartItems.length > 0 && (
+        <FlexBox justifyContent="center" m="2rem">
+          <Button type="button" variant="danger" mx="1rem">
+            CLEAR
+          </Button>
+          <Button type="button" variant="primary" mx="1rem">
+            ORDER
+          </Button>
+        </FlexBox>
+      )}
     </Box>
   );
 }
