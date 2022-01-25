@@ -1,5 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
+import React, { ReactNode } from "react";
 import styled from "styled-components";
 import { SpaceProps } from "styled-system";
 import Box from "./Box";
@@ -22,16 +22,18 @@ export interface CardProps
   title: string;
   image: string;
   content: string;
+  children?: ReactNode;
 }
 
-function Card({ title, image, content, ...space }: CardProps) {
+function Card({ title, image, content, children, ...space }: CardProps) {
   return (
     <Box width="350px" border="2px solid gray" p="1.25rem" {...space}>
       <CardMedia src={image} />
-      <Header as="h2" variant="tertiary">
+      <Header as="h2" variant="tertiary" textAlign="center">
         {title}
       </Header>
       <CardContent>{content}</CardContent>
+      {children}
     </Box>
   );
 }
