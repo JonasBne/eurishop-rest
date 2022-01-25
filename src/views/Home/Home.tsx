@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { ProductDTO, useGetProducts } from "../../api/productsApi";
+import { useGetProducts } from "../../api/productsApi";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import FlexBox from "../../components/FlexBox";
 import LoadingSpinner from "../../components/LoadingSpinner";
@@ -9,14 +9,16 @@ import { Item } from "../../domain/ShoppingCart";
 
 function Home() {
   const { loading, error, products } = useGetProducts();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [cartItems, setCartItems] = useState<Item[]>([]);
 
-  const handleBuy = (cartItem: ProductDTO) => {
-    console.log(cartItem);
+  const handleBuy = (cartItem: any) => {
+    setCartItems((prevCartItems) => [...prevCartItems, cartItem]);
   };
 
+  console.log(cartItems);
+
   // TODO: add global amount (add it to ShoppingCart - not in a state)
+  // TODO: add handleRemove from cart and add handleClear and add handleOrder
   return (
     <>
       {loading && !error && <LoadingSpinner />}
