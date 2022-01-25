@@ -8,7 +8,7 @@ export interface ProductDTO {
   title: string;
   desc: string;
   image: string;
-  stocked: boolean;
+  stocked: boolean | string;
   basePrice: number;
   price: number;
 }
@@ -25,6 +25,7 @@ const url = "api/products";
 const productMapper = (dto: ProductDTO) => {
   return {
     ...dto,
+    stocked: dto.stocked ? "Yes" : "No",
   };
 };
 
