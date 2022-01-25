@@ -1,9 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import React from "react";
 import { SpaceProps } from "styled-system";
+import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 import { ProductDTO } from "../../api/productsApi";
 import Card from "../../components/Card";
 import Button from "../../components/Button";
+import FaIcon from "../../assets/FaIcon";
 
 interface ProductCardProps extends SpaceProps {
   product: ProductDTO;
@@ -29,9 +31,11 @@ function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
           variant="primary"
           my="2rem"
           mx="6rem"
+          px="1rem"
           onClick={handleBuy}
         >
-          ADD +
+          ADD
+          <FaIcon icon={faShoppingCart} mx=".25rem" />
         </Button>
       ) : (
         <Button type="button" variant="danger" my="2rem" mx="6rem" disabled>
