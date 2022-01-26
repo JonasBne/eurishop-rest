@@ -52,8 +52,12 @@ function Home() {
     }
   };
 
+  const handleClear = () => {
+    setCartItems([]);
+  };
+
   // TODO: add global amount (add it to ShoppingCart - not in a state)
-  // TODO: add following functions: handleDecrease (CartItem) handleIncrease (cartItem) handleClear (ShoppingCart) handleOrder (ShoppingCart)
+  // TODO: add following functions: handleOrder (ShoppingCart)
   return (
     <>
       {loading && !error && <LoadingSpinner />}
@@ -76,7 +80,11 @@ function Home() {
             })}
           </FlexBox>
           <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
-            <ShoppingCart cartItems={cartItems} onUpdate={handleUpdate} />
+            <ShoppingCart
+              cartItems={cartItems}
+              onUpdate={handleUpdate}
+              onClear={handleClear}
+            />
           </FlexBox>
         </FlexBox>
       )}
