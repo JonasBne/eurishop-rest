@@ -21,7 +21,7 @@ function ProductAdd() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(`${rootUrl}/products`, "post", formattedData);
+    update(`${rootUrl}api/products`, "post", formattedData);
   };
 
   return (

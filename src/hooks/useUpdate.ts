@@ -12,7 +12,7 @@ function useUpdate() {
     url: string,
     method: string,
     data: ProductDTO,
-    id = 0
+    id = ""
   ) => {
     try {
       setUpdateIsLoading(true);

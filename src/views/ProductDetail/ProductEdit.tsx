@@ -4,10 +4,13 @@ import { useGetProduct, ProductDTO } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import ProductForm from "./ProductForm";
+import useUpdate from "../../hooks/useUpdate";
+import rootUrl from "../../api/rootUrl";
 
 function ProductEdit() {
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
+  const { update } = useUpdate();
 
   const gridTemplateAreas = `
   "title sku"
@@ -18,7 +21,12 @@ function ProductEdit() {
 
   // TODO: finalize this function
   const handleSubmit = (data: ProductDTO) => {
-    console.log("DATA FROM FORM SUBMIT", data);
+    const formattedData = {
+      ...data,
+      basePrice: +data.basePrice,
+      price: +data.price,
+    };
+    update(`${rootUrl}api/products`, "put", formattedData, data.id.toString());
   };
 
   return (
