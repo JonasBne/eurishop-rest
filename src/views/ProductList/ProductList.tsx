@@ -20,8 +20,8 @@ function ProductList() {
   };
 
   // TODO: provide feedback after delete
-  const handleAction = (productId: string) => {
-    remove(UpdateProductDTOMethods.DELETE, productId);
+  const handleAction = async (productId: string) => {
+    await remove(UpdateProductDTOMethods.DELETE, productId);
 
     if (!updateError) {
       refetch();
