@@ -31,10 +31,7 @@ function ProductEdit() {
       price: +data.price,
     };
     update(
-      mapProductUpdateMethodsToUrls(
-        UpdateProductDTOMethods.PUT,
-        data.id.toString()
-      ),
+      mapProductUpdateMethodsToUrls(UpdateProductDTOMethods.PUT, data.id),
       UpdateProductDTOMethods.PUT,
       formattedData
     );

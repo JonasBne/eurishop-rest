@@ -37,14 +37,14 @@ const productMapper = (dto: ProductDTO) => {
 
 export const mapProductUpdateMethodsToUrls = (
   method: UpdateProductDTOMethods,
-  id = ""
+  id: number | string = ""
   // eslint-disable-next-line consistent-return
 ) => {
   switch (method) {
     case UpdateProductDTOMethods.POST:
       return "https://euricom-test-api.herokuapp.com/api/products";
     case UpdateProductDTOMethods.PUT || UpdateProductDTOMethods.DELETE:
-      return `https://euricom-test-api.herokuapp.com/api/products/${id}`;
+      return `https://euricom-test-api.herokuapp.com/api/products/${id.toString()}`;
     default:
       return "https://euricom-test-api.herokuapp.com/api/products";
   }
