@@ -4,6 +4,7 @@ import {
   useGetProduct,
   ProductDTO,
   UpdateProductDTOMethods,
+  useGetProducts,
 } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
@@ -14,6 +15,7 @@ function ProductEdit() {
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
+  const { refetch } = useGetProducts();
   const { update, updateError } = useUpdate();
 
   const gridTemplateAreas = `
@@ -33,6 +35,7 @@ function ProductEdit() {
 
     if (!updateError) {
       navigate(`/products/admin`);
+      refetch();
     }
   };
 
