@@ -31,13 +31,13 @@ function CartItem({ item }: CartItemProps) {
         }`}</Box>
       </div>
 
-      <div>
-        <Box my="0.5rem">{`Amount: ${item.quantity}`}</Box>
+      <Box mt="3rem">
+        <div>{`Amount: ${item.quantity}`}</div>
         <Button
           type="button"
           variant="secondary"
           m="1rem 1rem 1rem 0"
-          width="2.5rem"
+          width="1.25rem"
           // TODO: add the remove handler
           onClick={() => alert("The product should be decreased")}
         >
@@ -47,13 +47,13 @@ function CartItem({ item }: CartItemProps) {
           type="button"
           variant="secondary"
           m="1rem 1rem 1rem 0"
-          width="2.5rem"
+          width="1.25rem"
           // TODO: add the remove handler
           onClick={() => alert("The product should be increased")}
         >
           +
         </Button>
-      </div>
+      </Box>
     </FlexBox>
   );
 }
