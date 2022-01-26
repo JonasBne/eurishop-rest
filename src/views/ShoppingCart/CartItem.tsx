@@ -5,17 +5,11 @@ import Box from "../../components/Box";
 import FlexBox from "../../components/FlexBox";
 import { Item } from "../../domain/ShoppingCart";
 
-// TODO: add quantity to cartItem (check styling in course Udemy)
-
 interface CartItemProps {
   item: Item;
 }
 
 function CartItem({ item }: CartItemProps) {
-  // const handleRemove = (itemId: string) => {
-  //   onRemove(itemId);
-  // };
-
   return (
     <FlexBox justifyContent="space-around">
       <div>
