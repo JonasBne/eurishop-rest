@@ -74,7 +74,12 @@ function Home() {
           >
             {products.map((product) => {
               return (
-                <ProductCard product={product} onBuy={handleBuy} m="2rem" />
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onBuy={handleBuy}
+                  m="2rem"
+                />
               );
             })}
           </FlexBox>
