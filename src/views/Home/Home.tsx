@@ -42,13 +42,13 @@ function Home() {
         )
       );
     } else {
-      setCartItems((prevCartItems) => [
-        ...prevCartItems,
-        {
-          ...cartItem,
-          quantity: cartItem.quantity - 1,
-        },
-      ]);
+      setCartItems((prevCartItems) =>
+        prevCartItems.map((item) =>
+          item.id === cartItem.id
+            ? { ...item, quantity: item.quantity - 1 }
+            : item
+        )
+      );
     }
   };
 
