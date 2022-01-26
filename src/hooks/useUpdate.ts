@@ -12,10 +12,14 @@ function useUpdate() {
   const [updateError, setUpdateError] = useState<Error>();
 
   // TODO: work with refetch function when a new product is posted?
-  const update = async (method: UpdateProductDTOMethods, data: ProductDTO) => {
+  const update = async (
+    method: UpdateProductDTOMethods,
+    data: ProductDTO,
+    id: number | string = ""
+  ) => {
     try {
       setUpdateIsLoading(true);
-      const response = await fetch(mapProductUpdateMethodsToUrls(method), {
+      const response = await fetch(mapProductUpdateMethodsToUrls(method, id), {
         method,
         headers: {
           "Content-Type": "application/json",
@@ -34,10 +38,13 @@ function useUpdate() {
     }
   };
 
-  const remove = async (method: UpdateProductDTOMethods) => {
+  const remove = async (
+    method: UpdateProductDTOMethods,
+    id: number | string = ""
+  ) => {
     try {
       setUpdateIsLoading(true);
-      const response = await fetch(mapProductUpdateMethodsToUrls(method), {
+      const response = await fetch(mapProductUpdateMethodsToUrls(method, id), {
         method,
       });
 
