@@ -12,9 +12,10 @@ import { Item } from "../../domain/ShoppingCart";
 
 interface ShoppingCartProps {
   cartItems: Item[];
+  onUpdate: (action: string, cartItem: Item) => void;
 }
 
-function ShoppingCart({ cartItems }: ShoppingCartProps) {
+function ShoppingCart({ cartItems, onUpdate }: ShoppingCartProps) {
   return (
     <Box width="100%" mr="1rem" border="2px solid #005f73">
       <Header as="h2" textAlign="center">
@@ -23,7 +24,7 @@ function ShoppingCart({ cartItems }: ShoppingCartProps) {
       <ul>
         {cartItems.length > 0 ? (
           cartItems.map((item) => {
-            return <CartItem item={item} />;
+            return <CartItem item={item} onUpdate={onUpdate} />;
           })
         ) : (
           <Box m="1rem auto">Your cart looks empty...</Box>

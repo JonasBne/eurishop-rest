@@ -32,6 +32,26 @@ function Home() {
     }
   };
 
+  const handleUpdate = (action: string, cartItem: Item) => {
+    if (action.includes("+")) {
+      setCartItems((prevCartItems) =>
+        prevCartItems.map((item) =>
+          item.id === cartItem.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        )
+      );
+    } else {
+      setCartItems((prevCartItems) => [
+        ...prevCartItems,
+        {
+          ...cartItem,
+          quantity: cartItem.quantity - 1,
+        },
+      ]);
+    }
+  };
+
   // TODO: add global amount (add it to ShoppingCart - not in a state)
   // TODO: add following functions: handleDecrease (CartItem) handleIncrease (cartItem) handleClear (ShoppingCart) handleOrder (ShoppingCart)
   return (
@@ -56,7 +76,7 @@ function Home() {
             })}
           </FlexBox>
           <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
-            <ShoppingCart cartItems={cartItems} />
+            <ShoppingCart cartItems={cartItems} onUpdate={handleUpdate} />
           </FlexBox>
         </FlexBox>
       )}

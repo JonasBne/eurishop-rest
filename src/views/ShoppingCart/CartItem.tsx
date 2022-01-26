@@ -7,9 +7,10 @@ import { Item } from "../../domain/ShoppingCart";
 
 interface CartItemProps {
   item: Item;
+  onUpdate: (action: string, cartItem: Item) => void;
 }
 
-function CartItem({ item }: CartItemProps) {
+function CartItem({ item, onUpdate }: CartItemProps) {
   return (
     <FlexBox justifyContent="space-around">
       <div>
@@ -32,8 +33,7 @@ function CartItem({ item }: CartItemProps) {
           variant="secondary"
           m="1rem 1rem 1rem 0"
           width="1.25rem"
-          // TODO: add the remove handler
-          onClick={() => alert("The product should be decreased")}
+          onClick={() => onUpdate("-", item)}
         >
           -
         </Button>
@@ -43,7 +43,7 @@ function CartItem({ item }: CartItemProps) {
           m="1rem 1rem 1rem 0"
           width="1.25rem"
           // TODO: add the remove handler
-          onClick={() => alert("The product should be increased")}
+          onClick={() => onUpdate("+", item)}
         >
           +
         </Button>
