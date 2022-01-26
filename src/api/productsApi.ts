@@ -65,7 +65,7 @@ export const useGetProduct = (productId: string) => {
 
 // TODO: remove the pagesize later, this is only temporary
 export const useGetProducts = () => {
-  const { loading, error, data } = useFetch<ProductsDTO>(
+  const { loading, error, data, refetch } = useFetch<ProductsDTO>(
     `${rootUrl}${url}/?pageSize=1000`
   );
   return {
@@ -74,6 +74,7 @@ export const useGetProducts = () => {
     products: data?.selectedProducts.map((product: ProductDTO) =>
       productMapper(product)
     ),
+    refetch,
   };
 };
 

@@ -1,11 +1,16 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import { ProductDTO, UpdateProductDTOMethods } from "../../api/productsApi";
+import {
+  ProductDTO,
+  UpdateProductDTOMethods,
+  useGetProducts,
+} from "../../api/productsApi";
 import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
 
 function ProductAdd() {
   const navigate = useNavigate();
+  const { refetch } = useGetProducts();
   const { update, updateError } = useUpdate();
 
   const gridTemplateAreas = `
@@ -27,6 +32,7 @@ function ProductAdd() {
 
     if (!updateError) {
       navigate(`/products/admin`);
+      refetch();
     }
   };
 
