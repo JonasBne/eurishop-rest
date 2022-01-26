@@ -21,9 +21,9 @@ function CartItem({ item, onUpdate }: CartItemProps) {
           my="0.5rem"
           fontStyle="italic"
         >{`Unit price: € ${item.price}`}</Box>
-        <Box my="0.5rem" fontWeight="bold">{`Total: € ${
+        <Box my="0.5rem" fontWeight="bold">{`Total: € ${(
           item.quantity * item.price
-        }`}</Box>
+        ).toFixed(2)}`}</Box>
       </div>
 
       <Box mt="3rem">
