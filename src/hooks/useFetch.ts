@@ -1,5 +1,5 @@
 /* eslint-disable max-classes-per-file */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import RequestError from "../errors/RequestError";
 import CommunicationError from "../errors/CommunicationError";
 
@@ -8,7 +8,7 @@ const useFetch = <T>(url: string) => {
   const [error, setError] = useState<Error>();
   const [fetchedData, setFetchedData] = useState<T>();
 
-  async function fetchData() {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       const response = await fetch(url);
@@ -23,16 +23,19 @@ const useFetch = <T>(url: string) => {
     } finally {
       setLoading(false);
     }
-  }
+  }, [url]);
+
+  const refetch = async () => fetchData();
 
   useEffect(() => {
     fetchData();
-  }, [url]);
+  }, [fetchData]);
 
   return {
     loading,
     error,
     data: fetchedData,
+    refetch,
   };
 };
 
