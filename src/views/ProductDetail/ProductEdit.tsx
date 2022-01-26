@@ -25,13 +25,13 @@ function ProductEdit() {
   "desc desc"
   `;
 
-  const handleSubmit = (data: ProductDTO) => {
+  const handleSubmit = async (data: ProductDTO) => {
     const formattedData = {
       ...data,
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(UpdateProductDTOMethods.PUT, formattedData, formattedData.id);
+    await update(UpdateProductDTOMethods.PUT, formattedData, formattedData.id);
 
     if (!updateError) {
       navigate(`/products/admin`);

@@ -23,13 +23,13 @@ function ProductAdd() {
   // TODO: @Peter - why does TypeScript not complain that the data object holds strings for basePrice and Price?
   // TODO: redirect user back to table when success
   // TODO: provide feedback to the end user
-  const handleSubmit = (data: ProductDTO) => {
+  const handleSubmit = async (data: ProductDTO) => {
     const formattedData = {
       ...data,
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(UpdateProductDTOMethods.POST, formattedData, formattedData.id);
+    await update(UpdateProductDTOMethods.POST, formattedData, formattedData.id);
 
     if (!updateError) {
       navigate(`/products/admin`);
