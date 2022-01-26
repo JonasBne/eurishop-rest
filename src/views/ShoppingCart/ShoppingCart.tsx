@@ -36,7 +36,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
       <ul>
         {cartItems.length > 0 ? (
           cartItems.map((item) => {
-            return <CartItem item={item} onUpdate={onUpdate} />;
+            return <CartItem key={item.id} item={item} onUpdate={onUpdate} />;
           })
         ) : (
           <Box margin="2rem 3rem">Oops, your cart looks empty...</Box>
