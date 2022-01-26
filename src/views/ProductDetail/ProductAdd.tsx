@@ -1,5 +1,5 @@
 import React from "react";
-import { ProductDTO } from "../../api/productsApi";
+import { ProductDTO, UpdateProductDTOMethods } from "../../api/productsApi";
 import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
 import rootUrl from "../../api/rootUrl";
@@ -21,7 +21,11 @@ function ProductAdd() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(`${rootUrl}api/products`, "POST", formattedData);
+    update(
+      `${rootUrl}api/products`,
+      UpdateProductDTOMethods.POST,
+      formattedData
+    );
   };
 
   return (

@@ -1,6 +1,10 @@
 import React from "react";
 import { useParams } from "react-router";
-import { useGetProduct, ProductDTO } from "../../api/productsApi";
+import {
+  useGetProduct,
+  ProductDTO,
+  UpdateProductDTOMethods,
+} from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import ProductForm from "./ProductForm";
@@ -25,7 +29,12 @@ function ProductEdit() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(`${rootUrl}api/products`, "PUT", formattedData, data.id.toString());
+    update(
+      `${rootUrl}api/products`,
+      UpdateProductDTOMethods.PUT,
+      formattedData,
+      data.id.toString()
+    );
   };
 
   return (

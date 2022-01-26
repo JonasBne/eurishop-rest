@@ -20,6 +20,12 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
+export enum UpdateProductDTOMethods {
+  POST = "POST",
+  PUT = "PUT",
+  DELETE = "DELETE",
+}
+
 const url = "api/products";
 
 const productMapper = (dto: ProductDTO) => {
