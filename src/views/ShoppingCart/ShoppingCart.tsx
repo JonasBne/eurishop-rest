@@ -23,10 +23,9 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
     return item.quantity * item.price;
   });
 
-  const totalSum = productSums.reduce(
-    (previousValue, currentValue) => previousValue + currentValue,
-    0
-  );
+  const totalSum = productSums
+    .reduce((previousValue, currentValue) => previousValue + currentValue, 0)
+    .toFixed(2);
 
   return (
     <Box width="100%" mr="1rem" border="2px solid #005f73">
