@@ -56,7 +56,6 @@ function Home() {
     setCartItems([]);
   };
 
-  // TODO: add global amount (add it to ShoppingCart - not in a state)
   // TODO: add following functions: handleOrder (ShoppingCart)
   return (
     <>
