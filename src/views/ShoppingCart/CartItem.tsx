@@ -27,9 +27,9 @@ function CartItem({ item }: CartItemProps) {
         <Header as="h4" variant="tertiary">
           {item.title}
         </Header>
-        <Box my="0.5rem">{`Unit price: ${item.price}`}</Box>
-        <Box my="0.5rem">{`#: ${item.quantity}`}</Box>
-        <Box my="0.5rem">{`Total: ${item.quantity * item.price}`}</Box>
+        <Box my="0.5rem">{`€ ${item.price}`}</Box>
+        {/* <Box my="0.5rem">{`#: ${item.quantity}`}</Box>
+        <Box my="0.5rem">{`Total: ${item.quantity * item.price}`}</Box> */}
       </div>
       <Button
         type="button"

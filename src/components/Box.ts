@@ -12,10 +12,18 @@ import {
   flex,
   grid,
   flexbox,
+  typography,
+  TypographyProps,
 } from "styled-system";
 
 const Box = styled.div<
-  SpaceProps | LayoutProps | GridProps | FlexProps | FlexboxProps | BorderProps
+  | SpaceProps
+  | LayoutProps
+  | GridProps
+  | FlexProps
+  | FlexboxProps
+  | BorderProps
+  | TypographyProps
 >(
   {
     boxSizing: "border-box",
@@ -26,7 +34,8 @@ const Box = styled.div<
   border,
   flex,
   flexbox,
-  grid
+  grid,
+  typography
 );
 
 export default Box;
