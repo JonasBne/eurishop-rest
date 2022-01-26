@@ -1,5 +1,9 @@
 import { useState } from "react";
-import { ProductDTO } from "../api/productsApi";
+import {
+  mapProductUpdateMethodsToUrls,
+  ProductDTO,
+  UpdateProductDTOMethods,
+} from "../api/productsApi";
 import RequestError from "../errors/RequestError";
 import CommunicationError from "../errors/CommunicationError";
 
@@ -8,11 +12,14 @@ function useUpdate() {
   const [updateError, setUpdateError] = useState<Error>();
 
   // TODO: work with refetch function when a new product is posted?
-  // TODO: is it a good practice to pass in the method?
-  const update = async (url: string, method: string, data: ProductDTO) => {
+  const update = async (
+    url: string,
+    method: UpdateProductDTOMethods,
+    data: ProductDTO
+  ) => {
     try {
       setUpdateIsLoading(true);
-      const response = await fetch(url, {
+      const response = await fetch(mapProductUpdateMethodsToUrls(method), {
         method,
         headers: {
           "Content-Type": "application/json",
@@ -31,10 +38,10 @@ function useUpdate() {
     }
   };
 
-  const remove = async (url: string, method: string) => {
+  const remove = async (url: string, method: UpdateProductDTOMethods) => {
     try {
       setUpdateIsLoading(true);
-      const response = await fetch(url, {
+      const response = await fetch(mapProductUpdateMethodsToUrls(method), {
         method,
       });
 
