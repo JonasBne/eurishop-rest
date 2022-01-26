@@ -8,15 +8,10 @@ function useUpdate() {
   const [updateError, setUpdateError] = useState<Error>();
 
   // TODO: is it a good practice to pass in the method?
-  const update = async (
-    url: string,
-    method: string,
-    data: ProductDTO,
-    id = ""
-  ) => {
+  const update = async (url: string, method: string, data: ProductDTO) => {
     try {
       setUpdateIsLoading(true);
-      const response = await fetch(`${url}/${id}`, {
+      const response = await fetch(url, {
         method,
         headers: {
           "Content-Type": "application/json",

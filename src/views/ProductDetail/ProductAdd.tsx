@@ -1,8 +1,11 @@
 import React from "react";
-import { ProductDTO, UpdateProductDTOMethods } from "../../api/productsApi";
+import {
+  ProductDTO,
+  UpdateProductDTOMethods,
+  mapProductUpdateMethodsToUrls,
+} from "../../api/productsApi";
 import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
-import rootUrl from "../../api/rootUrl";
 
 function ProductAdd() {
   const { update } = useUpdate();
@@ -22,7 +25,7 @@ function ProductAdd() {
       price: +data.price,
     };
     update(
-      `${rootUrl}api/products`,
+      mapProductUpdateMethodsToUrls(UpdateProductDTOMethods.POST),
       UpdateProductDTOMethods.POST,
       formattedData
     );

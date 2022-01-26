@@ -35,6 +35,21 @@ const productMapper = (dto: ProductDTO) => {
   };
 };
 
+export const mapProductUpdateMethodsToUrls = (
+  method: UpdateProductDTOMethods,
+  id = ""
+  // eslint-disable-next-line consistent-return
+) => {
+  switch (method) {
+    case UpdateProductDTOMethods.POST:
+      return "https://euricom-test-api.herokuapp.com/api/products";
+    case UpdateProductDTOMethods.PUT || UpdateProductDTOMethods.DELETE:
+      return `https://euricom-test-api.herokuapp.com/api/products/${id}`;
+    default:
+      return "https://euricom-test-api.herokuapp.com/api/products";
+  }
+};
+
 export const useGetProduct = (productId: string) => {
   const { loading, error, data } = useFetch<ProductDTO>(
     `${rootUrl}${url}/${productId}`

@@ -4,12 +4,12 @@ import {
   useGetProduct,
   ProductDTO,
   UpdateProductDTOMethods,
+  mapProductUpdateMethodsToUrls,
 } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
-import rootUrl from "../../api/rootUrl";
 
 function ProductEdit() {
   const { productId } = useParams<string>();
@@ -30,10 +30,12 @@ function ProductEdit() {
       price: +data.price,
     };
     update(
-      `${rootUrl}api/products`,
+      mapProductUpdateMethodsToUrls(
+        UpdateProductDTOMethods.PUT,
+        data.id.toString()
+      ),
       UpdateProductDTOMethods.PUT,
-      formattedData,
-      data.id.toString()
+      formattedData
     );
   };
 
