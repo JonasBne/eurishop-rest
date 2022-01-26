@@ -34,6 +34,7 @@ function CartItem({ item, onUpdate }: CartItemProps) {
           m="1rem 1rem 1rem 0"
           width="1.25rem"
           onClick={() => onUpdate("-", item)}
+          disabled={item.quantity === 0}
         >
           -
         </Button>
