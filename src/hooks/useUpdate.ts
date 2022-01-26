@@ -31,11 +31,29 @@ function useUpdate() {
     }
   };
 
-  // TODO: add delete and put request
+  const remove = async (url: string, method: string) => {
+    try {
+      setUpdateIsLoading(true);
+      const response = await fetch(url, {
+        method,
+      });
+
+      if (!response.ok) {
+        setUpdateError(new RequestError(response.status));
+        return;
+      }
+    } catch (e: any) {
+      setUpdateError(new CommunicationError(e));
+    } finally {
+      setUpdateIsLoading(false);
+    }
+  };
+
   return {
     updateIsLoading,
     updateError,
     update,
+    remove,
   };
 }
 

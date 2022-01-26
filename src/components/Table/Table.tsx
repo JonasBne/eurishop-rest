@@ -16,7 +16,8 @@ interface Column {
 
 interface TableProps extends SpaceProps {
   data: any[];
-  onRowClick?: (productId: string, event: React.MouseEvent) => void;
+  onRowClick?: (productId: string) => void;
+  onActionClick?: (productId: string) => void;
   sortExpression: string;
   setSortExpression: (prevSortExp: any) => void;
   columns: Column[];
@@ -28,6 +29,7 @@ function Table({
   sortExpression,
   setSortExpression,
   onRowClick,
+  onActionClick,
   ...space
 }: TableProps) {
   return (
@@ -55,9 +57,9 @@ function Table({
                 return (
                   <TableData
                     key={`item${index}${dataIndex}`}
-                    onClick={(event) => {
+                    onClick={() => {
                       if (onRowClick !== undefined) {
-                        onRowClick(item.id, event);
+                        onRowClick(item.id);
                       }
                     }}
                   >
@@ -66,7 +68,17 @@ function Table({
                 );
               })}
               <TableData>
-                <FaIcon icon={faTrash} px="0.25rem" color="red" mx="1rem" />
+                <FaIcon
+                  icon={faTrash}
+                  px="0.25rem"
+                  color="red"
+                  mx="1rem"
+                  onClick={() => {
+                    if (onActionClick !== undefined) {
+                      onActionClick(item.id);
+                    }
+                  }}
+                />
               </TableData>
             </TableRow>
           );

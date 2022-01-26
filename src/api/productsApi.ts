@@ -43,7 +43,9 @@ export const mapProductUpdateMethodsToUrls = (
   switch (method) {
     case UpdateProductDTOMethods.POST:
       return "https://euricom-test-api.herokuapp.com/api/products";
-    case UpdateProductDTOMethods.PUT || UpdateProductDTOMethods.DELETE:
+    case UpdateProductDTOMethods.PUT:
+      return `https://euricom-test-api.herokuapp.com/api/products/${id.toString()}`;
+    case UpdateProductDTOMethods.DELETE:
       return `https://euricom-test-api.herokuapp.com/api/products/${id.toString()}`;
     default:
       return "https://euricom-test-api.herokuapp.com/api/products";

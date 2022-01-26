@@ -1,21 +1,34 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { useGetProducts } from "../../api/productsApi";
+import {
+  mapProductUpdateMethodsToUrls,
+  UpdateProductDTOMethods,
+  useGetProducts,
+} from "../../api/productsApi";
 import Table from "../../components/Table/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import sortBy from "../../utils/sortBy";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import Button from "../../components/Button";
+import useUpdate from "../../hooks/useUpdate";
 
 function ProductList() {
   const navigate = useNavigate();
   const { loading, error, products } = useGetProducts();
+  const { remove } = useUpdate();
 
   const [sortExpression, setSortExpression] = useState<string>("");
 
-  const handleRedirect = (productId: string, event: React.MouseEvent) => {
-    console.log(event.target);
+  const handleRedirect = (productId: string) => {
     navigate(`/products/${productId}/edit`);
+  };
+
+  // TODO: provide feedback after delete
+  const handleAction = (productId: string) => {
+    remove(
+      mapProductUpdateMethodsToUrls(UpdateProductDTOMethods.DELETE, productId),
+      UpdateProductDTOMethods.DELETE
+    );
   };
 
   const sortedProducts = sortBy(products ?? [], sortExpression);
@@ -62,8 +75,8 @@ function ProductList() {
       sortable: true,
     },
     {
-      name: "remove",
-      label: "Remove",
+      name: "actions",
+      label: "Actions",
       sortable: false,
     },
   ];
@@ -92,6 +105,7 @@ function ProductList() {
             sortExpression={sortExpression}
             setSortExpression={setSortExpression}
             onRowClick={handleRedirect}
+            onActionClick={handleAction}
             my="2.5rem"
             mx="2rem"
           />
