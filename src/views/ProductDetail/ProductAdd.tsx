@@ -18,6 +18,7 @@ function ProductAdd() {
   `;
 
   // TODO: @Peter - why does TypeScript not complain that the data object holds strings for basePrice and Price?
+  // TODO: redirect user back to table when success
   const handleSubmit = (data: ProductDTO) => {
     const formattedData = {
       ...data,

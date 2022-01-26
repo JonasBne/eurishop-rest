@@ -23,6 +23,7 @@ function ProductEdit() {
   "desc desc"
   `;
 
+  // TODO: redirect a user back to the table after a succesful request
   const handleSubmit = (data: ProductDTO) => {
     const formattedData = {
       ...data,
