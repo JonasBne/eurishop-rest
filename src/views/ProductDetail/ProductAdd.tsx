@@ -23,7 +23,7 @@ function ProductAdd() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(UpdateProductDTOMethods.POST, formattedData);
+    update(UpdateProductDTOMethods.POST, formattedData, formattedData.id);
 
     if (!updateError) {
       navigate(`/products/admin`);

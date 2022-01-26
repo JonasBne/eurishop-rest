@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import {
-  mapProductUpdateMethodsToUrls,
-  UpdateProductDTOMethods,
-  useGetProducts,
-} from "../../api/productsApi";
+import { UpdateProductDTOMethods, useGetProducts } from "../../api/productsApi";
 import Table from "../../components/Table/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import sortBy from "../../utils/sortBy";
@@ -25,10 +21,7 @@ function ProductList() {
 
   // TODO: provide feedback after delete
   const handleAction = (productId: string) => {
-    remove(
-      mapProductUpdateMethodsToUrls(UpdateProductDTOMethods.DELETE, productId),
-      UpdateProductDTOMethods.DELETE
-    );
+    remove(UpdateProductDTOMethods.DELETE, productId);
   };
 
   const sortedProducts = sortBy(products ?? [], sortExpression);

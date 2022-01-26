@@ -29,7 +29,7 @@ function ProductEdit() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(UpdateProductDTOMethods.PUT, formattedData);
+    update(UpdateProductDTOMethods.PUT, formattedData, formattedData.id);
 
     if (!updateError) {
       navigate(`/products/admin`);
