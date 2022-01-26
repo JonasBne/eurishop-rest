@@ -2,7 +2,7 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/no-array-index-key */
 import React from "react";
-import { faPenSquare, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { SpaceProps } from "styled-system";
 import FaIcon from "../../assets/FaIcon";
 import SortableTableHead from "./SortableTableHead";
@@ -16,7 +16,7 @@ interface Column {
 
 interface TableProps extends SpaceProps {
   data: any[];
-  onRowClick?: (productId: string) => void;
+  onRowClick?: (productId: string, event: React.MouseEvent) => void;
   sortExpression: string;
   setSortExpression: (prevSortExp: any) => void;
   columns: Column[];
@@ -55,9 +55,9 @@ function Table({
                 return (
                   <TableData
                     key={`item${index}${dataIndex}`}
-                    onClick={() => {
+                    onClick={(event) => {
                       if (onRowClick !== undefined) {
-                        onRowClick(item.id);
+                        onRowClick(item.id, event);
                       }
                     }}
                   >
@@ -66,16 +66,7 @@ function Table({
                 );
               })}
               <TableData>
-                <FaIcon
-                  icon={faPenSquare}
-                  px="0.25rem"
-                  onClick={() => {
-                    if (onRowClick !== undefined) {
-                      onRowClick(item.id);
-                    }
-                  }}
-                />
-                <FaIcon icon={faTrash} px="0.25rem" />
+                <FaIcon icon={faTrash} px="0.25rem" color="red" mx="1rem" />
               </TableData>
             </TableRow>
           );

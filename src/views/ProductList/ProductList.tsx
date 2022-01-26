@@ -13,7 +13,8 @@ function ProductList() {
 
   const [sortExpression, setSortExpression] = useState<string>("");
 
-  const handleRedirect = (productId: string) => {
+  const handleRedirect = (productId: string, event: React.MouseEvent) => {
+    console.log(event.target);
     navigate(`/products/${productId}/edit`);
   };
 
@@ -61,8 +62,8 @@ function ProductList() {
       sortable: true,
     },
     {
-      name: "actions",
-      label: "Actions",
+      name: "remove",
+      label: "Remove",
       sortable: false,
     },
   ];
