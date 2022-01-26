@@ -4,7 +4,6 @@ import {
   useGetProduct,
   ProductDTO,
   UpdateProductDTOMethods,
-  mapProductUpdateMethodsToUrls,
 } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
@@ -30,11 +29,7 @@ function ProductEdit() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(
-      mapProductUpdateMethodsToUrls(UpdateProductDTOMethods.PUT, data.id),
-      UpdateProductDTOMethods.PUT,
-      formattedData
-    );
+    update(UpdateProductDTOMethods.PUT, formattedData);
 
     if (!updateError) {
       navigate(`/products/admin`);

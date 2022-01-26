@@ -1,10 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import {
-  ProductDTO,
-  UpdateProductDTOMethods,
-  mapProductUpdateMethodsToUrls,
-} from "../../api/productsApi";
+import { ProductDTO, UpdateProductDTOMethods } from "../../api/productsApi";
 import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
 
@@ -27,11 +23,7 @@ function ProductAdd() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(
-      mapProductUpdateMethodsToUrls(UpdateProductDTOMethods.POST),
-      UpdateProductDTOMethods.POST,
-      formattedData
-    );
+    update(UpdateProductDTOMethods.POST, formattedData);
 
     if (!updateError) {
       navigate(`/products/admin`);
