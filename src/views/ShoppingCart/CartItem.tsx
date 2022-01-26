@@ -43,7 +43,6 @@ function CartItem({ item, onUpdate }: CartItemProps) {
           variant="secondary"
           m="1rem 1rem 1rem 0"
           width="1.25rem"
-          // TODO: add the remove handler
           onClick={() => onUpdate("+", item)}
         >
           +
