@@ -8,10 +8,6 @@ import CartItem from "./CartItem";
 import { Item } from "../../domain/ShoppingCart";
 import FaIcon from "../../assets/FaIcon";
 
-// representation only
-// TODO: calculate total sum here
-// TODO: add the global sum here
-
 interface ShoppingCartProps {
   cartItems: Item[];
   onUpdate: (action: string, cartItem: Item) => void;
@@ -22,6 +18,15 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
   const handleClear = () => {
     onClear();
   };
+
+  const productSums = cartItems.map((item) => {
+    return item.quantity * item.price;
+  });
+
+  const totalSum = productSums.reduce(
+    (previousValue, currentValue) => previousValue + currentValue,
+    0
+  );
 
   return (
     <Box width="100%" mr="1rem" border="2px solid #005f73">
@@ -39,19 +44,24 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
         )}
       </ul>
       {cartItems.length > 0 && (
-        <FlexBox justifyContent="center" m="2rem">
-          <Button
-            type="button"
-            variant="danger"
-            mx="1rem"
-            onClick={handleClear}
-          >
-            CLEAR
-          </Button>
-          <Button type="button" variant="primary" mx="1rem">
-            ORDER
-          </Button>
-        </FlexBox>
+        <div>
+          <Header as="h3" mt="2rem" mb="3rem" textAlign="center">
+            {`TOTAL: € ${totalSum}`}
+          </Header>
+          <FlexBox justifyContent="center" m="2rem">
+            <Button
+              type="button"
+              variant="danger"
+              mx="1rem"
+              onClick={handleClear}
+            >
+              CLEAR
+            </Button>
+            <Button type="button" variant="primary" mx="1rem">
+              ORDER
+            </Button>
+          </FlexBox>
+        </div>
       )}
     </Box>
   );
