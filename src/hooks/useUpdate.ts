@@ -7,7 +7,7 @@ function useUpdate() {
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>(false);
   const [updateError, setUpdateError] = useState<Error>();
 
-  // TODO: avoid code duplication and try to combine delete, put, post if possible
+  // TODO: is it a good practice to pass in the method?
   const update = async (
     url: string,
     method: string,

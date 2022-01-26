@@ -19,14 +19,13 @@ function ProductEdit() {
   "desc desc"
   `;
 
-  // TODO: finalize this function
   const handleSubmit = (data: ProductDTO) => {
     const formattedData = {
       ...data,
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(`${rootUrl}api/products`, "put", formattedData, data.id.toString());
+    update(`${rootUrl}api/products`, "PUT", formattedData, data.id.toString());
   };
 
   return (
