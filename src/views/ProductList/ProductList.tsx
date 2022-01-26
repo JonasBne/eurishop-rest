@@ -10,8 +10,8 @@ import useUpdate from "../../hooks/useUpdate";
 
 function ProductList() {
   const navigate = useNavigate();
-  const { loading, error, products } = useGetProducts();
-  const { remove } = useUpdate();
+  const { loading, error, products, refetch } = useGetProducts();
+  const { remove, updateError } = useUpdate();
 
   const [sortExpression, setSortExpression] = useState<string>("");
 
@@ -22,6 +22,10 @@ function ProductList() {
   // TODO: provide feedback after delete
   const handleAction = (productId: string) => {
     remove(UpdateProductDTOMethods.DELETE, productId);
+
+    if (!updateError) {
+      refetch();
+    }
   };
 
   const sortedProducts = sortBy(products ?? [], sortExpression);
