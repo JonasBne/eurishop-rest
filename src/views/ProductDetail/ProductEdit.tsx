@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import {
   useGetProduct,
   ProductDTO,
@@ -12,9 +12,10 @@ import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
 
 function ProductEdit() {
+  const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
-  const { update } = useUpdate();
+  const { update, updateError } = useUpdate();
 
   const gridTemplateAreas = `
   "title sku"
@@ -23,7 +24,6 @@ function ProductEdit() {
   "desc desc"
   `;
 
-  // TODO: redirect a user back to the table after a succesful request
   const handleSubmit = (data: ProductDTO) => {
     const formattedData = {
       ...data,
@@ -35,6 +35,10 @@ function ProductEdit() {
       UpdateProductDTOMethods.PUT,
       formattedData
     );
+
+    if (!updateError) {
+      navigate(`/products/admin`);
+    }
   };
 
   return (

@@ -7,6 +7,7 @@ function useUpdate() {
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>(false);
   const [updateError, setUpdateError] = useState<Error>();
 
+  // TODO: work with refetch function when a new product is posted?
   // TODO: is it a good practice to pass in the method?
   const update = async (url: string, method: string, data: ProductDTO) => {
     try {

@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import {
   ProductDTO,
   UpdateProductDTOMethods,
@@ -8,7 +9,8 @@ import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
 
 function ProductAdd() {
-  const { update } = useUpdate();
+  const navigate = useNavigate();
+  const { update, updateError } = useUpdate();
 
   const gridTemplateAreas = `
   "title sku"
@@ -30,6 +32,10 @@ function ProductAdd() {
       UpdateProductDTOMethods.POST,
       formattedData
     );
+
+    if (!updateError) {
+      navigate(`/products/admin`);
+    }
   };
 
   return (
