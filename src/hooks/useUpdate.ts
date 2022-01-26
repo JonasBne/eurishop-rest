@@ -8,7 +8,6 @@ function useUpdate() {
   const [updateError, setUpdateError] = useState<Error>();
 
   // TODO: avoid code duplication and try to combine delete, put, post if possible
-  // TODO: fix issue with post request
   const update = async (
     url: string,
     method: string,
