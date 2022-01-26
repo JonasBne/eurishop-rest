@@ -2,6 +2,7 @@ import React from "react";
 import { ProductDTO } from "../../api/productsApi";
 import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
+import rootUrl from "../../api/rootUrl";
 
 function ProductAdd() {
   const { update } = useUpdate();
@@ -20,11 +21,7 @@ function ProductAdd() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    update(
-      `https://euricom-test-api.herokuapp.com/api/products`,
-      "post",
-      formattedData
-    );
+    update(`${rootUrl}/products`, "post", formattedData);
   };
 
   return (
