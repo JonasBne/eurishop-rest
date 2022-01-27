@@ -12,8 +12,11 @@ const CardMedia = styled.img`
 `;
 
 const CardContent = styled.p`
-  font-size: 1rem;
-  line-height: 2rem;
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+  padding-top: 1rem;
+  padding-inline: 1rem;
+  text-align: justify;
 `;
 
 export interface CardProps
