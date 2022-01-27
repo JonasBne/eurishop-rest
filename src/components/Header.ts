@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { DefaultTheme } from "styled-components";
 import {
   space,
   SpaceProps,
@@ -15,6 +15,7 @@ interface VariantProps {
   variant?: Variants;
 }
 
+// TODO: cleanup the unused variants later
 const Header = styled.h1<
   SpaceProps | LayoutProps | TextAlignProps | VariantProps
 >(
@@ -27,7 +28,7 @@ const Header = styled.h1<
   variant({
     variants: {
       primary: {
-        color: "#FFF",
+        color: `${(theme: DefaultTheme) => theme.colors.whites.primaryWhite}`,
       },
       secondary: {
         color: "#FFF",

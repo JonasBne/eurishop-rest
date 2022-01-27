@@ -1,4 +1,6 @@
-const theme = {
+import { DefaultTheme } from "styled-components";
+
+const theme: DefaultTheme = {
   colors: {
     blacks: {
       primaryBlack: "#0F1523",
