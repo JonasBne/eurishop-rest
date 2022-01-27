@@ -32,7 +32,7 @@ const Button = styled("button")<SpaceProps | LayoutProps | VariantProps>(
       },
       secondary: {
         color: `${theme.colors.whites.primaryWhite}`,
-        bg: "#17a2b8",
+        bg: `${theme.colors.greens.secondaryGreen}`,
       },
       danger: {
         color: `${theme.colors.whites.primaryWhite}`,

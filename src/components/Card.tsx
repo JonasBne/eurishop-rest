@@ -54,7 +54,7 @@ function Card({
       backgroundColor={theme.colors.whites.primaryWhite}
       {...space}
     >
-      <Header as="h3" variant="secondary" pt="1rem">
+      <Header as="h3" variant="secondary">
         {title}
       </Header>
       <CardMedia src={image} />

@@ -2,8 +2,8 @@ import React from "react";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
 import Box from "../../components/Box";
-import FlexBox from "../../components/FlexBox";
 import { Item } from "../../domain/ShoppingCart";
+import FlexBox from "../../components/FlexBox";
 
 interface CartItemProps {
   item: Item;
@@ -12,43 +12,33 @@ interface CartItemProps {
 
 function CartItem({ item, onUpdate }: CartItemProps) {
   return (
-    <FlexBox justifyContent="space-around">
-      <div>
-        <Header as="h4" variant="tertiary">
-          {item.title}
-        </Header>
-        <Box
-          my="0.5rem"
-          fontStyle="italic"
-        >{`Unit price: € ${item.price}`}</Box>
-        <Box my="0.5rem" fontWeight="bold">{`Total: € ${(
-          item.quantity * item.price
-        ).toFixed(2)}`}</Box>
-      </div>
-
-      <Box mt="3rem">
-        <div>{`Amount: ${item.quantity}`}</div>
+    <div>
+      <Header as="h4">{item.title}</Header>
+      <Box my="0.5rem" fontStyle="italic">{`Unit price: € ${item.price}`}</Box>
+      <FlexBox alignItems="baseline" my="2rem">
         <Button
           type="button"
           variant="secondary"
-          m="1rem 1rem 1rem 0"
-          width="1.25rem"
+          mr="1rem"
           onClick={() => onUpdate("-", item)}
           disabled={item.quantity === 0}
         >
           -
         </Button>
+        <div>{item.quantity}</div>
         <Button
           type="button"
           variant="secondary"
-          m="1rem 1rem 1rem 0"
-          width="1.25rem"
+          ml="1rem"
           onClick={() => onUpdate("+", item)}
         >
           +
         </Button>
-      </Box>
-    </FlexBox>
+      </FlexBox>
+      <Box my="0.5rem" fontWeight="bold">{`Total: € ${(
+        item.quantity * item.price
+      ).toFixed(2)}`}</Box>
+    </div>
   );
 }
 
