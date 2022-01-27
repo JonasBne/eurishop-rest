@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactNode } from "react";
-import styled from "styled-components";
+import React, { ReactNode, useContext } from "react";
+import styled, { ThemeContext } from "styled-components";
 import { SpaceProps } from "styled-system";
 import Box from "./Box";
 import Header from "./Header";
@@ -26,8 +26,16 @@ export interface CardProps
 }
 
 function Card({ title, image, content, children, ...space }: CardProps) {
+  const theme = useContext(ThemeContext);
+
   return (
-    <Box width="400px" borderRadius="35px" p="1.25rem" {...space}>
+    <Box
+      width="400px"
+      borderRadius="35px"
+      backgroundColor={theme.colors.whites.primaryWhite}
+      p="1.25rem"
+      {...space}
+    >
       <CardMedia src={image} />
       <Header as="h2" variant="tertiary" textAlign="center">
         {title}
