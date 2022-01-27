@@ -36,10 +36,18 @@ const Header = styled.h1<
       secondary: {
         color: `${theme.colors.whites.primaryWhite}`,
         background: `${theme.colors.blues.primaryBlue}`,
+        marginTop: 0,
+        height: "4rem",
+        borderRadius: "35px 35px 0 0",
+        textAlign: "center",
       },
       tertiary: {
         color: `${theme.colors.whites.primaryWhite}`,
         background: `${theme.colors.greens.primaryGreen}`,
+        marginTop: 0,
+        height: "4rem",
+        borderRadius: "35px 35px 0 0",
+        textAlign: "center",
       },
     },
   })

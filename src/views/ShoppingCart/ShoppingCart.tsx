@@ -29,7 +29,13 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
 
   return (
     <Box width="100%" mt="3rem" mr="1rem" border="2px solid #005f73">
-      <Header as="h2" textAlign="center">
+      <Header
+        as="h2"
+        variant="tertiary"
+        mt="0"
+        height="4rem"
+        textAlign="center"
+      >
         Shopping Cart
         <FaIcon ml="1rem" icon={faShoppingCart} />
       </Header>
