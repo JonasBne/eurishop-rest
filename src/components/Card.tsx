@@ -19,15 +19,32 @@ const CardContent = styled.p`
   text-align: justify;
 `;
 
+const CardFooter = styled.p`
+  font-size: 0.8rem;
+  line-height: 1.5rem;
+  padding-top: 1rem;
+  padding-inline: 1rem;
+  font-weight: bold;
+  font-style: italic;
+`;
+
 export interface CardProps
   extends Omit<SpaceProps, "p" | "pl" | "pr" | "px" | "py"> {
   title: string;
   image: string;
   content: string;
+  footerContent?: string | number;
   children?: ReactNode;
 }
 
-function Card({ title, image, content, children, ...space }: CardProps) {
+function Card({
+  title,
+  image,
+  content,
+  footerContent,
+  children,
+  ...space
+}: CardProps) {
   const theme = useContext(ThemeContext);
 
   return (
@@ -50,6 +67,8 @@ function Card({ title, image, content, children, ...space }: CardProps) {
       </Header>
       <CardMedia src={image} />
       <CardContent>{content}</CardContent>
+      <CardFooter>{footerContent}</CardFooter>
+
       {children}
     </Box>
   );

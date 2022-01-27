@@ -23,6 +23,7 @@ function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
       title={product.title}
       image={product.image}
       content={product.desc}
+      footerContent={`Unit price: € ${product.price}`}
       {...space}
     >
       {product.stocked === "Yes" ? (
