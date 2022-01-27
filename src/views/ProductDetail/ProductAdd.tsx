@@ -10,7 +10,9 @@ import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
 
 function ProductAdd() {
-  const notify = () => toast.success("Succes");
+  // TODO: move toast to a separate file to be reused
+  const succesToast = () => toast.success("Succes");
+  const failToast = () => toast.error("Something went wrong");
   const navigate = useNavigate();
   const { refetch } = useGetProducts();
   const { update, updateError } = useUpdate();
@@ -23,8 +25,7 @@ function ProductAdd() {
   `;
 
   // TODO: @Peter - why does TypeScript not complain that the data object holds strings for basePrice and Price?
-  // TODO: redirect user back to table when success
-  // TODO: provide feedback to the end user
+  // TODO: @Peter - Is this a correct way of using async code?
   const handleSubmit = async (data: ProductDTO) => {
     const formattedData = {
       ...data,
@@ -32,10 +33,16 @@ function ProductAdd() {
       price: +data.price,
     };
 
-    await update(UpdateProductDTOMethods.POST, formattedData, formattedData.id);
+    const response = await update(
+      UpdateProductDTOMethods.POST,
+      formattedData,
+      formattedData.id
+    );
 
-    if (!updateError) {
-      notify();
+    if (!response?.ok || updateError) {
+      failToast();
+    } else {
+      succesToast();
       refetch();
       navigate(`/products/admin`);
     }

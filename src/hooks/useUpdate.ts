@@ -12,7 +12,7 @@ function useUpdate() {
   const [updateIsLoading, setUpdateIsLoading] = useState<boolean>(false);
   const [updateError, setUpdateError] = useState<Error>();
 
-  // TODO: work with refetch function when a new product is posted?
+  // TODO: @Peter is this the proper way of working with async/await?
   const update = async (
     method: UpdateProductDTOMethods,
     data: ProductDTO,
@@ -32,6 +32,8 @@ function useUpdate() {
         setUpdateError(new RequestError(response.status));
         return;
       }
+
+      return response;
     } catch (e: any) {
       setUpdateError(new CommunicationError(e));
     } finally {
