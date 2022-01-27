@@ -27,7 +27,7 @@ export interface CardProps
 
 function Card({ title, image, content, children, ...space }: CardProps) {
   return (
-    <Box width="350px" border="2px solid gray" p="1.25rem" {...space}>
+    <Box width="400px" borderRadius="35px" p="1.25rem" {...space}>
       <CardMedia src={image} />
       <Header as="h2" variant="tertiary" textAlign="center">
         {title}
