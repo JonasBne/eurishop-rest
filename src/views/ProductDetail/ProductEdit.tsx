@@ -10,8 +10,10 @@ import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
+import toasts from "../../components/toasts";
 
 function ProductEdit() {
+  const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
@@ -31,11 +33,19 @@ function ProductEdit() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-    await update(UpdateProductDTOMethods.PUT, formattedData, formattedData.id);
 
-    if (!updateError) {
-      navigate(`/products/admin`);
+    const response = await update(
+      UpdateProductDTOMethods.PUT,
+      formattedData,
+      formattedData.id
+    );
+
+    if (!response?.ok || updateError) {
+      failToast();
+    } else {
+      succesToast();
       refetch();
+      navigate(`/products/admin`);
     }
   };
 
