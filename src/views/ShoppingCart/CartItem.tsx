@@ -35,7 +35,7 @@ function CartItem({ item, onUpdate }: CartItemProps) {
           +
         </Button>
       </FlexBox>
-      <Box my="0.5rem" fontWeight="bold">{`Total: € ${(
+      <Box mt="0.5rem" mb="1rem" fontWeight="bold">{`Total: € ${(
         item.quantity * item.price
       ).toFixed(2)}`}</Box>
     </div>
