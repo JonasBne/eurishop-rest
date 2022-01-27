@@ -36,10 +36,10 @@ function Card({ title, image, content, children, ...space }: CardProps) {
       p="1.25rem"
       {...space}
     >
-      <CardMedia src={image} />
       <Header as="h2" variant="tertiary" textAlign="center">
         {title}
       </Header>
+      <CardMedia src={image} />
       <CardContent>{content}</CardContent>
       {children}
     </Box>
