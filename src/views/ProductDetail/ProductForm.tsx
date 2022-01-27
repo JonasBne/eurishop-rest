@@ -16,8 +16,9 @@ import FlexBox from "../../components/FlexBox";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  border-radius: 35px;
   width: 40%;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.whites.primaryWhite};
   ${space}
   ${layout};
 `;
