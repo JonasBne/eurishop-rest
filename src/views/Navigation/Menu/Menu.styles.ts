@@ -9,7 +9,7 @@ const StyledMenu = styled.nav`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background: ${({ theme }) => theme.tertiaryLight};
+  background: ${({ theme }) => theme.colors.whites.primaryWhite};
   height: 100vh;
   text-align: left;
   width: 15rem;
@@ -32,7 +32,7 @@ const StyledLink = styled(Link)`
   transition: color 0.3s linear;
 
   &:hover {
-    color: ${({ theme }) => theme.primaryLight};
+    color: ${({ theme }) => theme.colors.blues.primaryBlue};
   }
 `;
 
