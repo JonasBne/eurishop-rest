@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { ThemeContext } from "styled-components";
 import Box from "../../components/Box";
 import FlexBox from "../../components/FlexBox";
 import Header from "../../components/Header";
@@ -15,6 +16,8 @@ interface ShoppingCartProps {
 }
 
 function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
+  const theme = useContext(ThemeContext);
+
   const handleClear = () => {
     onClear();
   };
@@ -28,14 +31,14 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
     .toFixed(2);
 
   return (
-    <Box width="100%" mt="3rem" mr="1rem" border="2px solid #005f73">
-      <Header
-        as="h2"
-        variant="tertiary"
-        mt="0"
-        height="4rem"
-        textAlign="center"
-      >
+    <Box
+      width="100%"
+      mt="3rem"
+      mr="1rem"
+      borderRadius="35px"
+      backgroundColor={theme.colors.whites.primaryWhite}
+    >
+      <Header as="h2" variant="tertiary">
         Shopping Cart
         <FaIcon ml="1rem" icon={faShoppingCart} />
       </Header>
