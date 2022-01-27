@@ -33,10 +33,16 @@ function Card({ title, image, content, children, ...space }: CardProps) {
       width="25rem"
       borderRadius="35px"
       backgroundColor={theme.colors.whites.primaryWhite}
-      p="1.25rem"
       {...space}
     >
-      <Header as="h2" variant="tertiary" textAlign="center">
+      <Header
+        as="h2"
+        variant="secondary"
+        mt="0"
+        height="4rem"
+        borderRadius="35px 35px 0 0"
+        textAlign="center"
+      >
         {title}
       </Header>
       <CardMedia src={image} />

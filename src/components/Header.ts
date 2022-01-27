@@ -7,6 +7,8 @@ import {
   textAlign,
   TextAlignProps,
   variant,
+  border,
+  BorderProps,
 } from "styled-system";
 import theme from "../theme/theme";
 
@@ -17,7 +19,7 @@ interface VariantProps {
 }
 
 const Header = styled.h1<
-  SpaceProps | LayoutProps | TextAlignProps | VariantProps
+  SpaceProps | LayoutProps | TextAlignProps | VariantProps | BorderProps
 >(
   {
     letterSpacing: "3px",
@@ -25,6 +27,7 @@ const Header = styled.h1<
   space,
   layout,
   textAlign,
+  border,
   variant({
     variants: {
       primary: {
