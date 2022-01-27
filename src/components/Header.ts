@@ -1,4 +1,4 @@
-import styled, { DefaultTheme } from "styled-components";
+import styled from "styled-components";
 import {
   space,
   SpaceProps,
@@ -8,6 +8,7 @@ import {
   TextAlignProps,
   variant,
 } from "styled-system";
+import theme from "../theme/theme";
 
 type Variants = "primary" | "secondary" | "tertiary";
 
@@ -28,14 +29,11 @@ const Header = styled.h1<
   variant({
     variants: {
       primary: {
-        color: `${(theme: DefaultTheme) => theme.colors.whites.primaryWhite}`,
+        color: `${theme.colors.whites.primaryWhite}`,
       },
       secondary: {
-        color: "#FFF",
-        background: "#013A63",
-      },
-      tertiary: {
-        color: "#013A63",
+        color: `${theme.colors.whites.primaryWhite}`,
+        background: `${theme.colors.blues.primaryBlue}`,
       },
     },
   })

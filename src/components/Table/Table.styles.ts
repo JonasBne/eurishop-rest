@@ -11,7 +11,7 @@ const StyledTable = styled.table<SpaceProps>`
 `;
 
 const TableHead = styled.th`
-  background: ${({ theme }) => theme.secondaryDark};
+  background: ${({ theme }) => theme.colors.blues.primaryBlue};
   color: white;
   padding: 1rem;
   text-align: left;
