@@ -20,7 +20,6 @@ const TableHead = styled.th`
 const TableRow = styled.tr`
   height: 3.5rem;
   color: #808080;
-  background: #fff
   line-height: 1.2;
 
   &:hover {
@@ -33,6 +32,7 @@ const TableData = styled.td`
   padding: 1rem;
   margin: 1rem;
   text-align: left;
+  background: ${({ theme }) => theme.colors.whites.primaryWhite};
 `;
 
 export { StyledTable, TableHead, TableRow, TableData };
