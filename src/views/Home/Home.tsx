@@ -1,4 +1,3 @@
-/* eslint-disable no-plusplus */
 import React, { useState } from "react";
 import { ProductDTO, useGetProducts } from "../../api/productsApi";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";

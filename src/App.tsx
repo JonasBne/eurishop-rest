@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 import theme from "./theme";
 import Navbar from "./views/Navigation/Navbar";
 import Home from "./views/Home/Home";
@@ -14,8 +14,8 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyle />
-      <ToastContainer />
       <Navbar />
+      <Toaster position="top-right" />
       <Routes>
         <Route path="*" element={<Home />} />
         <Route path="home" element={<Home />} />

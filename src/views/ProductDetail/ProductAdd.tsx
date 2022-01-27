@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 import {
   ProductDTO,
   UpdateProductDTOMethods,
@@ -9,6 +10,7 @@ import ProductForm from "./ProductForm";
 import useUpdate from "../../hooks/useUpdate";
 
 function ProductAdd() {
+  const notify = () => toast.success("Succes");
   const navigate = useNavigate();
   const { refetch } = useGetProducts();
   const { update, updateError } = useUpdate();
@@ -33,8 +35,9 @@ function ProductAdd() {
     await update(UpdateProductDTOMethods.POST, formattedData, formattedData.id);
 
     if (!updateError) {
-      navigate(`/products/admin`);
+      notify();
       refetch();
+      navigate(`/products/admin`);
     }
   };
 
