@@ -77,7 +77,7 @@ function Home() {
                   key={product.id}
                   product={product}
                   onBuy={handleBuy}
-                  m="2rem"
+                  m="5rem 3rem"
                 />
               );
             })}

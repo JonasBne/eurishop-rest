@@ -6,10 +6,9 @@ import Box from "./Box";
 import Header from "./Header";
 
 const CardMedia = styled.img`
-  width: 100%;
+  width: 60%;
+  display: block;
   margin: auto;
-  height: 20rem;
-  object-fit: cover;
 `;
 
 const CardContent = styled.p`
