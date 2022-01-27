@@ -37,6 +37,10 @@ const Header = styled.h1<
         color: `${theme.colors.whites.primaryWhite}`,
         background: `${theme.colors.blues.primaryBlue}`,
       },
+      tertiary: {
+        color: `${theme.colors.whites.primaryWhite}`,
+        background: `${theme.colors.greens.primaryGreen}`,
+      },
     },
   })
 );
