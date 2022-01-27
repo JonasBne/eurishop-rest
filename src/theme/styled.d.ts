@@ -19,6 +19,9 @@ declare module "styled-components" {
         secondaryGreen: string;
         tertiaryGreen: string;
       };
+      reds: {
+        primaryRed: string;
+      };
     };
   }
 }

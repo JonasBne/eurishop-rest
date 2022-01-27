@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { space, SpaceProps, layout, LayoutProps, variant } from "styled-system";
+import theme from "../theme/theme";
 
 type Variants = "primary" | "secondary" | "danger" | "success";
 
@@ -10,10 +11,8 @@ interface VariantProps {
 const Button = styled("button")<SpaceProps | LayoutProps | VariantProps>(
   {
     boxSizing: "border-box",
-    borderRadius: "0.25rem",
+    borderRadius: "35px",
     borderWidth: "0",
-    boxShadow:
-      "rgba(50, 50, 93, 0.1) 0 0 0 1px inset, rgba(50, 50, 93, 0.1) 0 2px 5px 0, rgba(0, 0, 0, 0.07) 0 1px 1px 0",
     color: "#FFF",
     fontSize: "100%",
     height: "2rem",
@@ -28,16 +27,16 @@ const Button = styled("button")<SpaceProps | LayoutProps | VariantProps>(
   variant({
     variants: {
       primary: {
-        color: "#FFF",
-        bg: "#007bff",
+        color: `${theme.colors.whites.primaryWhite}`,
+        bg: `${theme.colors.blues.secondaryBlue}`,
       },
       secondary: {
-        color: "FFF",
+        color: `${theme.colors.whites.primaryWhite}`,
         bg: "#17a2b8",
       },
       danger: {
-        color: "#FFF",
-        bg: "#dc3545",
+        color: `${theme.colors.whites.primaryWhite}`,
+        bg: `${theme.colors.reds.primaryRed}`,
       },
       success: {
         color: "FFF",

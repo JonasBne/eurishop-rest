@@ -18,6 +18,9 @@ const theme: DefaultTheme = {
       secondaryGreen: "#74C69D",
       tertiaryGreen: "#005F73",
     },
+    reds: {
+      primaryRed: "#E63946",
+    },
   },
 };
 export default theme;
