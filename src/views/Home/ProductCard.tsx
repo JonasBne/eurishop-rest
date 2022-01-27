@@ -20,7 +20,7 @@ function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
 
   return (
     <Card
-      title={`${product.title} (€${product.price})`}
+      title={product.title}
       image={product.image}
       content={product.desc}
       {...space}
