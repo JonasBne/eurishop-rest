@@ -6,7 +6,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 In the project directory, you can run:
 
-### `npm start`
+### `yarn start`
 
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
@@ -14,12 +14,12 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+### `yarn test`
 
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+### `yarn build`
 
 Builds the app for production to the `build` folder.\
 It correctly bundles React in production mode and optimizes the build for the best performance.
@@ -31,55 +31,29 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Purpose
 
-I am building this application during my onboarding at Euricom (solely for educational purposes). The main goal of building the application is to familiarize myself with different tools & techniques in order to deliver a fully operational CRUD application.
+I developed this application during my onboarding at Euricom. The main goal of doing so, was to familiarze myself with different tools, techniques and programming concepts in order to deliver a fully operational CRUD application. A lot of attention was spent towards clean code.
 
 ## Features
 
-The application consists of three different pages.
+The application consists of several views:
 
-In the first version of the application, everything is stored in memory (i.e. all information is lost on a page refresh). Also, at this time the basket api will not be used.
+- Home: an overview of different products that are fetched from https://euricom-test-api.herokuapp.com/ and a shopping cart. Products can be added to the cart and the amount of units can be changed. The total cost of the shopping cart is adjusted accordingly. The basket can be cleared, but there is no feature in place for actually doing something with the order.
 
-#### Product page for with an overview for the administrator
+- Products (admin): a table overview for the admin user that displays the total amount of products. The table is sortable based on several columns. Items can be deleted or added. 
 
-- This page contains a table that holds information regarding the different products (i.e. name, prize, stock,...);
+Information and actions are stored in memory. Hence, information gets lost on page refresh. 
 
-- The product table can be sortered based on product title, price and stock by clicking on the respective header;
+### Future improvements
 
-- Initially, all 100 products are shown in the table. There is no pagination at this point;
+- Provide infinite scroll for both the product overview as the table;
 
-- The administrator can click a field in the table and then gets redirected to the product detail;
+- Make the home page mobile responsive; 
 
-- Products can be added or deleted;
+- Add form validation with React-hook-form and YUP
 
-- The product table is not responsive;
+- Introduce React Query 
 
-- Minimal styling is applied;
-
-#### Product page with an overview for the end user
-
-- This page displays the different products for the end user;
-
-- Page has to be responsive;
-
-- At the righthand side of the page a basket is shown;
-
-- Each product can be added to the basket (if stock is greater than zero);
-
-- There must be a calculation of the total cost for the end user (the sum of the added products to the basket);
-
-- There should be a button that clears the basket;
-
-- There should be a functionality which allows the user to remove certain products from the basket;
-
-- When a product is added that is not in stock, an error must be shown (redirected to an error page)
-
-#### Product page with details
-
-- The product page consists out of a form which displays the detailed information of a given product;
-
-- Products can be modified, added or deleted;
-
-- When adding a new product, title and price are required;
+- Host website on Netflify
 
 ## Technology, tools & concepts
 
@@ -97,16 +71,13 @@ In the first version of the application, everything is stored in memory (i.e. al
 
 - Fetch
 
-- REST API
-
 - ES Lint Air-BnB
 
 - Netlify
 
-- Trunk-based developed
+- React hook form
 
-- Form (validation) in plain React (no libraries)
+- React hot toast 
 
 - React Router
 
-- Context API
