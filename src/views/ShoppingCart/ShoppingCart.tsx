@@ -65,7 +65,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
             >
               CLEAR
             </Button>
-            <Button type="button" variant="primary" mx="1rem">
+            <Button type="button" variant="success" mx="1rem">
               ORDER
             </Button>
           </FlexBox>

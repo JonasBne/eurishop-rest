@@ -39,8 +39,8 @@ const Button = styled("button")<SpaceProps | LayoutProps | VariantProps>(
         bg: `${theme.colors.reds.primaryRed}`,
       },
       success: {
-        color: "FFF",
-        bg: "#28a745",
+        color: `${theme.colors.whites.primaryWhite}`,
+        bg: `${theme.colors.greens.primaryGreen}`,
       },
     },
   })
