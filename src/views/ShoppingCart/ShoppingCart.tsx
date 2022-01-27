@@ -33,7 +33,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
   return (
     <Box
       width="100%"
-      mt="3rem"
+      mt="2rem"
       mr="1rem"
       borderRadius="35px"
       backgroundColor={theme.colors.whites.primaryWhite}
