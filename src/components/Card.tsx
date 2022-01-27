@@ -29,7 +29,7 @@ function Card({ title, image, content, children, ...space }: CardProps) {
 
   return (
     <Box
-      width="25rem"
+      width="20rem"
       borderRadius="35px"
       backgroundColor={theme.colors.whites.primaryWhite}
       {...space}
