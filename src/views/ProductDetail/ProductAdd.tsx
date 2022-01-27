@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router";
-import toast from "react-hot-toast";
+// import toast from "react-hot-toast";
+import toasts from "../../components/toasts";
 import {
   ProductDTO,
   UpdateProductDTOMethods,
@@ -11,8 +12,9 @@ import useUpdate from "../../hooks/useUpdate";
 
 function ProductAdd() {
   // TODO: move toast to a separate file to be reused
-  const succesToast = () => toast.success("Succes");
-  const failToast = () => toast.error("Something went wrong");
+  // const succesToast = () => toast.success("Succes");
+  // const failToast = () => toast.error("Something went wrong");
+  const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { refetch } = useGetProducts();
   const { update, updateError } = useUpdate();
