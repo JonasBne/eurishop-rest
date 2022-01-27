@@ -38,9 +38,10 @@ function Card({ title, image, content, children, ...space }: CardProps) {
       {...space}
     >
       <Header
-        as="h2"
+        as="h3"
         variant="secondary"
         mt="0"
+        pt="1rem"
         height="4rem"
         borderRadius="35px 35px 0 0"
         textAlign="center"
