@@ -4,7 +4,7 @@ const GlobalStyle = createGlobalStyle({
   body: {
     margin: 0,
     padding: 0,
-    fontFamily: "Roboto, Open Sans, sans-serif",
+    fontFamily: "Montserrat, sans-serif",
   },
 });
 
