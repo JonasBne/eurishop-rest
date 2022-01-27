@@ -29,6 +29,7 @@ function ProductAdd() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
+
     await update(UpdateProductDTOMethods.POST, formattedData, formattedData.id);
 
     if (!updateError) {
