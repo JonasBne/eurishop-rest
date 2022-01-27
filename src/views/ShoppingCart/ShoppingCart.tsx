@@ -48,7 +48,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
             return (
               <>
                 <CartItem key={item.id} item={item} onUpdate={onUpdate} />
-                <hr />
+                <hr key={item.id} />
               </>
             );
           })
