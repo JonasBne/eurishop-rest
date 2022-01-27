@@ -55,6 +55,7 @@ function useUpdate() {
         setUpdateError(new RequestError(response.status));
         return;
       }
+      return response;
     } catch (e: any) {
       setUpdateError(new CommunicationError(e));
     } finally {
