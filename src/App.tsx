@@ -2,7 +2,7 @@ import React from "react";
 import { Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import { Toaster } from "react-hot-toast";
-import theme from "./theme";
+import theme from "./theme/theme";
 import Navbar from "./views/Navigation/Navbar";
 import Home from "./views/Home/Home";
 import ProductEdit from "./views/ProductDetail/ProductEdit";

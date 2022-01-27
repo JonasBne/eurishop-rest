@@ -14,6 +14,7 @@ const theme = {
     greens: {
       primaryGreen: "#2A9D8F",
       secondaryGreen: "#74C69D",
+      tertiaryGreen: "005F73",
     },
   },
 };
