@@ -16,7 +16,6 @@ interface VariantProps {
   variant?: Variants;
 }
 
-// TODO: cleanup the unused variants later
 const Header = styled.h1<
   SpaceProps | LayoutProps | TextAlignProps | VariantProps
 >(
