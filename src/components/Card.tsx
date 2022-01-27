@@ -50,7 +50,7 @@ function Card({
   return (
     <Box
       width="20rem"
-      borderRadius="35px"
+      borderRadius="20px"
       backgroundColor={theme.colors.whites.primaryWhite}
       {...space}
     >

@@ -39,7 +39,7 @@ const Header = styled.h1<
         marginTop: 0,
         paddingTop: "1rem",
         height: "4rem",
-        borderRadius: "35px 35px 0 0",
+        borderRadius: "20px 20px 0 0",
         textAlign: "center",
       },
       tertiary: {
@@ -48,7 +48,7 @@ const Header = styled.h1<
         marginTop: 0,
         paddingTop: "1rem",
         height: "4rem",
-        borderRadius: "35px 35px 0 0",
+        borderRadius: "20px 20px 0 0",
         textAlign: "center",
       },
     },

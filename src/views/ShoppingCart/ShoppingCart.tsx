@@ -35,7 +35,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
       width="100%"
       mt="2rem"
       mr="1rem"
-      borderRadius="35px"
+      borderRadius="20px"
       backgroundColor={theme.colors.whites.primaryWhite}
     >
       <Header as="h2" variant="tertiary">
@@ -48,7 +48,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
             return (
               <>
                 <CartItem key={item.id} item={item} onUpdate={onUpdate} />
-                <hr key={item.id} />
+                <hr key={item.sku} />
               </>
             );
           })
