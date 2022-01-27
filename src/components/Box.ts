@@ -16,6 +16,8 @@ import {
   TypographyProps,
   color,
   ColorProps,
+  boxShadow,
+  BoxShadowProps,
 } from "styled-system";
 
 const Box = styled.div<
@@ -27,6 +29,7 @@ const Box = styled.div<
   | BorderProps
   | TypographyProps
   | ColorProps
+  | BoxShadowProps
 >(
   {
     boxSizing: "border-box",
@@ -39,7 +42,8 @@ const Box = styled.div<
   flexbox,
   grid,
   typography,
-  color
+  color,
+  boxShadow
 );
 
 export default Box;

@@ -52,6 +52,7 @@ function Card({
       width="20rem"
       borderRadius="20px"
       backgroundColor={theme.colors.whites.primaryWhite}
+      boxShadow="rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;"
       {...space}
     >
       <Header as="h3" variant="secondary">

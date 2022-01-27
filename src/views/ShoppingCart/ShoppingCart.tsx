@@ -37,6 +37,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
       mr="1rem"
       borderRadius="20px"
       backgroundColor={theme.colors.whites.primaryWhite}
+      boxShadow="rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;"
     >
       <Header as="h2" variant="tertiary">
         Shopping Cart

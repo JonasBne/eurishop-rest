@@ -15,7 +15,8 @@ import Button from "../../components/Button";
 import FlexBox from "../../components/FlexBox";
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
-  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
+    rgba(0, 0, 0, 0.22) 0px 15px 12px;
   border-radius: 20px;
   width: 40%;
   background: ${({ theme }) => theme.colors.whites.primaryWhite};
