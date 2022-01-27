@@ -30,7 +30,7 @@ function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
         <Button
           type="button"
           variant="primary"
-          my="2rem"
+          my="1rem"
           mx="6rem"
           px="1rem"
           onClick={handleBuy}
@@ -39,7 +39,7 @@ function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
           <FaIcon icon={faShoppingCart} mx=".25rem" />
         </Button>
       ) : (
-        <Button type="button" variant="danger" my="2rem" mx="6rem" disabled>
+        <Button type="button" variant="danger" my="1rem" mx="6rem" disabled>
           Out of stock
         </Button>
       )}
