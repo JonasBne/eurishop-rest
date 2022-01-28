@@ -59,7 +59,7 @@ function useUpdate<T>(url: string) {
     error,
     update,
     remove,
-    updatedData,
+    data: updatedData,
   };
 }
 

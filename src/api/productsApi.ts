@@ -1,6 +1,7 @@
 /* eslint-disable no-useless-return */
 import rootUrl from "./rootUrl";
 import useFetch from "../hooks/useFetch";
+import useUpdate from "../hooks/useUpdate";
 
 export interface ProductDTO {
   id: number;
@@ -20,12 +21,6 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-export enum UpdateProductDTOMethods {
-  POST = "POST",
-  PUT = "PUT",
-  DELETE = "DELETE",
-}
-
 const url = "api/products";
 
 const productMapper = (dto: ProductDTO) => {
@@ -35,22 +30,22 @@ const productMapper = (dto: ProductDTO) => {
   };
 };
 
-export const mapProductUpdateMethodsToUrls = (
-  method: UpdateProductDTOMethods,
-  id: number | string = ""
-  // eslint-disable-next-line consistent-return
-) => {
-  switch (method) {
-    case UpdateProductDTOMethods.POST:
-      return "https://euricom-test-api.herokuapp.com/api/products";
-    case UpdateProductDTOMethods.PUT:
-      return `https://euricom-test-api.herokuapp.com/api/products/${id.toString()}`;
-    case UpdateProductDTOMethods.DELETE:
-      return `https://euricom-test-api.herokuapp.com/api/products/${id.toString()}`;
-    default:
-      return "https://euricom-test-api.herokuapp.com/api/products";
-  }
-};
+// export const mapProductUpdateMethodsToUrls = (
+//   method: UpdateProductDTOMethods,
+//   id: number | string = ""
+//   // eslint-disable-next-line consistent-return
+// ) => {
+//   switch (method) {
+//     case UpdateProductDTOMethods.POST:
+//       return "https://euricom-test-api.herokuapp.com/api/products";
+//     case UpdateProductDTOMethods.PUT:
+//       return `https://euricom-test-api.herokuapp.com/api/products/${id.toString()}`;
+//     case UpdateProductDTOMethods.DELETE:
+//       return `https://euricom-test-api.herokuapp.com/api/products/${id.toString()}`;
+//     default:
+//       return "https://euricom-test-api.herokuapp.com/api/products";
+//   }
+// };
 
 export const useGetProduct = (productId: string) => {
   const { loading, error, data } = useFetch<ProductDTO>(
@@ -75,5 +70,18 @@ export const useGetProducts = () => {
       productMapper(product)
     ),
     refetch,
+  };
+};
+
+export const useUpdateProduct = () => {
+  const { loading, error, data, update, remove } = useUpdate<ProductDTO>(
+    `${rootUrl}${url}`
+  );
+  return {
+    loading,
+    error,
+    data,
+    update,
+    remove,
   };
 };
