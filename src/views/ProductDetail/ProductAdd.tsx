@@ -28,7 +28,6 @@ function ProductAdd() {
   }, [postError, postedData]);
 
   // TODO: @Peter - why does TypeScript not complain that the data object holds strings for basePrice and Price?
-  // TODO: @Peter - Is this a correct way of using async code?
   const handleSubmit = (data: ProductDTO) => {
     const formattedData = {
       ...data,
