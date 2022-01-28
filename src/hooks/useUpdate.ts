@@ -1,7 +1,8 @@
 import { useState } from "react";
 import RequestError from "../errors/RequestError";
 import CommunicationError from "../errors/CommunicationError";
-import UpdateMethods from "../api/updateMethods";
+
+export type UpdateMethods = "POST" | "PUT" | "DELETE";
 
 function useUpdate<T>(url: string) {
   const [loading, setLoading] = useState<boolean>(false);
@@ -17,10 +18,10 @@ function useUpdate<T>(url: string) {
       setLoading(true);
       const response = await fetch(`${url}/${id}`, {
         method,
-        headers: {
+        headers: data && {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: data && JSON.stringify(data),
       });
 
       if (!response.ok) {
@@ -62,5 +63,23 @@ function useUpdate<T>(url: string) {
     data: updatedData,
   };
 }
+
+/*
+
+api om te ontwikkelen: 
+
+const { put, remove, post data, error, loading } = useUpdate()
+
+put(id, body)
+remove(id)
+post(body)
+
+Tracht zoveel mogelijk code te herbruiken en zoveel mogelijk logica te bundelen
+
+update('POST', body)
+update(UpdateMethods.POST, body)
+update(UpdateMethods.PUT, body, id)
+update(UpdateMethods.DELETE, null, id)
+*/
 
 export default useUpdate;
