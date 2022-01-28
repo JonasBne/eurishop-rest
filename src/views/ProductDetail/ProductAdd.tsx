@@ -28,7 +28,13 @@ function ProductAdd() {
   }, [postError, postedData]);
 
   // TODO: @Peter - why does TypeScript not complain that the data object holds strings for basePrice and Price?
-  const handleSubmit = (data: ProductDTO) => {
+  const handleSubmit = (product: Product) => {
+    // const product = {
+    //   ...formValues,
+    //   basePrice: +formValues.basePrice,
+    //   price: +formValues.price,
+    // };
+
     const formattedData = {
       ...data,
       basePrice: +data.basePrice,

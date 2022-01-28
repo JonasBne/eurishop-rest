@@ -1,6 +1,6 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
-/* eslint-disable react/no-array-index-key */
 import React from "react";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 import { SpaceProps } from "styled-system";
@@ -54,6 +54,7 @@ function Table({
         {data.map((item: any, dataIndex) => {
           return (
             <TableRow key={item.id}>
+              {/* // TODO: aanpassen naar columns */}
               {Object.keys(data[0]).map((title: any, index) => {
                 return (
                   <TableData

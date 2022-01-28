@@ -26,21 +26,31 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
 
 interface ProductFormProps extends SpaceProps {
   title: string;
-  initialData?: ProductDTO;
+  initialValues?: ProductFormValues;
   gridTemplateAreas: string;
-  onSubmit: (data: ProductDTO) => void;
+  onSubmit: (formValues: ProductFormValues) => void;
+}
+
+interface ProductFormValues {
+  sku: string;
+  title: string;
+  // ...
 }
 
 function ProductForm({
-  initialData,
+  initialProduct,
   gridTemplateAreas,
   onSubmit,
   title,
   ...spacing
 }: ProductFormProps) {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm<ProductDTO>({
-    defaultValues: initialData ?? {},
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      sku: initialProduct.sku,
+      title: initialProduct.title,
+      createdAt: format(initialProduct.createdAt)
+    },
   });
 
   // TODO: is it ok to add this logic here? Since the product form will always redirect a user back to the products page
@@ -48,8 +58,17 @@ function ProductForm({
     navigate("/products/admin");
   };
 
+  const handleFormResult = (formValues: any) = > {
+    const product: Product = {
+      ...formValues,
+      basePrice: +formValues.basePrice,
+      price: +formValues.price,
+    };
+    onSubmit(product)
+  }
+
   return (
-    <StyledForm onSubmit={handleSubmit(onSubmit)} {...spacing}>
+    <StyledForm onSubmit={handleSubmit(handleFormResult)} {...spacing}>
       <Header p="2rem" as="h2" textAlign="center" variant="secondary">
         {title}
       </Header>
@@ -105,5 +124,7 @@ function ProductForm({
     </StyledForm>
   );
 }
+
+
 
 export default ProductForm;

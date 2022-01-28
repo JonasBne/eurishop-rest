@@ -5,11 +5,11 @@ import FlexBox from "../../components/FlexBox";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ProductCard from "./ProductCard";
 import ShoppingCart from "../ShoppingCart/ShoppingCart";
-import { Item } from "../../domain/ShoppingCart";
+import { Item } from "../../domain/basket";
 
 function Home() {
   const { loading, error, products } = useGetProducts();
-  const [cartItems, setCartItems] = useState<Item[]>([]);
+  const [cartItems, setCartItems] = useState<Basket>([]);
 
   const handleBuy = (product: ProductDTO) => {
     if (cartItems.find((item) => item.id === product.id)) {

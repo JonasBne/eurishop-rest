@@ -14,7 +14,6 @@ function ProductList() {
   const navigate = useNavigate();
   const { loading, error, products } = useGetProducts();
   const { error: deleteError, data: deletedData, remove } = useUpdateProduct();
-
   const [sortExpression, setSortExpression] = useState<string>("");
 
   // TODO: why is there no re-render?
@@ -95,6 +94,8 @@ function ProductList() {
       id: "col9",
     },
   ];
+
+  console.log(sortedProducts);
 
   const handleAddProductClick = () => {
     navigate("/products/new");

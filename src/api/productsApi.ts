@@ -1,6 +1,7 @@
 import rootUrl from "./rootUrl";
 import useFetch from "../hooks/useFetch";
 import useUpdate from "../hooks/useUpdate";
+import { Product } from "../domain/product";
 
 export interface ProductDTO {
   id: number;
@@ -8,9 +9,11 @@ export interface ProductDTO {
   title: string;
   desc: string;
   image: string;
-  stocked: boolean | string;
+  stocked: boolean;
   basePrice: number;
   price: number;
+  discount?: number;
+  createdAt?: string;
 }
 
 export interface ProductsDTO {
@@ -22,10 +25,11 @@ export interface ProductsDTO {
 
 const url = "api/products";
 
-const productMapper = (dto: ProductDTO) => {
+const productMapper = (dto?: ProductDTO): Product | undefined => {
+  if (!dto) return undefined;
   return {
     ...dto,
-    stocked: dto.stocked ? "Yes" : "No",
+    createdAt: new Date(dto.createdAt),
   };
 };
 
@@ -36,7 +40,7 @@ export const useGetProduct = (productId: string) => {
   return {
     loading,
     error,
-    product: data,
+    product: productMapper(data),
   };
 };
 
@@ -48,8 +52,8 @@ export const useGetProducts = () => {
   return {
     loading,
     error,
-    products: data?.selectedProducts.map((product: ProductDTO) =>
-      productMapper(product)
+    products: data?.selectedProducts.map(
+      (product: ProductDTO) => productMapper(product)!
     ),
     refetch,
   };
