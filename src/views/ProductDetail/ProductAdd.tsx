@@ -1,20 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
-// import toast from "react-hot-toast";
 import toasts from "../../components/toasts";
-import {
-  ProductDTO,
-  UpdateProductDTOMethods,
-  useGetProducts,
-} from "../../api/productsApi";
+import { ProductDTO, useUpdateProduct } from "../../api/productsApi";
 import ProductForm from "./ProductForm";
-import useUpdate from "../../hooks/useUpdate";
+import UpdateMethods from "../../api/updateMethods";
 
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  const { refetch } = useGetProducts();
-  const { update, error: updateError } = useUpdate();
+  // const { refetch } = useGetProducts();
+  const { error, data: updatedData, update } = useUpdateProduct();
 
   const gridTemplateAreas = `
   "title sku"
@@ -22,6 +17,14 @@ function ProductAdd() {
   "stocked image"
   "desc desc"
   `;
+
+  useEffect(() => {
+    if (error) {
+      failToast();
+    } else if (updatedData) {
+      succesToast();
+    }
+  }, [error, updatedData]);
 
   // TODO: @Peter - why does TypeScript not complain that the data object holds strings for basePrice and Price?
   // TODO: @Peter - Is this a correct way of using async code?
@@ -32,19 +35,17 @@ function ProductAdd() {
       price: +data.price,
     };
 
-    const response = await update(
-      UpdateProductDTOMethods.POST,
-      formattedData,
-      formattedData.id
-    );
+    update(UpdateMethods.POST, formattedData, formattedData.id);
 
-    if (!response?.ok || updateError) {
-      failToast();
-    } else {
-      succesToast();
-      refetch();
-      navigate(`/products/admin`);
-    }
+    navigate(`/products/admin`);
+
+    // if (!response?.ok || updateError) {
+    //   failToast();
+    // } else {
+    //   succesToast();
+    //   refetch();
+    //   navigate(`/products/admin`);
+    // }
   };
 
   return (
