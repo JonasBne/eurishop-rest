@@ -19,7 +19,7 @@ function ProductAdd() {
 
   useEffect(() => {
     if (postError) {
-      failToast();
+      failToast(postError);
     }
     if (postedData) {
       succesToast();

@@ -13,31 +13,26 @@ function ProductList() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { loading, error, products } = useGetProducts();
-  const { error: deleteError, data: removedData, remove } = useUpdateProduct();
+  const { error: deleteError, data: deletedData, remove } = useUpdateProduct();
 
   const [sortExpression, setSortExpression] = useState<string>("");
 
+  // TODO: why is there no re-render?
   useEffect(() => {
     if (deleteError) {
-      failToast();
-    } else if (removedData) {
+      failToast(deleteError);
+    }
+    if (deletedData) {
       succesToast();
     }
-  });
+  }, [deleteError, deletedData]);
 
   const handleRedirect = (productId: string) => {
     navigate(`/products/${productId}/edit`);
   };
 
-  const handleAction = async (productId: string) => {
+  const handleAction = (productId: string) => {
     remove(UpdateMethods.DELETE, productId);
-
-    // if (!response?.ok || updateError) {
-    //   failToast();
-    // } else {
-    //   succesToast();
-    //   refetch();
-    // }
   };
 
   // TODO: issue with sorting on Product ID and Product Number (order changes)

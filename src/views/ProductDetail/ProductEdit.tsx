@@ -27,7 +27,7 @@ function ProductEdit() {
 
   useEffect(() => {
     if (putError) {
-      failToast();
+      failToast(putError);
     }
     if (puttedData) {
       succesToast();

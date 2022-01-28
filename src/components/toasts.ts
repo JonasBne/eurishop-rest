@@ -2,7 +2,7 @@ import toast from "react-hot-toast";
 
 function toasts() {
   const succes = () => toast.success("Succes");
-  const fail = () => toast.error("Fail");
+  const fail = (error: Error) => toast.error(error.toString());
   return {
     succesToast: succes,
     failToast: fail,
