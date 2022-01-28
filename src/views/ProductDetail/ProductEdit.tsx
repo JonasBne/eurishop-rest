@@ -16,7 +16,6 @@ function ProductEdit() {
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
-  // const { refetch } = useGetProducts();
   const { error: putError, update } = useUpdateProduct();
 
   const gridTemplateAreas = `
@@ -44,14 +43,6 @@ function ProductEdit() {
     update(UpdateMethods.PUT, formattedData, formattedData.id);
 
     navigate(`/products/admin`);
-
-    // if (!response?.ok || updateError) {
-    //   failToast();
-    // } else {
-    //   succesToast();
-    //   refetch();
-    //   navigate(`/products/admin`);
-    // }
   };
 
   return (
