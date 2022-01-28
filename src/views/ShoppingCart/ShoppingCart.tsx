@@ -1,13 +1,13 @@
-import React, { useContext } from "react";
-import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
-import { ThemeContext } from "styled-components";
-import Box from "../../components/Box";
-import FlexBox from "../../components/FlexBox";
-import Header from "../../components/Header";
-import Button from "../../components/Button";
-import CartItem from "./CartItem";
-import { Item } from "../../domain/ShoppingCart";
-import FaIcon from "../../assets/FaIcon";
+import React, { useContext } from 'react';
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { ThemeContext } from 'styled-components';
+import Box from '../../components/Box';
+import FlexBox from '../../components/FlexBox';
+import Header from '../../components/Header';
+import Button from '../../components/Button';
+import CartItem from './CartItem';
+import { Item } from '../../domain/shoppingCart';
+import FaIcon from '../../assets/FaIcon';
 
 interface ShoppingCartProps {
   cartItems: Item[];
@@ -22,9 +22,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
     onClear();
   };
 
-  const productSums = cartItems.map((item) => {
-    return item.quantity * item.price;
-  });
+  const productSums = cartItems.map((item) => item.quantity * item.price);
 
   const totalSum = productSums
     .reduce((previousValue, currentValue) => previousValue + currentValue, 0)
@@ -45,14 +43,12 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
       </Header>
       <ul>
         {cartItems.length > 0 ? (
-          cartItems.map((item) => {
-            return (
-              <>
-                <CartItem key={item.id} item={item} onUpdate={onUpdate} />
-                <hr key={item.sku} />
-              </>
-            );
-          })
+          cartItems.map((item) => (
+            <>
+              <CartItem key={item.id} item={item} onUpdate={onUpdate} />
+              <hr key={item.sku} />
+            </>
+          ))
         ) : (
           <Box margin="2rem 3rem">Oops, your cart looks empty...</Box>
         )}

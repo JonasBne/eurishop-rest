@@ -1,9 +1,9 @@
-import React from "react";
-import Header from "../../components/Header";
-import Button from "../../components/Button";
-import Box from "../../components/Box";
-import { Item } from "../../domain/ShoppingCart";
-import FlexBox from "../../components/FlexBox";
+import React from 'react';
+import Header from '../../components/Header';
+import Button from '../../components/Button';
+import Box from '../../components/Box';
+import { Item } from '../../domain/shoppingCart';
+import FlexBox from '../../components/FlexBox';
 
 interface CartItemProps {
   item: Item;
@@ -20,7 +20,7 @@ function CartItem({ item, onUpdate }: CartItemProps) {
           type="button"
           variant="secondary"
           mr="1rem"
-          onClick={() => onUpdate("-", item)}
+          onClick={() => onUpdate('-', item)}
           disabled={item.quantity === 0}
         >
           -
@@ -30,14 +30,17 @@ function CartItem({ item, onUpdate }: CartItemProps) {
           type="button"
           variant="secondary"
           ml="1rem"
-          onClick={() => onUpdate("+", item)}
+          onClick={() => onUpdate('+', item)}
         >
           +
         </Button>
       </FlexBox>
-      <Box mt="0.5rem" mb="1rem" fontWeight="bold">{`Total: € ${(
-        item.quantity * item.price
-      ).toFixed(2)}`}</Box>
+      <Box mt="0.5rem" mb="1rem" fontWeight="bold">
+        {`Total: € ${(
+          item.quantity * item.price
+        ).toFixed(2)}`}
+
+      </Box>
     </div>
   );
 }

@@ -5,7 +5,6 @@ export interface CartItem {
   quantity: number;
 }
 
-export interface ShoppingCart {
+export interface Cart {
   items: CartItem[];
-  discount: number;
 }
