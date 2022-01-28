@@ -22,7 +22,7 @@ function ProductAdd() {
       failToast(postError);
     }
     if (postedData) {
-      succesToast();
+      succesToast(`New product with id: ${postedData.id} added!`);
       navigate(`/products/admin`);
     }
   }, [postError, postedData]);

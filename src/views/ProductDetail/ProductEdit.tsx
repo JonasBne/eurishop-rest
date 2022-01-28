@@ -30,7 +30,7 @@ function ProductEdit() {
       failToast(putError);
     }
     if (puttedData) {
-      succesToast();
+      succesToast(`Item with id: ${puttedData.id} updated!`);
       navigate(`/products/admin`);
     }
   }, [putError, puttedData]);

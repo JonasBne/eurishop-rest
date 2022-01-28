@@ -23,7 +23,7 @@ function ProductList() {
       failToast(deleteError);
     }
     if (deletedData) {
-      succesToast();
+      succesToast(`Item with id: ${deletedData.id} removed!`);
     }
   }, [deleteError, deletedData]);
 
