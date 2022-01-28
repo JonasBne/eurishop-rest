@@ -13,7 +13,7 @@ function ProductList() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { loading, error, products, refetch } = useGetProducts();
-  const { remove, updateError } = useUpdate();
+  const { remove, error: updateError } = useUpdate();
 
   const [sortExpression, setSortExpression] = useState<string>("");
 

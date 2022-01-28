@@ -18,7 +18,7 @@ function ProductEdit() {
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
   const { refetch } = useGetProducts();
-  const { update, updateError } = useUpdate();
+  const { update, error: updateError } = useUpdate();
 
   const gridTemplateAreas = `
   "title sku"

@@ -14,7 +14,7 @@ function ProductAdd() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { refetch } = useGetProducts();
-  const { update, updateError } = useUpdate();
+  const { update, error: updateError } = useUpdate();
 
   const gridTemplateAreas = `
   "title sku"
