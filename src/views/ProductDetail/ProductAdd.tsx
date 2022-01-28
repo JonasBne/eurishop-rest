@@ -9,7 +9,7 @@ function ProductAdd() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   // const { refetch } = useGetProducts();
-  const { error, data: updatedData, update } = useUpdateProduct();
+  const { error: postError, data: postedData, update } = useUpdateProduct();
 
   const gridTemplateAreas = `
   "title sku"
@@ -19,12 +19,12 @@ function ProductAdd() {
   `;
 
   useEffect(() => {
-    if (error) {
+    if (postError) {
       failToast();
-    } else if (updatedData) {
+    } else if (postedData) {
       succesToast();
     }
-  }, [error, updatedData]);
+  }, [postError, postedData]);
 
   // TODO: @Peter - why does TypeScript not complain that the data object holds strings for basePrice and Price?
   // TODO: @Peter - Is this a correct way of using async code?

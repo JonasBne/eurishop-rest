@@ -1,24 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, useNavigate } from "react-router";
 import {
   useGetProduct,
   ProductDTO,
-  UpdateProductDTOMethods,
-  useGetProducts,
+  useUpdateProduct,
 } from "../../api/productsApi";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import ProductForm from "./ProductForm";
-import useUpdate from "../../hooks/useUpdate";
 import toasts from "../../components/toasts";
+import UpdateMethods from "../../api/updateMethods";
 
 function ProductEdit() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
-  const { refetch } = useGetProducts();
-  const { update, error: updateError } = useUpdate();
+  // const { refetch } = useGetProducts();
+  const { error: putError, data: puttedData, update } = useUpdateProduct();
 
   const gridTemplateAreas = `
   "title sku"
@@ -27,6 +26,14 @@ function ProductEdit() {
   "desc desc"
   `;
 
+  useEffect(() => {
+    if (putError) {
+      failToast();
+    } else if (puttedData) {
+      succesToast();
+    }
+  });
+
   const handleSubmit = async (data: ProductDTO) => {
     const formattedData = {
       ...data,
@@ -34,19 +41,17 @@ function ProductEdit() {
       price: +data.price,
     };
 
-    const response = await update(
-      UpdateProductDTOMethods.PUT,
-      formattedData,
-      formattedData.id
-    );
+    update(UpdateMethods.PUT, formattedData, formattedData.id);
 
-    if (!response?.ok || updateError) {
-      failToast();
-    } else {
-      succesToast();
-      refetch();
-      navigate(`/products/admin`);
-    }
+    navigate(`/products/admin`);
+
+    // if (!response?.ok || updateError) {
+    //   failToast();
+    // } else {
+    //   succesToast();
+    //   refetch();
+    //   navigate(`/products/admin`);
+    // }
   };
 
   return (
