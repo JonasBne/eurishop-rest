@@ -9,8 +9,8 @@ import RequestError from "../errors/RequestError";
 import CommunicationError from "../errors/CommunicationError";
 
 function useUpdate() {
-  const [updateIsLoading, setUpdateIsLoading] = useState<boolean>(false);
-  const [updateError, setUpdateError] = useState<Error>();
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<Error>();
 
   // TODO: @Peter is this the proper way of working with async/await?
   const update = async (
@@ -19,7 +19,7 @@ function useUpdate() {
     id: number | string = ""
   ) => {
     try {
-      setUpdateIsLoading(true);
+      setLoading(true);
       const response = await fetch(mapProductUpdateMethodsToUrls(method, id), {
         method,
         headers: {
@@ -29,15 +29,15 @@ function useUpdate() {
       });
 
       if (!response.ok) {
-        setUpdateError(new RequestError(response.status));
+        setError(new RequestError(response.status));
         return;
       }
 
       return response;
     } catch (e: any) {
-      setUpdateError(new CommunicationError(e));
+      setError(new CommunicationError(e));
     } finally {
-      setUpdateIsLoading(false);
+      setLoading(false);
     }
   };
 
@@ -46,26 +46,26 @@ function useUpdate() {
     id: number | string = ""
   ) => {
     try {
-      setUpdateIsLoading(true);
+      setLoading(true);
       const response = await fetch(mapProductUpdateMethodsToUrls(method, id), {
         method,
       });
 
       if (!response.ok) {
-        setUpdateError(new RequestError(response.status));
+        setError(new RequestError(response.status));
         return;
       }
       return response;
     } catch (e: any) {
-      setUpdateError(new CommunicationError(e));
+      setError(new CommunicationError(e));
     } finally {
-      setUpdateIsLoading(false);
+      setLoading(false);
     }
   };
 
   return {
-    updateIsLoading,
-    updateError,
+    loading,
+    error,
     update,
     remove,
   };
