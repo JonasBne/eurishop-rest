@@ -1,7 +1,8 @@
+/* eslint-disable import/no-cycle */
 import rootUrl from "./rootUrl";
 import useFetch from "../hooks/useFetch";
 import useUpdate from "../hooks/useUpdate";
-import { Product } from "../domain/product";
+import Product from "../domain/product";
 
 export interface ProductDTO {
   id: number;
@@ -12,8 +13,6 @@ export interface ProductDTO {
   stocked: boolean;
   basePrice: number;
   price: number;
-  discount?: number;
-  createdAt?: string;
 }
 
 export interface ProductsDTO {
@@ -29,7 +28,6 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
   if (!dto) return undefined;
   return {
     ...dto,
-    createdAt: new Date(dto.createdAt),
   };
 };
 
