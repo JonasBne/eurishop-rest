@@ -16,7 +16,7 @@ function ProductEdit() {
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
-  const { error: putError, update } = useUpdateProduct();
+  const { error: putError, data: puttedData, update } = useUpdateProduct();
 
   const gridTemplateAreas = `
   "title sku"
@@ -28,10 +28,12 @@ function ProductEdit() {
   useEffect(() => {
     if (putError) {
       failToast();
-    } else {
-      succesToast();
     }
-  }, [putError]);
+    if (puttedData) {
+      succesToast();
+      navigate(`/products/admin`);
+    }
+  }, [putError, puttedData]);
 
   const handleSubmit = (data: ProductDTO) => {
     const formattedData = {
@@ -41,8 +43,6 @@ function ProductEdit() {
     };
 
     update(UpdateMethods.PUT, formattedData, formattedData.id);
-
-    navigate(`/products/admin`);
   };
 
   return (
