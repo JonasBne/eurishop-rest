@@ -12,6 +12,7 @@ interface Column {
   name: string;
   label: string;
   sortable: boolean;
+  id: string;
 }
 
 interface TableProps extends SpaceProps {
@@ -32,6 +33,8 @@ function Table({
   onActionClick,
   ...space
 }: TableProps) {
+  console.log(data);
+
   return (
     <StyledTable {...space}>
       <thead>
@@ -44,7 +47,7 @@ function Table({
               sortable={col.sortable}
               sortExpression={sortExpression}
               setSortExpression={setSortExpression}
-              key={`head${index}`}
+              key={col.id}
             />
           ))}
         </TableRow>
@@ -52,7 +55,7 @@ function Table({
       <tbody>
         {data.map((item: any, dataIndex) => {
           return (
-            <TableRow key={`row${dataIndex}`}>
+            <TableRow key={item.id}>
               {Object.keys(data[0]).map((title: any, index) => {
                 return (
                   <TableData

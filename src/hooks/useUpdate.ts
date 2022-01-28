@@ -11,7 +11,7 @@ function useUpdate<T>(url: string) {
   const update = async (
     method: UpdateMethods,
     data: T,
-    id?: number | string
+    id: number | string = ""
   ) => {
     try {
       setLoading(true);
@@ -35,7 +35,7 @@ function useUpdate<T>(url: string) {
     }
   };
 
-  const remove = async (method: UpdateMethods, id?: number | string) => {
+  const remove = async (method: UpdateMethods, id: number | string = "") => {
     try {
       setLoading(true);
       const response = await fetch(`${url}/${id}`, {

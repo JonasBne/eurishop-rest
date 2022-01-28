@@ -1,35 +1,43 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-import { UpdateProductDTOMethods, useGetProducts } from "../../api/productsApi";
+import { useGetProducts, useUpdateProduct } from "../../api/productsApi";
 import Table from "../../components/Table/Table";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import sortBy from "../../utils/sortBy";
 import ErrorModal from "../../components/ErrorModal/ErrorModal";
 import Button from "../../components/Button";
-import useUpdate from "../../hooks/useUpdate";
 import toasts from "../../components/toasts";
+import UpdateMethods from "../../api/updateMethods";
 
 function ProductList() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  const { loading, error, products, refetch } = useGetProducts();
-  const { remove, error: updateError } = useUpdate();
+  const { loading, error, products } = useGetProducts();
+  const { error: deleteError, data: removedData, remove } = useUpdateProduct();
 
   const [sortExpression, setSortExpression] = useState<string>("");
+
+  useEffect(() => {
+    if (deleteError) {
+      failToast();
+    } else if (removedData) {
+      succesToast();
+    }
+  });
 
   const handleRedirect = (productId: string) => {
     navigate(`/products/${productId}/edit`);
   };
 
   const handleAction = async (productId: string) => {
-    const response = await remove(UpdateProductDTOMethods.DELETE, productId);
+    remove(UpdateMethods.DELETE, productId);
 
-    if (!response?.ok || updateError) {
-      failToast();
-    } else {
-      succesToast();
-      refetch();
-    }
+    // if (!response?.ok || updateError) {
+    //   failToast();
+    // } else {
+    //   succesToast();
+    //   refetch();
+    // }
   };
 
   const sortedProducts = sortBy(products ?? [], sortExpression);
@@ -39,46 +47,55 @@ function ProductList() {
       name: "id",
       label: "Product ID",
       sortable: false,
+      id: "col1",
     },
     {
       name: "sku",
       label: "Product number",
       sortable: true,
+      id: "col2",
     },
     {
       name: "title",
       label: "Title",
       sortable: true,
+      id: "col3",
     },
     {
       name: "desc",
       label: "Description",
       sortable: false,
+      id: "col4",
     },
     {
       name: "image",
       label: "Image URL",
       sortable: false,
+      id: "col5",
     },
     {
       name: "stocked",
       label: "In stock",
       sortable: true,
+      id: "col6",
     },
     {
       name: "basePrice",
       label: "Base price",
       sortable: true,
+      id: "col7",
     },
     {
       name: "price",
       label: "Unit price",
       sortable: true,
+      id: "col8",
     },
     {
       name: "actions",
       label: "Actions",
       sortable: false,
+      id: "col9",
     },
   ];
 

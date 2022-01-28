@@ -17,7 +17,7 @@ function ProductEdit() {
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
   // const { refetch } = useGetProducts();
-  const { error: putError, data: puttedData, update } = useUpdateProduct();
+  const { error: putError, update } = useUpdateProduct();
 
   const gridTemplateAreas = `
   "title sku"
@@ -29,12 +29,12 @@ function ProductEdit() {
   useEffect(() => {
     if (putError) {
       failToast();
-    } else if (puttedData) {
+    } else {
       succesToast();
     }
-  });
+  }, [putError]);
 
-  const handleSubmit = async (data: ProductDTO) => {
+  const handleSubmit = (data: ProductDTO) => {
     const formattedData = {
       ...data,
       basePrice: +data.basePrice,
