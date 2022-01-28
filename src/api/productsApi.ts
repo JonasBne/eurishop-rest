@@ -1,4 +1,3 @@
-/* eslint-disable no-useless-return */
 import rootUrl from "./rootUrl";
 import useFetch from "../hooks/useFetch";
 import useUpdate from "../hooks/useUpdate";
@@ -29,23 +28,6 @@ const productMapper = (dto: ProductDTO) => {
     stocked: dto.stocked ? "Yes" : "No",
   };
 };
-
-// export const mapProductUpdateMethodsToUrls = (
-//   method: UpdateProductDTOMethods,
-//   id: number | string = ""
-//   // eslint-disable-next-line consistent-return
-// ) => {
-//   switch (method) {
-//     case UpdateProductDTOMethods.POST:
-//       return "https://euricom-test-api.herokuapp.com/api/products";
-//     case UpdateProductDTOMethods.PUT:
-//       return `https://euricom-test-api.herokuapp.com/api/products/${id.toString()}`;
-//     case UpdateProductDTOMethods.DELETE:
-//       return `https://euricom-test-api.herokuapp.com/api/products/${id.toString()}`;
-//     default:
-//       return "https://euricom-test-api.herokuapp.com/api/products";
-//   }
-// };
 
 export const useGetProduct = (productId: string) => {
   const { loading, error, data } = useFetch<ProductDTO>(
