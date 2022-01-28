@@ -33,8 +33,6 @@ function Table({
   onActionClick,
   ...space
 }: TableProps) {
-  console.log(data);
-
   return (
     <StyledTable {...space}>
       <thead>

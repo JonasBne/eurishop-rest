@@ -8,8 +8,7 @@ import UpdateMethods from "../../api/updateMethods";
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  // const { refetch } = useGetProducts();
-  const { error: postError, update } = useUpdateProduct();
+  const { error: postError, data: postedData, update } = useUpdateProduct();
 
   const gridTemplateAreas = `
   "title sku"
@@ -21,10 +20,12 @@ function ProductAdd() {
   useEffect(() => {
     if (postError) {
       failToast();
-    } else {
-      succesToast();
     }
-  }, [postError]);
+    if (postedData) {
+      succesToast();
+      navigate(`/products/admin`);
+    }
+  }, [postError, postedData]);
 
   // TODO: @Peter - why does TypeScript not complain that the data object holds strings for basePrice and Price?
   // TODO: @Peter - Is this a correct way of using async code?
@@ -34,18 +35,7 @@ function ProductAdd() {
       basePrice: +data.basePrice,
       price: +data.price,
     };
-
     update(UpdateMethods.POST, formattedData, formattedData.id);
-
-    navigate(`/products/admin`);
-
-    // if (!response?.ok || updateError) {
-    //   failToast();
-    // } else {
-    //   succesToast();
-    //   refetch();
-    //   navigate(`/products/admin`);
-    // }
   };
 
   return (

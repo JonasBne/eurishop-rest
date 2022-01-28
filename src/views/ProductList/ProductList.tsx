@@ -40,13 +40,15 @@ function ProductList() {
     // }
   };
 
+  // TODO: issue with sorting on Product ID and Product Number (order changes)
+
   const sortedProducts = sortBy(products ?? [], sortExpression);
 
   const columns = [
     {
       name: "id",
       label: "Product ID",
-      sortable: false,
+      sortable: true,
       id: "col1",
     },
     {
