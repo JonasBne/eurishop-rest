@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
-import { useNavigate } from "react-router";
-import toasts from "../../components/toasts";
-import { ProductDTO, useUpdateProduct } from "../../api/productsApi";
-import ProductForm from "./ProductForm";
-import UpdateMethods from "../../api/updateMethods";
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router';
+import toasts from '../../components/toasts';
+import { useUpdateProduct } from '../../api/productsApi';
+import ProductForm from './ProductForm';
+import { UpdateMethods } from '../../hooks/useUpdate';
 
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
@@ -23,11 +23,10 @@ function ProductAdd() {
     }
     if (postedData) {
       succesToast(`New product with id: ${postedData.id} added!`);
-      navigate(`/products/admin`);
+      navigate('/products/admin');
     }
   }, [postError, postedData]);
 
-  // TODO: @Peter - why does TypeScript not complain that the data object holds strings for basePrice and Price?
   const handleSubmit = (product: Product) => {
     // const product = {
     //   ...formValues,

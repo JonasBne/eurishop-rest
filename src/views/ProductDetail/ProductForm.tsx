@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { space, SpaceProps, layout, LayoutProps } from "styled-system";
 import styled from "styled-components";
 import { useNavigate } from "react-router";
-import { ProductDTO } from "../../api/productsApi";
 import Grid from "../../components/Grid";
 import Input from "../../components/Input";
 import Label from "../../components/Label";
@@ -31,14 +30,18 @@ interface ProductFormProps extends SpaceProps {
   onSubmit: (formValues: ProductFormValues) => void;
 }
 
-interface ProductFormValues {
+export interface ProductFormValues {
   sku: string;
   title: string;
-  // ...
+  desc: string;
+  image: string;
+  stocked: boolean;
+  basePrice: number;
+  price: number;
 }
 
 function ProductForm({
-  initialProduct,
+  initialValues,
   gridTemplateAreas,
   onSubmit,
   title,
@@ -47,13 +50,16 @@ function ProductForm({
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      sku: initialProduct.sku,
-      title: initialProduct.title,
-      createdAt: format(initialProduct.createdAt)
+      sku: initialValues?.sku,
+      title: initialValues?.title,
+      desc: initialValues?.desc,
+      image: initialValues?.image,
+      stocked: initialValues?.stocked,
+      basePrice: initialValues?.basePrice,
+      price: initialValues?.price,
     },
   });
 
-  // TODO: is it ok to add this logic here? Since the product form will always redirect a user back to the products page
   const handleCancel = () => {
     navigate("/products/admin");
   };
