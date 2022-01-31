@@ -35,7 +35,6 @@ function ProductEdit() {
   }, [putError, puttedData]);
 
   const handleSubmit = (formValues: ProductFormValues) => {
-    console.log(formValues.id);
     const item: ProductDTO = {
       ...formValues,
       id: +formValues.id,
