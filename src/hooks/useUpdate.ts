@@ -23,9 +23,6 @@ function useUpdate<T>(url: string) {
         },
         body: data && JSON.stringify(data),
       });
-
-      console.log(response);
-
       if (!response.ok) {
         setError(new RequestError(response.status));
         return;
