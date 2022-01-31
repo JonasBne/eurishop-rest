@@ -1,7 +1,7 @@
-import { ProductDTO } from '../api/productsApi';
+import Product from './product';
 
 export interface CartItem {
-  product: ProductDTO;
+  product: Product;
   quantity: number;
 }
 
