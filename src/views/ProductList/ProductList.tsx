@@ -12,7 +12,7 @@ function ProductList() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const {
-    loading, error, products, refetch, goToPreviousPage, goToNextPage, pageNumber,
+    loading, error, products, refetch, fetchDataNextPage,
   } = useGetProducts();
 
   const { error: deleteError, data: deletedData, remove } = useUpdateProduct2();
@@ -123,9 +123,7 @@ function ProductList() {
             setSortExpression={setSortExpression}
             onRowClick={handleRedirect}
             onActionClick={handleAction}
-            onPreviousPageClick={goToPreviousPage}
-            onNextPageClick={goToNextPage}
-            pageNumber={pageNumber}
+            onLoadData={fetchDataNextPage}
             my="2.5rem"
             mx="2rem"
           />

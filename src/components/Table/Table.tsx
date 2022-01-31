@@ -21,9 +21,7 @@ interface TableProps extends SpaceProps {
   data: any[];
   onRowClick?: (productId: string) => void;
   onActionClick?: (productId: string) => void;
-  onPreviousPageClick: () => void;
-  onNextPageClick: () => void;
-  pageNumber: number;
+  onLoadData: () => void;
   sortExpression: string;
   setSortExpression: (prevSortExp: any) => void;
   columns: Column[];
@@ -36,6 +34,7 @@ function Table({
   setSortExpression,
   onRowClick,
   onActionClick,
+  onLoadData,
   ...space
 }: TableProps) {
   return (
@@ -89,8 +88,7 @@ function Table({
         </tbody>
       </StyledTable>
       <FlexBox justifyContent="center">
-        <Button type="button" variant="primary" mb="2rem" mx="1rem">PREVIOUS</Button>
-        <Button type="button" variant="primary" mb="2rem" mx="1rem">NEXT</Button>
+        <Button type="button" variant="primary" mb="2rem" mx="1rem" onClick={onLoadData}>Load more</Button>
       </FlexBox>
     </>
   );

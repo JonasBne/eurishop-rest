@@ -9,12 +9,8 @@ const useFetch = <T>(url: string) => {
   const [fetchedData, setFetchedData] = useState<T>();
   const [pageNumber, setPageNumber] = useState<number>(0);
 
-  const goToNextPage = () => {
-    if (pageNumber >= 0) setPageNumber((prePage) => prePage + 1);
-  };
-
-  const goToPreviousPage = () => {
-    if (pageNumber > 0) setPageNumber((prePage) => prePage - 1);
+  const fetchDataNextPage = () => {
+    setPageNumber((prePage) => prePage + 1);
   };
 
   const fetchData = useCallback(async () => {
@@ -32,7 +28,7 @@ const useFetch = <T>(url: string) => {
     } finally {
       setLoading(false);
     }
-  }, [url]);
+  }, [url, pageNumber]);
 
   const refetch = async () => fetchData();
 
@@ -45,9 +41,7 @@ const useFetch = <T>(url: string) => {
     error,
     data: fetchedData,
     refetch,
-    goToPreviousPage,
-    goToNextPage,
-    pageNumber,
+    fetchDataNextPage,
   };
 };
 
