@@ -7,6 +7,7 @@
 - [ ] useUpdate 2
 - [x] Sortable table fix 
 - [ ] paging for table and fetch --> paging inbouwen in useFetch hook 
+- [ ] look for additional unit tests that may be performed
 
 ### Nieuwe branch v2
 
