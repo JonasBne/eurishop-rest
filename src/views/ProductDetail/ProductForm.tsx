@@ -1,17 +1,20 @@
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
-import React from "react";
-import { useForm } from "react-hook-form";
-import { space, SpaceProps, layout, LayoutProps } from "styled-system";
-import styled from "styled-components";
-import { useNavigate } from "react-router";
-import Grid from "../../components/Grid";
-import Input from "../../components/Input";
-import Label from "../../components/Label";
-import TextArea from "../../components/TextArea";
-import Header from "../../components/Header";
-import Button from "../../components/Button";
-import FlexBox from "../../components/FlexBox";
+import React from 'react';
+import { useForm } from 'react-hook-form';
+import {
+  space, SpaceProps, layout, LayoutProps,
+} from 'styled-system';
+import styled from 'styled-components';
+import { useNavigate } from 'react-router';
+import Grid from '../../components/Grid';
+import Input from '../../components/Input';
+import Label from '../../components/Label';
+import TextArea from '../../components/TextArea';
+import Header from '../../components/Header';
+import Button from '../../components/Button';
+import FlexBox from '../../components/FlexBox';
+import Product from '../../domain/product';
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -61,17 +64,17 @@ function ProductForm({
   });
 
   const handleCancel = () => {
-    navigate("/products/admin");
+    navigate('/products/admin');
   };
 
-  const handleFormResult = (formValues: any) = > {
+  const handleFormResult = (formValues: ProductFormValues) => {
     const product: Product = {
       ...formValues,
       basePrice: +formValues.basePrice,
       price: +formValues.price,
     };
-    onSubmit(product)
-  }
+    onSubmit(product);
+  };
 
   return (
     <StyledForm onSubmit={handleSubmit(handleFormResult)} {...spacing}>
@@ -81,36 +84,38 @@ function ProductForm({
       <Grid gridTemplateAreas={gridTemplateAreas}>
         <Label gridArea="sku">
           Serial number
-          <Input id="sku" type="text" {...register("sku")} />
+          <Input id="sku" type="text" {...register('sku')} />
         </Label>
 
         <Label gridArea="title">
           Title
-          <Input id="title" type="text" {...register("title")} />
+          <Input id="title" type="text" {...register('title')} />
         </Label>
 
         <Label gridArea="stocked">
           In stock
-          <Input id="stocked" type="checkbox" {...register("stocked")} />
+          <Input id="stocked" type="checkbox" {...register('stocked')} />
         </Label>
 
         <Label gridArea="basePrice">
           Base Price
-          <Input id="basePrice" type="text" {...register("basePrice")} />
+          <Input id="basePrice" type="text" {...register('basePrice')} />
         </Label>
 
         <Label gridArea="price">
           Unit price
-          <Input id="price" type="text" {...register("price")} />
+          <Input id="price" type="text" {...register('price')} />
         </Label>
 
         <Label gridArea="image">
-          Image URL <Input id="image" type="text" {...register("image")} />
+          Image URL
+          {' '}
+          <Input id="image" type="text" {...register('image')} />
         </Label>
 
         <Label gridArea="desc">
           Description
-          <TextArea id="desc" {...register("desc")} />
+          <TextArea id="desc" {...register('desc')} />
         </Label>
       </Grid>
       <FlexBox mx="2rem" my="1rem" justifyContent="flex-end">
@@ -130,7 +135,5 @@ function ProductForm({
     </StyledForm>
   );
 }
-
-
 
 export default ProductForm;
