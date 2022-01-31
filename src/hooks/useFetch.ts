@@ -3,7 +3,7 @@ import { useState, useEffect, useCallback } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
 
-const useFetch = <T>(url: string) => {
+const useFetch = <T>(url: string, page = '0') => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
   const [fetchedData, setFetchedData] = useState<T>();
@@ -11,7 +11,7 @@ const useFetch = <T>(url: string) => {
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(url);
+      const response = await fetch(`${url}/?page=${page}`);
       if (!response.ok) {
         setError(new RequestError(response.status));
         return;
