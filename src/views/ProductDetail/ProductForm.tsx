@@ -14,6 +14,7 @@ import TextArea from '../../components/TextArea';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import FlexBox from '../../components/FlexBox';
+import Product from '../../domain/product';
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -27,7 +28,7 @@ const StyledForm = styled.form<SpaceProps | LayoutProps>`
 
 interface ProductFormProps extends SpaceProps {
   title: string;
-  initialValues?: ProductFormValues;
+  initialProduct?: Product;
   gridTemplateAreas: string;
   onSubmit: (formValues: ProductFormValues) => void;
 }
@@ -43,22 +44,22 @@ export interface ProductFormValues {
 }
 
 function ProductForm({
-  initialValues,
+  initialProduct,
   gridTemplateAreas,
   onSubmit,
   title,
   ...spacing
 }: ProductFormProps) {
   const navigate = useNavigate();
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit } = useForm<ProductFormValues>({
     defaultValues: {
-      sku: initialValues?.sku,
-      title: initialValues?.title,
-      desc: initialValues?.desc,
-      image: initialValues?.image,
-      stocked: initialValues?.stocked,
-      basePrice: initialValues?.basePrice,
-      price: initialValues?.price,
+      sku: initialProduct?.sku,
+      title: initialProduct?.title,
+      desc: initialProduct?.desc,
+      image: initialProduct?.image,
+      stocked: initialProduct?.stocked,
+      basePrice: initialProduct?.basePrice.toString(),
+      price: initialProduct?.price.toString(),
     },
   });
 
