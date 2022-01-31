@@ -2,14 +2,14 @@
 import React from 'react';
 import { SpaceProps } from 'styled-system';
 import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
-import { ProductDTO } from '../../api/productsApi';
 import Card from '../../components/Card';
 import Button from '../../components/Button';
 import FaIcon from '../../assets/FaIcon';
+import Product from '../../domain/product';
 
 interface ProductCardProps extends SpaceProps {
-  product: ProductDTO;
-  onBuy: (cartItem: ProductDTO) => void;
+  product: Product;
+  onBuy: (product: Product) => void;
 }
 
 function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
