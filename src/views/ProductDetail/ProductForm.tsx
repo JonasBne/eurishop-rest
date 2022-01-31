@@ -34,6 +34,7 @@ interface ProductFormProps extends SpaceProps {
 }
 
 export interface ProductFormValues {
+  id: string;
   sku: string;
   title: string;
   desc: string;

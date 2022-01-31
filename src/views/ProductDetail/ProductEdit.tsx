@@ -1,15 +1,14 @@
-import React, { useEffect } from "react";
-import { useParams, useNavigate } from "react-router";
+import React, { useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router';
 import {
   useGetProduct,
   ProductDTO,
   useUpdateProduct,
-} from "../../api/productsApi";
-import LoadingSpinner from "../../components/LoadingSpinner";
-import ErrorModal from "../../components/ErrorModal/ErrorModal";
-import ProductForm from "./ProductForm";
-import toasts from "../../components/toasts";
-import UpdateMethods from "../../api/updateMethods";
+} from '../../api/productsApi';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import ErrorModal from '../../components/ErrorModal/ErrorModal';
+import ProductForm, { ProductFormValues } from './ProductForm';
+import toasts from '../../components/toasts';
 
 function ProductEdit() {
   const { succesToast, failToast } = toasts();
@@ -31,18 +30,19 @@ function ProductEdit() {
     }
     if (puttedData) {
       succesToast(`Item with id: ${puttedData.id} updated!`);
-      navigate(`/products/admin`);
+      navigate('/products/admin');
     }
   }, [putError, puttedData]);
 
-  const handleSubmit = (data: ProductDTO) => {
-    const formattedData = {
-      ...data,
-      basePrice: +data.basePrice,
-      price: +data.price,
+  const handleSubmit = (formValues: ProductFormValues) => {
+    const item: ProductDTO = {
+      ...formValues,
+      id: +formValues.id,
+      basePrice: +formValues.basePrice,
+      price: +formValues.price,
     };
 
-    update(UpdateMethods.PUT, formattedData, formattedData.id);
+    update('PUT', item, item.id);
   };
 
   return (
@@ -53,7 +53,7 @@ function ProductEdit() {
         <ProductForm
           title="EDIT PRODUCT"
           gridTemplateAreas={gridTemplateAreas}
-          initialData={product}
+          initialProduct={product}
           onSubmit={handleSubmit}
           mt="2rem"
           mx="auto"
