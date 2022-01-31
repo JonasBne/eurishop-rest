@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import toasts from '../../components/toasts';
-import { useUpdateProduct } from '../../api/productsApi';
-import ProductForm from './ProductForm';
-import { UpdateMethods } from '../../hooks/useUpdate';
+import { ProductDTO, useUpdateProduct } from '../../api/productsApi';
+import ProductForm, { ProductFormValues } from './ProductForm';
 
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
@@ -27,19 +26,14 @@ function ProductAdd() {
     }
   }, [postError, postedData]);
 
-  const handleSubmit = (product: Product) => {
-    // const product = {
-    //   ...formValues,
-    //   basePrice: +formValues.basePrice,
-    //   price: +formValues.price,
-    // };
-
-    const formattedData = {
-      ...data,
-      basePrice: +data.basePrice,
-      price: +data.price,
+  const handleSubmit = (formValues: ProductFormValues) => {
+    const product: ProductDTO = {
+      ...formValues,
+      basePrice: +formValues.basePrice,
+      price: +formValues.price,
+      id: 0,
     };
-    update(UpdateMethods.POST, formattedData, formattedData.id);
+    update('POST', product);
   };
 
   return (

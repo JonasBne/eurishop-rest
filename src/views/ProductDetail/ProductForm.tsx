@@ -14,7 +14,6 @@ import TextArea from '../../components/TextArea';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import FlexBox from '../../components/FlexBox';
-import Product from '../../domain/product';
 
 const StyledForm = styled.form<SpaceProps | LayoutProps>`
   box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px,
@@ -68,11 +67,6 @@ function ProductForm({
   };
 
   const handleFormResult = (formValues: ProductFormValues) => {
-    // const product: Product = {
-    //   ...formValues,
-    //   basePrice: +formValues.basePrice,
-    //   price: +formValues.price,
-    // };
     onSubmit(formValues);
   };
 

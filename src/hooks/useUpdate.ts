@@ -1,8 +1,8 @@
-import { useState } from "react";
-import RequestError from "../errors/RequestError";
-import CommunicationError from "../errors/CommunicationError";
+import { useState } from 'react';
+import RequestError from '../errors/RequestError';
+import CommunicationError from '../errors/CommunicationError';
 
-export type UpdateMethods = "POST" | "PUT" | "DELETE";
+export type UpdateMethods = 'POST' | 'PUT' | 'DELETE';
 
 function useUpdate<T>(url: string) {
   const [loading, setLoading] = useState<boolean>(false);
@@ -12,14 +12,14 @@ function useUpdate<T>(url: string) {
   const update = async (
     method: UpdateMethods,
     data: T,
-    id: number | string = ""
+    id: number | string = '',
   ) => {
     try {
       setLoading(true);
       const response = await fetch(`${url}/${id}`, {
         method,
         headers: data && {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: data && JSON.stringify(data),
       });
@@ -36,7 +36,7 @@ function useUpdate<T>(url: string) {
     }
   };
 
-  const remove = async (method: UpdateMethods, id: number | string = "") => {
+  const remove = async (method: UpdateMethods, id: number | string = '') => {
     try {
       setLoading(true);
       const response = await fetch(`${url}/${id}`, {
@@ -66,7 +66,7 @@ function useUpdate<T>(url: string) {
 
 /*
 
-api om te ontwikkelen: 
+api om te ontwikkelen:
 
 const { put, remove, post data, error, loading } = useUpdate()
 
