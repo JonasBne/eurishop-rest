@@ -1,22 +1,20 @@
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
-import { useGetProducts, useUpdateProduct } from "../../api/productsApi";
-import Table from "../../components/Table/Table";
-import LoadingSpinner from "../../components/LoadingSpinner";
-import sortBy from "../../utils/sortBy";
-import ErrorModal from "../../components/ErrorModal/ErrorModal";
-import Button from "../../components/Button";
-import toasts from "../../components/toasts";
-import UpdateMethods from "../../api/updateMethods";
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router';
+import { useGetProducts, useUpdateProduct } from '../../api/productsApi';
+import Table from '../../components/Table/Table';
+import LoadingSpinner from '../../components/LoadingSpinner';
+import sortBy from '../../utils/sortBy';
+import ErrorModal from '../../components/ErrorModal/ErrorModal';
+import Button from '../../components/Button';
+import toasts from '../../components/toasts';
 
 function ProductList() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { loading, error, products } = useGetProducts();
   const { error: deleteError, data: deletedData, remove } = useUpdateProduct();
-  const [sortExpression, setSortExpression] = useState<string>("");
+  const [sortExpression, setSortExpression] = useState<string>('');
 
-  // TODO: why is there no re-render?
   useEffect(() => {
     if (deleteError) {
       failToast(deleteError);
@@ -31,7 +29,7 @@ function ProductList() {
   };
 
   const handleAction = (productId: string) => {
-    remove(UpdateMethods.DELETE, productId);
+    remove('DELETE', productId);
   };
 
   // TODO: issue with sorting on Product ID and Product Number (order changes)
@@ -40,65 +38,63 @@ function ProductList() {
 
   const columns = [
     {
-      name: "id",
-      label: "Product ID",
+      name: 'id',
+      label: 'Product ID',
       sortable: true,
-      id: "col1",
+      id: 'col1',
     },
     {
-      name: "sku",
-      label: "Product number",
+      name: 'sku',
+      label: 'Product number',
       sortable: true,
-      id: "col2",
+      id: 'col2',
     },
     {
-      name: "title",
-      label: "Title",
+      name: 'title',
+      label: 'Title',
       sortable: true,
-      id: "col3",
+      id: 'col3',
     },
     {
-      name: "desc",
-      label: "Description",
+      name: 'desc',
+      label: 'Description',
       sortable: false,
-      id: "col4",
+      id: 'col4',
     },
     {
-      name: "image",
-      label: "Image URL",
+      name: 'image',
+      label: 'Image URL',
       sortable: false,
-      id: "col5",
+      id: 'col5',
     },
     {
-      name: "stocked",
-      label: "In stock",
+      name: 'stocked',
+      label: 'In stock',
       sortable: true,
-      id: "col6",
+      id: 'col6',
     },
     {
-      name: "basePrice",
-      label: "Base price",
+      name: 'basePrice',
+      label: 'Base price',
       sortable: true,
-      id: "col7",
+      id: 'col7',
     },
     {
-      name: "price",
-      label: "Unit price",
+      name: 'price',
+      label: 'Unit price',
       sortable: true,
-      id: "col8",
+      id: 'col8',
     },
     {
-      name: "actions",
-      label: "Actions",
+      name: 'actions',
+      label: 'Actions',
       sortable: false,
-      id: "col9",
+      id: 'col9',
     },
   ];
 
-  console.log(sortedProducts);
-
   const handleAddProductClick = () => {
-    navigate("/products/new");
+    navigate('/products/new');
   };
 
   return (
