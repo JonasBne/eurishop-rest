@@ -9,7 +9,7 @@ import ProductCard from './ProductCard';
 import { Cart } from '../../domain/shoppingCart';
 
 // TODO: logica bundelen en unit testen Home.spec.ts
-export function addProductToCard(cart: Cart | undefined, product: Product): Cart {
+export function addProductToCart(cart: Cart | undefined, product: Product): Cart {
   if (cart && cart.items.find((item) => item.product.id === product.id)) {
     return {
       items: cart.items.map((item) => (item.product.id === product.id
@@ -22,7 +22,6 @@ export function addProductToCard(cart: Cart | undefined, product: Product): Cart
   }
   return {
     items: [],
-
   };
 }
 
@@ -31,7 +30,7 @@ function Home() {
   const [cart, setCart] = useState<Cart>();
 
   const handleBuy = (product: Product) => {
-    setCart((preCard) => addProductToCard(preCard, product));
+    setCart((preCard) => addProductToCart(preCard, product));
 
     // TODO: move logic to the addProductToCard function
 
