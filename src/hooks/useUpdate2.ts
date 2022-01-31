@@ -66,6 +66,9 @@ function useUpdate2<T>(url: string) {
 
 export default useUpdate2;
 /*
+
+api om te ontwikkelen:
+
 const { put, remove, post data, error, loading } = useUpdate()
 
 put(id, body)

@@ -61,7 +61,7 @@ export const useGetProducts = () => {
 
 export const useUpdateProduct = () => {
   const {
-    loading, error, data, update, remove,
+    loading, error, data, update,
   } = useUpdate<ProductDTO>(
     `${rootUrl}${url}`,
   );
@@ -70,6 +70,5 @@ export const useUpdateProduct = () => {
     error,
     data,
     update,
-    remove,
   };
 };

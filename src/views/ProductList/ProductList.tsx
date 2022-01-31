@@ -14,7 +14,7 @@ function ProductList() {
   const {
     loading, error, products, refetch,
   } = useGetProducts();
-  const { error: deleteError, data: deletedData, remove } = useUpdateProduct();
+  const { error: deleteError, data: deletedData, update } = useUpdateProduct();
   const [sortExpression, setSortExpression] = useState<string>('');
 
   useEffect(() => {
@@ -32,7 +32,7 @@ function ProductList() {
   };
 
   const handleAction = (productId: string) => {
-    remove('DELETE', productId);
+    update('DELETE', undefined, productId);
   };
 
   // TODO: issue with sorting on Product ID and Product Number (order changes)

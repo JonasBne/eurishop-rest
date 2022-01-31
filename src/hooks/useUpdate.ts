@@ -11,7 +11,7 @@ function useUpdate<T>(url: string) {
 
   const update = async (
     method: UpdateMethods,
-    data: T,
+    data: T | undefined,
     id: number | string = '',
   ) => {
     try {
@@ -36,50 +36,12 @@ function useUpdate<T>(url: string) {
     }
   };
 
-  const remove = async (method: UpdateMethods, id: number | string = '') => {
-    try {
-      setLoading(true);
-      const response = await fetch(`${url}/${id}`, {
-        method,
-      });
-
-      if (!response.ok) {
-        setError(new RequestError(response.status));
-        return;
-      }
-      setUpdatedData(await response.json());
-    } catch (e: any) {
-      setError(new CommunicationError(e));
-    } finally {
-      setLoading(false);
-    }
-  };
-
   return {
     loading,
     error,
     update,
-    remove,
     data: updatedData,
   };
 }
-
-/*
-
-api om te ontwikkelen:
-
-const { put, remove, post data, error, loading } = useUpdate()
-
-put(id, body)
-remove(id)
-post(body)
-
-Tracht zoveel mogelijk code te herbruiken en zoveel mogelijk logica te bundelen
-
-update('POST', body)
-update(UpdateMethods.POST, body)
-update(UpdateMethods.PUT, body, id)
-update(UpdateMethods.DELETE, null, id)
-*/
 
 export default useUpdate;
