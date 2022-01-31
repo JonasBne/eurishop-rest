@@ -15,7 +15,6 @@ function ProductEdit() {
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
-  // const { error: putError, data: puttedData, update } = useUpdateProduct();
   const { error: putError, data: puttedData, put } = useUpdateProduct2();
 
   const gridTemplateAreas = `
@@ -44,8 +43,6 @@ function ProductEdit() {
     };
 
     put(item, item.id);
-
-    // update('PUT', item, item.id);
   };
 
   return (

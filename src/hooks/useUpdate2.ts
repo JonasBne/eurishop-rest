@@ -60,13 +60,3 @@ function useUpdate2<T>(url: string) {
 }
 
 export default useUpdate2;
-/*
-
-const { put, remove, post data, error, loading } = useUpdate()
-
-put(id, body)
-remove(id)
-post(body)
-
-Tracht zoveel mogelijk code te herbruiken en zoveel mogelijk logica te bundelen
-*/

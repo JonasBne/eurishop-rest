@@ -7,7 +7,6 @@ import ProductForm, { ProductFormValues } from './ProductForm';
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  // const { error: postError, data: postedData, update } = useUpdateProduct();
   const {
     error: postError, data: postedData, post,
   } = useUpdateProduct2();
@@ -37,7 +36,6 @@ function ProductAdd() {
       id: 0,
     };
     post(product);
-    // update('POST', product);
   };
 
   return (

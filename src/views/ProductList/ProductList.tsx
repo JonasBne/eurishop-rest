@@ -14,7 +14,6 @@ function ProductList() {
   const {
     loading, error, products, refetch,
   } = useGetProducts();
-  // const { error: deleteError, data: deletedData, update } = useUpdateProduct();
   const { error: deleteError, data: deletedData, remove } = useUpdateProduct2();
 
   const [sortExpression, setSortExpression] = useState<string>('');
