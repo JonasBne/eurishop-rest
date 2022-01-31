@@ -1,8 +1,8 @@
 /* eslint-disable import/no-cycle */
-import rootUrl from "./rootUrl";
-import useFetch from "../hooks/useFetch";
-import useUpdate from "../hooks/useUpdate";
-import Product from "../domain/product";
+import rootUrl from './rootUrl';
+import useFetch from '../hooks/useFetch';
+import useUpdate from '../hooks/useUpdate';
+import Product from '../domain/product';
 
 export interface ProductDTO {
   id: number;
@@ -22,7 +22,7 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-const url = "api/products";
+const url = 'api/products';
 
 const productMapper = (dto?: ProductDTO): Product | undefined => {
   if (!dto) return undefined;
@@ -33,7 +33,7 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
 
 export const useGetProduct = (productId: string) => {
   const { loading, error, data } = useFetch<ProductDTO>(
-    `${rootUrl}${url}/${productId}`
+    `${rootUrl}${url}/${productId}`,
   );
   return {
     loading,
@@ -44,22 +44,26 @@ export const useGetProduct = (productId: string) => {
 
 // TODO: remove the pagesize later, this is only temporary
 export const useGetProducts = () => {
-  const { loading, error, data, refetch } = useFetch<ProductsDTO>(
-    `${rootUrl}${url}/?pageSize=1000`
+  const {
+    loading, error, data, refetch,
+  } = useFetch<ProductsDTO>(
+    `${rootUrl}${url}/?pageSize=1000`,
   );
   return {
     loading,
     error,
     products: data?.selectedProducts.map(
-      (product: ProductDTO) => productMapper(product)!
+      (product: ProductDTO) => productMapper(product)!,
     ),
     refetch,
   };
 };
 
 export const useUpdateProduct = () => {
-  const { loading, error, data, update, remove } = useUpdate<ProductDTO>(
-    `${rootUrl}${url}`
+  const {
+    loading, error, data, update, remove,
+  } = useUpdate<ProductDTO>(
+    `${rootUrl}${url}`,
   );
   return {
     loading,

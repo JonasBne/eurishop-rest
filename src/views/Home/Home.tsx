@@ -9,15 +9,26 @@ import ProductCard from './ProductCard';
 import { Cart } from '../../domain/shoppingCart';
 
 // TODO: logica bundelen en unit testen Home.spec.ts
-export function addProductToCard(card: Cart, product: Product) : Cart {
-  return null;
+export function addProductToCard(cart: Cart | undefined, product: Product): Cart {
+  if (cart && cart.items.find((item) => item.product.id === product.id)) {
+    return {
+      items: cart.items.map((item) => (item.product.id === product.id
+        ? { ...item, quantity: item.quantity + 1 } : item)),
+    };
+  } if (cart) {
+    return {
+      items: [...cart.items, { product, quantity: 1 }],
+    };
+  }
+  return {
+    items: [],
+
+  };
 }
 
 function Home() {
   const { loading, error, products } = useGetProducts();
-  const [cart, setCart] = useState<Cart>({
-    items: [],
-  });
+  const [cart, setCart] = useState<Cart>();
 
   const handleBuy = (product: Product) => {
     setCart((preCard) => addProductToCard(preCard, product));
