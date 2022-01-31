@@ -39,8 +39,8 @@ export interface ProductFormValues {
   desc: string;
   image: string;
   stocked: boolean;
-  basePrice: number;
-  price: number;
+  basePrice: string;
+  price: string;
 }
 
 function ProductForm({
@@ -68,12 +68,12 @@ function ProductForm({
   };
 
   const handleFormResult = (formValues: ProductFormValues) => {
-    const product: Product = {
-      ...formValues,
-      basePrice: +formValues.basePrice,
-      price: +formValues.price,
-    };
-    onSubmit(product);
+    // const product: Product = {
+    //   ...formValues,
+    //   basePrice: +formValues.basePrice,
+    //   price: +formValues.price,
+    // };
+    onSubmit(formValues);
   };
 
   return (
