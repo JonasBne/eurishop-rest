@@ -8,7 +8,6 @@ import ProductCard from './ProductCard';
 // import ShoppingCart from "../ShoppingCart/ShoppingCart";
 import { Cart } from '../../domain/shoppingCart';
 
-// TODO: logica bundelen en unit testen Home.spec.ts
 export function addProductToCart(cart: Cart | undefined, product: Product): Cart {
   if (cart && cart.items.find((item) => item.product.id === product.id)) {
     return {
@@ -31,49 +30,7 @@ function Home() {
 
   const handleBuy = (product: Product) => {
     setCart((preCard) => addProductToCart(preCard, product));
-
-    // TODO: move logic to the addProductToCard function
-
-    // if (cart?.items.find((item) => item.product.id === product.id)) {
-    //   setCart((prevCart) => ({
-    //     items: prevCart.items.map((item) =>
-    //       item.product.id === product.id
-    //         ? { ...item, quantity: item.quantity + 1 }
-    //         : item
-    //     ),
-    //   }));
-    // } else {
-    //   setCart((prevCart) => ({
-    //     items: [
-    //       ...prevCart.items,
-    //       {
-    //         product,
-    //         quantity: 1,
-    //       },
-    //     ],
-    //   }));
-    // }
   };
-
-  // const handleBuy = (product: Product) => {
-  //   if (cart.items.find((cartItem) => cartItem.product.id === product.id)) {
-  //     setCart(
-  //       cart.items.map((cartItem) =>
-  //         cartItem.product.id === product.id
-  //           ? { ...cartItem, quantity: CartItem.quantity + 1 }
-  //           : CartItem
-  //       )
-  //     );
-  //   } else {
-  //     setCart((prevCartItems) => [
-  //       ...prevCartItems,
-  //       {
-  //         ...product,
-  //         quantity: 1,
-  //       },
-  //     ]);
-  //   }
-  // };
 
   // const handleUpdate = (action: string, cartItem: Item) => {
   //   if (action.includes("+")) {
