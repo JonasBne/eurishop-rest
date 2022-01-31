@@ -2,10 +2,10 @@
 
 ### Main branch v1 
 
-- [ ] cleanup entitities, dto
+- [x] cleanup entitities, dto
 - [ ] unit test schrijven voor de totaalberekening van de basket en in een aparte functie steken
 - [ ] useUpdate 2
-- [ ] Sortable table fix 
+- [x] Sortable table fix 
 - [ ] paging for table and fetch --> paging inbouwen in useFetch hook 
 
 ### Nieuwe branch v2
