@@ -3,13 +3,14 @@
 import { useState } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
+import { UpdateMethods } from './useUpdate';
 
 function useUpdate2<T>(url: string) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error>();
   const [updatedData, setUpdatedData] = useState<T>();
 
-  const sendHttpRequest = async (data?: T | null, id?: string | number) => {
+  const sendHttpRequest = async (method: UpdateMethods, data?: T | null, id?: string | number) => {
     let finalUrl = url;
 
     if (id) {
@@ -19,7 +20,7 @@ function useUpdate2<T>(url: string) {
     try {
       setLoading(true);
       const response = await fetch(finalUrl, {
-        method: `${data && !id ? 'POST' : data && id ? 'PUT' : 'DELETE'}`,
+        method,
         headers: {
           'Content-Type': 'application/json',
         },
@@ -38,15 +39,15 @@ function useUpdate2<T>(url: string) {
   };
 
   const post = async (data: T) => {
-    await sendHttpRequest(data);
+    await sendHttpRequest('POST', data);
   };
 
   const put = async (data: T, id: number | string = '') => {
-    await sendHttpRequest(data, id);
+    await sendHttpRequest('PUT', data, id);
   };
 
   const remove = async (id: number | string = '') => {
-    await sendHttpRequest(null, id);
+    await sendHttpRequest('DELETE', null, id);
   };
 
   return {

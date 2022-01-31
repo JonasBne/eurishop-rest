@@ -43,13 +43,10 @@ export const useGetProduct = (productId: string) => {
   };
 };
 
-// TODO: remove the pagesize later, this is only temporary
 export const useGetProducts = () => {
   const {
     loading, error, data, refetch,
-  } = useFetch<ProductsDTO>(
-    `${rootUrl}${url}`,
-  );
+  } = useFetch<ProductsDTO>(`${rootUrl}${url}`);
   return {
     loading,
     error,

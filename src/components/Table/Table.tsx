@@ -7,6 +7,8 @@ import { SpaceProps } from 'styled-system';
 import FaIcon from '../../assets/FaIcon';
 import SortableTableHead from './SortableTableHead';
 import { StyledTable, TableRow, TableData } from './Table.styles';
+import FlexBox from '../FlexBox';
+import Button from '../Button';
 
 interface Column {
   name: string;
@@ -34,54 +36,60 @@ function Table({
   ...space
 }: TableProps) {
   return (
-    <StyledTable {...space}>
-      <thead>
-        <TableRow>
-          {columns.map((col, index) => (
-            <SortableTableHead
-              title={col.label}
-              index={index}
-              name={col.name}
-              sortable={col.sortable}
-              sortExpression={sortExpression}
-              setSortExpression={setSortExpression}
-              key={col.id}
-            />
-          ))}
-        </TableRow>
-      </thead>
-      <tbody>
-        {data.map((item: any, dataIndex) => (
-          <TableRow key={item.id}>
-            {Object.keys(data[0]).map((title: any, index) => (
-              <TableData
-                key={`item${index}${dataIndex}`}
-                onClick={() => {
-                  if (onRowClick !== undefined) {
-                    onRowClick(item.id);
-                  }
-                }}
-              >
-                {item[title]}
-              </TableData>
-            ))}
-            <TableData>
-              <FaIcon
-                icon={faTrash}
-                px="0.25rem"
-                color="red"
-                mx="1rem"
-                onClick={() => {
-                  if (onActionClick !== undefined) {
-                    onActionClick(item.id);
-                  }
-                }}
+    <>
+      <StyledTable {...space}>
+        <thead>
+          <TableRow>
+            {columns.map((col, index) => (
+              <SortableTableHead
+                title={col.label}
+                index={index}
+                name={col.name}
+                sortable={col.sortable}
+                sortExpression={sortExpression}
+                setSortExpression={setSortExpression}
+                key={col.id}
               />
-            </TableData>
+            ))}
           </TableRow>
-        ))}
-      </tbody>
-    </StyledTable>
+        </thead>
+        <tbody>
+          {data.map((item: any, dataIndex) => (
+            <TableRow key={item.id}>
+              {Object.keys(data[0]).map((title: any, index) => (
+                <TableData
+                  key={`item${index}${dataIndex}`}
+                  onClick={() => {
+                    if (onRowClick !== undefined) {
+                      onRowClick(item.id);
+                    }
+                  }}
+                >
+                  {item[title]}
+                </TableData>
+              ))}
+              <TableData>
+                <FaIcon
+                  icon={faTrash}
+                  px="0.25rem"
+                  color="red"
+                  mx="1rem"
+                  onClick={() => {
+                    if (onActionClick !== undefined) {
+                      onActionClick(item.id);
+                    }
+                  }}
+                />
+              </TableData>
+            </TableRow>
+          ))}
+        </tbody>
+      </StyledTable>
+      <FlexBox justifyContent="center">
+        <Button type="button" variant="primary" mb="2rem" mx="1rem">PREVIOUS</Button>
+        <Button type="button" variant="primary" mb="2rem" mx="1rem">NEXT</Button>
+      </FlexBox>
+    </>
   );
 }
 
