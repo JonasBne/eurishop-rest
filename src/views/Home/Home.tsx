@@ -6,7 +6,7 @@ import FlexBox from '../../components/FlexBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductCard from './ProductCard';
 // import ShoppingCart from "../ShoppingCart/ShoppingCart";
-import { Cart } from '../../domain/shoppingCart';
+import { Cart, CartItem } from '../../domain/shoppingCart';
 
 export function addProductToCart(cart: Cart | undefined, product: Product): Cart {
   if (cart && cart.items.find((item) => item.product.id === product.id)) {
@@ -24,12 +24,31 @@ export function addProductToCart(cart: Cart | undefined, product: Product): Cart
   };
 }
 
+// eslint-disable-next-line max-len
+export function updateProductQuantityInCart(cart: Cart | undefined, cartItem: CartItem, action: string) {
+  if (cart && action.includes('+')) {
+    return {
+      items: cart.items.map((item) => (item.product.id === cartItem.product.id
+        ? { ...item, quantity: item.quantity + 1 } : item)),
+    };
+  } if (cart && action.includes('-')) {
+    return {
+      items: cart.items.map((item) => (item.product.id === cartItem.product.id
+        ? { ...item, quantity: item.quantity - 1 } : item)),
+    };
+  } return cart;
+}
+
 function Home() {
   const { loading, error, products } = useGetProducts();
   const [cart, setCart] = useState<Cart>();
 
   const handleBuy = (product: Product) => {
     setCart((preCard) => addProductToCart(preCard, product));
+  };
+
+  const handleUpdate = (cartItem: CartItem, action: string) => {
+    setCart((preCard) => updateProductQuantityInCart(preCard, cartItem, action));
   };
 
   // const handleUpdate = (action: string, cartItem: Item) => {
@@ -52,11 +71,11 @@ function Home() {
   //   }
   // };
 
-  // const handleClear = () => {
-  //   setCart({
-  //     items: [],
-  //   });
-  // };
+  const handleClear = () => {
+    setCart({
+      items: [],
+    });
+  };
 
   // TODO: add following functions: handleOrder (ShoppingCart)
   return (
@@ -84,11 +103,11 @@ function Home() {
             ))}
           </FlexBox>
           <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
-            {/* <ShoppingCart
-            // cartItems={cartItems}
-            // onUpdate={handleUpdate}
-            // onClear={handleClear}
-            /> */}
+            <ShoppingCart
+              cartItems={cartItems}
+              onUpdate={handleUpdate}
+              onClear={handleClear}
+            />
           </FlexBox>
         </FlexBox>
       )}
