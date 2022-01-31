@@ -48,7 +48,7 @@ export const useGetProducts = () => {
   const {
     loading, error, data, refetch,
   } = useFetch<ProductsDTO>(
-    `${rootUrl}${url}/?pageSize=1000`,
+    `${rootUrl}${url}`,
   );
   return {
     loading,
