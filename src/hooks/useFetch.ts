@@ -13,6 +13,8 @@ const useFetch = <T>(url: string) => {
     setPageNumber((prePage) => prePage + 1);
   };
 
+  // TODO: append data to array
+  // TODO: move appending logic to separate function and unit test?
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
