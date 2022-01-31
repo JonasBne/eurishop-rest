@@ -2,19 +2,19 @@ import React from 'react';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import Box from '../../components/Box';
-import { Item } from '../../domain/shoppingCart';
+import { CartItem } from '../../domain/shoppingCart';
 import FlexBox from '../../components/FlexBox';
 
 interface BasketItemProps {
-  item: Item;
-  onUpdate: (action: string, cartItem: Item) => void;
+  item: CartItem;
+  onUpdate: (action: string, cartItem: CartItem) => void;
 }
 
 function BasketItem({ item, onUpdate }: BasketItemProps) {
   return (
     <div>
-      <Header as="h4">{item.title}</Header>
-      <Box my="0.5rem" fontStyle="italic">{`Unit price: € ${item.price}`}</Box>
+      <Header as="h4">{item.product.title}</Header>
+      <Box my="0.5rem" fontStyle="italic">{`Unit price: € ${item.product.price}`}</Box>
       <FlexBox alignItems="baseline" my="2rem">
         <Button
           type="button"
@@ -37,7 +37,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
       </FlexBox>
       <Box mt="0.5rem" mb="1rem" fontWeight="bold">
         {`Total: € ${(
-          item.quantity * item.price
+          item.quantity * item.product.price
         ).toFixed(2)}`}
 
       </Box>
