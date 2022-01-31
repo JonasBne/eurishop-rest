@@ -1,29 +1,21 @@
+/* eslint-disable no-useless-return */
+/* eslint-disable no-nested-ternary */
 import { useState } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
-
-export type UpdateMethods = 'POST' | 'PUT' | 'DELETE';
 
 function useUpdate2<T>(url: string) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error>();
   const [updatedData, setUpdatedData] = useState<T>();
 
-  const update = async (
-    method: UpdateMethods,
-    data: T,
-    id: number | string = '',
-  ) => {
+  const sendHttpRequest = async (data?: T | null, id?: string | number) => {
     try {
       setLoading(true);
-      const response = await fetch(`${url}/${id}`, {
-        method,
-        headers: data && {
-          'Content-Type': 'application/json',
-        },
+      const response = await fetch(`${id ? (`${url}/${id}`) : { url }}`, {
+        method: `${data && !id ? 'POST' : data && id ? 'PUT' : 'DELETE'}`,
         body: data && JSON.stringify(data),
       });
-
       if (!response.ok) {
         setError(new RequestError(response.status));
         return;
@@ -36,29 +28,23 @@ function useUpdate2<T>(url: string) {
     }
   };
 
-  const remove = async (method: UpdateMethods, id: number | string = '') => {
-    try {
-      setLoading(true);
-      const response = await fetch(`${url}/${id}`, {
-        method,
-      });
+  const post = async (data: T) => {
+    await sendHttpRequest(data);
+  };
 
-      if (!response.ok) {
-        setError(new RequestError(response.status));
-        return;
-      }
-      setUpdatedData(await response.json());
-    } catch (e: any) {
-      setError(new CommunicationError(e));
-    } finally {
-      setLoading(false);
-    }
+  const put = async (data: T, id: number | string = '') => {
+    await sendHttpRequest(data, id);
+  };
+
+  const remove = async (id: number | string = '') => {
+    await sendHttpRequest(null, id);
   };
 
   return {
     loading,
     error,
-    update,
+    post,
+    put,
     remove,
     data: updatedData,
   };
@@ -67,8 +53,6 @@ function useUpdate2<T>(url: string) {
 export default useUpdate2;
 /*
 
-api om te ontwikkelen:
-
 const { put, remove, post data, error, loading } = useUpdate()
 
 put(id, body)
@@ -76,9 +60,4 @@ remove(id)
 post(body)
 
 Tracht zoveel mogelijk code te herbruiken en zoveel mogelijk logica te bundelen
-
-update('POST', body)
-update(UpdateMethods.POST, body)
-update(UpdateMethods.PUT, body, id)
-update(UpdateMethods.DELETE, null, id)
 */
