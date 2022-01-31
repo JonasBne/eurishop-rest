@@ -54,6 +54,7 @@ function ProductForm({
   const navigate = useNavigate();
   const { register, handleSubmit } = useForm<ProductFormValues>({
     defaultValues: {
+      id: initialProduct?.id?.toString(),
       sku: initialProduct?.sku,
       title: initialProduct?.title,
       desc: initialProduct?.desc,
