@@ -1,12 +1,12 @@
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
-import React from "react";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
-import { SpaceProps } from "styled-system";
-import FaIcon from "../../assets/FaIcon";
-import SortableTableHead from "./SortableTableHead";
-import { StyledTable, TableRow, TableData } from "./Table.styles";
+import React from 'react';
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { SpaceProps } from 'styled-system';
+import FaIcon from '../../assets/FaIcon';
+import SortableTableHead from './SortableTableHead';
+import { StyledTable, TableRow, TableData } from './Table.styles';
 
 interface Column {
   name: string;
@@ -51,40 +51,35 @@ function Table({
         </TableRow>
       </thead>
       <tbody>
-        {data.map((item: any, dataIndex) => {
-          return (
-            <TableRow key={item.id}>
-              {/* // TODO: aanpassen naar columns */}
-              {Object.keys(data[0]).map((title: any, index) => {
-                return (
-                  <TableData
-                    key={`item${index}${dataIndex}`}
-                    onClick={() => {
-                      if (onRowClick !== undefined) {
-                        onRowClick(item.id);
-                      }
-                    }}
-                  >
-                    {item[title]}
-                  </TableData>
-                );
-              })}
-              <TableData>
-                <FaIcon
-                  icon={faTrash}
-                  px="0.25rem"
-                  color="red"
-                  mx="1rem"
-                  onClick={() => {
-                    if (onActionClick !== undefined) {
-                      onActionClick(item.id);
-                    }
-                  }}
-                />
+        {data.map((item: any, dataIndex) => (
+          <TableRow key={item.id}>
+            {Object.keys(data[0]).map((title: any, index) => (
+              <TableData
+                key={`item${index}${dataIndex}`}
+                onClick={() => {
+                  if (onRowClick !== undefined) {
+                    onRowClick(item.id);
+                  }
+                }}
+              >
+                {item[title]}
               </TableData>
-            </TableRow>
-          );
-        })}
+            ))}
+            <TableData>
+              <FaIcon
+                icon={faTrash}
+                px="0.25rem"
+                color="red"
+                mx="1rem"
+                onClick={() => {
+                  if (onActionClick !== undefined) {
+                    onActionClick(item.id);
+                  }
+                }}
+              />
+            </TableData>
+          </TableRow>
+        ))}
       </tbody>
     </StyledTable>
   );
