@@ -11,7 +11,7 @@ import FaIcon from '../../assets/FaIcon';
 
 interface ShoppingCartProps {
   cartItems: CartItem[];
-  onUpdate: (action: string, cartItem: CartItem) => void;
+  onUpdate: (cartItem: CartItem, action: string) => void;
   onClear: () => void;
 }
 

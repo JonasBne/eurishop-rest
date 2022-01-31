@@ -7,7 +7,7 @@ import FlexBox from '../../components/FlexBox';
 
 interface BasketItemProps {
   item: CartItem;
-  onUpdate: (action: string, cartItem: CartItem) => void;
+  onUpdate: (cartItem: CartItem, action: string) => void;
 }
 
 function BasketItem({ item, onUpdate }: BasketItemProps) {
@@ -20,7 +20,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
           type="button"
           variant="secondary"
           mr="1rem"
-          onClick={() => onUpdate('-', item)}
+          onClick={() => onUpdate(item, '-')}
           disabled={item.quantity === 0}
         >
           -
@@ -30,7 +30,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
           type="button"
           variant="secondary"
           ml="1rem"
-          onClick={() => onUpdate('+', item)}
+          onClick={() => onUpdate(item, '+')}
         >
           +
         </Button>
