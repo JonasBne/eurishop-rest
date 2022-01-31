@@ -29,12 +29,6 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
     onClear();
   };
 
-  const productSums = cartItems.map((item) => item.quantity * item.product.price);
-
-  const totalSum = productSums
-    .reduce((previousValue, currentValue) => previousValue + currentValue, 0)
-    .toFixed(2);
-
   return (
     <Box
       width="100%"
@@ -63,7 +57,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
       {cartItems.length > 0 && (
         <div>
           <Header as="h3" mt="2rem" mb="3rem" textAlign="center">
-            {`TOTAL: € ${totalSum}`}
+            {`TOTAL: € ${calculateTotalCartCost(cartItems)}`}
           </Header>
           <FlexBox justifyContent="center" m="2rem">
             <Button
