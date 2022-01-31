@@ -5,13 +5,13 @@ import Box from '../../components/Box';
 import FlexBox from '../../components/FlexBox';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
-import CartItem from './CartItem';
-import { Item } from '../../domain/shoppingCart';
+import BasketItem from './BasketItem';
+import { CartItem } from '../../domain/shoppingCart';
 import FaIcon from '../../assets/FaIcon';
 
 interface ShoppingCartProps {
-  cartItems: Item[];
-  onUpdate: (action: string, cartItem: Item) => void;
+  cartItems: CartItem[];
+  onUpdate: (action: string, cartItem: CartItem) => void;
   onClear: () => void;
 }
 
@@ -45,7 +45,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <>
-              <CartItem key={item.id} item={item} onUpdate={onUpdate} />
+              <BasketItem key={item.id} item={item} onUpdate={onUpdate} />
               <hr key={item.sku} />
             </>
           ))

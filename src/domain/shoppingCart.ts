@@ -1,4 +1,4 @@
-import { ProductDTO } from "../api/productsApi";
+import { ProductDTO } from '../api/productsApi';
 
 export interface CartItem {
   product: ProductDTO;

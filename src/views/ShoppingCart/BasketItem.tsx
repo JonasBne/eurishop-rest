@@ -5,12 +5,12 @@ import Box from '../../components/Box';
 import { Item } from '../../domain/shoppingCart';
 import FlexBox from '../../components/FlexBox';
 
-interface CartItemProps {
+interface BasketItemProps {
   item: Item;
   onUpdate: (action: string, cartItem: Item) => void;
 }
 
-function CartItem({ item, onUpdate }: CartItemProps) {
+function BasketItem({ item, onUpdate }: BasketItemProps) {
   return (
     <div>
       <Header as="h4">{item.title}</Header>
@@ -45,4 +45,4 @@ function CartItem({ item, onUpdate }: CartItemProps) {
   );
 }
 
-export default CartItem;
+export default BasketItem;
