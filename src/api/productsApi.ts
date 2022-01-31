@@ -45,7 +45,7 @@ export const useGetProduct = (productId: string) => {
 
 export const useGetProducts = () => {
   const {
-    loading, error, data, refetch,
+    loading, error, data, refetch, pagination, pageNumber,
   } = useFetch<ProductsDTO>(`${rootUrl}${url}`);
   return {
     loading,
@@ -54,6 +54,8 @@ export const useGetProducts = () => {
       (product: ProductDTO) => productMapper(product)!,
     ),
     refetch,
+    pagination,
+    pageNumber,
   };
 };
 

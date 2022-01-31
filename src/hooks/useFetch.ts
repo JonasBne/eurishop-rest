@@ -3,10 +3,27 @@ import { useState, useEffect, useCallback } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
 
-const useFetch = <T>(url: string, pageNumber = '0') => {
+const useFetch = <T>(url: string) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
   const [fetchedData, setFetchedData] = useState<T>();
+  const [pageNumber, setPageNumber] = useState<number>(0);
+
+  const pagination = () => {
+    const goToNextPage = () => {
+      if (pageNumber >= 0) setPageNumber((prePage) => prePage + 1);
+    };
+
+    const goToPreviousPage = () => {
+      if (pageNumber > 0) setPageNumber((prePage) => prePage - 1);
+    };
+
+    return {
+      goToNextPage,
+      goToPreviousPage,
+      pageNumber,
+    };
+  };
 
   const fetchData = useCallback(async () => {
     try {
@@ -36,6 +53,8 @@ const useFetch = <T>(url: string, pageNumber = '0') => {
     error,
     data: fetchedData,
     refetch,
+    pagination,
+    pageNumber,
   };
 };
 

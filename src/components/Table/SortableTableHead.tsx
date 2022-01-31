@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 import {
   faSortDown,
   faSortUp,
   faSort,
-} from "@fortawesome/free-solid-svg-icons";
-import { TableHead } from "./Table.styles";
-import FaIcon from "../../assets/FaIcon";
-import FlexBox from "../FlexBox";
+} from '@fortawesome/free-solid-svg-icons';
+import { TableHead } from './Table.styles';
+import FaIcon from '../../assets/FaIcon';
+import FlexBox from '../FlexBox';
 
 interface SortableTableHeadProps {
   index: number;
@@ -27,11 +27,11 @@ function SortableTableHead({
 }: SortableTableHeadProps) {
   const handleSort = (sortByField: string) => {
     setSortExpression((prevSortExp: any) => {
-      if (prevSortExp?.includes("+")) {
+      if (prevSortExp?.includes('+')) {
         return `-${sortByField}`;
       }
-      if (prevSortExp?.includes("-")) {
-        return ``;
+      if (prevSortExp?.includes('-')) {
+        return '';
       }
       return `+${sortByField}`;
     });
@@ -52,11 +52,11 @@ function SortableTableHead({
           <FaIcon
             icon={
               // eslint-disable-next-line no-nested-ternary
-              sortExpression.includes("+")
+              sortExpression.includes('+')
                 ? faSortDown
-                : sortExpression.includes("-")
-                ? faSortUp
-                : faSort
+                : sortExpression.includes('-')
+                  ? faSortUp
+                  : faSort
             }
             px="1rem"
           />
