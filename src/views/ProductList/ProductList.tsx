@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useGetProducts, useUpdateProduct } from '../../api/productsApi';
+import { useGetProducts, useUpdateProduct2 } from '../../api/productsApi';
 import Table from '../../components/Table/Table';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import sortBy from '../../utils/sortBy';
@@ -14,7 +14,9 @@ function ProductList() {
   const {
     loading, error, products, refetch,
   } = useGetProducts();
-  const { error: deleteError, data: deletedData, update } = useUpdateProduct();
+  // const { error: deleteError, data: deletedData, update } = useUpdateProduct();
+  const { error: deleteError, data: deletedData, remove } = useUpdateProduct2();
+
   const [sortExpression, setSortExpression] = useState<string>('');
 
   useEffect(() => {
@@ -32,7 +34,7 @@ function ProductList() {
   };
 
   const handleAction = (productId: string) => {
-    update('DELETE', undefined, productId);
+    remove(productId);
   };
 
   // TODO: issue with sorting on Product ID and Product Number (order changes)

@@ -1,13 +1,16 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import toasts from '../../components/toasts';
-import { ProductDTO, useUpdateProduct } from '../../api/productsApi';
+import { ProductDTO, useUpdateProduct2 } from '../../api/productsApi';
 import ProductForm, { ProductFormValues } from './ProductForm';
 
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  const { error: postError, data: postedData, update } = useUpdateProduct();
+  // const { error: postError, data: postedData, update } = useUpdateProduct();
+  const {
+    error: postError, data: postedData, post,
+  } = useUpdateProduct2();
 
   const gridTemplateAreas = `
   "title sku"
@@ -33,7 +36,8 @@ function ProductAdd() {
       price: +formValues.price,
       id: 0,
     };
-    update('POST', product);
+    post(product);
+    // update('POST', product);
   };
 
   return (

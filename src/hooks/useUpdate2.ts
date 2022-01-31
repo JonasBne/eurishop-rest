@@ -10,10 +10,19 @@ function useUpdate2<T>(url: string) {
   const [updatedData, setUpdatedData] = useState<T>();
 
   const sendHttpRequest = async (data?: T | null, id?: string | number) => {
+    let finalUrl = url;
+
+    if (id) {
+      finalUrl += `/${id}`;
+    }
+
     try {
       setLoading(true);
-      const response = await fetch(`${id ? (`${url}/${id}`) : { url }}`, {
+      const response = await fetch(finalUrl, {
         method: `${data && !id ? 'POST' : data && id ? 'PUT' : 'DELETE'}`,
+        headers: {
+          'Content-Type': 'application/json',
+        },
         body: data && JSON.stringify(data),
       });
       if (!response.ok) {

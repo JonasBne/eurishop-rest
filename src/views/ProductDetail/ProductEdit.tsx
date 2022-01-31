@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router';
 import {
   useGetProduct,
   ProductDTO,
-  useUpdateProduct,
+  useUpdateProduct2,
 } from '../../api/productsApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
@@ -15,7 +15,8 @@ function ProductEdit() {
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
-  const { error: putError, data: puttedData, update } = useUpdateProduct();
+  // const { error: putError, data: puttedData, update } = useUpdateProduct();
+  const { error: putError, data: puttedData, put } = useUpdateProduct2();
 
   const gridTemplateAreas = `
   "title sku"
@@ -42,7 +43,9 @@ function ProductEdit() {
       price: +formValues.price,
     };
 
-    update('PUT', item, item.id);
+    put(item, item.id);
+
+    // update('PUT', item, item.id);
   };
 
   return (
