@@ -22,7 +22,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
     onClear();
   };
 
-  const productSums = cartItems.map((item) => item.quantity * item.price);
+  const productSums = cartItems.map((item) => item.quantity * item.product.price);
 
   const totalSum = productSums
     .reduce((previousValue, currentValue) => previousValue + currentValue, 0)
@@ -45,8 +45,8 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <>
-              <BasketItem key={item.id} item={item} onUpdate={onUpdate} />
-              <hr key={item.sku} />
+              <BasketItem key={item.product.id} item={item} onUpdate={onUpdate} />
+              <hr key={item.product.id} />
             </>
           ))
         ) : (

@@ -5,7 +5,7 @@ import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import FlexBox from '../../components/FlexBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductCard from './ProductCard';
-// import ShoppingCart from "../ShoppingCart/ShoppingCart";
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { Cart, CartItem } from '../../domain/shoppingCart';
 
 export function addProductToCart(cart: Cart | undefined, product: Product): Cart {
@@ -42,6 +42,7 @@ export function updateProductQuantityInCart(cart: Cart | undefined, cartItem: Ca
 function Home() {
   const { loading, error, products } = useGetProducts();
   const [cart, setCart] = useState<Cart>();
+  const cartItems = cart?.items ?? [];
 
   const handleBuy = (product: Product) => {
     setCart((preCard) => addProductToCart(preCard, product));
