@@ -51,26 +51,6 @@ function Home() {
     setCart((preCard) => updateProductQuantityInCart(preCard, cartItem, action));
   };
 
-  // const handleUpdate = (action: string, cartItem: Item) => {
-  //   if (action.includes("+")) {
-  //     setCart((prevCartItems) =>
-  //       prevCartItems.map((item) =>
-  //         item.id === cartItem.id
-  //           ? { ...item, quantity: item.quantity + 1 }
-  //           : item
-  //       )
-  //     );
-  //   } else {
-  //     setCart((prevCartItems) =>
-  //       prevCartItems.map((item) =>
-  //         item.id === cartItem.id
-  //           ? { ...item, quantity: item.quantity - 1 }
-  //           : item
-  //       )
-  //     );
-  //   }
-  // };
-
   const handleClear = () => {
     setCart({
       items: [],
