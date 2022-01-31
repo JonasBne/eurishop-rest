@@ -21,6 +21,9 @@ interface TableProps extends SpaceProps {
   data: any[];
   onRowClick?: (productId: string) => void;
   onActionClick?: (productId: string) => void;
+  onPreviousPageClick: () => void;
+  onNextPageClick: () => void;
+  pageNumber: number;
   sortExpression: string;
   setSortExpression: (prevSortExp: any) => void;
   columns: Column[];
