@@ -11,7 +11,9 @@ import toasts from '../../components/toasts';
 function ProductList() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  const { loading, error, products } = useGetProducts();
+  const {
+    loading, error, products, refetch,
+  } = useGetProducts();
   const { error: deleteError, data: deletedData, remove } = useUpdateProduct();
   const [sortExpression, setSortExpression] = useState<string>('');
 
@@ -21,6 +23,7 @@ function ProductList() {
     }
     if (deletedData) {
       succesToast(`Item with id: ${deletedData.id} removed!`);
+      refetch();
     }
   }, [deleteError, deletedData]);
 
