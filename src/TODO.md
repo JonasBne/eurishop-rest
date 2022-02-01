@@ -13,8 +13,8 @@ Plan van aanpak:
 src > api
 - [ ] basketApi.ts aanmaken
     - [ ] interface BasketDTO (id: number, productId: number, quantity: number)
-    - [ ] basketMapper --> 1 op 1 met een undefined check
-    - [ ] const {loading, error, data: Basket} = useGetBasket() --> .filters inbouwen die productId('s) gaat matchen op Id's van api/products om zo de gekochte producten eruit te filteren?
+    - [ ] basketMapper --> .filter inbouwen die productId('s) gaat matchen op Id's van api/products om zo de gekochte producten eruit te filteren? De mapper geeft een Cart terug.
+    - [ ] const {loading, error, data: Basket} = useGetBasket() 
 
 src > hooks
 
