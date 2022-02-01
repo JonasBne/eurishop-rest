@@ -1,7 +1,6 @@
 /* eslint-disable import/no-cycle */
 import rootUrl from './rootUrl';
 import useFetch from '../hooks/useFetch';
-import useUpdate from '../hooks/useUpdate';
 import Product from '../domain/product';
 import useUpdate2 from '../hooks/useUpdate2';
 
@@ -55,20 +54,6 @@ export const useGetProducts = () => {
     ),
     refetch,
     fetchDataNextPage,
-  };
-};
-
-export const useUpdateProduct = () => {
-  const {
-    loading, error, data, update,
-  } = useUpdate<ProductDTO>(
-    `${rootUrl}${url}`,
-  );
-  return {
-    loading,
-    error,
-    data,
-    update,
   };
 };
 
