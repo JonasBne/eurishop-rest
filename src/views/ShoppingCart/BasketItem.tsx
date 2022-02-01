@@ -25,7 +25,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
           type="button"
           variant="secondary"
           mr="1rem"
-          onClick={() => onUpdate(item.quantity, item.product.id!)}
+          onClick={() => onUpdate(item.quantity - 1, item.product.id!)}
           disabled={item.quantity === 0}
         >
           -
@@ -35,7 +35,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
           type="button"
           variant="secondary"
           ml="1rem"
-          onClick={() => onUpdate(item.quantity, item.product.id!)}
+          onClick={() => onUpdate(item.quantity + 1, item.product.id!)}
         >
           +
         </Button>

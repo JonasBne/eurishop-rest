@@ -53,6 +53,7 @@ function Home() {
   };
 
   const handleUpdate = (quantity: number, productId: string | number) => {
+    console.log(quantity, productId);
     patch({ quantity }, `${rootUrl}api/basket/xyz/product`, productId);
   };
 
