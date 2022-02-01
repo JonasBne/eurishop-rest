@@ -39,9 +39,7 @@ export const useGetBasket = () => {
 export const useUpdateBasket = () => {
   const {
     loading, error, post, put, remove, data,
-  } = useUpdate2<BasketDTO[]>(
-    `${rootUrl}${url}`,
-  );
+  } = useUpdate2<BasketDTO[]>();
   return {
     loading,
     error,

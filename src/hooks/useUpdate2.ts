@@ -6,25 +6,17 @@ import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
 import { UpdateMethods } from './useUpdate';
 
-function useUpdate2<T>(url: string) {
+function useUpdate2<T>() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error>();
   const [updatedData, setUpdatedData] = useState<T>();
 
   // TODO: find a better way to pass the url for basket
-  const sendHttpRequest = async (method: UpdateMethods, data?: T | null, id?: string | number, urlSuffix?: string) => {
-    let finalUrl = url;
-
-    if (id) {
-      finalUrl += `/${id}`;
-    }
-    if (urlSuffix) {
-      finalUrl += `/${urlSuffix}`;
-    }
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const sendHttpRequest = async (method: UpdateMethods, url: string, data?: T | null, id?: string | number) => {
     try {
       setLoading(true);
-      const response = await fetch(finalUrl, {
+      const response = await fetch(url, {
         method,
         headers: {
           'Content-Type': 'application/json',
@@ -43,11 +35,11 @@ function useUpdate2<T>(url: string) {
     }
   };
 
-  const post = (data: any, id: number | string = '', urlSuffix?: string) => sendHttpRequest('POST', data, id, urlSuffix);
+  const post = (data: any, url: string, id: number | string = '') => sendHttpRequest('POST', `${url}/${id}`, data);
 
-  const put = (data: any, id: number | string = '') => sendHttpRequest('PUT', data, id);
+  const put = (data: any, url: string, id: number | string = '') => sendHttpRequest('PUT', `${url}/${id}`, data);
 
-  const remove = (id: number | string = '') => sendHttpRequest('DELETE', null, id);
+  const remove = (url: string, id: number | string = '') => sendHttpRequest('DELETE', `${url}/${id}`, null);
 
   return {
     loading,
