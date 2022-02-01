@@ -43,7 +43,7 @@ export function updateProductQuantityInCart(cart: Cart | undefined, cartItem: Ca
 
 function Home() {
   const { loading, error, products } = useGetProducts();
-  const { post, remove } = useUpdateBasket();
+  const { post, patch, remove } = useUpdateBasket();
   const { cart } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
@@ -52,9 +52,9 @@ function Home() {
     post({ quantity: 1 }, `${rootUrl}api/basket/xyz/product`, productId);
   };
 
-  // const handleUpdate = (cartItem: CartItem, action: string) => {
-  //   setCart((preCard) => updateProductQuantityInCart(preCard, cartItem, action));
-  // };
+  const handleUpdate = (quantity: number, productId: string | number) => {
+    patch({ quantity }, `${rootUrl}api/basket/xyz/product`, productId);
+  };
 
   const handleClear = () => {
     remove(`${rootUrl}api/basket/xyz`);
@@ -88,7 +88,7 @@ function Home() {
           <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
             <ShoppingCart
               cartItems={cartItems}
-              // onUpdate={handleUpdate}
+              onUpdate={handleUpdate}
               onClear={handleClear}
             />
           </FlexBox>

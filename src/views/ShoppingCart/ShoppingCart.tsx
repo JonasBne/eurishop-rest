@@ -18,7 +18,7 @@ export function calculateTotalCartCost(cartItems: CartItem[]) {
 
 interface ShoppingCartProps {
   cartItems: CartItem[];
-  onUpdate: (cartItem: CartItem, action: string) => void;
+  onUpdate: (quantity: number, productId: string | number) => void;
   onClear: () => void;
 }
 

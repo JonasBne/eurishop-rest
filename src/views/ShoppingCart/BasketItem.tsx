@@ -12,7 +12,7 @@ export function calculateTotalCostPerCartItem(cartItem: CartItem) {
 
 interface BasketItemProps {
   item: CartItem;
-  onUpdate: (cartItem: CartItem, action: string) => void;
+  onUpdate: (quantity: number, productId: string | number) => void;
 }
 
 function BasketItem({ item, onUpdate }: BasketItemProps) {
@@ -25,7 +25,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
           type="button"
           variant="secondary"
           mr="1rem"
-          onClick={() => onUpdate(item, '-')}
+          onClick={() => onUpdate(item.quantity, item.product.id!)}
           disabled={item.quantity === 0}
         >
           -
@@ -35,7 +35,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
           type="button"
           variant="secondary"
           ml="1rem"
-          onClick={() => onUpdate(item, '+')}
+          onClick={() => onUpdate(item.quantity, item.product.id!)}
         >
           +
         </Button>
