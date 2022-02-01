@@ -2,7 +2,7 @@
 import rootUrl from './rootUrl';
 import useFetch from '../hooks/useFetch';
 import Product from '../domain/product';
-import useUpdate2 from '../hooks/useUpdate2';
+import useUpdate from '../hooks/useUpdate';
 
 export interface ProductDTO {
   id: number;
@@ -60,7 +60,7 @@ export const useGetProducts = () => {
 export const useUpdateProduct2 = () => {
   const {
     loading, error, post, put, remove, data,
-  } = useUpdate2<ProductDTO>();
+  } = useUpdate<ProductDTO>();
   return {
     loading,
     error,

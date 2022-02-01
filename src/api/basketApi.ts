@@ -2,7 +2,7 @@
 import Product from '../domain/product';
 import { CartItem, Cart } from '../domain/shoppingCart';
 import useFetch from '../hooks/useFetch';
-import useUpdate2 from '../hooks/useUpdate2';
+import useUpdate from '../hooks/useUpdate';
 import { useGetProducts } from './productsApi';
 import rootUrl from './rootUrl';
 
@@ -42,7 +42,7 @@ export const useGetBasket = () => {
 export const useUpdateBasket = () => {
   const {
     loading, error, post, put, patch, remove, data,
-  } = useUpdate2<BasketDTO[]>();
+  } = useUpdate<BasketDTO[]>();
   return {
     loading,
     error,

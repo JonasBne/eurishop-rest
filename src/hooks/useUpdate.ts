@@ -7,7 +7,7 @@ import CommunicationError from '../errors/CommunicationError';
 
 type UpdateMethods = 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
-function useUpdate2<T>() {
+function useUpdate<T>() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error>();
   const [updatedData, setUpdatedData] = useState<T>();
@@ -55,4 +55,4 @@ function useUpdate2<T>() {
   };
 }
 
-export default useUpdate2;
+export default useUpdate;
