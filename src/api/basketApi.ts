@@ -2,6 +2,7 @@
 import Product from '../domain/product';
 import { CartItem, Cart } from '../domain/shoppingCart';
 import useFetch from '../hooks/useFetch';
+import { useGetProducts } from './productsApi';
 import rootUrl from './rootUrl';
 
 export interface BasketDTO {
@@ -24,11 +25,13 @@ export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefi
   };
 };
 
+// TODO: rename to cartItems
 export const useGetBasket = () => {
+  const { products } = useGetProducts();
   const { loading, error, data } = useFetch<BasketDTO[]>(`${rootUrl}${url}`);
   return {
     loading,
     error,
-    data,
+    basketItems: basketMapper(products, data),
   };
 };

@@ -7,6 +7,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductCard from './ProductCard';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { Cart, CartItem } from '../../domain/shoppingCart';
+import { useGetBasket } from '../../api/basketApi';
 
 export function addProductToCart(cart: Cart | undefined, product: Product): Cart {
   if (cart && cart.items.find((item) => item.product.id === product.id)) {
@@ -43,6 +44,10 @@ function Home() {
   const { loading, error, products } = useGetProducts();
   const [cart, setCart] = useState<Cart>();
   const cartItems = cart?.items ?? [];
+
+  // TODO: rename to cartItems
+  const { basketItems } = useGetBasket();
+  console.log(basketItems);
 
   const handleBuy = (product: Product) => {
     setCart((preCard) => addProductToCart(preCard, product));
