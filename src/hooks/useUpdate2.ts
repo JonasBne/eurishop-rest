@@ -4,7 +4,8 @@
 import { useState } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
-import { UpdateMethods } from './useUpdate';
+
+type UpdateMethods = 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 function useUpdate2<T>() {
   const [loading, setLoading] = useState<boolean>(false);
