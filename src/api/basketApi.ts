@@ -39,13 +39,14 @@ export const useGetBasket = () => {
 
 export const useUpdateBasket = () => {
   const {
-    loading, error, post, put, remove, data,
+    loading, error, post, put, patch, remove, data,
   } = useUpdate2<BasketDTO[]>();
   return {
     loading,
     error,
     post,
     put,
+    patch,
     remove,
     data,
   };
