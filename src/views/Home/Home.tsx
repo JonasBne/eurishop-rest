@@ -52,10 +52,6 @@ function Home() {
     post({ quantity: 1 }, `${rootUrl}api/basket/xyz/product`, productId);
   };
 
-  // const handleBuy = (product: Product) => {
-  //   setCart((preCard) => addProductToCart(preCard, product));
-  // };
-
   // const handleUpdate = (cartItem: CartItem, action: string) => {
   //   setCart((preCard) => updateProductQuantityInCart(preCard, cartItem, action));
   // };
