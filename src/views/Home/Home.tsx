@@ -53,7 +53,8 @@ function Home() {
   };
 
   const handleUpdate = (quantity: number, productId: string | number) => {
-    patch({ quantity }, `${rootUrl}api/basket/xyz/product`, productId);
+    if (quantity === 0) remove(`${rootUrl}api/basket/xyz/product`, productId);
+    if (quantity > 0) patch({ quantity }, `${rootUrl}api/basket/xyz/product`, productId);
   };
 
   const handleClear = () => {
