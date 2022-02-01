@@ -48,10 +48,10 @@ const basket: BasketDTO[] = [
   {
     id: 1,
     productId: 1,
-    quantity: 1,
+    quantity: 2,
   },
   {
-    id: 1,
+    id: 2,
     productId: 3,
     quantity: 1,
   },
