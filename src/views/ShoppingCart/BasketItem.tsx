@@ -41,9 +41,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
         </Button>
       </FlexBox>
       <Box mt="0.5rem" mb="1rem" fontWeight="bold">
-        {`Total: € ${(
-          item.quantity * item.product.price
-        ).toFixed(2)}`}
+        {`Total: € ${calculateTotalCostPerCartItem(item)}`}
 
       </Box>
     </div>
