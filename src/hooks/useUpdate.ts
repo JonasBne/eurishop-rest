@@ -2,7 +2,7 @@ import { useState } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
 
-export type UpdateMethods = 'POST' | 'PUT' | 'DELETE';
+export type UpdateMethods = 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
 function useUpdate<T>(url: string) {
   const [loading, setLoading] = useState<boolean>(false);
