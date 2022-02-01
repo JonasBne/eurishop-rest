@@ -29,11 +29,14 @@ export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefi
 // TODO: is a refetch needed for basket?
 export const useGetBasket = () => {
   const { products } = useGetProducts();
-  const { loading, error, data } = useFetch<BasketDTO[]>(`${rootUrl}${url}`);
+  const {
+    loading, error, data, refetch,
+  } = useFetch<BasketDTO[]>(`${rootUrl}${url}`);
   return {
     loading,
     error,
     cart: basketMapper(products, data),
+    refetch,
   };
 };
 
