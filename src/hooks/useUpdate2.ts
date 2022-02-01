@@ -43,17 +43,11 @@ function useUpdate2<T>(url: string) {
     }
   };
 
-  const post = async (data: T, id: number | string = '', urlSuffix?: string) => {
-    await sendHttpRequest('POST', data, id, urlSuffix);
-  };
+  const post = (data: any, id: number | string = '', urlSuffix?: string) => sendHttpRequest('POST', data, id, urlSuffix);
 
-  const put = async (data: T, id: number | string = '') => {
-    await sendHttpRequest('PUT', data, id);
-  };
+  const put = (data: any, id: number | string = '') => sendHttpRequest('PUT', data, id);
 
-  const remove = async (id: number | string = '') => {
-    await sendHttpRequest('DELETE', null, id);
-  };
+  const remove = (id: number | string = '') => sendHttpRequest('DELETE', null, id);
 
   return {
     loading,
