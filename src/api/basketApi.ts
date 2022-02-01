@@ -25,7 +25,6 @@ export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefi
   };
 };
 
-// TODO: rename to cartItems
 export const useGetBasket = () => {
   const { products } = useGetProducts();
   const { loading, error, data } = useFetch<BasketDTO[]>(`${rootUrl}${url}`);
