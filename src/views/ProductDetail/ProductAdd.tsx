@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router';
 import toasts from '../../components/toasts';
 import { ProductDTO, useUpdateProduct2 } from '../../api/productsApi';
 import ProductForm, { ProductFormValues } from './ProductForm';
+import rootUrl from '../../api/rootUrl';
 
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
@@ -35,7 +36,7 @@ function ProductAdd() {
       price: +formValues.price,
       id: 0,
     };
-    post(product);
+    post(product, `${rootUrl}/api/products`);
   };
 
   return (

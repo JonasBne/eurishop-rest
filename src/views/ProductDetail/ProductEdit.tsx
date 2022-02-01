@@ -9,6 +9,7 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import ProductForm, { ProductFormValues } from './ProductForm';
 import toasts from '../../components/toasts';
+import rootUrl from '../../api/rootUrl';
 
 function ProductEdit() {
   const { succesToast, failToast } = toasts();
@@ -42,7 +43,7 @@ function ProductEdit() {
       price: +formValues.price,
     };
 
-    put(item, item.id);
+    put(item, `${rootUrl}/api/products/${item.id}`);
   };
 
   return (

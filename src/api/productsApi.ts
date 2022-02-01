@@ -75,9 +75,7 @@ export const useUpdateProduct = () => {
 export const useUpdateProduct2 = () => {
   const {
     loading, error, post, put, remove, data,
-  } = useUpdate2<ProductDTO>(
-    `${rootUrl}${url}`,
-  );
+  } = useUpdate2<ProductDTO>();
   return {
     loading,
     error,
