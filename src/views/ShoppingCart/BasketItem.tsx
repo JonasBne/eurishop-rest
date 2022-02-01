@@ -5,7 +5,7 @@ import Box from '../../components/Box';
 import { CartItem } from '../../domain/shoppingCart';
 import FlexBox from '../../components/FlexBox';
 
-export function calculateTotalCostPerProduct(cartItem: CartItem) {
+export function calculateTotalCostPerCartItem(cartItem: CartItem) {
   const cost = (cartItem.quantity * cartItem.product.price).toFixed(2);
   return cost;
 }
