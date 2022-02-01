@@ -38,8 +38,8 @@ function useUpdate2<T>(url: string) {
     }
   };
 
-  const post = async (data: T) => {
-    await sendHttpRequest('POST', data);
+  const post = async (data: T, id: number | string = '') => {
+    await sendHttpRequest('POST', data, id);
   };
 
   const put = async (data: T, id: number | string = '') => {

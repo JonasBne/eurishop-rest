@@ -2,6 +2,7 @@
 import Product from '../domain/product';
 import { CartItem, Cart } from '../domain/shoppingCart';
 import useFetch from '../hooks/useFetch';
+import useUpdate2 from '../hooks/useUpdate2';
 import { useGetProducts } from './productsApi';
 import rootUrl from './rootUrl';
 
@@ -32,5 +33,21 @@ export const useGetBasket = () => {
     loading,
     error,
     cart: basketMapper(products, data),
+  };
+};
+
+export const useUpdateBasket = () => {
+  const {
+    loading, error, post, put, remove, data,
+  } = useUpdate2<BasketDTO[]>(
+    `${rootUrl}${url}`,
+  );
+  return {
+    loading,
+    error,
+    post,
+    put,
+    remove,
+    data,
   };
 };
