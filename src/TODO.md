@@ -11,22 +11,22 @@
 Plan van aanpak:
 
 src > api
-- [ ] basketApi.ts aanmaken
-    - [ ] interface BasketDTO (id: number, productId: number, quantity: number)
-    - [ ] basketMapper --> .filter inbouwen die productId('s) gaat matchen op Id's van api/products om zo de gekochte producten eruit te filteren? De mapper geeft een Cart terug.
-    - [ ] const {loading, error, data: Basket} = useGetBasket() 
+- [x] basketApi.ts aanmaken
+    - [x] interface BasketDTO (id: number, productId: number, quantity: number)
+    - [x] basketMapper --> .filter inbouwen die productId('s) gaat matchen op Id's van api/products om zo de gekochte producten eruit te filteren? De mapper geeft een Cart terug.
+    - [x] const {loading, error, data: Basket} = useGetBasket() 
 
 src > hooks
 
-- [ ] useUpdate hook uitbreiden met patch --> const {loading, error, data, post, put, patch, remove} = useUpdate();
-- [ ] post aanpassen zodat er een productId kan worden meegegeven
+- [x] useUpdate hook uitbreiden met patch --> const {loading, error, data, post, put, patch, remove} = useUpdate();
+- [x] post aanpassen zodat er een productId kan worden meegegeven
 
 src > views > Home.tsx
 
-- [ ] data fetching via useGetBasket() om basket te tonen i.p.v. lokale state 
-- [ ] onBuy -->  post(quantity, productId)
-- [ ] onUpdate --> patch(quantity, productId)
-- [ ] onClear --> remove(key)
+- [x] data fetching via useGetBasket() om basket te tonen i.p.v. lokale state 
+- [x] onBuy -->  post(quantity, productId)
+- [x] onUpdate --> patch(quantity, productId)
+- [x] onClear --> remove(key)
 
 - [ ] Werken met 1 basket en key is altijd xyz? Zo ja, dan key vast meegeven in url en niet als optionele parameter
 
