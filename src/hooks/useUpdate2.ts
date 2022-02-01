@@ -39,7 +39,7 @@ function useUpdate2<T>() {
 
   const put = (data: any, url: string, id: number | string = '') => sendHttpRequest('PUT', `${url}/${id}`, data);
 
-  const patch = (data: any, url: string, id: number | string = '') => sendHttpRequest('PUT', `${url}/${id}`, data);
+  const patch = (data: any, url: string, id: number | string = '') => sendHttpRequest('PATCH', `${url}/${id}`, data);
 
   const remove = (url: string, id: number | string = '') => sendHttpRequest('DELETE', `${url}/${id}`, null);
 
