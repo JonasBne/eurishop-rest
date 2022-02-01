@@ -12,7 +12,7 @@ export interface BasketDTO {
   quantity: number;
 }
 
-export const productUrls = {
+export const basketUrls = {
   base: 'api/basket/xyz',
   update: 'api/basket/xyz/product',
 };
@@ -33,7 +33,7 @@ export const useGetBasket = () => {
   const { products } = useGetProducts();
   const {
     loading, error, data, refetch,
-  } = useFetch<BasketDTO[]>(`${rootUrl}${productUrls.base}`);
+  } = useFetch<BasketDTO[]>(`${rootUrl}${basketUrls.base}`);
   return {
     loading,
     error,
