@@ -12,7 +12,10 @@ export interface BasketDTO {
   quantity: number;
 }
 
-const url = 'api/basket/xyz';
+export const productUrls = {
+  base: 'api/basket/xyz',
+  update: 'api/basket/xyz/product',
+};
 
 export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefined => {
   if (!dto || !data) return undefined;
@@ -30,7 +33,7 @@ export const useGetBasket = () => {
   const { products } = useGetProducts();
   const {
     loading, error, data, refetch,
-  } = useFetch<BasketDTO[]>(`${rootUrl}${url}`);
+  } = useFetch<BasketDTO[]>(`${rootUrl}${productUrls.base}`);
   return {
     loading,
     error,

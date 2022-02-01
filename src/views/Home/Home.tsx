@@ -5,7 +5,7 @@ import FlexBox from '../../components/FlexBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductCard from './ProductCard';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
-import { useGetBasket, useUpdateBasket } from '../../api/basketApi';
+import { useGetBasket, useUpdateBasket, productUrls } from '../../api/basketApi';
 import rootUrl from '../../api/rootUrl';
 import toasts from '../../components/toasts';
 
@@ -28,18 +28,17 @@ function Home() {
     }
   }, [basketError, basketData]);
 
-  // TODO: is there a better way for working with the url's?
   const handleBuy = (productId: string | number) => {
-    post({ quantity: 1 }, `${rootUrl}api/basket/xyz/product`, productId);
+    post({ quantity: 1 }, `${rootUrl}${productUrls.update}`, productId);
   };
 
   const handleUpdate = (quantity: number, productId: string | number) => {
     if (quantity === 0) remove(`${rootUrl}api/basket/xyz/product`, productId);
-    if (quantity > 0) patch({ quantity }, `${rootUrl}api/basket/xyz/product`, productId);
+    if (quantity > 0) patch({ quantity }, `${rootUrl}${productUrls.update}`, productId);
   };
 
   const handleClear = () => {
-    remove(`${rootUrl}api/basket/xyz`);
+    remove(`${rootUrl}${productUrls.base}`);
   };
 
   // TODO: add following functions: handleOrder (ShoppingCart)
