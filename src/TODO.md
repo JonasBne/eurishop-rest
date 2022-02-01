@@ -1,14 +1,5 @@
 ## TO-DO's
 
-### Main branch v1 
-
-- [x] cleanup entitities, dto
-- [x] unit test schrijven voor de totaalberekening van de basket en in een aparte functie steken
-- [x] useUpdate 2
-- [x] Sortable table fix 
-- [x] paging for table and fetch --> paging inbouwen in useFetch hook 
-- [x] look for additional unit tests that may be performed
-
 ### Nieuwe branch v2
 
 - [ ] basket api gebruiken --> producten wegschrijven en bij page refresh (winkelmandje mag niet leeg zijn na refresh)
