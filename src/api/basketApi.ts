@@ -32,6 +32,6 @@ export const useGetBasket = () => {
   return {
     loading,
     error,
-    basketItems: basketMapper(products, data),
+    cart: basketMapper(products, data),
   };
 };

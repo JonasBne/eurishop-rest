@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useGetProducts } from '../../api/productsApi';
 import Product from '../../domain/product';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
@@ -42,26 +42,25 @@ export function updateProductQuantityInCart(cart: Cart | undefined, cartItem: Ca
 
 function Home() {
   const { loading, error, products } = useGetProducts();
-  const [cart, setCart] = useState<Cart>();
+  // const [cart, setCart] = useState<Cart>();
+  // const cartItems = cart?.items ?? [];
+
+  const { cart } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
-  // TODO: rename to cartItems
-  const { basketItems } = useGetBasket();
-  console.log(basketItems);
+  // const handleBuy = (product: Product) => {
+  //   setCart((preCard) => addProductToCart(preCard, product));
+  // };
 
-  const handleBuy = (product: Product) => {
-    setCart((preCard) => addProductToCart(preCard, product));
-  };
+  // const handleUpdate = (cartItem: CartItem, action: string) => {
+  //   setCart((preCard) => updateProductQuantityInCart(preCard, cartItem, action));
+  // };
 
-  const handleUpdate = (cartItem: CartItem, action: string) => {
-    setCart((preCard) => updateProductQuantityInCart(preCard, cartItem, action));
-  };
-
-  const handleClear = () => {
-    setCart({
-      items: [],
-    });
-  };
+  // const handleClear = () => {
+  //   setCart({
+  //     items: [],
+  //   });
+  // };
 
   // TODO: add following functions: handleOrder (ShoppingCart)
   return (
@@ -83,7 +82,7 @@ function Home() {
               <ProductCard
                 key={product.id}
                 product={product}
-                onBuy={handleBuy}
+                // onBuy={handleBuy}
                 m="4rem 3rem"
               />
             ))}
@@ -91,8 +90,8 @@ function Home() {
           <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
             <ShoppingCart
               cartItems={cartItems}
-              onUpdate={handleUpdate}
-              onClear={handleClear}
+              // onUpdate={handleUpdate}
+              // onClear={handleClear}
             />
           </FlexBox>
         </FlexBox>
