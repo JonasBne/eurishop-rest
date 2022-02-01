@@ -43,7 +43,7 @@ export function updateProductQuantityInCart(cart: Cart | undefined, cartItem: Ca
 
 function Home() {
   const { loading, error, products } = useGetProducts();
-  const { post } = useUpdateBasket();
+  const { post, remove } = useUpdateBasket();
   const { cart } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
@@ -56,11 +56,9 @@ function Home() {
   //   setCart((preCard) => updateProductQuantityInCart(preCard, cartItem, action));
   // };
 
-  // const handleClear = () => {
-  //   setCart({
-  //     items: [],
-  //   });
-  // };
+  const handleClear = () => {
+    remove(`${rootUrl}api/basket/xyz`);
+  };
 
   // TODO: add following functions: handleOrder (ShoppingCart)
   return (
@@ -91,7 +89,7 @@ function Home() {
             <ShoppingCart
               cartItems={cartItems}
               // onUpdate={handleUpdate}
-              // onClear={handleClear}
+              onClear={handleClear}
             />
           </FlexBox>
         </FlexBox>
