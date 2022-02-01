@@ -8,6 +8,7 @@ import ProductCard from './ProductCard';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { Cart, CartItem } from '../../domain/shoppingCart';
 import { useGetBasket, useUpdateBasket } from '../../api/basketApi';
+import rootUrl from '../../api/rootUrl';
 
 export function addProductToCart(cart: Cart | undefined, product: Product): Cart {
   if (cart && cart.items.find((item) => item.product.id === product.id)) {
@@ -46,9 +47,9 @@ function Home() {
   const { cart } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
-  // const handleBuy = (product: Product) => {
-  //   setCart((preCard) => addProductToCart(preCard, product));
-  // };
+  const handleBuy = (productId: string | number) => {
+    post(1, `${rootUrl}/api/basket/xyz`, productId);
+  };
 
   // const handleBuy = (product: Product) => {
   //   setCart((preCard) => addProductToCart(preCard, product));
@@ -84,7 +85,7 @@ function Home() {
               <ProductCard
                 key={product.id}
                 product={product}
-                // onBuy={handleBuy}
+                onBuy={handleBuy}
                 m="4rem 3rem"
               />
             ))}

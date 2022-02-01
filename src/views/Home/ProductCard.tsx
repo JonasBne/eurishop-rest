@@ -9,13 +9,13 @@ import Product from '../../domain/product';
 
 interface ProductCardProps extends SpaceProps {
   product: Product;
-  onBuy: (product: Product) => void;
+  onBuy: (productId: string | number) => void;
 }
 
 function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
   const handleBuy = (event: React.MouseEvent) => {
     event.preventDefault();
-    onBuy(product);
+    onBuy(product.id!);
   };
 
   return (

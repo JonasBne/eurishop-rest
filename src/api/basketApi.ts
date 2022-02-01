@@ -12,7 +12,7 @@ export interface BasketDTO {
   quantity: number;
 }
 
-const url = 'api/basket/xyz/';
+const url = 'api/basket/xyz';
 
 export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefined => {
   if (!dto || !data) return undefined;
