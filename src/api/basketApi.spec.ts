@@ -48,12 +48,12 @@ const basket: BasketDTO[] = [
   {
     id: 1,
     productId: 1,
-    quantity: 2,
+    quantity: 1,
   },
   {
     id: 2,
-    productId: 3,
-    quantity: 1,
+    productId: 2,
+    quantity: 4,
   },
 ];
 
@@ -66,9 +66,16 @@ describe('basket mapper', () => {
     const result = basketMapper(undefined, basket)!;
     expect(result).toBe(undefined);
   });
-  test('basket mapper returns cart items', () => {
+  test('basket mapper returns undefined if dto and products are undefined', () => {
+    const result = basketMapper(undefined, undefined)!;
+    expect(result).toBe(undefined);
+  });
+  test('basket mapper returns a cart with items', () => {
     const result = basketMapper(products, basket)!;
-    expect(result.length).toBe(2);
-    expect(result[0].title).toBe('pellentesque');
+    expect(result.items.length).toBe(2);
+    expect(result.items[0].quantity).toBe(1);
+    expect(result.items[1].quantity).toBe(4);
+    expect(result.items[0].product.title).toBe('pellentesque');
+    expect(result.items[1].product.title).toBe('ut');
   });
 });
