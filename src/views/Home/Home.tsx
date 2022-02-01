@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useGetProducts } from '../../api/productsApi';
 import Product from '../../domain/product';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
@@ -9,6 +9,7 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { Cart, CartItem } from '../../domain/shoppingCart';
 import { useGetBasket, useUpdateBasket } from '../../api/basketApi';
 import rootUrl from '../../api/rootUrl';
+import toasts from '../../components/toasts';
 
 export function addProductToCart(cart: Cart | undefined, product: Product): Cart {
   if (cart && cart.items.find((item) => item.product.id === product.id)) {
@@ -42,10 +43,23 @@ export function updateProductQuantityInCart(cart: Cart | undefined, cartItem: Ca
 }
 
 function Home() {
+  const { succesToast, failToast } = toasts();
   const { loading, error, products } = useGetProducts();
-  const { post, patch, remove } = useUpdateBasket();
-  const { cart } = useGetBasket();
+  const {
+    error: basketError, data: basketData, post, patch, remove,
+  } = useUpdateBasket();
+  const { cart, refetch } = useGetBasket();
   const cartItems = cart?.items ?? [];
+
+  useEffect(() => {
+    if (basketError) {
+      failToast(basketError);
+    }
+    if (basketData) {
+      succesToast('Item succesfully added!');
+      refetch();
+    }
+  }, [basketError, basketData]);
 
   // TODO: is there a better way for working with the url's?
   const handleBuy = (productId: string | number) => {
