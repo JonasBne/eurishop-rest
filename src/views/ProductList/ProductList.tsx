@@ -38,8 +38,6 @@ function ProductList() {
     remove(`${rootUrl}api/products`, productId);
   };
 
-  // TODO: issue with sorting on Product ID and Product Number (order changes)
-
   const sortedProducts = sortBy(products ?? [], sortExpression);
 
   const columns = [
