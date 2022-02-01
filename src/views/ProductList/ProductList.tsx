@@ -7,6 +7,7 @@ import sortBy from '../../utils/sortBy';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import Button from '../../components/Button';
 import toasts from '../../components/toasts';
+import rootUrl from '../../api/rootUrl';
 
 function ProductList() {
   const { succesToast, failToast } = toasts();
@@ -34,7 +35,7 @@ function ProductList() {
   };
 
   const handleAction = (productId: string) => {
-    remove(productId);
+    remove(`${rootUrl}api/products`, productId);
   };
 
   // TODO: issue with sorting on Product ID and Product Number (order changes)
