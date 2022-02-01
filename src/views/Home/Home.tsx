@@ -12,7 +12,9 @@ import Button from '../../components/Button';
 
 function Home() {
   const { succesToast, failToast } = toasts();
-  const { loading, error, products } = useGetProducts();
+  const {
+    loading, error, products, fetchDataNextPage,
+  } = useGetProducts();
   const {
     error: basketError, data: basketData, post, patch, remove,
   } = useUpdateBasket();
@@ -40,6 +42,10 @@ function Home() {
 
   const handleClear = () => {
     remove(`${rootUrl}${basketUrls.base}`);
+  };
+
+  const handleLoadMoreData = () => {
+    fetchDataNextPage();
   };
 
   // TODO: add following functions: handleOrder (ShoppingCart)
@@ -77,7 +83,7 @@ function Home() {
             </FlexBox>
           </FlexBox>
           <FlexBox justifyContent="center" mb="2rem">
-            <Button type="button" variant="primary" mx="1rem" px="2rem">Load more</Button>
+            <Button type="button" variant="primary" mx="1rem" px="2rem" onClick={handleLoadMoreData}>Load more</Button>
           </FlexBox>
         </>
       )}

@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import { useState, useEffect, useCallback } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';

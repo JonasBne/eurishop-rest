@@ -3,7 +3,7 @@ import { useParams, useNavigate } from 'react-router';
 import {
   useGetProduct,
   ProductDTO,
-  useUpdateProduct2,
+  useUpdateProduct,
 } from '../../api/productsApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
@@ -16,7 +16,7 @@ function ProductEdit() {
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { loading, error, product } = useGetProduct(productId!);
-  const { error: putError, data: puttedData, put } = useUpdateProduct2();
+  const { error: putError, data: puttedData, put } = useUpdateProduct();
 
   const gridTemplateAreas = `
   "title sku"

@@ -57,7 +57,7 @@ export const useGetProducts = () => {
   };
 };
 
-export const useUpdateProduct2 = () => {
+export const useUpdateProduct = () => {
   const {
     loading, error, post, put, remove, data,
   } = useUpdate<ProductDTO>();

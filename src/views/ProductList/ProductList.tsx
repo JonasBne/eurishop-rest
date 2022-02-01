@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useGetProducts, useUpdateProduct2 } from '../../api/productsApi';
+import { useGetProducts, useUpdateProduct } from '../../api/productsApi';
 import Table from '../../components/Table/Table';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import sortBy from '../../utils/sortBy';
@@ -16,7 +16,7 @@ function ProductList() {
     loading, error, products, refetch, fetchDataNextPage,
   } = useGetProducts();
 
-  const { error: deleteError, data: deletedData, remove } = useUpdateProduct2();
+  const { error: deleteError, data: deletedData, remove } = useUpdateProduct();
 
   const [sortExpression, setSortExpression] = useState<string>('');
 
