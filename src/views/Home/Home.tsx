@@ -23,7 +23,7 @@ function Home() {
       failToast(basketError);
     }
     if (basketData) {
-      succesToast('Item succesfully added!');
+      succesToast('Success!');
       refetch();
     }
   }, [basketError, basketData]);
