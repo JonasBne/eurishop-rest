@@ -7,6 +7,23 @@
   Tip: je houdt de basket niet meer bij in een state, maar fetch de data iedere keer van de server. Op termijn is een mogelijke verbetering om nog met React Query te werken om te cachen. 
 - [ ] als er een product wordt verwijderd in de tabel, moet het winkelmandje ook geüpdatet worden
 
+
+Plan van aanpak:
+
+src > api
+- [ ] basketApi.ts aanmaken
+      - [ ] interface BasketsDTO (id: number, productId: number, quantity: number)
+      - [ ] basketMapper --> 1 op 1 met een undefined check
+      - [ ] const {loading, error, data: Basket} = useGetBasket() --> .filters inbouwen die productId('s) gaat matchen op Id's van api/products om zo de gekochte producten eruit te filteren?
+
+src > views > Home.tsx
+
+- [ ] data fetching via useGetBasket() om basket te tonen i.p.v. lokale state 
+- [ ] onBuy --> addProductToCart() --> post(product)
+- [ ] onUpdate --> updateProductQuantityInCart() --> put(product, id)
+- [ ] onClear --> remove(id)
+
+
 ### Nieuwe branch v3
 
 - [ ] useFetch, useUpdate ombouwen naar React Query (= useQuery, useMutation)
