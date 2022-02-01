@@ -24,7 +24,7 @@ function ProductAdd() {
       failToast(postError);
     }
     if (postedData) {
-      succesToast(`New product with id: ${postedData.id} added!`);
+      succesToast(`New product with id ${postedData.id} added!`);
       navigate('/products/admin');
     }
   }, [postError, postedData]);
@@ -36,7 +36,7 @@ function ProductAdd() {
       price: +formValues.price,
       id: 0,
     };
-    post(product, `${rootUrl}/api/products`);
+    post(product, `${rootUrl}api/products`);
   };
 
   return (

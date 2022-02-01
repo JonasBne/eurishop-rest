@@ -30,7 +30,7 @@ function ProductEdit() {
       failToast(putError);
     }
     if (puttedData) {
-      succesToast(`Item with id: ${puttedData.id} updated!`);
+      succesToast(`Item with id ${puttedData.id} updated!`);
       navigate('/products/admin');
     }
   }, [putError, puttedData]);
@@ -43,7 +43,7 @@ function ProductEdit() {
       price: +formValues.price,
     };
 
-    put(item, `${rootUrl}/api/products/${item.id}`);
+    put(item, `${rootUrl}api/products/${item.id}`);
   };
 
   return (
