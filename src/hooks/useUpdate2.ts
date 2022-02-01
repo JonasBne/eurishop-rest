@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-useless-return */
 /* eslint-disable no-nested-ternary */
 import { useState } from 'react';
@@ -10,11 +11,15 @@ function useUpdate2<T>(url: string) {
   const [error, setError] = useState<Error>();
   const [updatedData, setUpdatedData] = useState<T>();
 
-  const sendHttpRequest = async (method: UpdateMethods, data?: T | null, id?: string | number) => {
+  // TODO: find a better way to pass the url for basket
+  const sendHttpRequest = async (method: UpdateMethods, data?: T | null, id?: string | number, urlSuffix?: string) => {
     let finalUrl = url;
 
     if (id) {
       finalUrl += `/${id}`;
+    }
+    if (urlSuffix) {
+      finalUrl += `/${urlSuffix}`;
     }
 
     try {
@@ -38,8 +43,8 @@ function useUpdate2<T>(url: string) {
     }
   };
 
-  const post = async (data: T, id: number | string = '') => {
-    await sendHttpRequest('POST', data, id);
+  const post = async (data: T, id: number | string = '', urlSuffix?: string) => {
+    await sendHttpRequest('POST', data, id, urlSuffix);
   };
 
   const put = async (data: T, id: number | string = '') => {
