@@ -22,7 +22,7 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-const url = 'api/products';
+export const productUrl = 'api/products';
 
 const productMapper = (dto?: ProductDTO): Product | undefined => {
   if (!dto) return undefined;
@@ -33,7 +33,7 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
 
 export const useGetProduct = (productId: string) => {
   const { loading, error, data } = useFetch<ProductDTO>(
-    `${rootUrl}${url}/${productId}`,
+    `${rootUrl}${productUrl}/${productId}`,
   );
   return {
     loading,
@@ -45,7 +45,7 @@ export const useGetProduct = (productId: string) => {
 export const useGetProducts = () => {
   const {
     loading, error, data, refetch, fetchDataNextPage,
-  } = useFetch<ProductsDTO>(`${rootUrl}${url}`);
+  } = useFetch<ProductsDTO>(`${rootUrl}${productUrl}`);
   return {
     loading,
     error,
