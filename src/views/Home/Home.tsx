@@ -8,6 +8,7 @@ import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import { useGetBasket, useUpdateBasket, basketUrls } from '../../api/basketApi';
 import rootUrl from '../../api/rootUrl';
 import toasts from '../../components/toasts';
+import Button from '../../components/Button';
 
 function Home() {
   const { succesToast, failToast } = toasts();
@@ -49,31 +50,36 @@ function Home() {
         <ErrorModal name={error.name} message={error.message} />
       )}
       {products && (
-        <FlexBox>
-          <FlexBox
-            flexWrap="wrap"
-            justifyContent="start"
-            flexDirection="row"
-            order={1}
-            flexBasis="75%"
-          >
-            {products.map((product) => (
-              <ProductCard
-                key={product.id}
-                product={product}
-                onBuy={handleBuy}
-                m="4rem 3rem"
+        <>
+          <FlexBox>
+            <FlexBox
+              flexWrap="wrap"
+              justifyContent="start"
+              flexDirection="row"
+              order={1}
+              flexBasis="75%"
+            >
+              {products.map((product) => (
+                <ProductCard
+                  key={product.id}
+                  product={product}
+                  onBuy={handleBuy}
+                  m="4rem 3rem"
+                />
+              ))}
+            </FlexBox>
+            <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
+              <ShoppingCart
+                cartItems={cartItems}
+                onUpdate={handleUpdate}
+                onClear={handleClear}
               />
-            ))}
+            </FlexBox>
           </FlexBox>
-          <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
-            <ShoppingCart
-              cartItems={cartItems}
-              onUpdate={handleUpdate}
-              onClear={handleClear}
-            />
+          <FlexBox justifyContent="center" mb="2rem">
+            <Button type="button" variant="primary" mx="1rem" px="2rem">Load more</Button>
           </FlexBox>
-        </FlexBox>
+        </>
       )}
     </>
   );
