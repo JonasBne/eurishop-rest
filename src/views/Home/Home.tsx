@@ -42,9 +42,6 @@ export function updateProductQuantityInCart(cart: Cart | undefined, cartItem: Ca
 
 function Home() {
   const { loading, error, products } = useGetProducts();
-  // const [cart, setCart] = useState<Cart>();
-  // const cartItems = cart?.items ?? [];
-
   const { cart } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
