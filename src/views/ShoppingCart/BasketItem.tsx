@@ -16,6 +16,19 @@ interface BasketItemProps {
 }
 
 function BasketItem({ item, onUpdate }: BasketItemProps) {
+  const handleUpdate = (action: string) => {
+    let { quantity } = item;
+    const productId = item.product.id!;
+
+    if (action === 'decrement') {
+      quantity -= 1;
+    }
+    if (action === 'increment') {
+      quantity += 1;
+    }
+    onUpdate(quantity, productId);
+  };
+
   return (
     <div>
       <Header as="h4">{item.product.title}</Header>
@@ -25,8 +38,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
           type="button"
           variant="secondary"
           mr="1rem"
-          onClick={() => onUpdate(item.quantity - 1, item.product.id!)}
-          disabled={item.quantity === 0}
+          onClick={() => handleUpdate('decrement')}
         >
           -
         </Button>
@@ -35,7 +47,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
           type="button"
           variant="secondary"
           ml="1rem"
-          onClick={() => onUpdate(item.quantity + 1, item.product.id!)}
+          onClick={() => handleUpdate('increment')}
         >
           +
         </Button>
