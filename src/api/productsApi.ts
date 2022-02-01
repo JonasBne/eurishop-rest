@@ -42,6 +42,7 @@ export const useGetProduct = (productId: string) => {
   };
 };
 
+// TODO: add possibility to pass id's?
 export const useGetProducts = () => {
   const {
     loading, error, data, refetch, fetchDataNextPage,

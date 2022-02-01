@@ -2,6 +2,8 @@ import { useState, useEffect, useCallback } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
 
+// TODO: paginering verwijderen
+
 const useFetch = <T>(url: string) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
@@ -12,8 +14,6 @@ const useFetch = <T>(url: string) => {
     setPageNumber((prePage) => prePage + 1);
   };
 
-  // TODO: append data to array
-  // TODO: move appending logic to separate function and unit test?
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
