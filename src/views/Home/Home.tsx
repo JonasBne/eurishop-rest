@@ -47,8 +47,9 @@ function Home() {
   const { cart } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
+  // TODO: is there a better way for working with the url's?
   const handleBuy = (productId: string | number) => {
-    post(1, `${rootUrl}/api/basket/xyz`, productId);
+    post({ quantity: 1 }, `${rootUrl}api/basket/xyz/product`, productId);
   };
 
   // const handleBuy = (product: Product) => {

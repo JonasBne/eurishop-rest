@@ -14,6 +14,7 @@ function useUpdate2<T>() {
   // TODO: find a better way to pass the url for basket
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const sendHttpRequest = async (method: UpdateMethods, url: string, data?: T | null, id?: string | number) => {
+    console.log(data);
     try {
       setLoading(true);
       const response = await fetch(url, {
