@@ -66,6 +66,14 @@ export const useGetProduct = (productId: string) => {
 //   };
 // };
 
+const getProducts = async (url: string) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new RequestError(response.status);
+  }
+  return response.json();
+};
+
 export const useGetProducts = (page?: number) => {
   let url = `${rootUrl}${productUrl}`;
 
@@ -75,13 +83,7 @@ export const useGetProducts = (page?: number) => {
 
   const {
     isLoading, isError, data, error,
-  } = useQuery<ProductsDTO>(['productList', url], async () => {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new RequestError(response.status);
-    }
-    return response.json();
-  });
+  } = useQuery<ProductsDTO>(['productList', url], () => getProducts(url));
 
   return {
     isLoading,
