@@ -3,7 +3,7 @@ import Product from '../domain/product';
 import { CartItem, Cart } from '../domain/shoppingCart';
 import useFetch from '../hooks/useFetch';
 import useUpdate from '../hooks/useUpdate';
-import { useGetMultipleProducts, useGetProducts } from './productsApi';
+import { useGetMultipleProducts } from './productsApi';
 import rootUrl from './rootUrl';
 
 export interface BasketDTO {
@@ -30,9 +30,6 @@ export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefi
 };
 
 export const useGetBasket = () => {
-  // TODO: remove
-  const { products } = useGetProducts();
-
   const {
     loading, error, data, refetch,
   } = useFetch<BasketDTO[]>(`${rootUrl}${basketUrls.base}`);
@@ -44,7 +41,7 @@ export const useGetBasket = () => {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { products: cartItems } = useGetMultipleProducts(productIds);
+  const { products } = useGetMultipleProducts(productIds);
 
   return {
     loading,

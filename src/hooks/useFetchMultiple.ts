@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect } from 'react';
 // import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
+
+// TODO: issue with infinite loop?
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useFetchMultiple = <T>(urls: string[]) => {
@@ -10,7 +12,7 @@ const useFetchMultiple = <T>(urls: string[]) => {
   // TODO: provide better typing
   const [fetchedData, setFetchedData] = useState<any>();
 
-  const fetchData = useCallback(async () => {
+  const fetchData = async () => {
     try {
       setLoading(true);
       const data = await Promise.all(urls.map((url) => fetch(url).then((res) => res.json())));
@@ -20,19 +22,16 @@ const useFetchMultiple = <T>(urls: string[]) => {
     } finally {
       setLoading(false);
     }
-  }, [urls]);
-
-  const refetch = async () => fetchData();
+  };
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [urls]);
 
   return {
     loading,
     error,
     data: fetchedData,
-    refetch,
   };
 };
 

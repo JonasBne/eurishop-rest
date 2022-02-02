@@ -18,7 +18,7 @@ function Home() {
   const {
     error: basketError, data: basketData, post, patch, remove,
   } = useUpdateBasket();
-  const { cart, refetch } = useGetBasket();
+  const { cart } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
   useEffect(() => {
@@ -27,7 +27,6 @@ function Home() {
     }
     if (basketData) {
       succesToast('Success!');
-      refetch();
     }
   }, [basketError, basketData]);
 
