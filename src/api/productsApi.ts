@@ -59,12 +59,6 @@ export const useGetProducts = () => {
 };
 
 export const useGetMultipleProducts = (productIds: string[] | number[]) => {
-  // let urls = [''];
-
-  // if (productIds) {
-  //   urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
-  // }
-
   const urls = useMemo(() => productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`), [rootUrl, productUrl, productIds]);
 
   const {

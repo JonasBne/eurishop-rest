@@ -35,15 +35,8 @@ export const useGetBasket = () => {
     loading, error, data, refetch,
   } = useFetch<BasketDTO[]>(`${rootUrl}${basketUrls.base}`);
 
-  // let productIds: string [] | number[] = [];
-
-  // if (data) {
-  //   productIds = data.map((cartItem) => cartItem.productId);
-  // }
-
   const productIds = useMemo(() => data?.map((cartItem) => cartItem.productId), [data]) ?? [];
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { products } = useGetMultipleProducts(productIds);
 
   return {
