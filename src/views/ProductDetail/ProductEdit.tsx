@@ -4,6 +4,7 @@ import {
   useGetProduct,
   ProductDTO,
   useUpdateProduct,
+  ProductData,
 } from '../../api/productsApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
@@ -15,7 +16,7 @@ function ProductEdit() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { productId } = useParams<string>();
-  const { loading, error, product } = useGetProduct(productId!);
+  const { isLoading, error, product } = useGetProduct(productId!) as ProductData;
   const { error: putError, data: puttedData, put } = useUpdateProduct();
 
   const gridTemplateAreas = `
@@ -48,7 +49,7 @@ function ProductEdit() {
 
   return (
     <>
-      {loading && <LoadingSpinner />}
+      {isLoading && <LoadingSpinner />}
       {error && <ErrorModal name={error.name} message={error.message} />}
       {product && (
         <ProductForm
