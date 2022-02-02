@@ -22,7 +22,7 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-export const productUrl = 'api/products';
+export const productUrl = 'api/products/?pageSize=1000';
 
 const productMapper = (dto?: ProductDTO): Product | undefined => {
   if (!dto) return undefined;

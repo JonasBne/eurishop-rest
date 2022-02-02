@@ -34,6 +34,7 @@ export const useGetBasket = () => {
   const {
     loading, error, data, refetch,
   } = useFetch<BasketDTO[]>(`${rootUrl}${basketUrls.base}`);
+
   return {
     loading,
     error,

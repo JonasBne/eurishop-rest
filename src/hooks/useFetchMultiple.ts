@@ -2,7 +2,7 @@ import { useState, useEffect, useCallback } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
 
-const useFetch = <T>(url: string) => {
+const useFetchMultiple = <T>(urls: string) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
   const [fetchedData, setFetchedData] = useState<T>();
@@ -10,7 +10,7 @@ const useFetch = <T>(url: string) => {
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(url);
+      const response = await fetch(urls);
       if (!response.ok) {
         setError(new RequestError(response.status));
         return;
@@ -22,7 +22,7 @@ const useFetch = <T>(url: string) => {
     } finally {
       setLoading(false);
     }
-  }, [url]);
+  }, [urls]);
 
   const refetch = async () => fetchData();
 
@@ -38,4 +38,4 @@ const useFetch = <T>(url: string) => {
   };
 };
 
-export default useFetch;
+export default useFetchMultiple;
