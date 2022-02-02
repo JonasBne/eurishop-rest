@@ -32,7 +32,7 @@ export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefi
 
 export const useGetBasket = () => {
   const {
-    loading, error, data, refetch,
+    loading, error, data, refetch: cartRefetch,
   } = useFetch<BasketDTO[]>(`${rootUrl}${basketUrls.base}`);
 
   const productIds = useMemo(() => data?.map((cartItem) => cartItem.productId), [data]) ?? [];
@@ -43,7 +43,7 @@ export const useGetBasket = () => {
     loading,
     error,
     cart: basketMapper(products, data),
-    refetch,
+    cartRefetch,
   };
 };
 
