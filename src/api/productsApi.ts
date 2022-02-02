@@ -25,6 +25,13 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
+export interface ProductsData {
+  isLoading: boolean;
+  isError: boolean;
+  error: Error;
+  products: Product[];
+}
+
 export const productUrl = 'api/products';
 
 const get = async (url: string) => {
@@ -47,7 +54,7 @@ export const useGetProduct = (productId: string) => {
 
   const {
     isLoading, isError, data, error,
-  } = useQuery<ProductDTO>(['productList', url], () => get(url));
+  } = useQuery<ProductDTO>(['product', url], () => get(url));
 
   return {
     isLoading,
@@ -61,12 +68,11 @@ export const useGetProducts = (page?: number) => {
   const url = page ? (`${rootUrl}${productUrl}/page=${page}`) : (`${rootUrl}${productUrl}`);
 
   const {
-    isLoading, isError, data, error,
+    isLoading, data, error,
   } = useQuery<ProductsDTO>(['productList', url], () => get(url));
 
   return {
     isLoading,
-    isError,
     error,
     products: data?.selectedProducts.map(
       (product: ProductDTO) => productMapper(product)!,
