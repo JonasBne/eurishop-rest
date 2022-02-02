@@ -25,9 +25,14 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
+export interface ProductData {
+  isLoading: boolean;
+  error: Error;
+  product: Product;
+}
+
 export interface ProductsData {
   isLoading: boolean;
-  isError: boolean;
   error: Error;
   products: Product[];
 }
