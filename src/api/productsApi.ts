@@ -65,14 +65,13 @@ export const useGetMultipleProducts = (productIds: string[] | number[]) => {
   }
 
   const {
-    loading, error, data, refetch,
+    loading, error, data,
   } = useFetchMultiple<ProductDTO>(urls);
 
   return {
     loading,
     error,
     products: data,
-    refetch,
   };
 };
 
