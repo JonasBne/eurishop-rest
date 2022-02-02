@@ -1,22 +1,25 @@
+/* eslint-disable max-len */
 import { useState, useEffect, useCallback } from 'react';
-import RequestError from '../errors/RequestError';
+// import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
 
-const useFetchMultiple = <T>(urls: string) => {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const useFetchMultiple = <T>(urls: string[]) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
-  const [fetchedData, setFetchedData] = useState<T>();
+  // const [fetchedData, setFetchedData] = useState<T>();
 
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(urls);
-      if (!response.ok) {
-        setError(new RequestError(response.status));
-        return;
-      }
-      const data: T = await response.json();
-      setFetchedData(data);
+      const response = await Promise.all(urls.map((url) => fetch(url).then((res) => res.json())));
+      console.log(response);
+      // if (!response.ok) {
+      //   setError(new RequestError(response.status));
+      //   return;
+      // }
+      // const data: T = await response.json();
+      // setFetchedData(data);
     } catch (e: any) {
       setError(new CommunicationError(e));
     } finally {
@@ -33,7 +36,7 @@ const useFetchMultiple = <T>(urls: string) => {
   return {
     loading,
     error,
-    data: fetchedData,
+    // data: fetchedData,
     refetch,
   };
 };
