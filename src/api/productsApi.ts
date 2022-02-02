@@ -35,6 +35,7 @@ export interface ProductsData {
   isLoading: boolean;
   error: Error;
   products: Product[];
+  refetch: () => void;
 }
 
 export const productUrl = 'api/products';
@@ -73,7 +74,7 @@ export const useGetProducts = (page?: number) => {
   const url = page ? (`${rootUrl}${productUrl}/page=${page}`) : (`${rootUrl}${productUrl}`);
 
   const {
-    isLoading, data, error,
+    isLoading, data, error, refetch,
   } = useQuery<ProductsDTO>(['productList', url], () => get(url));
 
   return {
@@ -82,6 +83,7 @@ export const useGetProducts = (page?: number) => {
     products: data?.selectedProducts.map(
       (product: ProductDTO) => productMapper(product)!,
     ),
+    refetch,
   };
 };
 

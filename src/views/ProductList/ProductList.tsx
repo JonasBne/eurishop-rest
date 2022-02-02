@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useGetProducts, useUpdateProduct } from '../../api/productsApi';
+import { useGetProducts, useUpdateProduct, ProductsData } from '../../api/productsApi';
 import Table from '../../components/Table/Table';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import sortBy from '../../utils/sortBy';
@@ -14,8 +14,8 @@ function ProductList() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const {
-    loading, error, products, refetch,
-  } = useGetProducts(page);
+    isLoading, error, products, refetch,
+  } = useGetProducts(page) as ProductsData;
 
   const { error: deleteError, data: deletedData, remove } = useUpdateProduct();
 
@@ -108,7 +108,7 @@ function ProductList() {
 
   return (
     <>
-      {loading && !error && <LoadingSpinner />}
+      {isLoading && !error && <LoadingSpinner />}
       {error && <ErrorModal name={error.name} message={error.message} />}
       {products && (
         <>
