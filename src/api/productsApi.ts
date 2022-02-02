@@ -45,7 +45,7 @@ export const useGetProduct = (productId: string) => {
 // TODO: add possibility to pass id's?
 export const useGetProducts = () => {
   const {
-    loading, error, data, refetch, fetchDataNextPage,
+    loading, error, data, refetch,
   } = useFetch<ProductsDTO>(`${rootUrl}${productUrl}`);
   return {
     loading,
@@ -54,7 +54,6 @@ export const useGetProducts = () => {
       (product: ProductDTO) => productMapper(product)!,
     ),
     refetch,
-    fetchDataNextPage,
   };
 };
 

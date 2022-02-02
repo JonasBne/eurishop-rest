@@ -8,16 +8,11 @@ const useFetch = <T>(url: string) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
   const [fetchedData, setFetchedData] = useState<T>();
-  const [pageNumber, setPageNumber] = useState<number>(0);
-
-  const fetchDataNextPage = () => {
-    setPageNumber((prePage) => prePage + 1);
-  };
 
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await fetch(`${url}/?page=${pageNumber}`);
+      const response = await fetch(url);
       if (!response.ok) {
         setError(new RequestError(response.status));
         return;
@@ -29,7 +24,7 @@ const useFetch = <T>(url: string) => {
     } finally {
       setLoading(false);
     }
-  }, [url, pageNumber]);
+  }, [url]);
 
   const refetch = async () => fetchData();
 
@@ -42,7 +37,6 @@ const useFetch = <T>(url: string) => {
     error,
     data: fetchedData,
     refetch,
-    fetchDataNextPage,
   };
 };
 

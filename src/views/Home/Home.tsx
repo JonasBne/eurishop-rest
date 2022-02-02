@@ -13,7 +13,7 @@ import Button from '../../components/Button';
 function Home() {
   const { succesToast, failToast } = toasts();
   const {
-    loading, error, products, fetchDataNextPage,
+    loading, error, products,
   } = useGetProducts();
   const {
     error: basketError, data: basketData, post, patch, remove,
@@ -45,7 +45,7 @@ function Home() {
   };
 
   const handleLoadMoreData = () => {
-    fetchDataNextPage();
+    console.log('load more...');
   };
 
   // TODO: add following functions: handleOrder (ShoppingCart)
