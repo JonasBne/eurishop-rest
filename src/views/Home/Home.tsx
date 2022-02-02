@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ProductsData, useGetProducts } from '../../api/productsApi';
+import { GetProducts, useGetProducts } from '../../api/productsApi';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import FlexBox from '../../components/FlexBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
@@ -16,7 +16,7 @@ function Home() {
   const [page, setPage] = useState<number>(0);
   const {
     isLoading, error, products,
-  } = useGetProducts(page) as ProductsData;
+  } = useGetProducts(page) as GetProducts;
   const {
     error: basketError, data: basketData, post, patch, remove,
   } = useUpdateBasket();

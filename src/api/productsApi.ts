@@ -25,13 +25,15 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-export interface ProductData {
+// eslint-disable-next-line max-len
+// TODO: is this ok? Added to type error to type Error because otherwise TS throws an error that error is of type unknown
+export interface GetProduct {
   isLoading: boolean;
   error: Error;
   product: Product;
 }
 
-export interface ProductsData {
+export interface GetProducts {
   isLoading: boolean;
   error: Error;
   products: Product[];
