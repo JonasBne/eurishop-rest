@@ -2,7 +2,6 @@
 import { useMemo } from 'react';
 import { useQuery } from 'react-query';
 import rootUrl from './rootUrl';
-import useFetch from '../hooks/useFetch';
 import Product from '../domain/product';
 import useUpdate from '../hooks/useUpdate';
 import useFetchMultiple from '../hooks/useFetchMultiple';
@@ -28,6 +27,14 @@ export interface ProductsDTO {
 
 export const productUrl = 'api/products';
 
+const get = async (url: string) => {
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new RequestError(response.status);
+  }
+  return response.json();
+};
+
 const productMapper = (dto?: ProductDTO): Product | undefined => {
   if (!dto) return undefined;
   return {
@@ -36,22 +43,18 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
 };
 
 export const useGetProduct = (productId: string) => {
-  const { loading, error, data } = useFetch<ProductDTO>(
-    `${rootUrl}${productUrl}/${productId}`,
-  );
+  const url = `${rootUrl}${productUrl}/${productId}`;
+
+  const {
+    isLoading, isError, data, error,
+  } = useQuery<ProductDTO>(['productList', url], () => get(url));
+
   return {
-    loading,
+    isLoading,
+    isError,
     error,
     product: productMapper(data),
   };
-};
-
-const getProducts = async (url: string) => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new RequestError(response.status);
-  }
-  return response.json();
 };
 
 export const useGetProducts = (page?: number) => {
@@ -59,7 +62,7 @@ export const useGetProducts = (page?: number) => {
 
   const {
     isLoading, isError, data, error,
-  } = useQuery<ProductsDTO>(['productList', url], () => getProducts(url));
+  } = useQuery<ProductsDTO>(['productList', url], () => get(url));
 
   return {
     isLoading,
