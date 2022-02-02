@@ -44,10 +44,16 @@ export const useGetProduct = (productId: string) => {
   };
 };
 
-export const useGetProducts = () => {
+export const useGetProducts = (page?: number) => {
+  let url = `${rootUrl}${productUrl}`;
+
+  if (page) {
+    url += `/?page=${page}`;
+  }
+
   const {
     loading, error, data, refetch,
-  } = useFetch<ProductsDTO>(`${rootUrl}${productUrl}`);
+  } = useFetch<ProductsDTO>(url);
   return {
     loading,
     error,

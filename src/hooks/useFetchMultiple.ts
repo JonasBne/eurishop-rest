@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import CommunicationError from '../errors/CommunicationError';
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const useFetchMultiple = <T>(urls: string[]) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();

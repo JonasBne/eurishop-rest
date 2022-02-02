@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useGetProducts } from '../../api/productsApi';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import FlexBox from '../../components/FlexBox';
@@ -12,9 +12,10 @@ import Button from '../../components/Button';
 
 function Home() {
   const { succesToast, failToast } = toasts();
+  const [page, setPage] = useState<number>(0);
   const {
     loading, error, products,
-  } = useGetProducts();
+  } = useGetProducts(page);
   const {
     error: basketError, data: basketData, post, patch, remove,
   } = useUpdateBasket();
@@ -45,7 +46,7 @@ function Home() {
   };
 
   const handleLoadMoreData = () => {
-    console.log('load more...');
+    setPage((prePage) => prePage + 1);
   };
 
   return (
