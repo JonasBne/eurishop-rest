@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { ThemeProvider } from 'styled-components';
 import { Toaster } from 'react-hot-toast';
 import theme from './theme/theme';
@@ -28,6 +29,7 @@ function App() {
           <Route path="products/new" element={<ProductAdd />} />
         </Routes>
       </ThemeProvider>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
 }
