@@ -88,7 +88,7 @@ function Table({
         </tbody>
       </StyledTable>
       <FlexBox justifyContent="center">
-        <Button type="button" variant="primary" mb="2rem" mx="1rem" onClick={onLoadData}>Load more</Button>
+        <Button type="button" variant="primary" mb="2rem" mx="1rem" onClick={onLoadData}>LOAD MORE...</Button>
       </FlexBox>
     </>
   );

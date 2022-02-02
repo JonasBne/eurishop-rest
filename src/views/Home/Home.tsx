@@ -11,6 +11,7 @@ import toasts from '../../components/toasts';
 import Button from '../../components/Button';
 
 function Home() {
+  // TODO: is it ok to store page here and pass it to useGetProducts hook?
   const { succesToast, failToast } = toasts();
   const [page, setPage] = useState<number>(0);
   const {
@@ -83,7 +84,7 @@ function Home() {
             </FlexBox>
           </FlexBox>
           <FlexBox justifyContent="center" mb="2rem">
-            <Button type="button" variant="primary" mx="1rem" px="2rem" onClick={handleLoadMoreData}>Load more</Button>
+            <Button type="button" variant="primary" mx="1rem" px="2rem" onClick={handleLoadMoreData}>LOAD MORE...</Button>
           </FlexBox>
         </>
       )}
