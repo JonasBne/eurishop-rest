@@ -7,19 +7,13 @@ import CommunicationError from '../errors/CommunicationError';
 const useFetchMultiple = <T>(urls: string[]) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
-  // const [fetchedData, setFetchedData] = useState<T>();
+  const [fetchedData, setFetchedData] = useState<any>();
 
   const fetchData = useCallback(async () => {
     try {
       setLoading(true);
-      const response = await Promise.all(urls.map((url) => fetch(url).then((res) => res.json())));
-      console.log(response);
-      // if (!response.ok) {
-      //   setError(new RequestError(response.status));
-      //   return;
-      // }
-      // const data: T = await response.json();
-      // setFetchedData(data);
+      const data = await Promise.all(urls.map((url) => fetch(url).then((res) => res.json())));
+      setFetchedData(data);
     } catch (e: any) {
       setError(new CommunicationError(e));
     } finally {
@@ -36,7 +30,7 @@ const useFetchMultiple = <T>(urls: string[]) => {
   return {
     loading,
     error,
-    // data: fetchedData,
+    data: fetchedData,
     refetch,
   };
 };

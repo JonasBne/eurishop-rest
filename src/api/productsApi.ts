@@ -3,6 +3,7 @@ import rootUrl from './rootUrl';
 import useFetch from '../hooks/useFetch';
 import Product from '../domain/product';
 import useUpdate from '../hooks/useUpdate';
+import useFetchMultiple from '../hooks/useFetchMultiple';
 
 export interface ProductDTO {
   id: number;
@@ -42,11 +43,26 @@ export const useGetProduct = (productId: string) => {
   };
 };
 
-// TODO: add possibility to pass id's?
 export const useGetProducts = () => {
   const {
     loading, error, data, refetch,
   } = useFetch<ProductsDTO>(`${rootUrl}${productUrl}`);
+  return {
+    loading,
+    error,
+    products: data?.selectedProducts.map(
+      (product: ProductDTO) => productMapper(product)!,
+    ),
+    refetch,
+  };
+};
+
+export const useGetMultipleProducts = (productIds: string[]) => {
+  const urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
+
+  const {
+    loading, error, data, refetch,
+  } = useFetchMultiple<ProductDTO>(urls);
   return {
     loading,
     error,
