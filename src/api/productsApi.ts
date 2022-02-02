@@ -46,26 +46,6 @@ export const useGetProduct = (productId: string) => {
   };
 };
 
-// export const useGetProducts = (page?: number) => {
-//   let url = `${rootUrl}${productUrl}`;
-
-//   if (page) {
-//     url += `/?page=${page}`;
-//   }
-
-//   const {
-//     loading, error, data, refetch,
-//   } = useFetch<ProductsDTO>(url);
-//   return {
-//     loading,
-//     error,
-//     products: data?.selectedProducts.map(
-//       (product: ProductDTO) => productMapper(product)!,
-//     ),
-//     refetch,
-//   };
-// };
-
 const getProducts = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) {
@@ -75,11 +55,7 @@ const getProducts = async (url: string) => {
 };
 
 export const useGetProducts = (page?: number) => {
-  let url = `${rootUrl}${productUrl}`;
-
-  if (page) {
-    url += `/?page=${page}`;
-  }
+  const url = page ? (`${rootUrl}${productUrl}/page=${page}`) : (`${rootUrl}${productUrl}`);
 
   const {
     isLoading, isError, data, error,
