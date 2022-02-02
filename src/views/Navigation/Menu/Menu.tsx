@@ -1,5 +1,5 @@
-import React from "react";
-import { StyledMenu, StyledLink } from "./Menu.styles";
+import React from 'react';
+import { StyledMenu, StyledLink } from './Menu.styles';
 
 interface MenuProps {
   open: boolean;
