@@ -1,4 +1,5 @@
 /* eslint-disable import/no-cycle */
+import { useMemo } from 'react';
 import rootUrl from './rootUrl';
 import useFetch from '../hooks/useFetch';
 import Product from '../domain/product';
@@ -58,11 +59,13 @@ export const useGetProducts = () => {
 };
 
 export const useGetMultipleProducts = (productIds: string[] | number[]) => {
-  let urls = [''];
+  // let urls = [''];
 
-  if (productIds) {
-    urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
-  }
+  // if (productIds) {
+  //   urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
+  // }
+
+  const urls = useMemo(() => productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`), [rootUrl, productUrl, productIds]);
 
   const {
     loading, error, data,
