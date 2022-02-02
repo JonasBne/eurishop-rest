@@ -10,11 +10,12 @@ import toasts from '../../components/toasts';
 import rootUrl from '../../api/rootUrl';
 
 function ProductList() {
+  const [page, setPage] = useState<number>(0);
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const {
     loading, error, products, refetch,
-  } = useGetProducts();
+  } = useGetProducts(page);
 
   const { error: deleteError, data: deletedData, remove } = useUpdateProduct();
 
@@ -101,6 +102,10 @@ function ProductList() {
     navigate('/products/new');
   };
 
+  const handleLoadMoreData = () => {
+    setPage((prePage) => prePage + 1);
+  };
+
   return (
     <>
       {loading && !error && <LoadingSpinner />}
@@ -122,7 +127,7 @@ function ProductList() {
             setSortExpression={setSortExpression}
             onRowClick={handleRedirect}
             onActionClick={handleAction}
-            onLoadData={() => console.log('load more...')}
+            onLoadData={handleLoadMoreData}
             my="2.5rem"
             mx="2rem"
           />
