@@ -23,7 +23,7 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-export const productUrl = 'api/products/?pageSize=1000';
+export const productUrl = 'api/products';
 
 const productMapper = (dto?: ProductDTO): Product | undefined => {
   if (!dto) return undefined;
@@ -57,18 +57,23 @@ export const useGetProducts = () => {
   };
 };
 
-export const useGetMultipleProducts = (productIds: string[]) => {
-  const urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
+export const useGetMultipleProducts = (productIds: string[] | number[]) => {
+  let urls = [''];
+
+  if (productIds) {
+    urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
+  }
 
   const {
     loading, error, data, refetch,
   } = useFetchMultiple<ProductDTO>(urls);
+
+  console.log(urls);
+
   return {
     loading,
     error,
-    products: data?.selectedProducts.map(
-      (product: ProductDTO) => productMapper(product)!,
-    ),
+    products: data,
     refetch,
   };
 };

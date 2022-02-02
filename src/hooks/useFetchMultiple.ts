@@ -7,6 +7,7 @@ import CommunicationError from '../errors/CommunicationError';
 const useFetchMultiple = <T>(urls: string[]) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
+  // TODO: provide better typing
   const [fetchedData, setFetchedData] = useState<any>();
 
   const fetchData = useCallback(async () => {
