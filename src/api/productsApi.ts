@@ -26,7 +26,6 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-// eslint-disable-next-line max-len
 // TODO: is this ok? Interface added to type property error to type Error because otherwise TS throws an error that error is of type unknown
 export interface GetProduct {
   isLoading: boolean;
@@ -43,6 +42,7 @@ export interface GetProducts {
 
 export const productUrl = 'api/products';
 
+// TODO: where to store this?
 const fetchData = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) {
