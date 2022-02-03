@@ -1,5 +1,5 @@
-import React from "react";
-import StyledBurger from "./Burger.styles";
+import React from 'react';
+import StyledBurger from './Burger.styles';
 
 interface BurgerProps {
   open: boolean;

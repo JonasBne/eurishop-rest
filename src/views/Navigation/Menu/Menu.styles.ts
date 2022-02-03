@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 interface StyledMenuProps {
   open: boolean;
@@ -18,8 +18,7 @@ const StyledMenu = styled.nav`
   top: 0;
   left: 0;
   transition: transform 0.3s ease-in-out;
-  transform: ${({ open }: StyledMenuProps) =>
-    open ? "translateX(0)" : "translateX(-100%)"};
+  transform: ${({ open }: StyledMenuProps) => (open ? 'translateX(0)' : 'translateX(-100%)')};
 `;
 
 const StyledLink = styled(Link)`

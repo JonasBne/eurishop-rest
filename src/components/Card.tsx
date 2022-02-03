@@ -1,9 +1,9 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactNode, useContext } from "react";
-import styled, { ThemeContext } from "styled-components";
-import { SpaceProps } from "styled-system";
-import Box from "./Box";
-import Header from "./Header";
+import React, { ReactNode, useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
+import { SpaceProps } from 'styled-system';
+import Box from './Box';
+import Header from './Header';
 
 const CardMedia = styled.img`
   width: 60%;
@@ -29,7 +29,7 @@ const CardFooter = styled.p`
 `;
 
 export interface CardProps
-  extends Omit<SpaceProps, "p" | "pl" | "pr" | "px" | "py"> {
+  extends Omit<SpaceProps, 'p' | 'pl' | 'pr' | 'px' | 'py'> {
   title: string;
   image: string;
   content: string;

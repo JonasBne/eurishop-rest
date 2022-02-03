@@ -26,7 +26,7 @@ export interface ProductsDTO {
 }
 
 // eslint-disable-next-line max-len
-// TODO: is this ok? Added to type error to type Error because otherwise TS throws an error that error is of type unknown
+// TODO: is this ok? Interface added to type property error to type Error because otherwise TS throws an error that error is of type unknown
 export interface GetProduct {
   isLoading: boolean;
   error: Error;
@@ -42,7 +42,7 @@ export interface GetProducts {
 
 export const productUrl = 'api/products';
 
-const get = async (url: string) => {
+const fetchData = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) {
     throw new RequestError(response.status);
@@ -62,7 +62,7 @@ export const useGetProduct = (productId: string) => {
 
   const {
     isLoading, isError, data, error,
-  } = useQuery<ProductDTO>(['product', url], () => get(url));
+  } = useQuery<ProductDTO>(['product', url], () => fetchData(url));
 
   return {
     isLoading,
@@ -77,7 +77,7 @@ export const useGetProducts = (page?: number) => {
 
   const {
     isLoading, data, error, refetch,
-  } = useQuery<ProductsDTO>(['productList', url], () => get(url));
+  } = useQuery<ProductsDTO>(['productList', url], () => fetchData(url));
 
   return {
     isLoading,
