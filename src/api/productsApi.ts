@@ -1,7 +1,9 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import { useMemo } from 'react';
-import { useQuery, useQueries } from 'react-query';
+import { useQuery } from 'react-query';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import useFetchMultiple from '../hooks/useFetchMultiple';
 import rootUrl from './rootUrl';
 import Product from '../domain/product';
 import useUpdate from '../hooks/useUpdate';
@@ -92,16 +94,14 @@ export const useGetProducts = (page?: number) => {
 export const useGetMultipleProducts = (productIds: string[] | number[]) => {
   const urls = useMemo(() => productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`), [rootUrl, productUrl, productIds]);
 
-  const productQueries = useQueries(urls.map((url) => ({
-    queryKey: ['product', url],
-    queryFn: () => fetchData(url),
-  })));
-
-  // TODO: how to destructure the isLoading and error props?
-  const products: Product[] = productQueries.map((product) => product.data);
+  const {
+    loading, error, data,
+  } = useFetchMultiple<Product[]>(urls);
 
   return {
-    products,
+    loading,
+    error,
+    products: data,
   };
 };
 
