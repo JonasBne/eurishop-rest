@@ -35,7 +35,7 @@ export const useGetBasket = () => {
     loading, error, data, refetch: cartRefetch,
   } = useFetch<BasketDTO[]>(`${rootUrl}${basketUrls.base}`);
 
-  const productIds = useMemo(() => data?.map((cartItem) => cartItem.productId), [data]) ?? [];
+  const productIds = useMemo(() => data?.map((cartItem) => cartItem.productId) ?? [], [data]);
 
   const { products } = useGetMultipleProducts(productIds);
 
