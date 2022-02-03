@@ -19,15 +19,16 @@ export const basketUrls = {
 };
 
 export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefined => {
-  if (!dto || !data) return undefined;
+  if (data && dto) {
+    const filteredProducts: Product[] = data.filter((product) => dto.find((item) => item.productId === product?.id));
 
-  const filteredProducts: Product[] = data.filter((product) => dto.find((item) => item.productId === product.id));
-
-  const cartItems: CartItem[] = filteredProducts.map((product) => (
-    { product, quantity: dto.find((item) => item.productId === product.id)!.quantity }));
-  return {
-    items: cartItems,
-  };
+    const cartItems: CartItem[] = filteredProducts.map((product) => (
+      { product, quantity: dto.find((item) => item.productId === product.id)!.quantity }));
+    return {
+      items: cartItems,
+    };
+  }
+  return undefined;
 };
 
 export const useGetBasket = () => {
