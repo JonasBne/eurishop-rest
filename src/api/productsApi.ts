@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import { useMemo } from 'react';
-import { useQueries, useQuery } from 'react-query';
+import { useMutation, useQueries, useQuery } from 'react-query';
 import rootUrl from './rootUrl';
 import Product from '../domain/product';
 import useUpdate from '../hooks/useUpdate';
@@ -117,4 +117,16 @@ export const useUpdateProduct = () => {
     remove,
     data,
   };
+};
+
+export const usePostProduct = () => {
+  const post = async (data: any) => fetch(`${rootUrl}${productUrl}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  });
+
+  return useMutation(post);
 };
