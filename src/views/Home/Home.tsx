@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { GetProducts, useGetProducts } from '../../api/productsApi';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
@@ -9,6 +10,7 @@ import { useGetBasket, useUpdateBasket, basketUrls } from '../../api/basketApi';
 import rootUrl from '../../api/rootUrl';
 import toasts from '../../components/toasts';
 import Button from '../../components/Button';
+import { CartItem } from '../../domain/shoppingCart';
 
 function Home() {
   // TODO: is it ok to store page here and pass it to useGetProducts hook?

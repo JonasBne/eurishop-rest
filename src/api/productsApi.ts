@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import { useMemo } from 'react';
 import { useQuery } from 'react-query';
