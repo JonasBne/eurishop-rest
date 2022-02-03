@@ -74,9 +74,8 @@ export const useGetProduct = (productId: string) => {
   };
 };
 
-export const useGetProducts = (page?: number) => {
-  const url = page ? (`${rootUrl}${productUrl}/page=${page}`) : (`${rootUrl}${productUrl}`);
-
+export const useGetProducts = (page = 0) => {
+  const url = `${rootUrl}${productUrl}/?page=${page}`;
   const {
     isLoading, data, error, refetch,
   } = useQuery<ProductsDTO>(['productList', url], () => fetchData(url));
