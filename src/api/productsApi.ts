@@ -89,20 +89,6 @@ export const useGetProducts = (page?: number) => {
   };
 };
 
-// export const useGetMultipleProducts = (productIds: string[] | number[]) => {
-//   const urls = useMemo(() => productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`), [rootUrl, productUrl, productIds]);
-
-//   const {
-//     loading, error, data,
-//   } = useFetchMultiple<Product[]>(urls);
-
-//   return {
-//     loading,
-//     error,
-//     products: data,
-//   };
-// };
-
 export const useGetMultipleProducts = (productIds: string[] | number[]) => {
   const urls = useMemo(() => productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`), [rootUrl, productUrl, productIds]);
 
