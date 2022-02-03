@@ -64,7 +64,7 @@ export const useGetProduct = (productId: string) => {
 
   const {
     isLoading, isError, data, error,
-  } = useQuery<ProductDTO>(['product', url], () => fetchData(url));
+  } = useQuery<ProductDTO>(['product', url], () => fetchData(url), { keepPreviousData: true });
 
   return {
     isLoading,
