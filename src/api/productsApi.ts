@@ -2,8 +2,6 @@
 /* eslint-disable import/no-cycle */
 import { useMemo } from 'react';
 import { useQueries, useQuery } from 'react-query';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import useFetchMultiple from '../hooks/useFetchMultiple';
 import rootUrl from './rootUrl';
 import Product from '../domain/product';
 import useUpdate from '../hooks/useUpdate';
@@ -44,7 +42,7 @@ export interface GetProducts {
 export const productUrl = 'api/products';
 
 // TODO: where to store this?
-const fetchData = async (url: string) => {
+export const fetchData = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) {
     throw new RequestError(response.status);
