@@ -1,23 +1,14 @@
-import { CartItem } from '../../domain/shoppingCart';
-import { calculateTotalCostPerCartItem } from './BasketItem';
-
-const cartItem: CartItem = {
-  product: {
-    id: 1,
-    sku: '',
-    title: '',
-    desc: '',
-    image: '',
-    stocked: true,
-    basePrice: 10.00,
-    price: 13.00,
-  },
-  quantity: 2,
-};
+import { CartItem, calculateTotalCostPerCartItem } from '../../domain/shoppingCart';
 
 describe('calculate total cost per cart item', () => {
   test('multiply price by quantity', () => {
-    const result = parseInt(calculateTotalCostPerCartItem(cartItem), 10);
+    const cartItem = {
+      product: {
+        price: 13.00,
+      },
+      quantity: 2,
+    } as CartItem;
+    const result = calculateTotalCostPerCartItem(cartItem);
     expect(result).toBe(26.00);
   });
 });
