@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   space,
   SpaceProps,
@@ -18,21 +18,21 @@ import {
   ColorProps,
   boxShadow,
   BoxShadowProps,
-} from "styled-system";
+} from 'styled-system';
 
 const Box = styled.div<
-  | SpaceProps
-  | LayoutProps
-  | GridProps
-  | FlexProps
-  | FlexboxProps
-  | BorderProps
-  | TypographyProps
-  | ColorProps
-  | BoxShadowProps
+| SpaceProps
+| LayoutProps
+| GridProps
+| FlexProps
+| FlexboxProps
+| BorderProps
+| TypographyProps
+| ColorProps
+| BoxShadowProps
 >(
   {
-    boxSizing: "border-box",
+    boxSizing: 'border-box',
     minWidth: 0,
   },
   space,
@@ -43,7 +43,7 @@ const Box = styled.div<
   grid,
   typography,
   color,
-  boxShadow
+  boxShadow,
 );
 
 export default Box;

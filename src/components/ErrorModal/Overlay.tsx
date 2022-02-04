@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { ReactNode } from 'react';
+import styled, { keyframes } from 'styled-components';
 
 const slideDownAnimation = keyframes`
 from {

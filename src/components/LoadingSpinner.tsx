@@ -1,6 +1,6 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
-import { space, SpaceProps } from "styled-system";
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { space, SpaceProps } from 'styled-system';
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
