@@ -76,9 +76,11 @@ export const useGetMultipleProducts = (productIds: string[] | number[]) => {
   return {
     loading,
     error,
-    products: data?.map((item) => productMapper(item)),
+    products: data?.map((item) => productMapper(item)!),
   };
 };
+
+// TODO: niet nodig meteen destructureren in component
 
 export const useUpdateProduct = () => {
   const {

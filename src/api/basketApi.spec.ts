@@ -1,6 +1,8 @@
 import { BasketDTO, basketMapper } from './basketApi';
 import Product from '../domain/product';
 
+// TODO: clenanup
+
 function createTestProduct() {
   return [
     {

@@ -47,6 +47,8 @@ export const useGetBasket = () => {
   };
 };
 
+// TODO: niet nodig, meteen destructureren  in component
+
 export const useUpdateBasket = () => {
   const {
     loading, error, post, put, patch, remove, data,
