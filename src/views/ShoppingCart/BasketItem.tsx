@@ -2,13 +2,8 @@ import React from 'react';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import Box from '../../components/Box';
-import { CartItem } from '../../domain/shoppingCart';
+import { CartItem, calculateTotalCostPerCartItem } from '../../domain/shoppingCart';
 import FlexBox from '../../components/FlexBox';
-
-export function calculateTotalCostPerCartItem(cartItem: CartItem) {
-  const cost = (cartItem.quantity * cartItem.product.price).toFixed(2);
-  return cost;
-}
 
 interface BasketItemProps {
   item: CartItem;
@@ -30,7 +25,9 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
   };
 
   return (
-    <div role="card-item">
+    // TODO: have a look at this role and ARIA roles in general
+    // eslint-disable-next-line jsx-a11y/aria-role
+    <div role="cart-item">
       <Header as="h4">{item.product.title}</Header>
       <Box my="0.5rem" fontStyle="italic">{`Unit price: € ${item.product.price}`}</Box>
       <FlexBox alignItems="baseline" my="2rem">

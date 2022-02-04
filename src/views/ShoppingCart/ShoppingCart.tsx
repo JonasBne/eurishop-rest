@@ -7,14 +7,8 @@ import FlexBox from '../../components/FlexBox';
 import Header from '../../components/Header';
 import Button from '../../components/Button';
 import BasketItem from './BasketItem';
-import { CartItem } from '../../domain/shoppingCart';
+import { CartItem, calculateTotalCartCost } from '../../domain/shoppingCart';
 import FaIcon from '../../assets/FaIcon';
-
-export function calculateTotalCartCost(cartItems: CartItem[]) {
-  const totalPerProductArray = cartItems.map((item) => item.quantity * item.product.price);
-  return totalPerProductArray.reduce((previousValue, currentValue) => previousValue + currentValue, 0)
-    .toFixed(2);
-}
 
 interface ShoppingCartProps {
   cartItems: CartItem[];
