@@ -3,7 +3,6 @@ import { useParams, useNavigate } from 'react-router';
 import {
   useGetProduct,
   ProductDTO,
-  useUpdateProduct,
   GetProduct,
 } from '../../api/productsApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
@@ -11,13 +10,14 @@ import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import ProductForm, { ProductFormValues } from './ProductForm';
 import toasts from '../../components/toasts';
 import rootUrl from '../../api/rootUrl';
+import useUpdate from '../../hooks/useUpdate';
 
 function ProductEdit() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { isLoading, error, product } = useGetProduct(productId!) as GetProduct;
-  const { error: putError, data: puttedData, put } = useUpdateProduct();
+  const { error: putError, data: puttedData, put } = useUpdate<ProductDTO>();
 
   const gridTemplateAreas = `
   "title sku"
