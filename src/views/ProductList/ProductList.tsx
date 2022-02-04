@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useGetProducts, useUpdateProduct, GetProducts } from '../../api/productsApi';
+import { useGetProducts, GetProducts, ProductDTO } from '../../api/productsApi';
 import Table from '../../components/Table/Table';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import sortBy from '../../utils/sortBy';
@@ -8,6 +8,7 @@ import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import Button from '../../components/Button';
 import toasts from '../../components/toasts';
 import rootUrl from '../../api/rootUrl';
+import useUpdate from '../../hooks/useUpdate';
 
 function ProductList() {
   const [page, setPage] = useState<number>(0);
@@ -17,7 +18,7 @@ function ProductList() {
     isLoading, error, products, refetch,
   } = useGetProducts(page) as GetProducts;
 
-  const { error: deleteError, data: deletedData, remove } = useUpdateProduct();
+  const { error: deleteError, data: deletedData, remove } = useUpdate<ProductDTO>();
 
   const [sortExpression, setSortExpression] = useState<string>('');
 
