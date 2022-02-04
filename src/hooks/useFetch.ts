@@ -24,7 +24,7 @@ const useFetch = <T>(url: string) => {
     }
   }, [url]);
 
-  const refetch = async () => fetchData();
+  const refetch = useCallback(async () => fetchData(), [fetchData]);
 
   useEffect(() => {
     fetchData();

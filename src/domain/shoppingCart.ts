@@ -8,3 +8,8 @@ export interface CartItem {
 export interface Cart {
   items: CartItem[];
 }
+
+export function calculateTotalCostPerCartItem(cartItem: CartItem) {
+  const cost = (cartItem.quantity * cartItem.product.price).toFixed(2);
+  return cost;
+}

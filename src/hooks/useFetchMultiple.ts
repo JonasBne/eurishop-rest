@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import CommunicationError from '../errors/CommunicationError';
 
-const useFetchMultiple = <T>(urls: string[]) => {
+const useFetchMultiple = <T>(urls: string[], config: any) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<Error>();
   const [fetchedData, setFetchedData] = useState<T>();
@@ -21,8 +21,10 @@ const useFetchMultiple = <T>(urls: string[]) => {
   };
 
   useEffect(() => {
-    fetchData();
-  }, [urls]);
+    if (config.enabled) {
+      fetchData();
+    }
+  }, [urls, config]);
 
   return {
     loading,

@@ -69,12 +69,14 @@ export const useGetMultipleProducts = (productIds: string[] | number[]) => {
 
   const {
     loading, error, data,
-  } = useFetchMultiple<Product[]>(urls);
+  } = useFetchMultiple<ProductDTO[]>(urls, {
+    enbled: urls.length !== 0,
+  });
 
   return {
     loading,
     error,
-    products: data,
+    products: data?.map((item) => productMapper(item)),
   };
 };
 

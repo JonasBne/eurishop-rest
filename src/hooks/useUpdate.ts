@@ -36,6 +36,7 @@ function useUpdate<T>() {
     }
   };
 
+  // TODO: useCallback
   const post = (data: any, url: string, id: number | string = '') => sendHttpRequest('POST', `${url}/${id}`, data);
 
   const put = (data: any, url: string, id: number | string = '') => sendHttpRequest('PUT', `${url}/${id}`, data);

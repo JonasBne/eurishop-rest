@@ -18,13 +18,13 @@ export const basketUrls = {
   update: 'api/basket/xyz/product',
 };
 
-export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefined => {
-  if (!dto || !data) return undefined;
+export const basketMapper = (products?: Product[], basketDto?: BasketDTO[]): Cart | undefined => {
+  if (!basketDto || !products) return undefined;
 
-  const filteredProducts: Product[] = data.filter((product) => dto.find((item) => item.productId === product.id));
+  //  const filteredProducts = data.filter((product) => dto.find((item) => item.productId === product.id));
 
-  const cartItems: CartItem[] = filteredProducts.map((product) => (
-    { product, quantity: dto.find((item) => item.productId === product.id)!.quantity }));
+  const cartItems: CartItem[] = products.map((product) => (
+    { product, quantity: basketDto.find((item) => item.productId === product.id)!.quantity }));
   return {
     items: cartItems,
   };
