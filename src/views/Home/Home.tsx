@@ -6,7 +6,7 @@ import FlexBox from '../../components/FlexBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductCard from './ProductCard';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
-import { useGetBasket, basketUrls } from '../../api/basketApi';
+import { useGetBasket, basketUrls, BasketDTO } from '../../api/basketApi';
 import rootUrl from '../../api/rootUrl';
 import toasts from '../../components/toasts';
 import Button from '../../components/Button';
@@ -22,7 +22,7 @@ function Home() {
   } = useGetProducts(page) as GetProducts;
   const {
     error: basketError, data: basketData, post, patch, remove,
-  } = useUpdate();
+  } = useUpdate<BasketDTO>();
   const { cart, cartRefetch } = useGetBasket();
   const cartItems = cart?.items ?? [];
 

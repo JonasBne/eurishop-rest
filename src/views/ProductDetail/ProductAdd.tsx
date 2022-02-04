@@ -1,16 +1,17 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import toasts from '../../components/toasts';
-import { ProductDTO, useUpdateProduct } from '../../api/productsApi';
+import { ProductDTO } from '../../api/productsApi';
 import ProductForm, { ProductFormValues } from './ProductForm';
 import rootUrl from '../../api/rootUrl';
+import useUpdate from '../../hooks/useUpdate';
 
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const {
     error: postError, data: postedData, post,
-  } = useUpdateProduct();
+  } = useUpdate();
 
   const gridTemplateAreas = `
   "title sku"
