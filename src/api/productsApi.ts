@@ -107,23 +107,10 @@ export const useGetMultipleProducts = (productIds: string[] | number[], enabled:
   };
 };
 
-export const useUpdateProduct = () => {
-  const {
-    loading, error, post, put, remove, data,
-  } = useUpdate<ProductDTO>();
-  return {
-    loading,
-    error,
-    post,
-    put,
-    remove,
-    data,
-  };
-};
-
 // TODO: move to helper file
 //
 export const useProductMutation = () => {
+  // TODO: hier onderscheid mken tussen post en put, patch op basis van of id reeds bestaat
   const post = async (data: any) => fetch(`${rootUrl}${productUrl}`, {
     method: 'POST',
     headers: {
