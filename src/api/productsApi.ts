@@ -98,10 +98,11 @@ export const useGetMultipleProducts = (productIds: string[] | number[], enabled:
   })));
 
   const products = productQueries.map((product) => product.data);
-  // TODO: isLoading, isError with .some
-  // TODO: if isLoading, no products
+  // TODO: find a way to extract error (first one thats thrown)
   return {
-    products,
+    isLoading: !!productQueries.some((query) => query.isLoading),
+    isError: !!productQueries.some((query) => query.isError),
+    products: productQueries.some((query) => query.isLoading) ? [] : products,
   };
 };
 
