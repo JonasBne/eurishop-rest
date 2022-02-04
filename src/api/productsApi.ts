@@ -39,7 +39,7 @@ export interface GetProducts {
   refetch: () => void;
 }
 
-interface PutProductVariables {
+export interface PutProductVariables {
   url: string;
   product: ProductDTO;
 }

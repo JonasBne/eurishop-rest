@@ -37,6 +37,8 @@ function ProductEdit() {
     }
   }, [putError, puttedData]);
 
+  // TODO: solve issue with TS
+
   const handleSubmit = (formValues: ProductFormValues) => {
     const item: ProductDTO = {
       ...formValues,
@@ -47,7 +49,7 @@ function ProductEdit() {
 
     const url = `${rootUrl}api/products/${item.id}`;
 
-    mutate({ variables: url, item });
+    mutate(url, item);
   };
 
   return (
