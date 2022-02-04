@@ -112,3 +112,21 @@ export const useMutationProductPost = () => {
     },
   });
 };
+
+export const useMutationProductPut = () => {
+  const queryClient = useQueryClient();
+  return useMutation(api.put, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(productKeys.all);
+    },
+  });
+};
+
+export const useMutationProductRemove = () => {
+  const queryClient = useQueryClient();
+  return useMutation(api.remove, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(productKeys.all);
+    },
+  });
+};
