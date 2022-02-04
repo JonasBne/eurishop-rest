@@ -11,7 +11,7 @@ function ProductAdd() {
   const navigate = useNavigate();
   const {
     error: postError, data: postedData, post,
-  } = useUpdate();
+  } = useUpdate<ProductDTO>();
 
   const gridTemplateAreas = `
   "title sku"
