@@ -4,7 +4,6 @@ import { useMemo } from 'react';
 import { useMutation, useQueries, useQuery } from 'react-query';
 import rootUrl from './rootUrl';
 import Product from '../domain/product';
-import useUpdate from '../hooks/useUpdate';
 import RequestError from '../errors/RequestError';
 
 export interface ProductDTO {
@@ -72,7 +71,7 @@ export const useGetProduct = (productId: string) => {
   };
 };
 
-export const useGetProducts = (page = 0, options: any) => {
+export const useGetProducts = (page = 0) => {
   const url = `${rootUrl}${productUrl}/?page=${page}`;
   const {
     isLoading, data, error, refetch,
