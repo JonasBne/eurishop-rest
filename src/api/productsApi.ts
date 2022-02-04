@@ -41,7 +41,7 @@ export interface GetProducts {
 
 interface PutProductVariables {
   url: string;
-  product: ProductDTO
+  product: ProductDTO;
 }
 
 export const productUrl = 'api/products';

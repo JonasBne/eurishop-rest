@@ -4,20 +4,21 @@ import {
   useGetProduct,
   ProductDTO,
   GetProduct,
+  useMutationProductPut,
 } from '../../api/productsApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import ProductForm, { ProductFormValues } from './ProductForm';
 import toasts from '../../components/toasts';
 import rootUrl from '../../api/rootUrl';
-import useUpdate from '../../hooks/useUpdate';
 
 function ProductEdit() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { isLoading, error, product } = useGetProduct(productId!) as GetProduct;
-  const { error: putError, data: puttedData, put } = useUpdate<ProductDTO>();
+  // const { error: putError, data: puttedData, put } = useUpdate<ProductDTO>();
+  const { mutate, error: putError, data: puttedData } = useMutationProductPut();
 
   const gridTemplateAreas = `
   "title sku"
@@ -44,7 +45,9 @@ function ProductEdit() {
       price: +formValues.price,
     };
 
-    put(item, `${rootUrl}api/products/${item.id}`);
+    const url = `${rootUrl}api/products/${item.id}`;
+
+    mutate({ variables: url, item });
   };
 
   return (
