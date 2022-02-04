@@ -2,7 +2,6 @@
 import { useQuery } from 'react-query';
 import Product from '../domain/product';
 import { CartItem, Cart } from '../domain/shoppingCart';
-import useUpdate from '../hooks/useUpdate';
 import { fetchData, useGetMultipleProducts } from './productsApi';
 import rootUrl from './rootUrl';
 
@@ -37,20 +36,5 @@ export const useGetBasket = () => {
   return {
     cart: basketMapper(products, data),
     cartRefetch,
-  };
-};
-
-export const useUpdateBasket = () => {
-  const {
-    loading, error, post, put, patch, remove, data,
-  } = useUpdate<BasketDTO[]>();
-  return {
-    loading,
-    error,
-    post,
-    put,
-    patch,
-    remove,
-    data,
   };
 };
