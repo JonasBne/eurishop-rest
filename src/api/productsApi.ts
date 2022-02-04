@@ -54,6 +54,8 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
   };
 };
 
+const postProduct = async <T>(data: T) => api.post(`${rootUrl}${productUrl}`, data);
+
 export const useGetProduct = (productId: string) => {
   const url = `${rootUrl}${productUrl}/${productId}`;
 
@@ -103,31 +105,31 @@ export const useGetMultipleProducts = (productIds: string[] | number[], enabled:
   };
 };
 
-// TODO: add type to useMutation hook
-//
 export const useMutationProductPost = () => {
   const queryClient = useQueryClient();
-  return useMutation(api.post, {
+  return useMutation<ProductDTO, Error, ProductDTO>((product) => postProduct<ProductDTO>(product), {
     onSuccess: () => {
       queryClient.invalidateQueries(productKeys.all);
     },
   });
 };
 
-export const useMutationProductPut = () => {
-  const queryClient = useQueryClient();
-  return useMutation(api.put, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(productKeys.all);
-    },
-  });
-};
+// TODO: finalize also put, remove requests
 
-export const useMutationProductRemove = () => {
-  const queryClient = useQueryClient();
-  return useMutation(api.remove, {
-    onSuccess: () => {
-      queryClient.invalidateQueries(productKeys.all);
-    },
-  });
-};
+// export const useMutationProductPut = () => {
+//   const queryClient = useQueryClient();
+//   return useMutation(api.put, {
+//     onSuccess: () => {
+//       queryClient.invalidateQueries(productKeys.all);
+//     },
+//   });
+// };
+
+// export const useMutationProductRemove = () => {
+//   const queryClient = useQueryClient();
+//   return useMutation(api.remove, {
+//     onSuccess: () => {
+//       queryClient.invalidateQueries(productKeys.all);
+//     },
+//   });
+// };

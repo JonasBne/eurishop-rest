@@ -1,17 +1,13 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import toasts from '../../components/toasts';
-import { ProductDTO } from '../../api/productsApi';
+import { ProductDTO, useMutationProductPost } from '../../api/productsApi';
 import ProductForm, { ProductFormValues } from './ProductForm';
-import rootUrl from '../../api/rootUrl';
-import useUpdate from '../../hooks/useUpdate';
 
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  const {
-    error: postError, data: postedData, post,
-  } = useUpdate<ProductDTO>();
+  const { mutate, error: postError, data: postedProduct } = useMutationProductPost();
 
   const gridTemplateAreas = `
   "title sku"
@@ -24,12 +20,13 @@ function ProductAdd() {
     if (postError) {
       failToast(postError);
     }
-    if (postedData) {
-      succesToast(`New product with id ${postedData.id} added!`);
+    if (postedProduct) {
+      succesToast(`New product with id ${postedProduct.id} added!`);
       navigate('/products/admin');
     }
-  }, [postError, postedData]);
+  }, [postError, postedProduct]);
 
+  // TODO: why is postedProduct undefined?
   const handleSubmit = (formValues: ProductFormValues) => {
     const product: ProductDTO = {
       ...formValues,
@@ -37,7 +34,7 @@ function ProductAdd() {
       price: +formValues.price,
       id: 0,
     };
-    post(product, `${rootUrl}api/products`);
+    mutate(product);
   };
 
   return (

@@ -19,8 +19,8 @@ const request = async (requestType: HttpRequestType, url: string, data?: any) =>
 };
 
 const get = (url: string) => request('GET', url);
-const put = (url: string, data?: any) => request('PUT', url, data);
-const post = (url: string, data?: any) => request('POST', url, data);
+const put = (url: string, data: any) => request('PUT', url, data);
+const post = <T>(url: string, data: T) => request('POST', url, data);
 const remove = (url: string) => request('DELETE', url);
 
 export default {

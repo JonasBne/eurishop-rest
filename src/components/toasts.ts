@@ -4,7 +4,7 @@ function toasts() {
   const succes = (message: string) => toast.success(message, {
     id: 'successToast',
   });
-  const fail = (error: Error) => toast.error(error.toString(), {
+  const fail = (error: any) => toast.error(error.toString(), {
     id: 'failToast',
   });
   return {
