@@ -1,6 +1,5 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
-import { useMemo } from 'react';
 import { useMutation, useQueries, useQuery } from 'react-query';
 import rootUrl from './rootUrl';
 import Product from '../domain/product';
@@ -88,7 +87,7 @@ export const useGetProducts = (page = 0) => {
 };
 
 export const useGetMultipleProducts = (productIds: string[] | number[], enabled: boolean) => {
-  const urls = useMemo(() => productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`), [rootUrl, productUrl, productIds]);
+  const urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
 
   // TODO: how to destructure isLoading and error from the results array?
 
