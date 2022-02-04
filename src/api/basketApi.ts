@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import { useMemo } from 'react';
 import Product from '../domain/product';
 import { CartItem, Cart } from '../domain/shoppingCart';
 import useFetch from '../hooks/useFetch';
@@ -21,8 +20,6 @@ export const basketUrls = {
 export const basketMapper = (products?: Product[], basketDto?: BasketDTO[]): Cart | undefined => {
   if (!basketDto || !products) return undefined;
 
-  //  const filteredProducts = data.filter((product) => dto.find((item) => item.productId === product.id));
-
   const cartItems: CartItem[] = products.map((product) => (
     { product, quantity: basketDto.find((item) => item.productId === product.id)!.quantity }));
   return {
@@ -35,9 +32,9 @@ export const useGetBasket = () => {
     loading, error, data, refetch: cartRefetch,
   } = useFetch<BasketDTO[]>(`${rootUrl}${basketUrls.base}`);
 
-  const productIds = useMemo(() => data?.map((cartItem) => cartItem.productId) ?? [], [data]);
+  const productIds = data?.map((cartItem) => cartItem.productId) ?? [];
 
-  const { products } = useGetMultipleProducts(productIds);
+  const { products } = useGetMultipleProducts(productIds, productIds.length > 0);
 
   return {
     loading,
