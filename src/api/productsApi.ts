@@ -1,6 +1,8 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
-import { useMutation, useQueries, useQuery } from 'react-query';
+import {
+  useMutation, useQueries, useQuery, useQueryClient,
+} from 'react-query';
 import api from './fetchHelper';
 import rootUrl from './rootUrl';
 import Product from '../domain/product';
@@ -39,6 +41,11 @@ export interface GetProducts {
 
 export const productUrl = 'api/products';
 
+export const productKeys = {
+  all: ['products'],
+  detail: (productId: string | number) => [...productKeys.all, { productId }],
+};
+
 const productMapper = (dto?: ProductDTO): Product | undefined => {
   if (!dto) return undefined;
   return {
@@ -65,7 +72,7 @@ export const useGetProducts = (page = 0) => {
   const url = `${rootUrl}${productUrl}/?page=${page}`;
   const {
     isLoading, data, error, refetch,
-  } = useQuery<ProductsDTO>(['productList', page], () => api.get(url));
+  } = useQuery<ProductsDTO>(['products', page], () => api.get(url));
 
   return {
     isLoading,
@@ -95,25 +102,13 @@ export const useGetMultipleProducts = (productIds: string[] | number[], enabled:
   };
 };
 
-// TODO: move to helper file
+// TODO: add type to useMutation hook
 //
-export const useProductMutation = () => {
-  // TODO: hier onderscheid mken tussen post en put, patch op basis van of id reeds bestaat
-  const post = async (data: any) => fetch(`${rootUrl}${productUrl}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
+export const useMutationProductPost = () => {
+  const queryClient = useQueryClient();
+  return useMutation(api.post, {
+    onSuccess: () => {
+      queryClient.invalidateQueries(productKeys.all);
     },
-    body: JSON.stringify(data),
   });
-
-  // TODO: add error handling to post
-  //   const response = await fetch(url);
-  //   if (!response.ok) {
-  //     throw new RequestError(response.status);
-  //   }
-  //   return response.json();
-  // };
-
-  return useMutation(post);
 };
