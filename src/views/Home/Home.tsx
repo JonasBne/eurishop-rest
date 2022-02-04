@@ -6,11 +6,12 @@ import FlexBox from '../../components/FlexBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductCard from './ProductCard';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
-import { useGetBasket, useUpdateBasket, basketUrls } from '../../api/basketApi';
+import { useGetBasket, basketUrls } from '../../api/basketApi';
 import rootUrl from '../../api/rootUrl';
 import toasts from '../../components/toasts';
 import Button from '../../components/Button';
 import { CartItem } from '../../domain/shoppingCart';
+import useUpdate from '../../hooks/useUpdate';
 
 function Home() {
   // TODO: is it ok to store page here and pass it to useGetProducts hook?
@@ -21,7 +22,7 @@ function Home() {
   } = useGetProducts(page) as GetProducts;
   const {
     error: basketError, data: basketData, post, patch, remove,
-  } = useUpdateBasket();
+  } = useUpdate();
   const { cart, cartRefetch } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
