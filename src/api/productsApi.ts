@@ -80,8 +80,6 @@ export const useGetProducts = (page = 0) => {
 export const useGetMultipleProducts = (productIds: string[] | number[], enabled: boolean) => {
   const urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
 
-  // TODO: how to destructure isLoading and error from the results array?
-
   const productQueries = useQueries(urls.map((url) => ({
     queryKey: ['product', url],
     queryFn: () => api.get(url),
