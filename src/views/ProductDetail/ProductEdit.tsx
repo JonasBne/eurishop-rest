@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import {
@@ -10,14 +11,12 @@ import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import ProductForm, { ProductFormValues } from './ProductForm';
 import toasts from '../../components/toasts';
-import rootUrl from '../../api/rootUrl';
 
 function ProductEdit() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { productId } = useParams<string>();
   const { isLoading, error, product } = useGetProduct(productId!) as GetProduct;
-  // const { error: putError, data: puttedData, put } = useUpdate<ProductDTO>();
   const { mutate, error: putError, data: puttedData } = useMutationProductPut();
 
   const gridTemplateAreas = `
@@ -37,7 +36,7 @@ function ProductEdit() {
     }
   }, [putError, puttedData]);
 
-  // TODO: solve issue with TS
+  // TODO: think about a way to clear because when you edit a product and reopen the stale data is shown so you have to refresh
 
   const handleSubmit = (formValues: ProductFormValues) => {
     const item: ProductDTO = {
@@ -47,9 +46,7 @@ function ProductEdit() {
       price: +formValues.price,
     };
 
-    const url = `${rootUrl}api/products/${item.id}`;
-
-    mutate(url, item);
+    mutate({ productId: item.id, product: item });
   };
 
   return (

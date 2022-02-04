@@ -40,7 +40,7 @@ export interface GetProducts {
 }
 
 export interface PutProductVariables {
-  url: string;
+  productId: string | number;
   product: ProductDTO;
 }
 
@@ -61,7 +61,7 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
 
 const postProduct = async (data: any) => api.post(`${rootUrl}${productUrl}`, data);
 
-const putProduct = async (url: string, data: any) => api.put(url, data);
+const putProduct = async (productId: string | number, data: any) => api.put(`${rootUrl}${productUrl}/${productId}`, data);
 
 export const useGetProduct = (productId: string) => {
   const url = `${rootUrl}${productUrl}/${productId}`;
@@ -123,7 +123,7 @@ export const useMutationProductPost = () => {
 
 export const useMutationProductPut = () => {
   const queryClient = useQueryClient();
-  return useMutation<ProductDTO, Error, PutProductVariables>(({ url, product }) => putProduct(url, product), {
+  return useMutation<ProductDTO, Error, PutProductVariables>(({ productId, product }) => putProduct(productId, product), {
     onSuccess: () => {
       queryClient.invalidateQueries(productKeys.all);
     },
