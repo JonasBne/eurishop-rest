@@ -43,6 +43,7 @@ export const productUrl = 'api/products';
 
 export const productKeys = {
   all: ['products'],
+  paged: (page: number) => [...productKeys.all, { page }],
   detail: (productId: string | number) => [...productKeys.all, { productId }],
 };
 
@@ -58,7 +59,7 @@ export const useGetProduct = (productId: string) => {
 
   const {
     isLoading, isError, data, error,
-  } = useQuery<ProductDTO>(['product', productId], () => api.get(url), { keepPreviousData: true });
+  } = useQuery<ProductDTO>([productKeys.detail(productId), productId], () => api.get(url), { keepPreviousData: true });
 
   return {
     isLoading,
@@ -72,7 +73,7 @@ export const useGetProducts = (page = 0) => {
   const url = `${rootUrl}${productUrl}/?page=${page}`;
   const {
     isLoading, data, error, refetch,
-  } = useQuery<ProductsDTO>(['products', page], () => api.get(url));
+  } = useQuery<ProductsDTO>([productKeys.paged(page), page], () => api.get(url));
 
   return {
     isLoading,
