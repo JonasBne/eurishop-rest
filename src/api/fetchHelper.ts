@@ -18,15 +18,16 @@ const request = async (requestType: HttpRequestType, url: string, data?: any) =>
   return response.json();
 };
 
-export const get = (url: string) => request('GET', url);
-export const put = (url: string, data?: any) => request('PUT', url, data);
-export const post = (url: string, data?: any) => request('POST', url, data);
-export const remove = (url: string) => request('DELETE', url);
+const get = (url: string) => request('GET', url);
+const put = (url: string, data?: any) => request('PUT', url, data);
+const post = (url: string, data?: any) => request('POST', url, data);
+const remove = (url: string) => request('DELETE', url);
 
 export default {
   get,
   post,
   put,
+  remove,
 };
 
 /*

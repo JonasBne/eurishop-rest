@@ -1,9 +1,9 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
 import { useMutation, useQueries, useQuery } from 'react-query';
+import api from './fetchHelper';
 import rootUrl from './rootUrl';
 import Product from '../domain/product';
-import RequestError from '../errors/RequestError';
 
 export interface ProductDTO {
   id: number;
@@ -39,15 +39,6 @@ export interface GetProducts {
 
 export const productUrl = 'api/products';
 
-// TODO: where to store this? 'fetchHelper.ts
-export const fetchData = async (url: string) => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new RequestError(response.status);
-  }
-  return response.json();
-};
-
 const productMapper = (dto?: ProductDTO): Product | undefined => {
   if (!dto) return undefined;
   return {
@@ -60,7 +51,7 @@ export const useGetProduct = (productId: string) => {
 
   const {
     isLoading, isError, data, error,
-  } = useQuery<ProductDTO>(['product', productId], () => fetchData(url), { keepPreviousData: true });
+  } = useQuery<ProductDTO>(['product', productId], () => api.get(url), { keepPreviousData: true });
 
   return {
     isLoading,
@@ -74,7 +65,7 @@ export const useGetProducts = (page = 0) => {
   const url = `${rootUrl}${productUrl}/?page=${page}`;
   const {
     isLoading, data, error, refetch,
-  } = useQuery<ProductsDTO>(['productList', page], () => fetchData(url));
+  } = useQuery<ProductsDTO>(['productList', page], () => api.get(url));
 
   return {
     isLoading,
@@ -93,7 +84,7 @@ export const useGetMultipleProducts = (productIds: string[] | number[], enabled:
 
   const productQueries = useQueries(urls.map((url) => ({
     queryKey: ['product', url],
-    queryFn: () => fetchData(url),
+    queryFn: () => api.get(url),
     enabled,
   })));
 

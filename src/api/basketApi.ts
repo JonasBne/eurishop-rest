@@ -2,7 +2,8 @@
 import { useQuery } from 'react-query';
 import Product from '../domain/product';
 import { CartItem, Cart } from '../domain/shoppingCart';
-import { fetchData, useGetMultipleProducts } from './productsApi';
+import api from './fetchHelper';
+import { useGetMultipleProducts } from './productsApi';
 import rootUrl from './rootUrl';
 
 export interface BasketDTO {
@@ -27,7 +28,7 @@ export const basketMapper = (products?: Product[], basketDTO?: BasketDTO[]): Car
 };
 
 export const useGetBasket = () => {
-  const { data, refetch: cartRefetch } = useQuery<BasketDTO[]>(['basket'], () => fetchData(`${rootUrl}${basketUrls.base}`), { keepPreviousData: true });
+  const { data, refetch: cartRefetch } = useQuery<BasketDTO[]>(['basket'], () => api.get(`${rootUrl}${basketUrls.base}`), { keepPreviousData: true });
 
   const productIds = data?.map((cartItem) => cartItem.productId) ?? [];
 
