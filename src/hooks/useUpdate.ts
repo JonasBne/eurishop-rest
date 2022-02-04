@@ -12,9 +12,7 @@ function useUpdate<T>() {
   const [error, setError] = useState<Error>();
   const [updatedData, setUpdatedData] = useState<T>();
 
-  // TODO: find a better way to pass the url for basket
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const sendHttpRequest = async (method: UpdateMethods, url: string, data?: T | null, id?: string | number) => {
+  const sendHttpRequest = async (method: UpdateMethods, url: string, data?: T | null) => {
     try {
       setLoading(true);
       const response = await fetch(url, {
@@ -38,13 +36,13 @@ function useUpdate<T>() {
 
   // TODO: useCallback
   // TODO: removeid
-  const post = (data: any, url: string, id: number | string = '') => sendHttpRequest('POST', `${url}/${id}`, data);
+  const post = (data: any, url: string) => sendHttpRequest('POST', url, data);
 
-  const put = (data: any, url: string, id: number | string = '') => sendHttpRequest('PUT', `${url}/${id}`, data);
+  const put = (data: any, url: string) => sendHttpRequest('PUT', url, data);
 
-  const patch = (data: any, url: string, id: number | string = '') => sendHttpRequest('PATCH', `${url}/${id}`, data);
+  const patch = (data: any, url: string) => sendHttpRequest('PATCH', url, data);
 
-  const remove = (url: string, id: number | string = '') => sendHttpRequest('DELETE', `${url}/${id}`, null);
+  const remove = (url: string) => sendHttpRequest('DELETE', url, null);
 
   return {
     loading,

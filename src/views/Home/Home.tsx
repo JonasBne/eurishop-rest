@@ -14,7 +14,6 @@ import { CartItem } from '../../domain/shoppingCart';
 import useUpdate from '../../hooks/useUpdate';
 
 function Home() {
-  // TODO: is it ok to store page here and pass it to useGetProducts hook?
   const { succesToast, failToast } = toasts();
   const [page, setPage] = useState<number>(0);
   const {
@@ -37,12 +36,12 @@ function Home() {
   }, [basketError, basketData]);
 
   const handleBuy = (productId: string | number) => {
-    post({ quantity: 1 }, `${rootUrl}${basketUrls.update}`, productId);
+    post({ quantity: 1 }, `${rootUrl}${basketUrls.update}/${productId}`);
   };
 
   const handleUpdate = (quantity: number, productId: string | number) => {
-    if (quantity === 0) remove(`${rootUrl}api/basket/xyz/product`, productId);
-    if (quantity > 0) patch({ quantity }, `${rootUrl}${basketUrls.update}`, productId);
+    if (quantity === 0) remove(`${rootUrl}api/basket/xyz/product/${productId}`);
+    if (quantity > 0) patch({ quantity }, `${rootUrl}${basketUrls.update}/${productId}`);
   };
 
   const handleClear = () => {

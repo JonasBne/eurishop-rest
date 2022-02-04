@@ -37,7 +37,7 @@ function ProductList() {
   };
 
   const handleAction = (productId: string) => {
-    remove(`${rootUrl}api/products`, productId);
+    remove(`${rootUrl}api/products/${productId}`);
   };
 
   const sortedProducts = sortBy(products ?? [], sortExpression);
