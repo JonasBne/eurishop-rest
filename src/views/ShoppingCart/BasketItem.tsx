@@ -30,7 +30,7 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
   };
 
   return (
-    <div>
+    <div role="card-item">
       <Header as="h4">{item.product.title}</Header>
       <Box my="0.5rem" fontStyle="italic">{`Unit price: € ${item.product.price}`}</Box>
       <FlexBox alignItems="baseline" my="2rem">

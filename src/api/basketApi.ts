@@ -36,7 +36,8 @@ export const useGetBasket = () => {
 
   const productIds = useMemo(() => data?.map((cartItem) => cartItem.productId) ?? [], [data]);
 
-  const { products } = useGetMultipleProducts(productIds);
+  // TODO: work with enabled (dependent query)
+  const { products } = useGetMultipleProducts(productIds, productIds.length > 0);
 
   return {
     cart: basketMapper(products, data),

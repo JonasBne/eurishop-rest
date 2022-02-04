@@ -41,7 +41,7 @@ export interface GetProducts {
 
 export const productUrl = 'api/products';
 
-// TODO: where to store this?
+// TODO: where to store this? 'fetchHelper.ts
 export const fetchData = async (url: string) => {
   const response = await fetch(url);
   if (!response.ok) {
@@ -62,7 +62,7 @@ export const useGetProduct = (productId: string) => {
 
   const {
     isLoading, isError, data, error,
-  } = useQuery<ProductDTO>(['product', url], () => fetchData(url), { keepPreviousData: true });
+  } = useQuery<ProductDTO>(['product', productId], () => fetchData(url), { keepPreviousData: true });
 
   return {
     isLoading,
@@ -72,11 +72,11 @@ export const useGetProduct = (productId: string) => {
   };
 };
 
-export const useGetProducts = (page = 0) => {
+export const useGetProducts = (page = 0, options: any) => {
   const url = `${rootUrl}${productUrl}/?page=${page}`;
   const {
     isLoading, data, error, refetch,
-  } = useQuery<ProductsDTO>(['productList', url], () => fetchData(url));
+  } = useQuery<ProductsDTO>(['productList', page], () => fetchData(url));
 
   return {
     isLoading,
@@ -88,7 +88,7 @@ export const useGetProducts = (page = 0) => {
   };
 };
 
-export const useGetMultipleProducts = (productIds: string[] | number[]) => {
+export const useGetMultipleProducts = (productIds: string[] | number[], enabled: boolean) => {
   const urls = useMemo(() => productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`), [rootUrl, productUrl, productIds]);
 
   // TODO: how to destructure isLoading and error from the results array?
@@ -96,10 +96,12 @@ export const useGetMultipleProducts = (productIds: string[] | number[]) => {
   const productQueries = useQueries(urls.map((url) => ({
     queryKey: ['product', url],
     queryFn: () => fetchData(url),
+    enabled,
   })));
 
   const products = productQueries.map((product) => product.data);
-
+  // TODO: isLoading, isError with .some
+  // TODO: if isLoading, no products
   return {
     products,
   };
@@ -119,7 +121,9 @@ export const useUpdateProduct = () => {
   };
 };
 
-export const usePostProduct = () => {
+// TODO: move to helper file
+//
+export const useProductMutation = () => {
   const post = async (data: any) => fetch(`${rootUrl}${productUrl}`, {
     method: 'POST',
     headers: {
@@ -127,6 +131,14 @@ export const usePostProduct = () => {
     },
     body: JSON.stringify(data),
   });
+
+  // TODO: add error handling to post
+  //   const response = await fetch(url);
+  //   if (!response.ok) {
+  //     throw new RequestError(response.status);
+  //   }
+  //   return response.json();
+  // };
 
   return useMutation(post);
 };

@@ -46,7 +46,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <React.Fragment key={item.product.id}>
-              <BasketItem item={item} onUpdate={onUpdate} />
+              <BasketItem item={item} onUpdate={onUpdate} data-test-id={item.product.id} />
               <hr />
             </React.Fragment>
           ))
