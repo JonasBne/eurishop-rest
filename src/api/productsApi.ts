@@ -39,6 +39,11 @@ export interface GetProducts {
   refetch: () => void;
 }
 
+interface PutProductVariables {
+  url: string;
+  product: ProductDTO
+}
+
 export const productUrl = 'api/products';
 
 export const productKeys = {
@@ -54,7 +59,9 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
   };
 };
 
-const postProduct = async <T>(data: T) => api.post(`${rootUrl}${productUrl}`, data);
+const postProduct = async (data: any) => api.post(`${rootUrl}${productUrl}`, data);
+
+const putProduct = async (url: string, data: any) => api.put(url, data);
 
 export const useGetProduct = (productId: string) => {
   const url = `${rootUrl}${productUrl}/${productId}`;
@@ -107,7 +114,16 @@ export const useGetMultipleProducts = (productIds: string[] | number[], enabled:
 
 export const useMutationProductPost = () => {
   const queryClient = useQueryClient();
-  return useMutation<ProductDTO, Error, ProductDTO>((product) => postProduct<ProductDTO>(product), {
+  return useMutation<ProductDTO, Error, ProductDTO>((product) => postProduct(product), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(productKeys.all);
+    },
+  });
+};
+
+export const useMutationProductPut = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ProductDTO, Error, PutProductVariables>(({ url, product }) => putProduct(url, product), {
     onSuccess: () => {
       queryClient.invalidateQueries(productKeys.all);
     },
@@ -115,6 +131,10 @@ export const useMutationProductPost = () => {
 };
 
 // TODO: finalize also put, remove requests
+
+/*
+voor put een inter
+*/
 
 // export const useMutationProductPut = () => {
 //   const queryClient = useQueryClient();
