@@ -1,5 +1,4 @@
 /* eslint-disable max-len */
-import { useMemo } from 'react';
 import { useQuery } from 'react-query';
 import Product from '../domain/product';
 import { CartItem, Cart } from '../domain/shoppingCart';
@@ -18,25 +17,21 @@ export const basketUrls = {
   update: 'api/basket/xyz/product',
 };
 
-export const basketMapper = (data?: Product[], dto?: BasketDTO[]): Cart | undefined => {
-  if (data && dto) {
-    const filteredProducts: Product[] = data.filter((product) => dto.find((item) => item.productId === product?.id));
+export const basketMapper = (products?: Product[], basketDTO?: BasketDTO[]): Cart | undefined => {
+  if (!basketDTO || !products) return undefined;
 
-    const cartItems: CartItem[] = filteredProducts.map((product) => (
-      { product, quantity: dto.find((item) => item.productId === product.id)!.quantity }));
-    return {
-      items: cartItems,
-    };
-  }
-  return undefined;
+  const cartItems: CartItem[] = products.map((product) => (
+    { product, quantity: basketDTO.find((item) => item.productId === product.id)!.quantity }));
+  return {
+    items: cartItems,
+  };
 };
 
 export const useGetBasket = () => {
   const { data, refetch: cartRefetch } = useQuery<BasketDTO[]>(['basket'], () => fetchData(`${rootUrl}${basketUrls.base}`), { keepPreviousData: true });
 
-  const productIds = useMemo(() => data?.map((cartItem) => cartItem.productId) ?? [], [data]);
+  const productIds = data?.map((cartItem) => cartItem.productId) ?? [];
 
-  // TODO: work with enabled (dependent query)
   const { products } = useGetMultipleProducts(productIds, productIds.length > 0);
 
   return {
