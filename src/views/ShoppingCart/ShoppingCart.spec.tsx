@@ -32,19 +32,6 @@ describe('shopping cart', () => {
     ];
   });
 
-  test('renders two buttons to clear or order', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
-      </ThemeProvider>,
-    );
-    const clearBtn = screen.getByRole('button', { name: /clear/i });
-    const orderBtn = screen.getByRole('button', { name: /order/i });
-
-    expect(clearBtn).toBeInTheDocument();
-    expect(orderBtn).toBeInTheDocument();
-  });
-
   test('button click triggers onClear event', () => {
     render(
       <ThemeProvider theme={theme}>
