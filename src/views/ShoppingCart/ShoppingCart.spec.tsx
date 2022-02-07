@@ -1,3 +1,4 @@
+/* eslint-disable object-curly-newline */
 /* eslint-disable max-len */
 import React from 'react';
 import { screen, render, within, waitFor } from '@testing-library/react';
@@ -34,6 +35,17 @@ describe('shopping cart', () => {
     ];
   });
 
+  test('renders a total cost', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
+      </ThemeProvider>,
+    );
+
+    const totalCost = parseInt(calculateTotalCartCost(cartItems), 10);
+    expect(totalCost).toBe(15);
+  });
+
   test('click fires onClear event', () => {
     render(
       <ThemeProvider theme={theme}>
@@ -45,16 +57,6 @@ describe('shopping cart', () => {
     userEvent.click(clearBtn);
 
     expect(mockOnClear).toHaveBeenCalledTimes(1);
-  });
-
-  test('renders a total cost', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
-      </ThemeProvider>,
-    );
-    const totalCost = parseInt(calculateTotalCartCost(cartItems), 10);
-    expect(totalCost).toBe(15);
   });
 
   test('renders two cart items', () => {
