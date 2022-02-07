@@ -1,6 +1,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { screen, render } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import ShoppingCart from './ShoppingCart';
 import Product from '../../domain/product';
@@ -16,6 +17,8 @@ Te testen:
 - Wordt de basket gerenderd?
 
 */
+const mockOnUpdate = jest.fn();
+const mockOnClear = jest.fn();
 
 describe('shopping cart', () => {
   let cartItems: CartItem[];
@@ -37,15 +40,43 @@ describe('shopping cart', () => {
       },
     ];
   });
-  test('renders two buttons', () => {
-    const onUpdate = jest.fn();
-    const onClear = jest.fn();
+
+  test('renders a header', () => {
     render(
       <ThemeProvider theme={theme}>
-        <ShoppingCart cartItems={cartItems} onUpdate={onUpdate} onClear={onClear} />
+        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
       </ThemeProvider>,
     );
-    screen.debug();
+
+    const header = screen.getByRole('heading', { level: 2 });
+    expect(header).toBeInTheDocument();
+    expect(header).toHaveTextContent(/Shopping Cart/i);
+  });
+
+  test('renders two buttons', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
+      </ThemeProvider>,
+    );
+    const clearBtn = screen.getByRole('button', { name: /clear/i });
+    const orderBtn = screen.getByRole('button', { name: /order/i });
+
+    expect(clearBtn).toBeInTheDocument();
+    expect(orderBtn).toBeInTheDocument();
+  });
+
+  test('button click triggers onClear event', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
+      </ThemeProvider>,
+    );
+
+    const clearBtn = screen.getByRole('button', { name: /clear/i });
+    userEvent.click(clearBtn);
+
+    expect(mockOnClear).toHaveBeenCalledTimes(1);
   });
 });
 

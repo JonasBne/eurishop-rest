@@ -32,7 +32,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
       backgroundColor={theme.colors.whites.primaryWhite}
       boxShadow="rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;"
     >
-      <Header as="h2" variant="tertiary">
+      <Header as="h2" role="heading" aria-level={2} variant="tertiary">
         Shopping Cart
         <FaIcon ml="1rem" icon={faShoppingCart} />
       </Header>
