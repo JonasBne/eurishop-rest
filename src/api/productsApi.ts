@@ -44,6 +44,10 @@ export interface PutProductVariables {
   product: ProductDTO;
 }
 
+export interface RemoveProductVariables {
+  productId: string | number;
+}
+
 export const productUrl = 'api/products';
 
 export const productKeys = {
@@ -62,6 +66,8 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
 const postProduct = async (data: any) => api.post(`${rootUrl}${productUrl}`, data);
 
 const putProduct = async (productId: string | number, data: any) => api.put(`${rootUrl}${productUrl}/${productId}`, data);
+
+const removeProduct = async (productId: string | number) => api.remove(`${rootUrl}${productUrl}/${productId}`);
 
 export const useGetProduct = (productId: string) => {
   const url = `${rootUrl}${productUrl}/${productId}`;
@@ -130,13 +136,11 @@ export const useMutationProductPut = () => {
   });
 };
 
-// TODO: finalize also put, remove requests
-
-// export const useMutationProductRemove = () => {
-//   const queryClient = useQueryClient();
-//   return useMutation(api.remove, {
-//     onSuccess: () => {
-//       queryClient.invalidateQueries(productKeys.all);
-//     },
-//   });
-// };
+export const useMutationProductRemove = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ProductDTO, Error, RemoveProductVariables>(({ productId }) => removeProduct(productId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(productKeys.all);
+    },
+  });
+};
