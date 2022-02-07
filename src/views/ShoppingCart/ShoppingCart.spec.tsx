@@ -1,15 +1,21 @@
 /* eslint-disable max-len */
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { screen, render } from '@testing-library/react';
+import { ThemeProvider } from 'styled-components';
 import ShoppingCart from './ShoppingCart';
 import Product from '../../domain/product';
+import theme from '../../theme/theme';
 import { CartItem } from '../../domain/shoppingCart';
 
-// TODO: test here ineens alles
+/*
 
-const container = document.createElement('div');
-// @ts-ignore
-const root = ReactDOM.createRoot(container);
+Te testen:
+- Is het aantal basket items correct?
+- Worden de buttons gerenderd?
+- Wordt de functie gecalled bij onClick op button van een product?
+- Wordt de basket gerenderd?
+
+*/
 
 describe('shopping cart', () => {
   let cartItems: CartItem[];
@@ -34,7 +40,12 @@ describe('shopping cart', () => {
   test('renders two buttons', () => {
     const onUpdate = jest.fn();
     const onClear = jest.fn();
-    root.render(<ShoppingCart cartItems={cartItems} onUpdate={onUpdate} onClear={onClear} />, container);
+    render(
+      <ThemeProvider theme={theme}>
+        <ShoppingCart cartItems={cartItems} onUpdate={onUpdate} onClear={onClear} />
+      </ThemeProvider>,
+    );
+    screen.debug();
   });
 });
 

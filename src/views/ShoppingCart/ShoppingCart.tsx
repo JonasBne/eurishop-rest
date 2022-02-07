@@ -36,7 +36,7 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
         Shopping Cart
         <FaIcon ml="1rem" icon={faShoppingCart} />
       </Header>
-      <ul>
+      <div>
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
             <React.Fragment key={item.product.id}>
@@ -47,19 +47,14 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
         ) : (
           <Box margin="2rem 3rem">Oops, your cart looks empty...</Box>
         )}
-      </ul>
+      </div>
       {cartItems.length > 0 && (
         <div>
           <Header as="h3" mt="2rem" mb="3rem" textAlign="center">
             {`TOTAL: € ${calculateTotalCartCost(cartItems)}`}
           </Header>
           <FlexBox justifyContent="center" m="2rem">
-            <Button
-              type="button"
-              variant="danger"
-              mx="1rem"
-              onClick={handleClear}
-            >
+            <Button type="button" variant="danger" mx="1rem" onClick={handleClear}>
               CLEAR
             </Button>
             <Button type="button" variant="success" mx="1rem">
