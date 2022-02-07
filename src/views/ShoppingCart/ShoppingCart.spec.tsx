@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import ShoppingCart from './ShoppingCart';
 import Product from '../../domain/product';
 import theme from '../../theme/theme';
-import { CartItem } from '../../domain/shoppingCart';
+import { CartItem, calculateTotalCartCost } from '../../domain/shoppingCart';
 
 /*
 
@@ -36,12 +36,12 @@ describe('shopping cart', () => {
           title: 'product2',
           price: 10.0,
         } as Product,
-        quantity: 2,
+        quantity: 1,
       },
     ];
   });
 
-  test('renders a header', () => {
+  test('renders a header with title', () => {
     render(
       <ThemeProvider theme={theme}>
         <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
@@ -53,7 +53,7 @@ describe('shopping cart', () => {
     expect(header).toHaveTextContent(/Shopping Cart/i);
   });
 
-  test('renders two buttons', () => {
+  test('renders two buttons to clear or order', () => {
     render(
       <ThemeProvider theme={theme}>
         <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
@@ -77,6 +77,21 @@ describe('shopping cart', () => {
     userEvent.click(clearBtn);
 
     expect(mockOnClear).toHaveBeenCalledTimes(1);
+  });
+
+  test('renders a total cost', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
+      </ThemeProvider>,
+    );
+
+    const totalHeader = screen.getByRole('heading', { level: 3 });
+    const totalCost = parseInt(calculateTotalCartCost(cartItems), 10);
+
+    expect(totalHeader).toBeInTheDocument();
+    expect(totalHeader).toHaveTextContent(/total/i);
+    expect(totalCost).toBe(15);
   });
 });
 
