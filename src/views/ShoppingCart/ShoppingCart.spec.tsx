@@ -1,3 +1,43 @@
+/* eslint-disable max-len */
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ShoppingCart from './ShoppingCart';
+import Product from '../../domain/product';
+import { CartItem } from '../../domain/shoppingCart';
+
+// TODO: test here ineens alles
+
+const container = document.createElement('div');
+// @ts-ignore
+const root = ReactDOM.createRoot(container);
+
+describe('shopping cart', () => {
+  let cartItems: CartItem[];
+  beforeEach(() => {
+    cartItems = [
+      {
+        product: {
+          title: 'product1',
+          price: 5.0,
+        } as Product,
+        quantity: 1,
+      },
+      {
+        product: {
+          title: 'product2',
+          price: 10.0,
+        } as Product,
+        quantity: 2,
+      },
+    ];
+  });
+  test('renders two buttons', () => {
+    const onUpdate = jest.fn();
+    const onClear = jest.fn();
+    root.render(<ShoppingCart cartItems={cartItems} onUpdate={onUpdate} onClear={onClear} />, container);
+  });
+});
+
 /*
 
 test("cart", () => {
