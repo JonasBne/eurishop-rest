@@ -28,30 +28,21 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
     // TODO: have a look at this role and ARIA roles in general
     // eslint-disable-next-line jsx-a11y/aria-role
     <div role="cart-item">
-      <Header as="h4" role="heading">{item.product.title}</Header>
+      <Header as="h4" role="heading">
+        {item.product.title}
+      </Header>
       <Box my="0.5rem" fontStyle="italic">{`Unit price: € ${item.product.price}`}</Box>
       <FlexBox alignItems="baseline" my="2rem">
-        <Button
-          type="button"
-          variant="secondary"
-          mr="1rem"
-          onClick={() => handleUpdate('decrement')}
-        >
+        <Button type="button" variant="secondary" mr="1rem" onClick={() => handleUpdate('decrement')}>
           -
         </Button>
         <div>{item.quantity}</div>
-        <Button
-          type="button"
-          variant="secondary"
-          ml="1rem"
-          onClick={() => handleUpdate('increment')}
-        >
+        <Button type="button" variant="secondary" ml="1rem" onClick={() => handleUpdate('increment')}>
           +
         </Button>
       </FlexBox>
       <Box mt="0.5rem" mb="1rem" fontWeight="bold">
         {`Total: € ${calculateTotalCostPerCartItem(item)}`}
-
       </Box>
     </div>
   );

@@ -8,15 +8,6 @@ import Product from '../../domain/product';
 import theme from '../../theme/theme';
 import { CartItem, calculateTotalCartCost } from '../../domain/shoppingCart';
 
-/*
-
-Te testen:
-- Is het aantal basket items correct?
-- Worden de buttons gerenderd?
-- Wordt de functie gecalled bij onClick op button van een product?
-- Wordt de basket gerenderd?
-
-*/
 const mockOnUpdate = jest.fn();
 const mockOnClear = jest.fn();
 
@@ -39,18 +30,6 @@ describe('shopping cart', () => {
         quantity: 1,
       },
     ];
-  });
-
-  test('renders a header with title', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
-      </ThemeProvider>,
-    );
-
-    const header = screen.getByRole('heading', { level: 2 });
-    expect(header).toBeInTheDocument();
-    expect(header).toHaveTextContent(/Shopping Cart/i);
   });
 
   test('renders two buttons to clear or order', () => {
@@ -85,13 +64,20 @@ describe('shopping cart', () => {
         <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
       </ThemeProvider>,
     );
-
-    const totalHeader = screen.getByRole('heading', { level: 3 });
     const totalCost = parseInt(calculateTotalCartCost(cartItems), 10);
-
-    expect(totalHeader).toBeInTheDocument();
-    expect(totalHeader).toHaveTextContent(/total/i);
     expect(totalCost).toBe(15);
+  });
+
+  test('renders two cart items', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
+      </ThemeProvider>,
+    );
+
+    const items = screen.getAllByRole('cart-item');
+
+    expect(items.length).toBe(2);
   });
 });
 
@@ -119,5 +105,3 @@ test("cart", () => {
 })
 
 */
-
-export {};
