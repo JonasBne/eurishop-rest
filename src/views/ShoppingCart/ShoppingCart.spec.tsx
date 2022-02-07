@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen, render, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import ShoppingCart from './ShoppingCart';
@@ -17,6 +17,7 @@ describe('shopping cart', () => {
     cartItems = [
       {
         product: {
+          id: 1,
           title: 'product1',
           price: 5.0,
         } as Product,
@@ -24,6 +25,7 @@ describe('shopping cart', () => {
       },
       {
         product: {
+          id: 2,
           title: 'product2',
           price: 10.0,
         } as Product,
@@ -32,7 +34,7 @@ describe('shopping cart', () => {
     ];
   });
 
-  test('button click triggers onClear event', () => {
+  test('click fires onClear event', () => {
     render(
       <ThemeProvider theme={theme}>
         <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
@@ -66,29 +68,38 @@ describe('shopping cart', () => {
 
     expect(items.length).toBe(2);
   });
+
+  test('click fires onUpdate event with action decrement quantity 0 and productId 1', async () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
+      </ThemeProvider>,
+    );
+
+    const items = screen.getAllByRole('cart-item');
+    screen.debug(items);
+    const button = await waitFor(() => within(items[0]).findByRole('button', { name: '-' }));
+
+    userEvent.click(button);
+
+    expect(mockOnUpdate).toHaveBeenCalledTimes(1);
+    expect(mockOnUpdate).toHaveBeenCalledWith(0, 1);
+  });
+
+  test('click fires onUpdate event with action increment quantity 2 and productId 1', async () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
+      </ThemeProvider>,
+    );
+
+    const items = screen.getAllByRole('cart-item');
+    screen.debug(items);
+    const button = await waitFor(() => within(items[0]).findByRole('button', { name: '+' }));
+
+    userEvent.click(button);
+
+    expect(mockOnUpdate).toHaveBeenCalledTimes(1);
+    expect(mockOnUpdate).toHaveBeenCalledWith(2, 1);
+  });
 });
-
-/*
-
-test("cart", () => {
-   const onUpdate = jest.fn()
-   const data = {}
-   render(<ShoppingCard data={data} onUpdate={onUpdate})
-
-   // screen.debug()
-   const button = screen.getByRole('button', { content : '+'})
-   fireEvent.click(button)
-
-   // look at ARIA roles
-   // dit kan gebruikt worden om te tellen hoeveel items er getoond worden bv
-   const items = screen.getAllByRole('card-item);
-
-   within(items[0]).getByRole('button')
-
-   const elem = screen.getByTestId('value)
-   expect(elem).thHqveConten("2334")
-
-   expect(onUpdate).toHaveBeenCalledWith(1, 2);
-})
-
-*/
