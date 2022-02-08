@@ -6,13 +6,6 @@ import Product from '../../domain/product';
 import theme from '../../theme/theme';
 import ProductForm from './ProductForm';
 
-/*
-
-edit product:
-- wordt de aangepaste data verzonden?
-
-*/
-
 const title = 'product form';
 
 const gridTemplateAreas = `
@@ -26,21 +19,10 @@ const mockOnCancel = jest.fn();
 const mockOnSubmit = jest.fn();
 
 describe('product form', () => {
-  const initialProduct: Product = {
-    title: 'product1',
-    sku: 'AAA-BBB',
-    basePrice: 10.0,
-    price: 15.0,
-    stocked: true,
-    image: 'https://dummyimage.com/',
-    desc: 'custom product',
-  } as Product;
-
   test('labels match their inputs', () => {
     render(
       <ThemeProvider theme={theme}>
         <ProductForm
-          initialProduct={initialProduct}
           title={title}
           gridTemplateAreas={gridTemplateAreas}
           onCancel={mockOnCancel}
@@ -57,7 +39,21 @@ describe('product form', () => {
     screen.getByLabelText(/image url/i);
     screen.getByLabelText(/description/i);
   });
+});
 
+describe('edit existing product', () => {
+  let initialProduct: Product;
+  beforeEach(() => {
+    initialProduct = {
+      title: 'product1',
+      sku: 'AAA-BBB',
+      basePrice: 10.0,
+      price: 15.0,
+      stocked: true,
+      image: 'https://dummyimage.com/',
+      desc: 'custom product',
+    } as Product;
+  });
   test('inputs have default values', () => {
     render(
       <ThemeProvider theme={theme}>
