@@ -20,3 +20,8 @@ test('succesful query single product', async () => {
 
   await waitFor(() => expect(result.current.product).toBeDefined());
 });
+
+/*
+https://tkdodo.eu/blog/testing-react-query
+https://github.com/TkDodo/testing-react-query/blob/main/src/tests/hooks.test.tsx
+*/
