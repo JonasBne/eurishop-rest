@@ -169,11 +169,3 @@ describe('product list', () => {
     expect(mockSetSortExpression).toBeCalledTimes(1);
   });
 });
-
-/*
-
-Te testen:
-- setSortExpression is fired
--
-
-*/
