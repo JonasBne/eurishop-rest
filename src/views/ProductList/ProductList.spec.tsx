@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import userEvent from '@testing-library/user-event';
 import Product from '../../domain/product';
@@ -108,9 +108,9 @@ describe('product list', () => {
       </ThemeProvider>,
     );
 
-    const rows = screen.getAllByRole('row');
+    const tableData = screen.getAllByRole('cell');
 
-    await waitFor(() => userEvent.click(rows[0]));
+    userEvent.click(tableData[0]);
 
     expect(mockOnRowClick).toBeCalledTimes(1);
   });
