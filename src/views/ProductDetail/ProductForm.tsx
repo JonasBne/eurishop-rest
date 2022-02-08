@@ -66,7 +66,7 @@ function ProductForm({ initialProduct, gridTemplateAreas, onCancel, onSubmit, ti
   };
 
   return (
-    <StyledForm onSubmit={handleSubmit(handleFormResult)} {...spacing}>
+    <StyledForm onSubmit={handleSubmit(handleFormResult)} {...spacing} role="form">
       <Header p="2rem" as="h2" textAlign="center" variant="secondary">
         {title}
       </Header>

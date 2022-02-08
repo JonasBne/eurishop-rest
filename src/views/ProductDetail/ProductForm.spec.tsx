@@ -9,7 +9,6 @@ import ProductForm from './ProductForm';
 /*
 
 edit product:
-- wordt het on submit event afgevuurd?
 - wordt de aangepaste data verzonden?
 
 */
@@ -127,5 +126,38 @@ describe('product form', () => {
     await waitFor(() => userEvent.click(button));
 
     expect(mockOnSubmit).toBeCalledTimes(1);
+  });
+
+  test('form values take into account changes by user', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ProductForm
+          initialProduct={initialProduct}
+          title={title}
+          gridTemplateAreas={gridTemplateAreas}
+          onCancel={mockOnCancel}
+          onSubmit={mockOnSubmit}
+        />
+      </ThemeProvider>,
+    );
+
+    const titleInput = screen.getByLabelText(/title/i);
+    const stockedInput = screen.getByLabelText(/in stock/i);
+
+    userEvent.type(titleInput, '{selectall}{backspace}');
+    userEvent.type(titleInput, 'new title');
+
+    userEvent.click(stockedInput);
+
+    const form = screen.getByRole('form');
+    expect(form).toHaveFormValues({
+      title: 'new title',
+      sku: 'AAA-BBB',
+      basePrice: '10',
+      price: '15',
+      stocked: false,
+      image: 'https://dummyimage.com/',
+      desc: 'custom product',
+    });
   });
 });
