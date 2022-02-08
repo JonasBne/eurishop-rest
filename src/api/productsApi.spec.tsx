@@ -39,7 +39,14 @@ afterAll(() => {
 afterEach(() => server.resetHandlers());
 
 const createWrapper = () => {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
+  // eslint-disable-next-line func-names
   return function ({ children }: WrapperProps) {
     return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
   };
