@@ -93,7 +93,7 @@ describe('product list', () => {
       },
     ] as Product[];
   });
-  test('row click fires onRowClick event', async () => {
+  test('row click fires onRowClick event', () => {
     render(
       <ThemeProvider theme={theme}>
         <Table
@@ -108,10 +108,27 @@ describe('product list', () => {
       </ThemeProvider>,
     );
 
-    const tableData = screen.getAllByRole('cell');
-
-    userEvent.click(tableData[0]);
+    userEvent.click(screen.getAllByRole('cell')[0]);
 
     expect(mockOnRowClick).toBeCalledTimes(1);
+  });
+  test('button click fires onLoadData event', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Table
+          data={products}
+          columns={columns}
+          onLoadData={mockOnLoad}
+          onRowClick={mockOnRowClick}
+          onActionClick={mockOnActionClick}
+          sortExpression={sortExpression}
+          setSortExpression={mockSetSortExpression}
+        />
+      </ThemeProvider>,
+    );
+
+    userEvent.click(screen.getByRole('button', { name: /load more/i }));
+
+    expect(mockOnLoad).toBeCalledTimes(1);
   });
 });
