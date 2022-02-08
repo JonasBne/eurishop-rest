@@ -146,5 +146,17 @@ describe('product list', () => {
         />
       </ThemeProvider>,
     );
+
+    userEvent.click(screen.getAllByLabelText('trash-bin')[0]);
+
+    expect(mockOnActionClick).toBeCalledTimes(1);
   });
 });
+
+/*
+
+Te testen:
+- setSortExpression is fired
+-
+
+*/
