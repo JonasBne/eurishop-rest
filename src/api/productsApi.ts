@@ -1,8 +1,9 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable object-curly-newline */
 /* eslint-disable max-len */
 /* eslint-disable import/no-cycle */
-import {
-  useMutation, useQueries, useQuery, useQueryClient,
-} from 'react-query';
+import { useMutation, useQueries, useQuery, useQueryClient } from 'react-query';
 import api from './fetchHelper';
 import rootUrl from './rootUrl';
 import Product from '../domain/product';
@@ -65,37 +66,39 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
 
 const postProduct = async (data: any) => api.post(`${rootUrl}${productUrl}`, data);
 
-const putProduct = async (productId: string | number, data: any) => api.put(`${rootUrl}${productUrl}/${productId}`, data);
+const putProduct = async (productId: string | number, data: any) =>
+  api.put(`${rootUrl}${productUrl}/${productId}`, data);
 
 const removeProduct = async (productId: string | number) => api.remove(`${rootUrl}${productUrl}/${productId}`);
 
 export const useGetProduct = (productId: string) => {
   const url = `${rootUrl}${productUrl}/${productId}`;
 
-  const {
-    isLoading, isError, data, error,
-  } = useQuery<ProductDTO>([productKeys.detail(productId), productId], () => api.get(url), { keepPreviousData: true });
+  const { isLoading, isError, data, error, isSuccess } = useQuery<ProductDTO>(
+    [productKeys.detail(productId), productId],
+    () => api.get(url),
+    { keepPreviousData: true },
+  );
 
   return {
     isLoading,
     isError,
     error,
+    isSuccess,
     product: productMapper(data),
   };
 };
 
 export const useGetProducts = (page = 0) => {
   const url = `${rootUrl}${productUrl}/?page=${page}`;
-  const {
-    isLoading, data, error, refetch,
-  } = useQuery<ProductsDTO>([productKeys.paged(page), page], () => api.get(url));
+  const { isLoading, data, error, refetch } = useQuery<ProductsDTO>([productKeys.paged(page), page], () =>
+    api.get(url),
+  );
 
   return {
     isLoading,
     error,
-    products: data?.selectedProducts.map(
-      (product: ProductDTO) => productMapper(product)!,
-    ),
+    products: data?.selectedProducts.map((product: ProductDTO) => productMapper(product)!),
     refetch,
   };
 };
@@ -103,11 +106,13 @@ export const useGetProducts = (page = 0) => {
 export const useGetMultipleProducts = (productIds: string[] | number[], enabled: boolean) => {
   const urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
 
-  const productQueries = useQueries(urls.map((url) => ({
-    queryKey: ['product', url],
-    queryFn: () => api.get(url),
-    enabled,
-  })));
+  const productQueries = useQueries(
+    urls.map((url) => ({
+      queryKey: ['product', url],
+      queryFn: () => api.get(url),
+      enabled,
+    })),
+  );
 
   const products = productQueries.map((product) => product.data);
   // TODO: find a way to extract error (first one thats thrown)
@@ -129,11 +134,14 @@ export const useMutationProductPost = () => {
 
 export const useMutationProductPut = () => {
   const queryClient = useQueryClient();
-  return useMutation<ProductDTO, Error, PutProductVariables>(({ productId, product }) => putProduct(productId, product), {
-    onSuccess: () => {
-      queryClient.invalidateQueries(productKeys.all);
+  return useMutation<ProductDTO, Error, PutProductVariables>(
+    ({ productId, product }) => putProduct(productId, product),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(productKeys.all);
+      },
     },
-  });
+  );
 };
 
 export const useMutationProductRemove = () => {

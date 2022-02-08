@@ -79,7 +79,6 @@ describe('shopping cart', () => {
     );
 
     const items = screen.getAllByRole('cart-item');
-    screen.debug(items);
     const button = await waitFor(() => within(items[0]).findByRole('button', { name: '-' }));
 
     userEvent.click(button);
@@ -96,7 +95,6 @@ describe('shopping cart', () => {
     );
 
     const items = screen.getAllByRole('cart-item');
-    screen.debug(items);
     const button = await waitFor(() => within(items[0]).findByRole('button', { name: '+' }));
 
     userEvent.click(button);

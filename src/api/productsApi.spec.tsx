@@ -7,6 +7,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { rest } from 'msw';
 import { setupServer } from 'msw/node';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { waitFor } from '@testing-library/react';
 import { useGetProduct } from './productsApi';
 
 interface WrapperProps {
@@ -52,7 +53,8 @@ const createWrapper = () => {
   };
 };
 
-test('renders hook', () => {
+test('renders hook', async () => {
   const { result } = renderHook(() => useGetProduct('1'), { wrapper: createWrapper() });
-  console.log(result.current);
+
+  await waitFor(() => expect(result.current.product).toBeDefined());
 });
