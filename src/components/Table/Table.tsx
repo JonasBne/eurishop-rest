@@ -39,9 +39,9 @@ function Table({
 }: TableProps) {
   return (
     <>
-      <StyledTable {...space}>
+      <StyledTable {...space} role="table">
         <thead>
-          <TableRow>
+          <TableRow role="row">
             {columns.map((col, index) => (
               <SortableTableHead
                 title={col.label}
@@ -57,9 +57,10 @@ function Table({
         </thead>
         <tbody>
           {data.map((item: any, dataIndex) => (
-            <TableRow key={item.id}>
+            <TableRow key={item.id} role="row">
               {Object.keys(data[0]).map((title: any, index) => (
                 <TableData
+                  role="cell"
                   key={`item${index}${dataIndex}`}
                   onClick={() => {
                     if (onRowClick !== undefined) {
@@ -70,7 +71,7 @@ function Table({
                   {item[title]}
                 </TableData>
               ))}
-              <TableData>
+              <TableData role="cell">
                 <FaIcon
                   icon={faTrash}
                   px="0.25rem"
@@ -88,7 +89,9 @@ function Table({
         </tbody>
       </StyledTable>
       <FlexBox justifyContent="center">
-        <Button type="button" variant="primary" mb="2rem" mx="1rem" onClick={onLoadData}>LOAD MORE...</Button>
+        <Button type="button" variant="primary" mb="2rem" mx="1rem" onClick={onLoadData}>
+          LOAD MORE...
+        </Button>
       </FlexBox>
     </>
   );
