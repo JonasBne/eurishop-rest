@@ -1,12 +1,7 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import {
-  useGetProduct,
-  ProductDTO,
-  GetProduct,
-  useMutationProductPut,
-} from '../../api/productsApi';
+import { useGetProduct, ProductDTO, GetProduct, useMutationProductPut } from '../../api/productsApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import ProductForm, { ProductFormValues } from './ProductForm';
@@ -36,7 +31,11 @@ function ProductEdit() {
     }
   }, [putError, puttedData]);
 
-  // TODO: think about a way to clear because when you edit a product and reopen the stale data is shown so you have to refresh
+  const handleCancel = () => {
+    navigate('/products/admin');
+  };
+
+  // TODO: think about a way to clear cache because when you edit a product and reopen the stale data is shown so you have to refresh
 
   const handleSubmit = (formValues: ProductFormValues) => {
     const item: ProductDTO = {
@@ -58,6 +57,7 @@ function ProductEdit() {
           title="EDIT PRODUCT"
           gridTemplateAreas={gridTemplateAreas}
           initialProduct={product}
+          onCancel={handleCancel}
           onSubmit={handleSubmit}
           mt="2rem"
           mx="auto"
