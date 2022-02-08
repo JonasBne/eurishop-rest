@@ -39,6 +39,70 @@ describe('product form', () => {
     screen.getByLabelText(/image url/i);
     screen.getByLabelText(/description/i);
   });
+
+  test('click fires onCancel', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ProductForm
+          title={title}
+          gridTemplateAreas={gridTemplateAreas}
+          onCancel={mockOnCancel}
+          onSubmit={mockOnSubmit}
+        />
+      </ThemeProvider>,
+    );
+
+    const button = screen.getByRole('button', { name: /cancel/i });
+
+    userEvent.click(button);
+
+    expect(mockOnCancel).toBeCalledTimes(1);
+  });
+
+  test('click fires onSubmit', async () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ProductForm
+          title={title}
+          gridTemplateAreas={gridTemplateAreas}
+          onCancel={mockOnCancel}
+          onSubmit={mockOnSubmit}
+        />
+      </ThemeProvider>,
+    );
+
+    const button = screen.getByRole('button', { name: /save/i });
+
+    await waitFor(() => userEvent.click(button));
+
+    expect(mockOnSubmit).toBeCalledTimes(1);
+  });
+});
+
+describe('add new product', () => {
+  test('form is rendered with empty input values', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ProductForm
+          title={title}
+          gridTemplateAreas={gridTemplateAreas}
+          onCancel={mockOnCancel}
+          onSubmit={mockOnSubmit}
+        />
+      </ThemeProvider>,
+    );
+
+    const form = screen.getByRole('form');
+    expect(form).toHaveFormValues({
+      title: '',
+      sku: '',
+      basePrice: '',
+      price: '',
+      stocked: false,
+      image: '',
+      desc: '',
+    });
+  });
 });
 
 describe('edit existing product', () => {
@@ -82,46 +146,6 @@ describe('edit existing product', () => {
     expect(stockedInput).toBeChecked();
     expect(imageInput).toHaveValue('https://dummyimage.com/');
     expect(descInput).toHaveValue('custom product');
-  });
-
-  test('click fires onCancel', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ProductForm
-          initialProduct={initialProduct}
-          title={title}
-          gridTemplateAreas={gridTemplateAreas}
-          onCancel={mockOnCancel}
-          onSubmit={mockOnSubmit}
-        />
-      </ThemeProvider>,
-    );
-
-    const button = screen.getByRole('button', { name: /cancel/i });
-
-    userEvent.click(button);
-
-    expect(mockOnCancel).toBeCalledTimes(1);
-  });
-
-  test('click fires onSubmit', async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ProductForm
-          initialProduct={initialProduct}
-          title={title}
-          gridTemplateAreas={gridTemplateAreas}
-          onCancel={mockOnCancel}
-          onSubmit={mockOnSubmit}
-        />
-      </ThemeProvider>,
-    );
-
-    const button = screen.getByRole('button', { name: /save/i });
-
-    await waitFor(() => userEvent.click(button));
-
-    expect(mockOnSubmit).toBeCalledTimes(1);
   });
 
   test('form values take into account changes by user', () => {
