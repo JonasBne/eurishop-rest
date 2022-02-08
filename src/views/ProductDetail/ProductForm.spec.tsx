@@ -25,7 +25,7 @@ const gridTemplateAreas = `
 const mockOnCancel = jest.fn();
 const mockOnSubmit = jest.fn();
 
-describe('edit existing product', () => {
+describe('product form', () => {
   const initialProduct: Product = {
     title: 'product1',
     sku: 'AAA-BBB',
@@ -36,7 +36,29 @@ describe('edit existing product', () => {
     desc: 'custom product',
   } as Product;
 
-  test('renders a form with labels that match their inputs', () => {
+  test('labels match their inputs', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ProductForm
+          initialProduct={initialProduct}
+          title={title}
+          gridTemplateAreas={gridTemplateAreas}
+          onCancel={mockOnCancel}
+          onSubmit={mockOnSubmit}
+        />
+      </ThemeProvider>,
+    );
+
+    screen.getByLabelText(/title/i);
+    screen.getByLabelText(/serial number/i);
+    screen.getByLabelText('Base price');
+    screen.getByLabelText('Unit price');
+    screen.getByLabelText(/in stock/i);
+    screen.getByLabelText(/image url/i);
+    screen.getByLabelText(/description/i);
+  });
+
+  test('inputs have default values', () => {
     render(
       <ThemeProvider theme={theme}>
         <ProductForm
