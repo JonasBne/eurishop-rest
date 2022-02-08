@@ -103,6 +103,45 @@ describe('add new product', () => {
       desc: '',
     });
   });
+  test('form values are correctly stored', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ProductForm
+          title={title}
+          gridTemplateAreas={gridTemplateAreas}
+          onCancel={mockOnCancel}
+          onSubmit={mockOnSubmit}
+        />
+      </ThemeProvider>,
+    );
+
+    const titleInput = screen.getByLabelText(/title/i);
+    const serialNumberInput = screen.getByLabelText(/serial number/i);
+    const basePriceInput = screen.getByLabelText('Base price');
+    const priceInput = screen.getByLabelText('Unit price');
+    const stockedInput = screen.getByLabelText(/in stock/i);
+    const imageInput = screen.getByLabelText(/image url/i);
+    const descInput = screen.getByLabelText(/description/i);
+
+    userEvent.type(titleInput, 'My Product');
+    userEvent.type(serialNumberInput, 'AAA');
+    userEvent.type(basePriceInput, '10.00');
+    userEvent.type(priceInput, '10.00');
+    userEvent.click(stockedInput);
+    userEvent.type(imageInput, 'https://dummyimage.com/');
+    userEvent.type(descInput, 'My custom product description');
+
+    const form = screen.getByRole('form');
+    expect(form).toHaveFormValues({
+      title: 'My Product',
+      sku: 'AAA',
+      basePrice: '10.00',
+      price: '10.00',
+      stocked: true,
+      image: 'https://dummyimage.com/',
+      desc: 'My custom product description',
+    });
+  });
 });
 
 describe('edit existing product', () => {
