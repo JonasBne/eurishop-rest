@@ -164,8 +164,9 @@ describe('product list', () => {
       </ThemeProvider>,
     );
 
-    const tableHeaders = screen.getByRole('rowgroup');
-    screen.debug(tableHeaders);
+    userEvent.click(screen.getAllByLabelText('sort-icon')[0]);
+
+    expect(mockSetSortExpression).toBeCalledTimes(1);
   });
 });
 
