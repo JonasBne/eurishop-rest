@@ -6,6 +6,7 @@ import Product from '../../domain/product';
 import Table from '../../components/Table/Table';
 import theme from '../../theme/theme';
 
+const sortExpression = '';
 const columns = [
   {
     name: 'id',
@@ -62,6 +63,26 @@ const columns = [
     id: 'col9',
   },
 ];
+const products = [
+  {
+    id: 1,
+    title: 'product1',
+    sku: 'AAA',
+    basePrice: 10.0,
+    price: 10.0,
+    image: 'https://dummyimage.com',
+    desc: 'description product1',
+  },
+  {
+    id: 2,
+    title: 'product2',
+    sku: 'BBB',
+    basePrice: 20.0,
+    price: 20.0,
+    image: 'https://dummyimage.com',
+    desc: 'description product2',
+  },
+] as Product[];
 
 const mockSetSortExpression = jest.fn();
 const mockOnLoad = jest.fn();
@@ -69,31 +90,7 @@ const mockOnRowClick = jest.fn();
 const mockOnActionClick = jest.fn();
 
 describe('product list', () => {
-  let products: Product[];
-  const sortExpression = '';
-  beforeEach(() => {
-    products = [
-      {
-        id: 1,
-        title: 'product1',
-        sku: 'AAA',
-        basePrice: 10.0,
-        price: 10.0,
-        image: 'https://dummyimage.com',
-        desc: 'description product1',
-      },
-      {
-        id: 2,
-        title: 'product2',
-        sku: 'BBB',
-        basePrice: 20.0,
-        price: 20.0,
-        image: 'https://dummyimage.com',
-        desc: 'description product2',
-      },
-    ] as Product[];
-  });
-  test('row click fires onRowClick event', () => {
+  test('click fires onRowClick event', () => {
     render(
       <ThemeProvider theme={theme}>
         <Table
@@ -112,7 +109,7 @@ describe('product list', () => {
 
     expect(mockOnRowClick).toBeCalledTimes(1);
   });
-  test('button click fires onLoadData event', () => {
+  test('click fires onLoadData event', () => {
     render(
       <ThemeProvider theme={theme}>
         <Table
@@ -132,7 +129,7 @@ describe('product list', () => {
     expect(mockOnLoad).toBeCalledTimes(1);
   });
 
-  test('icon click fires onActionClick event', () => {
+  test('click fires onActionClick event', () => {
     render(
       <ThemeProvider theme={theme}>
         <Table
