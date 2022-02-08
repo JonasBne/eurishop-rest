@@ -26,7 +26,10 @@ function ProductAdd() {
     }
   }, [postError, postedProduct]);
 
-  // TODO: why is postedProduct undefined?
+  const handleCancel = () => {
+    navigate('/products/admin');
+  };
+
   const handleSubmit = (formValues: ProductFormValues) => {
     const product: ProductDTO = {
       ...formValues,
@@ -41,6 +44,7 @@ function ProductAdd() {
     <ProductForm
       title="NEW PRODUCT"
       gridTemplateAreas={gridTemplateAreas}
+      onCancel={handleCancel}
       onSubmit={handleSubmit}
       mt="2rem"
       mx="auto"
