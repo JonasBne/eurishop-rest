@@ -148,6 +148,25 @@ describe('product list', () => {
 
     expect(mockOnActionClick).toBeCalledTimes(1);
   });
+
+  test('click fires setSortExpression', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Table
+          data={products}
+          columns={columns}
+          onLoadData={mockOnLoad}
+          onRowClick={mockOnRowClick}
+          onActionClick={mockOnActionClick}
+          sortExpression={sortExpression}
+          setSortExpression={mockSetSortExpression}
+        />
+      </ThemeProvider>,
+    );
+
+    const tableHeaders = screen.getByRole('rowgroup');
+    screen.debug(tableHeaders);
+  });
 });
 
 /*

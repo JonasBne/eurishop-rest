@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  faSortDown,
-  faSortUp,
-  faSort,
-} from '@fortawesome/free-solid-svg-icons';
+import { faSortDown, faSortUp, faSort } from '@fortawesome/free-solid-svg-icons';
 import { TableHead } from './Table.styles';
 import FaIcon from '../../assets/FaIcon';
 import FlexBox from '../FlexBox';
@@ -50,13 +46,11 @@ function SortableTableHead({
         {title}
         {sortable && (
           <FaIcon
+            role="img"
+            aria-label="sort-icon"
             icon={
               // eslint-disable-next-line no-nested-ternary
-              sortExpression.includes('+')
-                ? faSortDown
-                : sortExpression.includes('-')
-                  ? faSortUp
-                  : faSort
+              sortExpression.includes('+') ? faSortDown : sortExpression.includes('-') ? faSortUp : faSort
             }
             px="1rem"
           />
