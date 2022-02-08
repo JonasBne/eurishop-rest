@@ -71,37 +71,37 @@ function ProductForm({ initialProduct, gridTemplateAreas, onCancel, onSubmit, ti
         {title}
       </Header>
       <Grid gridTemplateAreas={gridTemplateAreas}>
-        <Label gridArea="sku">
+        <Label htmlFor="sku" gridArea="sku">
           Serial number
           <Input id="sku" type="text" {...register('sku')} />
         </Label>
 
-        <Label gridArea="title">
+        <Label htmlFor="title" gridArea="title">
           Title
           <Input id="title" type="text" {...register('title')} />
         </Label>
 
-        <Label gridArea="stocked">
+        <Label htmlFor="stocked" gridArea="stocked">
           In stock
           <Input id="stocked" type="checkbox" {...register('stocked')} />
         </Label>
 
-        <Label gridArea="basePrice">
-          Base Price
-          <Input id="basePrice" type="text" {...register('basePrice')} />
+        <Label htmlFor="base-price" gridArea="basePrice">
+          Base price
+          <Input id="base-price" type="text" {...register('basePrice')} />
         </Label>
 
-        <Label gridArea="price">
+        <Label htmlFor="price" gridArea="price">
           Unit price
           <Input id="price" type="text" {...register('price')} />
         </Label>
 
-        <Label gridArea="image">
+        <Label htmlFor="image" gridArea="image">
           Image URL
           <Input id="image" type="text" {...register('image')} />
         </Label>
 
-        <Label gridArea="desc">
+        <Label htmlFor="desc" gridArea="desc">
           Description
           <TextArea id="desc" {...register('desc')} />
         </Label>
