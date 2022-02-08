@@ -1,5 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import { ThemeProvider } from 'styled-components';
 import Product from '../../domain/product';
 import theme from '../../theme/theme';
@@ -86,5 +87,25 @@ describe('product form', () => {
     expect(stockedInput).toBeChecked();
     expect(imageInput).toHaveValue('https://dummyimage.com/');
     expect(descInput).toHaveValue('custom product');
+  });
+
+  test('click fires onCancel', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <ProductForm
+          initialProduct={initialProduct}
+          title={title}
+          gridTemplateAreas={gridTemplateAreas}
+          onCancel={mockOnCancel}
+          onSubmit={mockOnSubmit}
+        />
+      </ThemeProvider>,
+    );
+
+    const button = screen.getByRole('button', { name: /cancel/i });
+
+    userEvent.click(button);
+
+    expect(mockOnCancel).toBeCalledTimes(1);
   });
 });
