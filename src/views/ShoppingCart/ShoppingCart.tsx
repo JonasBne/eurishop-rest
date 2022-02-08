@@ -39,10 +39,10 @@ function ShoppingCart({ cartItems, onUpdate, onClear }: ShoppingCartProps) {
       <div>
         {cartItems.length > 0 ? (
           cartItems.map((item) => (
-            <React.Fragment key={item.product.id}>
+            <Box pl="1rem" key={item.product.id}>
               <BasketItem item={item} onUpdate={onUpdate} data-test-id={item.product.id} />
               <hr />
-            </React.Fragment>
+            </Box>
           ))
         ) : (
           <Box margin="2rem 3rem">Oops, your cart looks empty...</Box>
