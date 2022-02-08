@@ -73,6 +73,8 @@ function Table({
               ))}
               <TableData role="cell">
                 <FaIcon
+                  role="img"
+                  aria-label="trash-bin"
                   icon={faTrash}
                   px="0.25rem"
                   color="red"

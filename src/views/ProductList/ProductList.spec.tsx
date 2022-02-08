@@ -131,4 +131,20 @@ describe('product list', () => {
 
     expect(mockOnLoad).toBeCalledTimes(1);
   });
+
+  test('icon click fires onActionClick event', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Table
+          data={products}
+          columns={columns}
+          onLoadData={mockOnLoad}
+          onRowClick={mockOnRowClick}
+          onActionClick={mockOnActionClick}
+          sortExpression={sortExpression}
+          setSortExpression={mockSetSortExpression}
+        />
+      </ThemeProvider>,
+    );
+  });
 });
