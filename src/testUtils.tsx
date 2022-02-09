@@ -1,8 +1,29 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
+import React, { ReactNode } from 'react';
+import '@testing-library/jest-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { rest } from 'msw';
 
-const handlers = [
+interface WrapperProps {
+  children: ReactNode;
+}
+
+export const createWrapper = () => {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        retry: false,
+      },
+    },
+  });
+  // eslint-disable-next-line func-names
+  return function ({ children }: WrapperProps) {
+    return <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>;
+  };
+};
+
+export const handlers = [
   rest.get('https://euricom-test-api.herokuapp.com/api/products/:productId', (req, res, ctx) =>
     res(
       ctx.status(200),
@@ -23,5 +44,3 @@ const handlers = [
     return res(ctx.status(500), ctx.json({ error: 'Please add request handler' }));
   }),
 ];
-
-export default handlers;

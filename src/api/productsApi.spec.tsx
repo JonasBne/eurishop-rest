@@ -6,15 +6,8 @@ import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { useGetProduct } from './productsApi';
-import { createWrapper, server } from '../setupTests';
-
-beforeAll(() => {
-  server.listen({ onUnhandledRequest: 'error' });
-});
-afterAll(() => {
-  server.close();
-});
-afterEach(() => server.resetHandlers());
+import { server } from '../setupTests';
+import { createWrapper } from '../testUtils';
 
 test('failed query single products', async () => {
   const { result } = renderHook(() => useGetProduct('1'), { wrapper: createWrapper() });
