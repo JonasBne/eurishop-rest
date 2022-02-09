@@ -6,7 +6,7 @@ import { waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { useGetProduct, useGetProducts } from './productsApi';
 import { server } from '../mockServer';
-import createWrapper from '../testUtils';
+import createWrapper from '../tests/utils/utils';
 import RequestError from '../errors/RequestError';
 import { getSingleProduct, getSingleProductFailed } from '../tests/fixtures/product';
 
