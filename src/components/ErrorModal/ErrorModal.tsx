@@ -8,8 +8,6 @@ import FlexBox from '../FlexBox';
 import Backdrop from './Backdrop';
 import Overlay from './Overlay';
 
-// const portalElement = document.getElementById('overlays')!;
-
 const Span = styled.span`
   text-align: center;
 `;

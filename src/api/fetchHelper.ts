@@ -29,8 +29,3 @@ export default {
   put,
   remove,
 };
-
-/*
-import api from 'fetchHelper';
-api.get<ProductDTO>(url);
-*/
