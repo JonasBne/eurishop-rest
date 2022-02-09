@@ -26,20 +26,6 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-// TODO: is this ok? Interface added to type property error to type Error because otherwise TS throws an error that error is of type unknown
-export interface GetProduct {
-  isLoading: boolean;
-  error: Error;
-  product: Product;
-}
-
-export interface GetProducts {
-  isLoading: boolean;
-  error: Error;
-  products: Product[];
-  refetch: () => void;
-}
-
 export interface PutProductVariables {
   productId: string | number;
   product: ProductDTO;
@@ -74,7 +60,7 @@ const removeProduct = async (productId: string | number) => api.remove(`${rootUr
 export const useGetProduct = (productId: string) => {
   const url = `${rootUrl}${productUrl}/${productId}`;
 
-  const { isLoading, isError, data, error } = useQuery<ProductDTO>(
+  const { isLoading, isError, data, error } = useQuery<ProductDTO, Error>(
     [productKeys.detail(productId), productId],
     () => api.get(url),
     { keepPreviousData: true },
@@ -90,8 +76,9 @@ export const useGetProduct = (productId: string) => {
 
 export const useGetProducts = (page = 0) => {
   const url = `${rootUrl}${productUrl}/?page=${page}`;
-  const { isLoading, isError, data, error, refetch } = useQuery<ProductsDTO>([productKeys.paged(page), page], () =>
-    api.get(url),
+  const { isLoading, isError, data, error, refetch } = useQuery<ProductsDTO, Error>(
+    [productKeys.paged(page), page],
+    () => api.get(url),
   );
 
   return {

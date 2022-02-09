@@ -1,6 +1,7 @@
+/* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useGetProducts, GetProducts, useMutationProductRemove } from '../../api/productsApi';
+import { useGetProducts, useMutationProductRemove } from '../../api/productsApi';
 import Table from '../../components/Table/Table';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import sortBy from '../../utils/sortBy';
@@ -12,9 +13,7 @@ function ProductList() {
   const [page, setPage] = useState<number>(0);
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  const {
-    isLoading, error, products, refetch,
-  } = useGetProducts(page) as GetProducts;
+  const { isLoading, error, products, refetch } = useGetProducts(page);
 
   const { mutate, error: deleteError, data: deletedData } = useMutationProductRemove();
 
@@ -111,12 +110,7 @@ function ProductList() {
       {error && <ErrorModal name={error.name} message={error.message} />}
       {products && (
         <>
-          <Button
-            m="2rem 0 0 2rem"
-            p="0.5rem 2rem"
-            variant="primary"
-            onClick={handleAddProductClick}
-          >
+          <Button m="2rem 0 0 2rem" p="0.5rem 2rem" variant="primary" onClick={handleAddProductClick}>
             Add product +
           </Button>
           <Table

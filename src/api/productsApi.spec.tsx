@@ -6,8 +6,9 @@ import { waitFor } from '@testing-library/react';
 import { rest } from 'msw';
 import { useGetProduct, useGetProducts } from './productsApi';
 import { server } from '../mockServer';
-import { createWrapper } from '../testUtils';
+import createWrapper from '../testUtils';
 import RequestError from '../errors/RequestError';
+import { getSingleProduct, getSingleProductFailed } from '../tests/fixtures/product';
 
 /*
 https://tkdodo.eu/blog/testing-react-query
@@ -17,23 +18,7 @@ https://github.com/TkDodo/testing-react-query/blob/main/src/tests/hooks.test.tsx
 describe('useQuery', () => {
   describe('fetch single product', () => {
     test('succesful query returns product', async () => {
-      server.use(
-        rest.get('https://euricom-test-api.herokuapp.com/api/products/:productId', (req, res, ctx) =>
-          res(
-            ctx.status(200),
-            ctx.json({
-              id: 1,
-              sku: '254267942-8',
-              title: 'pellentesque',
-              desc: 'Donec posuere metus vitae ipsum.',
-              image: 'https://dummyimage.com/300x300.jpg/ff4444/ffffff',
-              stocked: true,
-              basePrice: 16.63,
-              price: 16.63,
-            }),
-          ),
-        ),
-      );
+      server.use(getSingleProduct);
 
       const { result } = renderHook(() => useGetProduct('1'), { wrapper: createWrapper() });
 
@@ -51,11 +36,7 @@ describe('useQuery', () => {
     });
 
     test('failed query returns RequestError ', async () => {
-      server.use(
-        rest.get('https://euricom-test-api.herokuapp.com/api/products/:productId', (req, res, ctx) =>
-          res(ctx.status(404)),
-        ),
-      );
+      server.use(getSingleProductFailed(404));
 
       const { result } = renderHook(() => useGetProduct('aaaa'), { wrapper: createWrapper() });
 
