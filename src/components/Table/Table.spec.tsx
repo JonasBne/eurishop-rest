@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import userEvent from '@testing-library/user-event';
 import Product from '../../domain/product';
@@ -103,6 +103,27 @@ describe('product list', () => {
     mockOnLoad = jest.fn();
     mockOnRowClick = jest.fn();
     mockOnActionClick = jest.fn();
+  });
+
+  test('number of table rows matches number of products', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Table
+          data={products}
+          columns={columns}
+          onLoadData={mockOnLoad}
+          onRowClick={mockOnRowClick}
+          onActionClick={mockOnActionClick}
+          sortExpression={sortExpression}
+          setSortExpression={mockSetSortExpression}
+        />
+      </ThemeProvider>,
+    );
+
+    const tableBody = screen.getByRole('tablebody');
+    const tableRows = within(tableBody).getAllByRole('row');
+
+    expect(tableRows.length).toEqual(products.length);
   });
 
   test('click fires onRowClick event', () => {

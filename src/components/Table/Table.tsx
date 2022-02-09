@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
@@ -55,7 +56,7 @@ function Table({
             ))}
           </TableRow>
         </thead>
-        <tbody>
+        <tbody role="tablebody">
           {data.map((item: any, dataIndex) => (
             <TableRow key={item.id} role="row">
               {Object.keys(data[0]).map((title: any, index) => (
