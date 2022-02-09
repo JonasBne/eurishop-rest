@@ -1,14 +1,18 @@
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable max-len */
 import 'whatwg-fetch';
 import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
 import { rest } from 'msw';
-import { useGetProduct } from './productsApi';
+import { useGetProduct, useGetProducts } from './productsApi';
 import { server } from '../setupTests';
 import { createWrapper } from '../testUtils';
 import RequestError from '../errors/RequestError';
+
+/*
+https://tkdodo.eu/blog/testing-react-query
+https://github.com/TkDodo/testing-react-query/blob/main/src/tests/hooks.test.tsx
+*/
 
 describe('single product', () => {
   test('succesful query returns product', async () => {
@@ -42,7 +46,35 @@ describe('single product', () => {
   });
 });
 
-/*
-https://tkdodo.eu/blog/testing-react-query
-https://github.com/TkDodo/testing-react-query/blob/main/src/tests/hooks.test.tsx
-*/
+describe('multiple products', () => {
+  test('succesful query returns array with multiple products', async () => {
+    server.use(
+      rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
+        res(
+          ctx.json({
+            selectedProducts: [
+              {
+                id: 1,
+                title: 'pellentesque',
+              },
+              {
+                id: 2,
+                title: 'ut',
+              },
+              {
+                id: 3,
+                title: 'vera',
+              },
+            ],
+          }),
+        ),
+      ),
+    );
+
+    const { result } = renderHook(() => useGetProducts(), { wrapper: createWrapper() });
+
+    await waitFor(() => expect(result.current.products).toBeDefined());
+
+    expect(result.current.products?.length).toBeGreaterThan(1);
+  });
+});
