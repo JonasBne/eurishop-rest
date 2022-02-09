@@ -90,12 +90,13 @@ export const useGetProduct = (productId: string) => {
 
 export const useGetProducts = (page = 0) => {
   const url = `${rootUrl}${productUrl}/?page=${page}`;
-  const { isLoading, data, error, refetch } = useQuery<ProductsDTO>([productKeys.paged(page), page], () =>
+  const { isLoading, isError, data, error, refetch } = useQuery<ProductsDTO>([productKeys.paged(page), page], () =>
     api.get(url),
   );
 
   return {
     isLoading,
+    isError,
     error,
     products: data?.selectedProducts.map((product: ProductDTO) => productMapper(product)!),
     refetch,

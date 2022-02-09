@@ -77,4 +77,18 @@ describe('multiple products', () => {
 
     expect(result.current.products?.length).toBeGreaterThan(1);
   });
+
+  test('failed query returns RequestError', async () => {
+    server.use(
+      rest.get('https://euricom-test-api.herokuapp.com/api/products/:productId', (req, res, ctx) =>
+        res(ctx.status(404)),
+      ),
+    );
+
+    const { result } = renderHook(() => useGetProduct('aaaa'), { wrapper: createWrapper() });
+
+    await waitFor(() => expect(result.current.isError).toBeTruthy());
+
+    expect(result.current.error).toBeInstanceOf(RequestError);
+  });
 });
