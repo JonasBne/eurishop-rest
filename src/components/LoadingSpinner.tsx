@@ -18,7 +18,7 @@ const Loader = styled.div<SpaceProps>`
 `;
 
 function LoadingSpinner() {
-  return <Loader mx="auto" mt="3rem" />;
+  return <Loader mx="auto" mt="3rem" role="alert" aria-busy="true" />;
 }
 
 export default LoadingSpinner;
