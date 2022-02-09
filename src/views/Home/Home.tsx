@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
-import { GetProducts, useGetProducts } from '../../api/productsApi';
+import { useGetProducts } from '../../api/productsApi';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import FlexBox from '../../components/FlexBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
@@ -16,12 +16,8 @@ import useUpdate from '../../hooks/useUpdate';
 function Home() {
   const { succesToast, failToast } = toasts();
   const [page, setPage] = useState<number>(0);
-  const {
-    isLoading, error, products,
-  } = useGetProducts(page) as GetProducts;
-  const {
-    error: basketError, data: basketData, post, patch, remove,
-  } = useUpdate<BasketDTO>();
+  const { isLoading, error, products } = useGetProducts(page);
+  const { error: basketError, data: basketData, post, patch, remove } = useUpdate<BasketDTO>();
   const { cart, cartRefetch } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
@@ -55,38 +51,23 @@ function Home() {
   return (
     <>
       {isLoading && !error && <LoadingSpinner />}
-      {!isLoading && error && (
-        <ErrorModal name={error.name} message={error.message} />
-      )}
+      {!isLoading && error && <ErrorModal name={error.name} message={error.message} />}
       {products && (
         <>
           <FlexBox>
-            <FlexBox
-              flexWrap="wrap"
-              justifyContent="start"
-              flexDirection="row"
-              order={1}
-              flexBasis="75%"
-            >
+            <FlexBox flexWrap="wrap" justifyContent="start" flexDirection="row" order={1} flexBasis="75%">
               {products.map((product) => (
-                <ProductCard
-                  key={product.id}
-                  product={product}
-                  onBuy={handleBuy}
-                  m="4rem 3rem"
-                />
+                <ProductCard key={product.id} product={product} onBuy={handleBuy} m="4rem 3rem" />
               ))}
             </FlexBox>
             <FlexBox order={2} flexBasis="25%" mt="2rem" height="fit-content">
-              <ShoppingCart
-                cartItems={cartItems}
-                onUpdate={handleUpdate}
-                onClear={handleClear}
-              />
+              <ShoppingCart cartItems={cartItems} onUpdate={handleUpdate} onClear={handleClear} />
             </FlexBox>
           </FlexBox>
           <FlexBox justifyContent="center" mb="2rem">
-            <Button type="button" variant="primary" mx="1rem" px="2rem" onClick={handleLoadMoreData}>LOAD MORE...</Button>
+            <Button type="button" variant="primary" mx="1rem" px="2rem" onClick={handleLoadMoreData}>
+              LOAD MORE...
+            </Button>
           </FlexBox>
         </>
       )}
