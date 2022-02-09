@@ -47,5 +47,13 @@ export const getAllProducts = rest.get('https://euricom-test-api.herokuapp.com/a
   ),
 );
 
+export const getAllProductsLoading = rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
+  res(
+    ctx.json({
+      selectedProducts: [],
+    }),
+  ),
+);
+
 export const getAllProductsFailed = (errorCode = 404) =>
   rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) => res(ctx.status(errorCode)));

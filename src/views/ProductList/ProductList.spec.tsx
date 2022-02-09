@@ -12,20 +12,13 @@ import ProductList from './ProductList';
 import theme from '../../theme/theme';
 import createWrapper from '../../tests/utils/utils';
 import { server } from '../../mockServer';
+import { getAllProductsLoading } from '../../tests/fixtures/product';
 
 // TODO: test aantal rijen in tabel met aantal rijen van producten api
 
 describe('loading query', () => {
   test('renders a loading spinner', async () => {
-    server.use(
-      rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
-        res(
-          ctx.json({
-            selectedProducts: [],
-          }),
-        ),
-      ),
-    );
+    server.use(getAllProductsLoading);
 
     render(
       <BrowserRouter>
@@ -56,8 +49,8 @@ describe('failed query', () => {
       },
     );
 
-    const loadingSpinner = screen.getByRole('alert');
-    expect(loadingSpinner).toBeInTheDocument();
+    const errorModal = screen.getByRole('dialog');
+    expect(errorModal).toBeInTheDocument();
   });
 });
 describe('succesful query', () => {
