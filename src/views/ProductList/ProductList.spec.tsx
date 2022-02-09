@@ -41,8 +41,25 @@ describe('loading query', () => {
   });
 });
 
-// describe('failed query')
+describe('failed query', () => {
+  test('renders a error modal', async () => {
+    server.use(
+      rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) => res(ctx.status(404))),
+    );
 
+    render(
+      <BrowserRouter>
+        <ProductList />
+      </BrowserRouter>,
+      {
+        wrapper: createWrapper(),
+      },
+    );
+
+    const loadingSpinner = screen.getByRole('alert');
+    expect(loadingSpinner).toBeInTheDocument();
+  });
+});
 describe('succesful query', () => {
   test('# of table rows match the number of products returned by api', async () => {
     server.use(

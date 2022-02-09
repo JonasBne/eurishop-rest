@@ -27,17 +27,13 @@ function ErrorModal({ name, message }: ErrorModalProps) {
       {ReactDOM.createPortal(<Backdrop />, portalElement)}
       {ReactDOM.createPortal(
         <Overlay>
-          <FlexBox flexDirection="column">
+          <FlexBox flexDirection="column" role="dialog">
             <Header as="h4">{name}</Header>
             <Span>
               The following problem occured:
               {message}
             </Span>
-            <Button
-              width="fit-content"
-              m="1rem auto 0 auto"
-              onClick={() => navigate('/home')}
-            >
+            <Button width="fit-content" m="1rem auto 0 auto" onClick={() => navigate('/home')}>
               Return home
             </Button>
           </FlexBox>

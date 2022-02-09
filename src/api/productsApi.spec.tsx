@@ -3,12 +3,16 @@
 import 'whatwg-fetch';
 import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
-import { rest } from 'msw';
 import { useGetProduct, useGetProducts } from './productsApi';
 import { server } from '../mockServer';
 import createWrapper from '../tests/utils/utils';
 import RequestError from '../errors/RequestError';
-import { getSingleProduct, getSingleProductFailed } from '../tests/fixtures/product';
+import {
+  getAllProducts,
+  getAllProductsFailed,
+  getSingleProduct,
+  getSingleProductFailed,
+} from '../tests/fixtures/product';
 
 /*
 https://tkdodo.eu/blog/testing-react-query
@@ -48,28 +52,7 @@ describe('useQuery', () => {
 
   describe(' fetch multiple products', () => {
     test('succesful query returns array with multiple products', async () => {
-      server.use(
-        rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
-          res(
-            ctx.json({
-              selectedProducts: [
-                {
-                  id: 1,
-                  title: 'pellentesque',
-                },
-                {
-                  id: 2,
-                  title: 'ut',
-                },
-                {
-                  id: 3,
-                  title: 'vera',
-                },
-              ],
-            }),
-          ),
-        ),
-      );
+      server.use(getAllProducts);
 
       const { result } = renderHook(() => useGetProducts(), { wrapper: createWrapper() });
 
@@ -79,9 +62,7 @@ describe('useQuery', () => {
     });
 
     test('failed query returns RequestError', async () => {
-      server.use(
-        rest.get('https://euricom-test-api.herokuapp.com/api/products/', (req, res, ctx) => res(ctx.status(404))),
-      );
+      server.use(getAllProductsFailed(404));
 
       const { result } = renderHook(() => useGetProducts(99), { wrapper: createWrapper() });
 

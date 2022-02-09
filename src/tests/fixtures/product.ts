@@ -21,7 +21,31 @@ export const getSingleProduct = rest.get(
     ),
 );
 
-export const getSingleProductFailed = (errorCode: 404) =>
+export const getSingleProductFailed = (errorCode = 404) =>
   rest.get('https://euricom-test-api.herokuapp.com/api/products/:productId', (req, res, ctx) =>
     res(ctx.status(errorCode)),
   );
+
+export const getAllProducts = rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
+  res(
+    ctx.json({
+      selectedProducts: [
+        {
+          id: 1,
+          title: 'pellentesque',
+        },
+        {
+          id: 2,
+          title: 'ut',
+        },
+        {
+          id: 3,
+          title: 'vera',
+        },
+      ],
+    }),
+  ),
+);
+
+export const getAllProductsFailed = (errorCode = 404) =>
+  rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) => res(ctx.status(errorCode)));
