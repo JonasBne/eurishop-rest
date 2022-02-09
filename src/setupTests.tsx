@@ -6,11 +6,8 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
-import { setupServer } from 'msw/node';
 import { setLogger } from 'react-query';
-import { handlers } from './testUtils';
-
-export const server = setupServer(...handlers);
+import { server } from './mockServer';
 
 beforeAll(() => {
   server.listen({ onUnhandledRequest: 'error' });
