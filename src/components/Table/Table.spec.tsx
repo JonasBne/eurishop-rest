@@ -6,11 +6,6 @@ import Product from '../../domain/product';
 import Table from './Table';
 import theme from '../../theme/theme';
 
-// TODO: move to table.spec.tsx
-// TODO: test of tabel genoeg rijen heeft in overeenstemming met aantal producten
-
-// TODO: test aantal rijen in tabel met aantal rijen van producten api
-
 describe('product list', () => {
   let sortExpression: string;
   let columns: any[];
@@ -103,6 +98,27 @@ describe('product list', () => {
     mockOnLoad = jest.fn();
     mockOnRowClick = jest.fn();
     mockOnActionClick = jest.fn();
+  });
+
+  test('number of columns matches the number of columns passed to table', () => {
+    render(
+      <ThemeProvider theme={theme}>
+        <Table
+          data={products}
+          columns={columns}
+          onLoadData={mockOnLoad}
+          onRowClick={mockOnRowClick}
+          onActionClick={mockOnActionClick}
+          sortExpression={sortExpression}
+          setSortExpression={mockSetSortExpression}
+        />
+      </ThemeProvider>,
+    );
+
+    const tableHead = screen.getByRole('rowgroup');
+    const tableColumns = within(tableHead).getAllByRole('columnheader');
+
+    expect(tableColumns.length).toEqual(columns.length);
   });
 
   test('number of table rows matches number of products', () => {
