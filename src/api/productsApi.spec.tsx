@@ -9,18 +9,6 @@ import { useGetProduct } from './productsApi';
 import { server } from '../setupTests';
 import { createWrapper } from '../testUtils';
 
-test('failed query single products', async () => {
-  const { result } = renderHook(() => useGetProduct('1'), { wrapper: createWrapper() });
-
-  server.use(
-    rest.get('https://euricom-test-api.herokuapp.com/api/products/:productId', (req, res, ctx) => res(ctx.status(404))),
-  );
-
-  await waitFor(() => result.current.isError);
-
-  await waitFor(() => console.log(result.current));
-});
-
 test('succesful query single product', async () => {
   const { result } = renderHook(() => useGetProduct('1'), { wrapper: createWrapper() });
 
@@ -35,6 +23,18 @@ test('succesful query single product', async () => {
     basePrice: 16.63,
     price: 16.63,
   });
+});
+
+test('failed query single products', async () => {
+  server.use(
+    rest.get('https://euricom-test-api.herokuapp.com/api/products/:productId', (req, res, ctx) => res(ctx.status(404))),
+  );
+
+  const { result } = renderHook(() => useGetProduct('aaaa'), { wrapper: createWrapper() });
+
+  await waitFor(() => expect(result.current.isError).toBeTruthy());
+
+  expect(result.current?.error?.status).toBe(404);
 });
 
 /*
