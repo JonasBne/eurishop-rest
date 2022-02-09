@@ -4,6 +4,7 @@
 import 'whatwg-fetch';
 import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
+import { rest } from 'msw';
 import { useGetProduct } from './productsApi';
 import { createWrapper, server } from '../setupTests';
 
@@ -14,6 +15,18 @@ afterAll(() => {
   server.close();
 });
 afterEach(() => server.resetHandlers());
+
+test('failed query single products', async () => {
+  const { result } = renderHook(() => useGetProduct('1'), { wrapper: createWrapper() });
+
+  server.use(
+    rest.get('https://euricom-test-api.herokuapp.com/api/products/:productId', (req, res, ctx) => res(ctx.status(404))),
+  );
+
+  await waitFor(() => result.current.isError);
+
+  await waitFor(() => console.log(result.current));
+});
 
 test('succesful query single product', async () => {
   const { result } = renderHook(() => useGetProduct('1'), { wrapper: createWrapper() });
