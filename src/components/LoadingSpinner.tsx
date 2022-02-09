@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { space, SpaceProps } from 'styled-system';
@@ -18,7 +19,7 @@ const Loader = styled.div<SpaceProps>`
 `;
 
 function LoadingSpinner() {
-  return <Loader mx="auto" mt="3rem" role="alert" aria-busy="true" />;
+  return <Loader mx="auto" mt="3rem" role="loading" aria-busy="true" />;
 }
 
 export default LoadingSpinner;

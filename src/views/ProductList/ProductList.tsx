@@ -10,6 +10,7 @@ import Button from '../../components/Button';
 import toasts from '../../components/toasts';
 
 function ProductList() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [page, setPage] = useState<number>(0);
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();

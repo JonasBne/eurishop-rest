@@ -8,7 +8,7 @@ import FlexBox from '../FlexBox';
 import Backdrop from './Backdrop';
 import Overlay from './Overlay';
 
-const portalElement = document.getElementById('overlays')!;
+// const portalElement = document.getElementById('overlays')!;
 
 const Span = styled.span`
   text-align: center;
@@ -24,10 +24,10 @@ function ErrorModal({ name, message }: ErrorModalProps) {
 
   return (
     <>
-      {ReactDOM.createPortal(<Backdrop />, portalElement)}
+      {ReactDOM.createPortal(<Backdrop />, document.body)}
       {ReactDOM.createPortal(
         <Overlay>
-          <FlexBox flexDirection="column" role="dialog">
+          <FlexBox flexDirection="column" role="alert">
             <Header as="h4">{name}</Header>
             <Span>
               The following problem occured:
@@ -38,7 +38,7 @@ function ErrorModal({ name, message }: ErrorModalProps) {
             </Button>
           </FlexBox>
         </Overlay>,
-        portalElement,
+        document.body,
       )}
     </>
   );

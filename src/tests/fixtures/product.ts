@@ -47,7 +47,7 @@ export const getAllProducts = rest.get('https://euricom-test-api.herokuapp.com/a
   ),
 );
 
-export const getAllProductsLoading = rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
+export const getAllProductsEmpty = rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
   res(
     ctx.json({
       selectedProducts: [],

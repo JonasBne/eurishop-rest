@@ -12,33 +12,13 @@ import ProductList from './ProductList';
 import theme from '../../theme/theme';
 import createWrapper from '../../tests/utils/utils';
 import { server } from '../../mockServer';
-import { getAllProductsLoading } from '../../tests/fixtures/product';
+import { getAllProducts, getAllProductsFailed } from '../../tests/fixtures/product';
 
-// TODO: test aantal rijen in tabel met aantal rijen van producten api
-
-describe('loading query', () => {
-  test('renders a loading spinner', async () => {
-    server.use(getAllProductsLoading);
-
-    render(
-      <BrowserRouter>
-        <ProductList />
-      </BrowserRouter>,
-      {
-        wrapper: createWrapper(),
-      },
-    );
-
-    const loadingSpinner = screen.getByRole('alert');
-    expect(loadingSpinner).toBeInTheDocument();
-  });
-});
-
+// TODO: why is error modal not shown?
+// error is always null, how so?
 describe('failed query', () => {
   test('renders a error modal', async () => {
-    server.use(
-      rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) => res(ctx.status(404))),
-    );
+    server.use(getAllProductsFailed(404));
 
     render(
       <BrowserRouter>
@@ -49,42 +29,32 @@ describe('failed query', () => {
       },
     );
 
-    const errorModal = screen.getByRole('dialog');
+    const errorModal = await screen.findByRole('alert');
+    screen.debug();
     expect(errorModal).toBeInTheDocument();
   });
 });
+
+// TODO: check if number of rows matches the number of products returned by api
 describe('succesful query', () => {
-  test('# of table rows match the number of products returned by api', async () => {
-    server.use(
-      rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
-        res(
-          ctx.json({
-            selectedProducts: [
-              {
-                id: 1,
-                title: 'pellentesque',
-              },
-              {
-                id: 2,
-                title: 'ut',
-              },
-              {
-                id: 3,
-                title: 'vera',
-              },
-            ],
-          }),
-        ),
-      ),
-    );
+  test('number of table rows match the number of products returned by api', async () => {
+    server.use(getAllProducts);
 
     render(
       <BrowserRouter>
-        <ProductList />
+        <ThemeProvider theme={theme}>
+          <ProductList />
+        </ThemeProvider>
       </BrowserRouter>,
       {
         wrapper: createWrapper(),
       },
     );
+
+    const loadingSpinner = screen.getByRole('loading');
+    expect(loadingSpinner).toBeInTheDocument();
+
+    const table = await screen.findByRole('table');
+    screen.debug(table);
   });
 });

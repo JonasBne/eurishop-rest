@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { useGetProduct, ProductDTO, GetProduct, useMutationProductPut } from '../../api/productsApi';
+import { useGetProduct, ProductDTO, useMutationProductPut } from '../../api/productsApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import ProductForm, { ProductFormValues } from './ProductForm';
@@ -12,7 +12,7 @@ function ProductEdit() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { productId } = useParams<string>();
-  const { isLoading, error, product } = useGetProduct(productId!) as GetProduct;
+  const { isLoading, error, product } = useGetProduct(productId!);
   const { mutate, error: putError, data: puttedData } = useMutationProductPut();
 
   const gridTemplateAreas = `

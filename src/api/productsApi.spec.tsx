@@ -20,7 +20,7 @@ https://github.com/TkDodo/testing-react-query/blob/main/src/tests/hooks.test.tsx
 */
 
 describe('useQuery', () => {
-  describe('fetch single product', () => {
+  describe('single product', () => {
     test('succesful query returns product', async () => {
       server.use(getSingleProduct);
 
@@ -50,7 +50,7 @@ describe('useQuery', () => {
     });
   });
 
-  describe(' fetch multiple products', () => {
+  describe('multiple products', () => {
     test('succesful query returns array with multiple products', async () => {
       server.use(getAllProducts);
 
@@ -64,7 +64,7 @@ describe('useQuery', () => {
     test('failed query returns RequestError', async () => {
       server.use(getAllProductsFailed(404));
 
-      const { result } = renderHook(() => useGetProducts(99), { wrapper: createWrapper() });
+      const { result } = renderHook(() => useGetProducts(), { wrapper: createWrapper() });
 
       await waitFor(() => expect(result.current.isError).toBeTruthy());
 
