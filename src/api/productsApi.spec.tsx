@@ -8,6 +8,7 @@ import { rest } from 'msw';
 import { useGetProduct } from './productsApi';
 import { server } from '../setupTests';
 import { createWrapper } from '../testUtils';
+import RequestError from '../errors/RequestError';
 
 test('succesful query single product', async () => {
   const { result } = renderHook(() => useGetProduct('1'), { wrapper: createWrapper() });
@@ -34,7 +35,7 @@ test('failed query single products', async () => {
 
   await waitFor(() => expect(result.current.isError).toBeTruthy());
 
-  expect(result.current?.error?.status).toBe(404);
+  expect(result.current.error).toBeInstanceOf(RequestError);
 });
 
 /*

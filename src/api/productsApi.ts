@@ -74,7 +74,7 @@ const removeProduct = async (productId: string | number) => api.remove(`${rootUr
 export const useGetProduct = (productId: string) => {
   const url = `${rootUrl}${productUrl}/${productId}`;
 
-  const { isLoading, isError, data, error, isSuccess } = useQuery<ProductDTO>(
+  const { isLoading, isError, data, error } = useQuery<ProductDTO>(
     [productKeys.detail(productId), productId],
     () => api.get(url),
     { keepPreviousData: true },
@@ -84,7 +84,6 @@ export const useGetProduct = (productId: string) => {
     isLoading,
     isError,
     error,
-    isSuccess,
     product: productMapper(data),
   };
 };
