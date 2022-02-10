@@ -2,17 +2,19 @@
 /* eslint-disable implicit-arrow-linebreak */
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import Home from './Home';
 import createWrapper from '../../tests/utils/utils';
 import { server } from '../../mockServer';
 import { getAllProducts, getAllProductsFailed } from '../../tests/fixtures/product';
 import theme from '../../theme/theme';
+import { getBasket, getBasketFailed } from '../../tests/fixtures/basket';
 
 describe('failed query', () => {
   test('renders a error modal', async () => {
     server.use(getAllProductsFailed(404));
+    server.use(getBasketFailed(404));
 
     render(
       <BrowserRouter>
@@ -29,8 +31,9 @@ describe('failed query', () => {
 });
 
 describe('succesful query', () => {
-  test('renders a loading spinner and product cards', async () => {
-    server.use(getAllProducts);
+  test('renders a loading spinner, product cards and basket', async () => {
+    await waitFor(() => server.use(getAllProducts));
+    await waitFor(() => server.use(getBasket));
 
     render(
       <BrowserRouter>
@@ -46,9 +49,33 @@ describe('succesful query', () => {
     const loadingSpinner = screen.getByRole('loading');
     expect(loadingSpinner).toBeInTheDocument();
 
-    const productcards = await screen.findAllByRole('card');
-    expect(productcards.length).toBeGreaterThanOrEqual(1);
-  });
+    const basketItems = await screen.findAllByRole('cart-item');
+    expect(basketItems.length).toBeGreaterThanOrEqual(1);
 
-  test('renders a shopping cart', async () => {});
+    screen.debug();
+  });
 });
+
+// TODO: Hoe meerdere server.use gebruiken?
+// describe('succesful query', () => {
+//   test('renders a loading spinner, product cards and basket', async () => {
+//     server.use(getAllProducts);
+
+//     render(
+//       <BrowserRouter>
+//         <ThemeProvider theme={theme}>
+//           <Home />
+//         </ThemeProvider>
+//       </BrowserRouter>,
+//       {
+//         wrapper: createWrapper(),
+//       },
+//     );
+
+//     const loadingSpinner = screen.getByRole('loading');
+//     expect(loadingSpinner).toBeInTheDocument();
+
+//     const productcards = await screen.findAllByRole('card');
+//     expect(productcards.length).toBeGreaterThanOrEqual(1);
+//   });
+// });

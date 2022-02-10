@@ -7,3 +7,7 @@
 - [ ] testing van useMutation
 - [x] vervang await waitFor(() => getByRole) door await findByRole
 - [x] finalizeren unit testing ProductList,
+
+## Vragen
+
+- [ ] Hoe meerdere server.use gebruiken? (Home.spec.tsx line 33)

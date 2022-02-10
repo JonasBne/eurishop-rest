@@ -50,6 +50,32 @@ export const getAllProducts = rest.get('https://euricom-test-api.herokuapp.com/a
   ),
 );
 
+export const getMultipleProducts = rest.get(
+  'https://euricom-test-api.herokuapp.com/api/products/:productId',
+  (req, res, ctx) =>
+    res(
+      ctx.json({
+        selectedProducts: [
+          {
+            id: 1,
+            title: 'pellentesque',
+            price: 10.0,
+          },
+          {
+            id: 2,
+            title: 'ut',
+            price: 10.0,
+          },
+          {
+            id: 3,
+            title: 'vera',
+            price: 10.0,
+          },
+        ],
+      }),
+    ),
+);
+
 export const getAllProductsEmpty = rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
   res(
     ctx.json({
