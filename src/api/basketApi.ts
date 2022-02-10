@@ -19,18 +19,26 @@ export const basketUrls = {
 };
 
 interface UpdateBasketVariables {
-  quantity: number;
   productId: string | number;
+  data: {
+    quantity: number;
+  };
 }
 
-const postItemToBasket = async (productId: string | number, data: any) =>
+interface RemoveItemFromBasketVariables {
+  productId?: string | number;
+}
+
+const postItemToBasket = async (productId: string | number, data: { quantity: number }) =>
   api.post(`${rootUrl}${basketUrls.update}/${productId}`, data);
 
-const patchBasket = async (productId: string | number, data: any) =>
+const patchBasket = async (productId: string | number, data: { quantity: number }) =>
   api.patch(`${rootUrl}${basketUrls.update}/${productId}`, data);
 
-const removeItemFromBasket = async (productId: string | number) =>
+const removeItemFromBasket = async (productId?: string | number) =>
   api.remove(`${rootUrl}${basketUrls.update}/${productId}`);
+
+const clearBasket = async () => api.remove(`${rootUrl}${basketUrls.base}`);
 
 export const basketMapper = (products?: Product[], basketDTO?: BasketDTO[]): Cart | undefined => {
   if (!basketDTO || !products) return undefined;
@@ -64,7 +72,7 @@ export const useGetBasket = () => {
 export const useMutationBasketPost = () => {
   const queryClient = useQueryClient();
   return useMutation<BasketDTO, Error, UpdateBasketVariables>(
-    ({ quantity, productId }) => postItemToBasket(quantity, productId),
+    ({ productId, data }) => postItemToBasket(productId, data),
     {
       onSuccess: () => {
         queryClient.invalidateQueries('basket');
@@ -75,12 +83,30 @@ export const useMutationBasketPost = () => {
 
 export const useMutationBasketPatch = () => {
   const queryClient = useQueryClient();
-  return useMutation<BasketDTO, Error, UpdateBasketVariables>(
-    ({ quantity, productId }) => patchBasket(quantity, productId),
+  return useMutation<BasketDTO, Error, UpdateBasketVariables>(({ productId, data }) => patchBasket(productId, data), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('basket');
+    },
+  });
+};
+
+export const useMutationBasketRemoveItem = () => {
+  const queryClient = useQueryClient();
+  return useMutation<BasketDTO, Error, RemoveItemFromBasketVariables>(
+    ({ productId }) => removeItemFromBasket(productId),
     {
       onSuccess: () => {
         queryClient.invalidateQueries('basket');
       },
     },
   );
+};
+
+export const useMutationBasketClear = () => {
+  const queryClient = useQueryClient();
+  return useMutation<BasketDTO, Error>(() => clearBasket(), {
+    onSuccess: () => {
+      queryClient.invalidateQueries('basket');
+    },
+  });
 };
