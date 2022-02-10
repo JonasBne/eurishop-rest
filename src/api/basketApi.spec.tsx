@@ -7,7 +7,7 @@ import { act } from 'react-dom/test-utils';
 import { BasketDTO, basketMapper, useGetBasket, useMutationBasketPost } from './basketApi';
 import Product from '../domain/product';
 import { server } from '../mockServer';
-import { getBasket } from '../tests/fixtures/basket';
+import { getBasket, postItemToBasket } from '../tests/fixtures/basket';
 import createWrapper from '../tests/utils/utils';
 import { getSingleProduct } from '../tests/fixtures/product';
 
@@ -63,7 +63,9 @@ describe('useGetBasket', () => {
 });
 
 describe('useMutation', () => {
-  test('succesful post of product', () => {
+  test('succesful post of product', async () => {
+    server.use(postItemToBasket);
+
     const { result } = renderHook(() => useMutationBasketPost(), {
       wrapper: createWrapper(),
     });
@@ -76,5 +78,15 @@ describe('useMutation', () => {
         productId: 1,
       }),
     );
+
+    await waitFor(() => expect(result.current.data).toBeDefined());
+
+    expect(result.current.data).toEqual([
+      {
+        id: 1,
+        productId: 1,
+        quantity: 1,
+      },
+    ]);
   });
 });

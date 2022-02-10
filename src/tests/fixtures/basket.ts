@@ -27,3 +27,18 @@ export const getBasket = rest.get('https://euricom-test-api.herokuapp.com/api/ba
 
 export const getBasketFailed = (errorCode = 404) =>
   rest.get('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) => res(ctx.status(errorCode)));
+
+export const postItemToBasket = rest.post(
+  'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
+  (req, res, ctx) =>
+    res(
+      ctx.status(201),
+      ctx.json([
+        {
+          id: 1,
+          productId: 1,
+          quantity: 1,
+        },
+      ]),
+    ),
+);
