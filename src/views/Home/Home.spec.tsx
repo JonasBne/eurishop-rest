@@ -29,7 +29,7 @@ describe('failed query', () => {
 });
 
 describe('succesful query', () => {
-  test('renders a loading spinner and table', async () => {
+  test('renders a loading spinner and product cards', async () => {
     server.use(getAllProducts);
 
     render(
@@ -49,4 +49,6 @@ describe('succesful query', () => {
     const productcards = await screen.findAllByRole('card');
     expect(productcards.length).toBeGreaterThanOrEqual(1);
   });
+
+  test('renders a shopping cart', async () => {});
 });
