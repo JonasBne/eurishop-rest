@@ -33,14 +33,17 @@ export const getAllProducts = rest.get('https://euricom-test-api.herokuapp.com/a
         {
           id: 1,
           title: 'pellentesque',
+          price: 10.0,
         },
         {
           id: 2,
           title: 'ut',
+          price: 10.0,
         },
         {
           id: 3,
           title: 'vera',
+          price: 10.0,
         },
       ],
     }),
