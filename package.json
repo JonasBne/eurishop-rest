@@ -6,9 +6,29 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "test:watch": "react-scripts test --watchAll",
+    "test:coverage": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
     "lint": "eslint --ext .ts --ext .tsx .",
     "lint:types": "tsc --noEmit"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.js",
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "!**/node_modules/**",
+      "!src/domain/product.ts"
+    ],
+    "coverageReporters": [
+      "text-summary",
+      "lcov",
+      "cobertura"
+    ],
+    "testMatch": [
+      "**/*.spec.ts",
+      "**/*.spec.tsx"
+    ]
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
