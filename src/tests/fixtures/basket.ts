@@ -47,7 +47,6 @@ export const patchBasket = rest.patch(
   'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
   (req, res, ctx) =>
     res(
-      ctx.status(201),
       ctx.json([
         {
           id: 1,
@@ -56,4 +55,8 @@ export const patchBasket = rest.patch(
         },
       ]),
     ),
+);
+
+export const clearBasket = rest.delete('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) =>
+  res(ctx.json([])),
 );

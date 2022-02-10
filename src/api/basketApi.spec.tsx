@@ -4,10 +4,17 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { BasketDTO, basketMapper, useGetBasket, useMutationBasketPatch, useMutationBasketPost } from './basketApi';
+import {
+  BasketDTO,
+  basketMapper,
+  useGetBasket,
+  useMutationBasketClear,
+  useMutationBasketPatch,
+  useMutationBasketPost,
+} from './basketApi';
 import Product from '../domain/product';
 import { server } from '../mockServer';
-import { getBasket, patchBasket, postItemToBasket } from '../tests/fixtures/basket';
+import { clearBasket, getBasket, patchBasket, postItemToBasket } from '../tests/fixtures/basket';
 import createWrapper from '../tests/utils/utils';
 import { getSingleProduct } from '../tests/fixtures/product';
 
@@ -62,6 +69,7 @@ describe('useGetBasket', () => {
   });
 });
 
+// TODO: are these tests ok?
 describe('useMutation', () => {
   test('succesful post of product', async () => {
     server.use(postItemToBasket);
@@ -115,5 +123,19 @@ describe('useMutation', () => {
         quantity: 2,
       },
     ]);
+  });
+
+  test('clear basket', async () => {
+    server.use(clearBasket);
+
+    const { result } = renderHook(() => useMutationBasketClear(), {
+      wrapper: createWrapper(),
+    });
+
+    act(() => result.current.mutate());
+
+    await waitFor(() => expect(result.current.data).toBeDefined());
+
+    expect(result.current.data).toEqual([]);
   });
 });
