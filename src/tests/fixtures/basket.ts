@@ -42,3 +42,18 @@ export const postItemToBasket = rest.post(
       ]),
     ),
 );
+
+export const patchBasket = rest.patch(
+  'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
+  (req, res, ctx) =>
+    res(
+      ctx.status(201),
+      ctx.json([
+        {
+          id: 1,
+          productId: 1,
+          quantity: 2,
+        },
+      ]),
+    ),
+);

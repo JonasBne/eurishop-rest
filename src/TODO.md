@@ -13,3 +13,4 @@
 - [ ] ProductsApi.spec.tsx line 49
 - [ ] BasketApi.spec.tsx line 45
 - [ ] Home.spec.tsx line 33
+- [ ] BasketApi.spec.tsx vanaf line 65 (zijn de testen voor useMutation ok)

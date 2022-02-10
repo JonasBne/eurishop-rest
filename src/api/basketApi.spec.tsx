@@ -4,10 +4,10 @@
 import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
-import { BasketDTO, basketMapper, useGetBasket, useMutationBasketPost } from './basketApi';
+import { BasketDTO, basketMapper, useGetBasket, useMutationBasketPatch, useMutationBasketPost } from './basketApi';
 import Product from '../domain/product';
 import { server } from '../mockServer';
-import { getBasket, postItemToBasket } from '../tests/fixtures/basket';
+import { getBasket, patchBasket, postItemToBasket } from '../tests/fixtures/basket';
 import createWrapper from '../tests/utils/utils';
 import { getSingleProduct } from '../tests/fixtures/product';
 
@@ -86,6 +86,33 @@ describe('useMutation', () => {
         id: 1,
         productId: 1,
         quantity: 1,
+      },
+    ]);
+  });
+
+  test('succesful patch of product', async () => {
+    server.use(patchBasket);
+
+    const { result } = renderHook(() => useMutationBasketPatch(), {
+      wrapper: createWrapper(),
+    });
+
+    act(() =>
+      result.current.mutate({
+        data: {
+          quantity: 2,
+        },
+        productId: 1,
+      }),
+    );
+
+    await waitFor(() => expect(result.current.data).toBeDefined());
+
+    expect(result.current.data).toEqual([
+      {
+        id: 1,
+        productId: 1,
+        quantity: 2,
       },
     ]);
   });
