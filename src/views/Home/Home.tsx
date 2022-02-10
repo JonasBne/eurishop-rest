@@ -1,7 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable object-curly-newline */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import { useGetProducts } from '../../api/productsApi';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
@@ -11,23 +10,18 @@ import ProductCard from './ProductCard';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import {
   useGetBasket,
-  basketUrls,
-  BasketDTO,
   useMutationBasketPost,
   useMutationBasketPatch,
   useMutationBasketRemoveItem,
   useMutationBasketClear,
 } from '../../api/basketApi';
-import rootUrl from '../../api/rootUrl';
 import toasts from '../../components/toasts';
 import Button from '../../components/Button';
-import useUpdate from '../../hooks/useUpdate';
 
 function Home() {
   const { succesToast, failToast } = toasts();
   const [page, setPage] = useState<number>(0);
   const { isLoading, error, products } = useGetProducts(page);
-  const { error: basketError, data: basketData } = useUpdate<BasketDTO>();
   const { mutate: postItemToBasket, error: postBasketError, data: postedData } = useMutationBasketPost();
   const { mutate: patch, error: patchBasketError, data: patchedData } = useMutationBasketPatch();
   const { mutate: removeItem, error: removeItemError, data: removedData } = useMutationBasketRemoveItem();
@@ -36,14 +30,44 @@ function Home() {
   const cartItems = cart?.items ?? [];
 
   useEffect(() => {
-    if (basketError) {
-      failToast(basketError);
+    if (postBasketError) {
+      failToast(postBasketError);
     }
-    if (basketData) {
+    if (patchBasketError) {
+      failToast(patchBasketError);
+    }
+    if (removeItemError) {
+      failToast(removeItemError);
+    }
+    if (clearBasketError) {
+      failToast(clearBasketError);
+    }
+    if (postedData) {
       succesToast('Success!');
       cartRefetch();
     }
-  }, [basketError, basketData]);
+    if (patchedData) {
+      succesToast('Success!');
+      cartRefetch();
+    }
+    if (removedData) {
+      succesToast('Success!');
+      cartRefetch();
+    }
+    if (clearedData) {
+      succesToast('Success!');
+      cartRefetch();
+    }
+  }, [
+    postBasketError,
+    patchBasketError,
+    removeItemError,
+    clearBasketError,
+    postedData,
+    patchedData,
+    removedData,
+    clearedData,
+  ]);
 
   const handleBuy = (productId: string | number) => {
     postItemToBasket({
