@@ -5,7 +5,7 @@ import Product from '../domain/product';
 import { server } from '../mockServer';
 import { getBasket } from '../tests/fixtures/basket';
 import createWrapper from '../tests/utils/utils';
-import { getMultipleProducts } from '../tests/fixtures/product';
+import { getSingleProduct } from '../tests/fixtures/product';
 
 describe('basket mapper', () => {
   let products: Product[];
@@ -42,16 +42,17 @@ describe('basket mapper', () => {
   });
 });
 
-// TODO: finalize
 describe('useGetBasket', () => {
   test('succesful query returns a basket', async () => {
-    server.use(getMultipleProducts);
+    server.use(getSingleProduct);
     server.use(getBasket);
 
     const { result } = renderHook(() => useGetBasket(), { wrapper: createWrapper() });
 
     await waitFor(() => expect(result.current.cart).toBeDefined());
 
-    console.log(result.current.cart);
+    expect(result.current.cart?.items.length).toBeGreaterThan(0);
+    expect(result.current.cart?.items[0]).toHaveProperty('product');
+    expect(result.current.cart?.items[0]).toHaveProperty('quantity');
   });
 });
