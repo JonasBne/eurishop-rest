@@ -12,7 +12,6 @@ import { useGetBasket, basketUrls, BasketDTO } from '../../api/basketApi';
 import rootUrl from '../../api/rootUrl';
 import toasts from '../../components/toasts';
 import Button from '../../components/Button';
-import { CartItem } from '../../domain/shoppingCart';
 import useUpdate from '../../hooks/useUpdate';
 
 function Home() {
