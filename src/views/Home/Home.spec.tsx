@@ -7,7 +7,7 @@ import { ThemeProvider } from 'styled-components';
 import Home from './Home';
 import createWrapper from '../../tests/utils/utils';
 import { server } from '../../mockServer';
-import { getAllProducts, getAllProductsFailed } from '../../tests/fixtures/product';
+import { getAllProducts, getAllProductsFailed, getMultipleProducts } from '../../tests/fixtures/product';
 import theme from '../../theme/theme';
 import { getBasket, getBasketFailed } from '../../tests/fixtures/basket';
 
@@ -32,8 +32,9 @@ describe('failed query', () => {
 
 describe('succesful query', () => {
   test('renders a loading spinner, product cards and basket', async () => {
-    await waitFor(() => server.use(getAllProducts));
-    await waitFor(() => server.use(getBasket));
+    server.use(getAllProducts, getMultipleProducts, getBasket);
+    // server.use(getMultipleProducts);
+    // server.use(getBasket);
 
     render(
       <BrowserRouter>

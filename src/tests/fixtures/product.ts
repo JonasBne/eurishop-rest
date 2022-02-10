@@ -10,13 +10,8 @@ export const getSingleProduct = rest.get(
       ctx.status(200),
       ctx.json({
         id: 1,
-        sku: '254267942-8',
         title: 'pellentesque',
-        desc: 'Donec posuere metus vitae ipsum.',
-        image: 'https://dummyimage.com/300x300.jpg/ff4444/ffffff',
-        stocked: true,
-        basePrice: 16.63,
-        price: 16.63,
+        price: 10.0,
       }),
     ),
 );
@@ -48,32 +43,6 @@ export const getAllProducts = rest.get('https://euricom-test-api.herokuapp.com/a
       ],
     }),
   ),
-);
-
-export const getMultipleProducts = rest.get(
-  'https://euricom-test-api.herokuapp.com/api/products/:productId',
-  (req, res, ctx) =>
-    res(
-      ctx.json({
-        selectedProducts: [
-          {
-            id: 1,
-            title: 'pellentesque',
-            price: 10.0,
-          },
-          {
-            id: 2,
-            title: 'ut',
-            price: 10.0,
-          },
-          {
-            id: 3,
-            title: 'vera',
-            price: 10.0,
-          },
-        ],
-      }),
-    ),
 );
 
 export const getAllProductsEmpty = rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>

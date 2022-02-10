@@ -7,27 +7,18 @@ export const getBasket = rest.get('https://euricom-test-api.herokuapp.com/api/ba
     ctx.status(200),
     ctx.json([
       {
-        product: {
-          id: 1,
-          title: 'pellentesque',
-          price: 10.0,
-        },
+        id: 1,
+        productId: 1,
         quantity: 1,
       },
       {
-        product: {
-          id: 2,
-          title: 'ut',
-          price: 10.0,
-        },
+        id: 2,
+        productId: 2,
         quantity: 1,
       },
       {
-        product: {
-          id: 3,
-          title: 'vera',
-          price: 10.0,
-        },
+        id: 3,
+        productId: 3,
         quantity: 1,
       },
     ]),

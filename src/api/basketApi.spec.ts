@@ -1,5 +1,11 @@
-import { BasketDTO, basketMapper } from './basketApi';
+import { renderHook } from '@testing-library/react-hooks';
+import { waitFor } from '@testing-library/react';
+import { BasketDTO, basketMapper, useGetBasket } from './basketApi';
 import Product from '../domain/product';
+import { server } from '../mockServer';
+import { getBasket } from '../tests/fixtures/basket';
+import createWrapper from '../tests/utils/utils';
+import { getMultipleProducts } from '../tests/fixtures/product';
 
 describe('basket mapper', () => {
   let products: Product[];
@@ -33,5 +39,19 @@ describe('basket mapper', () => {
     expect(result.items[1].quantity).toBe(4);
     expect(result.items[0].product.title).toBe('pellentesque');
     expect(result.items[1].product.title).toBe('ut');
+  });
+});
+
+// TODO: finalize
+describe('useGetBasket', () => {
+  test('succesful query returns a basket', async () => {
+    server.use(getMultipleProducts);
+    server.use(getBasket);
+
+    const { result } = renderHook(() => useGetBasket(), { wrapper: createWrapper() });
+
+    await waitFor(() => expect(result.current.cart).toBeDefined());
+
+    console.log(result.current.cart);
   });
 });

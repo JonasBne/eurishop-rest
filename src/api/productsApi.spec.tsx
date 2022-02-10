@@ -1,9 +1,10 @@
+/* eslint-disable max-len */
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 import 'whatwg-fetch';
 import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
-import { useGetProduct, useGetProducts } from './productsApi';
+import { useGetMultipleProducts, useGetProduct, useGetProducts } from './productsApi';
 import { server } from '../mockServer';
 import createWrapper from '../tests/utils/utils';
 import RequestError from '../errors/RequestError';
@@ -29,13 +30,8 @@ describe('useQuery', () => {
       await waitFor(() => expect(result.current.product).toBeDefined());
       expect(result.current.product).toEqual({
         id: 1,
-        sku: '254267942-8',
         title: 'pellentesque',
-        desc: 'Donec posuere metus vitae ipsum.',
-        image: 'https://dummyimage.com/300x300.jpg/ff4444/ffffff',
-        stocked: true,
-        basePrice: 16.63,
-        price: 16.63,
+        price: 10.0,
       });
     });
 
@@ -50,8 +46,75 @@ describe('useQuery', () => {
     });
   });
 
+  // TODO: to check
+
+  /*
+
+  Vraag 1: Welke mock api gebruiken voor het fetchen van multiple products?
+
+  Moet met getSingleProduct want useGetMultipleProducts mapped over urls en geeft een array
+  van queries terug die gereduceerd wordt tot een array van producten. Ik heb een mock proberen maken die dit teruggeeft
+
+  res(
+    ctx.json([
+      {
+        id: 1,
+        title: 'pellentesque',
+        price: 10.00
+      },
+      {
+        id: 2,
+        title: 'ut',
+        price: 10.00
+      },
+     {
+        id: 3,
+        title: 'vera',
+        price: 10.00
+      }
+    ])
+  )
+
+  maar dan krijg je een array met arrays terug als resultaat. Het is niet mogelijk om dit te doen:
+
+  res(
+    ctx.json(
+      {
+        id: 1,
+        title: 'pellentesque',
+        price: 10.00
+      },
+      {
+        id: 2,
+        title: 'ut',
+        price: 10.00
+      },
+     {
+        id: 3,
+        title: 'vera',
+        price: 10.00
+      }
+    )
+  )
+
+  Vraag 2: waarom werkt dit niet met await waitFor(() => expect(result.current.products).toBeDefined()) --> in dat geval krijg je een lege array met products
+
+  */
+
   describe('multiple products', () => {
-    test('succesful query returns array with multiple products', async () => {
+    test('succesful query returns an array with multiple products', async () => {
+      server.use(getSingleProduct);
+
+      const { result } = renderHook(() => useGetMultipleProducts(['1', '2', '3'], true), { wrapper: createWrapper() });
+
+      await waitFor(() => expect(result.current.isLoading).toBeFalsy());
+
+      expect(result.current.products.length).toEqual(3);
+    });
+  });
+
+  describe('all products', () => {
+    test('succesful query returns array with all products', async () => {
       server.use(getAllProducts);
 
       const { result } = renderHook(() => useGetProducts(), { wrapper: createWrapper() });
