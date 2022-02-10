@@ -5,5 +5,5 @@
 - [ ] config file voor jest
 - [ ] Appollo GraphQL tutorial (youtube, egghead)
 - [ ] testing van useMutation
-- [ ] vervang await waitFor(() => getByRole) door await findByRole
+- [x] vervang await waitFor(() => getByRole) door await findByRole
 - [x] finalizeren unit testing ProductList,
