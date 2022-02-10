@@ -1,6 +1,6 @@
 ## TO-DO's
 
-- [ ] toevoegen van mutation voor basket en vervangen in Home.tsx (ipv useUpdate)
+- [x] toevoegen van mutation voor basket en vervangen in Home.tsx (ipv useUpdate)
 - [ ] testing van useMutation
 - [x] config file voor jest
 - [x] vervang await waitFor(() => getByRole) door await findByRole

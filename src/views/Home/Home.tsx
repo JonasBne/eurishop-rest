@@ -42,19 +42,7 @@ function Home() {
     if (clearBasketError) {
       failToast(clearBasketError);
     }
-    if (postedData) {
-      succesToast('Success!');
-      cartRefetch();
-    }
-    if (patchedData) {
-      succesToast('Success!');
-      cartRefetch();
-    }
-    if (removedData) {
-      succesToast('Success!');
-      cartRefetch();
-    }
-    if (clearedData) {
+    if (postedData || patchedData || removedData || clearedData) {
       succesToast('Success!');
       cartRefetch();
     }
