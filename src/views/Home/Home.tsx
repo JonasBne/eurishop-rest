@@ -8,7 +8,7 @@ import FlexBox from '../../components/FlexBox';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ProductCard from './ProductCard';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
-import { useGetBasket, basketUrls, BasketDTO } from '../../api/basketApi';
+import { useGetBasket, basketUrls, BasketDTO, useMutationBasketPost } from '../../api/basketApi';
 import rootUrl from '../../api/rootUrl';
 import toasts from '../../components/toasts';
 import Button from '../../components/Button';
@@ -18,7 +18,8 @@ function Home() {
   const { succesToast, failToast } = toasts();
   const [page, setPage] = useState<number>(0);
   const { isLoading, error, products } = useGetProducts(page);
-  const { error: basketError, data: basketData, post, patch, remove } = useUpdate<BasketDTO>();
+  const { error: basketError, data: basketData, patch, remove } = useUpdate<BasketDTO>();
+  const { mutate: post, error: postBasketError, data: postedData } = useMutationBasketPost();
   const { cart, cartRefetch } = useGetBasket();
   const cartItems = cart?.items ?? [];
 
@@ -33,7 +34,10 @@ function Home() {
   }, [basketError, basketData]);
 
   const handleBuy = (productId: string | number) => {
-    post({ quantity: 1 }, `${rootUrl}${basketUrls.update}/${productId}`);
+    post({
+      quantity: 1,
+      productId,
+    });
   };
 
   const handleUpdate = (quantity: number, productId: string | number) => {
