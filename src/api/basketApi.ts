@@ -18,7 +18,7 @@ export const basketUrls = {
   update: 'api/basket/xyz/product',
 };
 
-interface PostBasketVariables {
+interface UpdateBasketVariables {
   quantity: number;
   productId: string | number;
 }
@@ -63,8 +63,20 @@ export const useGetBasket = () => {
 
 export const useMutationBasketPost = () => {
   const queryClient = useQueryClient();
-  return useMutation<BasketDTO, Error, PostBasketVariables>(
+  return useMutation<BasketDTO, Error, UpdateBasketVariables>(
     ({ quantity, productId }) => postItemToBasket(quantity, productId),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries('basket');
+      },
+    },
+  );
+};
+
+export const useMutationBasketPatch = () => {
+  const queryClient = useQueryClient();
+  return useMutation<BasketDTO, Error, UpdateBasketVariables>(
+    ({ quantity, productId }) => patchBasket(quantity, productId),
     {
       onSuccess: () => {
         queryClient.invalidateQueries('basket');
