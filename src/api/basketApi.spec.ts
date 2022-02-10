@@ -42,6 +42,7 @@ describe('basket mapper', () => {
   });
 });
 
+// TODO: is this ok?
 describe('useGetBasket', () => {
   test('succesful query returns a basket', async () => {
     server.use(getSingleProduct);
