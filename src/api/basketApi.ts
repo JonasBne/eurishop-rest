@@ -18,14 +18,14 @@ export const basketUrls = {
   update: 'api/basket/xyz/product',
 };
 
-interface UpdateBasketVariables {
+export interface UpdateBasketVariables {
   productId: string | number;
   data: {
     quantity: number;
   };
 }
 
-interface RemoveItemFromBasketVariables {
+export interface RemoveItemFromBasketVariables {
   productId?: string | number;
 }
 

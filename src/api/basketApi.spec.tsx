@@ -1,6 +1,10 @@
+/* eslint-disable function-paren-newline */
+/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable object-curly-newline */
 import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
-import { BasketDTO, basketMapper, useGetBasket } from './basketApi';
+import { act } from 'react-dom/test-utils';
+import { BasketDTO, basketMapper, useGetBasket, useMutationBasketPost } from './basketApi';
 import Product from '../domain/product';
 import { server } from '../mockServer';
 import { getBasket } from '../tests/fixtures/basket';
@@ -55,5 +59,22 @@ describe('useGetBasket', () => {
     expect(result.current.cart?.items.length).toBeGreaterThan(0);
     expect(result.current.cart?.items[0]).toHaveProperty('product');
     expect(result.current.cart?.items[0]).toHaveProperty('quantity');
+  });
+});
+
+describe('useMutation', () => {
+  test('succesful post of product', () => {
+    const { result } = renderHook(() => useMutationBasketPost(), {
+      wrapper: createWrapper(),
+    });
+
+    act(() =>
+      result.current.mutate({
+        data: {
+          quantity: 1,
+        },
+        productId: 1,
+      }),
+    );
   });
 });
