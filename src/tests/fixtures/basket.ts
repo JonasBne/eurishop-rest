@@ -2,6 +2,10 @@
 /* eslint-disable implicit-arrow-linebreak */
 import { rest } from 'msw';
 
+//
+// GET REQUESTS
+//
+
 export const getBasket = rest.get('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) =>
   res(
     ctx.status(200),
@@ -28,6 +32,10 @@ export const getBasket = rest.get('https://euricom-test-api.herokuapp.com/api/ba
 export const getBasketFailed = (errorCode = 404) =>
   rest.get('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) => res(ctx.status(errorCode)));
 
+//
+// POST REQUESTS
+//
+
 export const postItemToBasket = rest.post(
   'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
   (req, res, ctx) =>
@@ -43,10 +51,35 @@ export const postItemToBasket = rest.post(
     ),
 );
 
+export const postItemToBasketFailed = (errorCode = 404) =>
+  rest.post('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
+    res(ctx.status(errorCode)),
+  );
+
+//
+// DELETE REQUESTS
+//
+
 export const removeItemFromBasket = rest.delete(
   'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
-  (req, res, ctx) => res(ctx.status(201), ctx.json([])),
+  (req, res, ctx) => res(ctx.json([])),
 );
+
+export const removeItemFromBasketFailed = (errorCode = 404) =>
+  rest.post('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
+    res(ctx.status(errorCode)),
+  );
+
+export const clearBasket = rest.delete('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) =>
+  res(ctx.json([])),
+);
+
+export const clearBasketFailed = (errorCode = 404) =>
+  rest.post('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) => res(ctx.status(errorCode)));
+
+//
+// PATCH REQUESTS
+//
 
 export const patchBasket = rest.patch(
   'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
@@ -62,6 +95,7 @@ export const patchBasket = rest.patch(
     ),
 );
 
-export const clearBasket = rest.delete('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) =>
-  res(ctx.json([])),
-);
+export const patchBasketFailed = (errorCode = 404) =>
+  rest.post('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
+    res(ctx.status(errorCode)),
+  );
