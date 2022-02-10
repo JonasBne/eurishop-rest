@@ -46,9 +46,7 @@ describe('succesful query', () => {
     const loadingSpinner = screen.getByRole('loading');
     expect(loadingSpinner).toBeInTheDocument();
 
-    const productcards = await screen.findAllByRole('productcard');
-    expect(productcards).toBeInTheDocument();
-
-    screen.debug();
+    const productcards = await screen.findAllByRole('card');
+    expect(productcards.length).toBeGreaterThanOrEqual(1);
   });
 });
