@@ -43,6 +43,11 @@ export const postItemToBasket = rest.post(
     ),
 );
 
+export const removeItemFromBasket = rest.delete(
+  'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
+  (req, res, ctx) => res(ctx.status(201), ctx.json([])),
+);
+
 export const patchBasket = rest.patch(
   'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
   (req, res, ctx) =>

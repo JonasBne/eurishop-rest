@@ -11,10 +11,11 @@ import {
   useMutationBasketClear,
   useMutationBasketPatch,
   useMutationBasketPost,
+  useMutationBasketRemoveItem,
 } from './basketApi';
 import Product from '../domain/product';
 import { server } from '../mockServer';
-import { clearBasket, getBasket, patchBasket, postItemToBasket } from '../tests/fixtures/basket';
+import { clearBasket, getBasket, patchBasket, postItemToBasket, removeItemFromBasket } from '../tests/fixtures/basket';
 import createWrapper from '../tests/utils/utils';
 import { getSingleProduct } from '../tests/fixtures/product';
 
@@ -123,6 +124,24 @@ describe('useMutation', () => {
         quantity: 2,
       },
     ]);
+  });
+
+  test('remove item from basket', async () => {
+    server.use(removeItemFromBasket);
+
+    const { result } = renderHook(() => useMutationBasketRemoveItem(), {
+      wrapper: createWrapper(),
+    });
+
+    act(() =>
+      result.current.mutate({
+        productId: 1,
+      }),
+    );
+
+    await waitFor(() => expect(result.current.data).toBeDefined());
+
+    expect(result.current.data).toEqual([]);
   });
 
   test('clear basket', async () => {
