@@ -66,7 +66,7 @@ export const removeItemFromBasket = rest.delete(
 );
 
 export const removeItemFromBasketFailed = (errorCode = 404) =>
-  rest.post('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
+  rest.delete('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
     res(ctx.status(errorCode)),
   );
 
@@ -75,7 +75,7 @@ export const clearBasket = rest.delete('https://euricom-test-api.herokuapp.com/a
 );
 
 export const clearBasketFailed = (errorCode = 404) =>
-  rest.post('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) => res(ctx.status(errorCode)));
+  rest.delete('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) => res(ctx.status(errorCode)));
 
 //
 // PATCH REQUESTS
@@ -96,6 +96,6 @@ export const patchBasket = rest.patch(
 );
 
 export const patchBasketFailed = (errorCode = 404) =>
-  rest.post('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
+  rest.patch('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
     res(ctx.status(errorCode)),
   );

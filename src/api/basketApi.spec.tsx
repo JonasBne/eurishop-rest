@@ -15,7 +15,17 @@ import {
 } from './basketApi';
 import Product from '../domain/product';
 import { server } from '../mockServer';
-import { clearBasket, getBasket, patchBasket, postItemToBasket, removeItemFromBasket } from '../tests/fixtures/basket';
+import {
+  clearBasket,
+  clearBasketFailed,
+  getBasket,
+  patchBasket,
+  patchBasketFailed,
+  postItemToBasket,
+  postItemToBasketFailed,
+  removeItemFromBasket,
+  removeItemFromBasketFailed,
+} from '../tests/fixtures/basket';
 import createWrapper from '../tests/utils/utils';
 import { getSingleProduct } from '../tests/fixtures/product';
 
@@ -99,6 +109,25 @@ describe('useMutation', () => {
     ]);
   });
 
+  test('failed post of product', async () => {
+    server.use(postItemToBasketFailed());
+
+    const { result } = renderHook(() => useMutationBasketPost(), {
+      wrapper: createWrapper(),
+    });
+
+    act(() =>
+      result.current.mutate({
+        data: {
+          quantity: 1,
+        },
+        productId: 1,
+      }),
+    );
+
+    await waitFor(() => expect(result.current.isError).toBeTruthy());
+  });
+
   test('succesful patch of product', async () => {
     server.use(patchBasket);
 
@@ -126,6 +155,25 @@ describe('useMutation', () => {
     ]);
   });
 
+  test('failed patch of product', async () => {
+    server.use(patchBasketFailed());
+
+    const { result } = renderHook(() => useMutationBasketPatch(), {
+      wrapper: createWrapper(),
+    });
+
+    act(() =>
+      result.current.mutate({
+        data: {
+          quantity: 2,
+        },
+        productId: 1,
+      }),
+    );
+
+    await waitFor(() => expect(result.current.isError).toBeTruthy());
+  });
+
   test('remove item from basket', async () => {
     server.use(removeItemFromBasket);
 
@@ -144,6 +192,22 @@ describe('useMutation', () => {
     expect(result.current.data).toEqual([]);
   });
 
+  test('failed remove item from basket', async () => {
+    server.use(removeItemFromBasketFailed());
+
+    const { result } = renderHook(() => useMutationBasketRemoveItem(), {
+      wrapper: createWrapper(),
+    });
+
+    act(() =>
+      result.current.mutate({
+        productId: 1,
+      }),
+    );
+
+    await waitFor(() => expect(result.current.isError).toBeTruthy());
+  });
+
   test('clear basket', async () => {
     server.use(clearBasket);
 
@@ -156,5 +220,17 @@ describe('useMutation', () => {
     await waitFor(() => expect(result.current.data).toBeDefined());
 
     expect(result.current.data).toEqual([]);
+  });
+
+  test('failed clear basket', async () => {
+    server.use(clearBasketFailed());
+
+    const { result } = renderHook(() => useMutationBasketClear(), {
+      wrapper: createWrapper(),
+    });
+
+    act(() => result.current.mutate());
+
+    await waitFor(() => expect(result.current.isError).toBeTruthy());
   });
 });
