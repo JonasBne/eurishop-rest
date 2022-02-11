@@ -1,5 +1,4 @@
 /* eslint-disable no-console */
-/* eslint-disable import/no-extraneous-dependencies */
 import '@testing-library/jest-dom';
 import { setLogger } from 'react-query';
 import { server } from './mockServer';

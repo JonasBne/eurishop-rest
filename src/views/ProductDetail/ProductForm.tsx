@@ -1,5 +1,3 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable max-len */
 /* eslint-disable react/require-default-props */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
@@ -29,7 +27,7 @@ interface ProductFormProps extends SpaceProps {
   initialProduct?: Product;
   gridTemplateAreas: string;
   onCancel?: () => void;
-  onSubmit: (formValues: ProductFormValues) => void;
+  onSubmit?: (formValues: ProductFormValues) => void;
 }
 
 export interface ProductFormValues {
