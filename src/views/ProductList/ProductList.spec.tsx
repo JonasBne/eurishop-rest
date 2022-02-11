@@ -1,5 +1,3 @@
-/* eslint-disable function-paren-newline */
-/* eslint-disable implicit-arrow-linebreak */
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
@@ -46,6 +44,7 @@ describe('succesful query', () => {
     const loadingSpinner = screen.getByRole('loading');
     expect(loadingSpinner).toBeInTheDocument();
 
+    // TODO: test aantal rijen
     const table = await screen.findByRole('table');
     expect(table).toBeInTheDocument();
   });

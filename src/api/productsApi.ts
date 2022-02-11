@@ -34,7 +34,8 @@ export interface RemoveProductVariables {
 export const productUrl = 'api/products';
 
 export const getUrl = (path?: string | number) => {
-  return `${config.serverUrl}/api/products/${path}`;
+  if (path) return `${config.serverUrl}api/products/${path}`;
+  return `${config.serverUrl}api/products`;
 };
 
 export const productKeys = {
