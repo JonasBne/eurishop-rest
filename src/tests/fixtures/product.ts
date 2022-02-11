@@ -1,5 +1,4 @@
 import { rest } from 'msw';
-import config from '../../config';
 import { getUrl } from '../../api/productsApi';
 
 // TODO: uitbreiden zodat ze volledig zijn

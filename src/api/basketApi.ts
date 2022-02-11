@@ -11,13 +11,9 @@ export interface BasketDTO {
   quantity: number;
 }
 
-export const getBaseUrl = () => {
-  return `${config.serverUrl}/api/basket/xyz`;
-};
+export const getBaseUrl = () => `${config.serverUrl}api/basket/xyz`;
 
-export const getUpdateUrl = (path?: string | number) => {
-  return `${config.serverUrl}/api/basket/xyz/${path}`;
-};
+export const getUpdateUrl = (path?: string | number) => `${config.serverUrl}api/basket/xyz/${path}`;
 
 export interface UpdateBasketVariables {
   productId: string | number;
@@ -31,12 +27,12 @@ export interface RemoveItemFromBasketVariables {
 }
 
 const postItemToBasket = async (productId: string | number, data: { quantity: number }) =>
-  api.post(getUpdateUrl(`/product/${productId}`), data);
+  api.post(getUpdateUrl(`product/${productId}`), data);
 
 const patchBasket = async (productId: string | number, data: { quantity: number }) =>
-  api.patch(getUpdateUrl(`/product/${productId}`), data);
+  api.patch(getUpdateUrl(`product/${productId}`), data);
 
-const removeItemFromBasket = async (productId?: string | number) => api.remove(getUpdateUrl(`/product/${productId}`));
+const removeItemFromBasket = async (productId?: string | number) => api.remove(getUpdateUrl(`product/${productId}`));
 
 const clearBasket = async () => api.remove(getBaseUrl());
 

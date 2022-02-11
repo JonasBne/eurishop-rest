@@ -70,6 +70,8 @@ describe('product form', () => {
 
     await waitFor(() => userEvent.click(button));
 
+    // TODO: dieper testen door te checken of de onClick ook de juiste data meegeeft
+
     //   expect(mockOnSubmit).toHaveBeenCalled();
     //   const arg = mockOnSubmit.mock.calls[0][0];
     //   expect(arg.title).toBe('hhh');

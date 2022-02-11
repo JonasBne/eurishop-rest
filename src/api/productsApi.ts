@@ -1,3 +1,4 @@
+/* eslint-disable import/no-cycle */
 import { useMutation, useQueries, useQuery, useQueryClient } from 'react-query';
 import api from './fetchHelper';
 import Product from '../domain/product';
