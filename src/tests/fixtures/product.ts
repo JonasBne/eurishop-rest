@@ -1,5 +1,6 @@
 import { rest } from 'msw';
 import config from '../../config';
+import { getUrl } from '../../api/productsApi';
 
 // TODO: uitbreiden zodat ze volledig zijn
 const products = [
@@ -20,18 +21,16 @@ const products = [
   },
 ];
 
-// TODO: error code 404 teruggeven indien geen product wordt gevonden
 export const getSingleProduct = rest.get(`${config.serverUrl}/api/products/:productId`, (req, res, ctx) => {
   const product = products.find((item) => item.id === parseInt(req.params.productId as string, 10));
+  if (!product) return res(ctx.status(404));
   return res(ctx.status(200), ctx.json(product));
 });
 
 export const getSingleProductFailed = (errorCode = 404) =>
-  rest.get('https://euricom-test-api.herokuapp.com/api/products/:productId', (req, res, ctx) =>
-    res(ctx.status(errorCode)),
-  );
+  rest.get(getUrl('/:productId'), (req, res, ctx) => res(ctx.status(errorCode)));
 
-export const getAllProducts = rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
+export const getAllProducts = rest.get(getUrl(), (req, res, ctx) =>
   res(
     ctx.json({
       selectedProducts: products,
@@ -39,7 +38,7 @@ export const getAllProducts = rest.get('https://euricom-test-api.herokuapp.com/a
   ),
 );
 
-export const getAllProductsEmpty = rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) =>
+export const getAllProductsEmpty = rest.get(getUrl(), (req, res, ctx) =>
   res(
     ctx.json({
       selectedProducts: [],
@@ -48,4 +47,4 @@ export const getAllProductsEmpty = rest.get('https://euricom-test-api.herokuapp.
 );
 
 export const getAllProductsFailed = (errorCode = 404) =>
-  rest.get('https://euricom-test-api.herokuapp.com/api/products', (req, res, ctx) => res(ctx.status(errorCode)));
+  rest.get(getUrl(), (req, res, ctx) => res(ctx.status(errorCode)));
