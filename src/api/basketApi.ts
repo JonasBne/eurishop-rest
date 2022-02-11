@@ -1,11 +1,9 @@
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable max-len */
 import { useQuery, useQueryClient, useMutation } from 'react-query';
 import Product from '../domain/product';
 import { CartItem, Cart } from '../domain/shoppingCart';
 import api from './fetchHelper';
 import { useGetMultipleProducts } from './productsApi';
-import rootUrl from './rootUrl';
+import config from '../config';
 
 export interface BasketDTO {
   id: number;
@@ -13,9 +11,12 @@ export interface BasketDTO {
   quantity: number;
 }
 
-export const basketUrls = {
-  base: 'api/basket/xyz',
-  update: 'api/basket/xyz/product',
+export const getBaseUrl = () => {
+  return `${config.serverUrl}/api/basket/xyz`;
+};
+
+export const getUpdateUrl = (path?: string | number) => {
+  return `${config.serverUrl}/api/basket/xyz/${path}`;
 };
 
 export interface UpdateBasketVariables {
@@ -30,15 +31,14 @@ export interface RemoveItemFromBasketVariables {
 }
 
 const postItemToBasket = async (productId: string | number, data: { quantity: number }) =>
-  api.post(`${rootUrl}${basketUrls.update}/${productId}`, data);
+  api.post(getUpdateUrl(productId), data);
 
 const patchBasket = async (productId: string | number, data: { quantity: number }) =>
-  api.patch(`${rootUrl}${basketUrls.update}/${productId}`, data);
+  api.patch(getUpdateUrl(productId), data);
 
-const removeItemFromBasket = async (productId?: string | number) =>
-  api.remove(`${rootUrl}${basketUrls.update}/${productId}`);
+const removeItemFromBasket = async (productId?: string | number) => api.remove(getUpdateUrl(productId));
 
-const clearBasket = async () => api.remove(`${rootUrl}${basketUrls.base}`);
+const clearBasket = async () => api.remove(getBaseUrl());
 
 export const basketMapper = (products?: Product[], basketDTO?: BasketDTO[]): Cart | undefined => {
   if (!basketDTO || !products) return undefined;
@@ -53,11 +53,9 @@ export const basketMapper = (products?: Product[], basketDTO?: BasketDTO[]): Car
 };
 
 export const useGetBasket = () => {
-  const { data, refetch: cartRefetch } = useQuery<BasketDTO[]>(
-    ['basket'],
-    () => api.get(`${rootUrl}${basketUrls.base}`),
-    { keepPreviousData: true },
-  );
+  const { data, refetch: cartRefetch } = useQuery<BasketDTO[]>(['basket'], () => api.get(getBaseUrl()), {
+    keepPreviousData: true,
+  });
 
   const productIds = data?.map((cartItem) => cartItem.productId) ?? [];
 
