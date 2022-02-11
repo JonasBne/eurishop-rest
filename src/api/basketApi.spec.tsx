@@ -69,8 +69,6 @@ describe('useGetBasket', () => {
 
     await waitFor(() => expect(result.current.cart).toBeDefined());
 
-    console.log(result.current.cart?.items);
-
     expect(result.current.cart?.items.length).toBeGreaterThan(0);
     expect(result.current.cart?.items[0]).toHaveProperty('product');
     expect(result.current.cart?.items[0]).toHaveProperty('quantity');

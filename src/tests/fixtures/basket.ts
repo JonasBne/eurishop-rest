@@ -35,7 +35,7 @@ export const getBasketFailed = (errorCode = 404) =>
 // POST REQUESTS
 //
 
-export const postItemToBasket = rest.post(getUpdateUrl(`/product/:productId`), (req, res, ctx) =>
+export const postItemToBasket = rest.post(getUpdateUrl(`product/:productId`), (req, res, ctx) =>
   res(
     ctx.status(201),
     ctx.json([
@@ -49,18 +49,18 @@ export const postItemToBasket = rest.post(getUpdateUrl(`/product/:productId`), (
 );
 
 export const postItemToBasketFailed = (errorCode = 404) =>
-  rest.post(getUpdateUrl(`/product/:productId`), (req, res, ctx) => res(ctx.status(errorCode)));
+  rest.post(getUpdateUrl(`product/:productId`), (req, res, ctx) => res(ctx.status(errorCode)));
 
 //
 // DELETE REQUESTS
 //
 
-export const removeItemFromBasket = rest.delete(getUpdateUrl(`/product/:productId`), (req, res, ctx) =>
+export const removeItemFromBasket = rest.delete(getUpdateUrl(`product/:productId`), (req, res, ctx) =>
   res(ctx.json([])),
 );
 
 export const removeItemFromBasketFailed = (errorCode = 404) =>
-  rest.delete(getUpdateUrl(`/product/:productId`), (req, res, ctx) => res(ctx.status(errorCode)));
+  rest.delete(getUpdateUrl(`product/:productId`), (req, res, ctx) => res(ctx.status(errorCode)));
 
 export const clearBasket = rest.delete(getBaseUrl(), (req, res, ctx) => res(ctx.json([])));
 
@@ -71,7 +71,7 @@ export const clearBasketFailed = (errorCode = 404) =>
 // PATCH REQUESTS
 //
 
-export const patchBasket = rest.patch(getUpdateUrl(`/product/:productId`), (req, res, ctx) =>
+export const patchBasket = rest.patch(getUpdateUrl(`product/:productId`), (req, res, ctx) =>
   res(
     ctx.json([
       {
@@ -84,4 +84,4 @@ export const patchBasket = rest.patch(getUpdateUrl(`/product/:productId`), (req,
 );
 
 export const patchBasketFailed = (errorCode = 404) =>
-  rest.patch(getUpdateUrl(`/product/:productId`), (req, res, ctx) => res(ctx.status(errorCode)));
+  rest.patch(getUpdateUrl(`product/:productId`), (req, res, ctx) => res(ctx.status(errorCode)));
