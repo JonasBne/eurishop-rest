@@ -103,6 +103,7 @@ describe('useQuery', () => {
 
   describe('multiple products', () => {
     test('succesful query returns an array with multiple products', async () => {
+      console.log('URL', process.env.REACT_APP_SERVER_URL);
       server.use(getSingleProduct);
 
       const { result } = renderHook(() => useGetMultipleProducts(['1', '2', '3'], true), { wrapper: createWrapper() });

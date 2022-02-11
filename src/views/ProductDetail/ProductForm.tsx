@@ -28,7 +28,7 @@ interface ProductFormProps extends SpaceProps {
   title: string;
   initialProduct?: Product;
   gridTemplateAreas: string;
-  onCancel: () => void;
+  onCancel?: () => void;
   onSubmit: (formValues: ProductFormValues) => void;
 }
 
@@ -43,7 +43,16 @@ export interface ProductFormValues {
   price: string;
 }
 
-function ProductForm({ initialProduct, gridTemplateAreas, onCancel, onSubmit, title, ...spacing }: ProductFormProps) {
+const noop: any = () => {};
+
+function ProductForm({
+  initialProduct,
+  gridTemplateAreas,
+  onCancel = noop,
+  onSubmit = noop,
+  title,
+  ...spacing
+}: ProductFormProps) {
   const { register, handleSubmit } = useForm<ProductFormValues>({
     defaultValues: {
       id: initialProduct?.id?.toString(),

@@ -22,12 +22,7 @@ describe('product form', () => {
   test('labels match their inputs', () => {
     render(
       <ThemeProvider theme={theme}>
-        <ProductForm
-          title={title}
-          gridTemplateAreas={gridTemplateAreas}
-          onCancel={mockOnCancel}
-          onSubmit={mockOnSubmit}
-        />
+        <ProductForm title={title} gridTemplateAreas={gridTemplateAreas} onSubmit={mockOnSubmit} />
       </ThemeProvider>,
     );
 
@@ -75,7 +70,14 @@ describe('product form', () => {
 
     await waitFor(() => userEvent.click(button));
 
-    expect(mockOnSubmit).toBeCalledTimes(1);
+    expect(mockOnSubmit).toHaveBeenCalled();
+    const arg = mockOnSubmit.mock.calls[0][0];
+    expect(arg.title).toBe('hhh');
+
+
+    expect(mockOnSubmit).toHaveBeenCalledWith(expect.objectContaining({
+      title: 'hhh'
+    })
   });
 });
 

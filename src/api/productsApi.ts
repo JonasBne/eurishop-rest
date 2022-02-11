@@ -1,12 +1,8 @@
-/* eslint-disable function-paren-newline */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable object-curly-newline */
-/* eslint-disable max-len */
-/* eslint-disable import/no-cycle */
 import { useMutation, useQueries, useQuery, useQueryClient } from 'react-query';
 import api from './fetchHelper';
-import rootUrl from './rootUrl';
 import Product from '../domain/product';
+
+import config from '../config';
 
 export interface ProductDTO {
   id: number;
@@ -37,6 +33,10 @@ export interface RemoveProductVariables {
 
 export const productUrl = 'api/products';
 
+export const getUrl = (path?: string | number) => {
+  return `${config.serverUrl}/api/products/${path}`;
+};
+
 export const productKeys = {
   all: ['products'],
   paged: (page: number) => [...productKeys.all, { page }],
@@ -50,15 +50,15 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
   };
 };
 
-const postProduct = async (data: any) => api.post(`${rootUrl}${productUrl}`, data);
+const postProduct = async (data: any) => api.post(getUrl(), data);
 
 const putProduct = async (productId: string | number, data: any) =>
-  api.put(`${rootUrl}${productUrl}/${productId}`, data);
+  api.put(`${config.serverUrl}${productUrl}/${productId}`, data);
 
-const removeProduct = async (productId: string | number) => api.remove(`${rootUrl}${productUrl}/${productId}`);
+const removeProduct = async (productId: string | number) => api.remove(getUrl(productId));
 
 export const useGetProduct = (productId: string) => {
-  const url = `${rootUrl}${productUrl}/${productId}`;
+  const url = `${config.serverUrl}${productUrl}/${productId}`;
 
   const { isLoading, isError, data, error } = useQuery<ProductDTO, Error>(
     [productKeys.detail(productId), productId],
@@ -75,7 +75,7 @@ export const useGetProduct = (productId: string) => {
 };
 
 export const useGetProducts = (page = 0) => {
-  const url = `${rootUrl}${productUrl}/?page=${page}`;
+  const url = getUrl(`?page=${page}`);
   const { isLoading, isError, data, error, refetch } = useQuery<ProductsDTO, Error>(
     [productKeys.paged(page), page],
     () => api.get(url),
@@ -91,7 +91,7 @@ export const useGetProducts = (page = 0) => {
 };
 
 export const useGetMultipleProducts = (productIds: string[] | number[], enabled: boolean) => {
-  const urls = productIds.map((productId) => `${rootUrl}${productUrl}/${productId}`);
+  const urls = productIds.map((productId) => getUrl(productId));
 
   const productQueries = useQueries(
     urls.map((url) => ({

@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable function-paren-newline */
-/* eslint-disable implicit-arrow-linebreak */
+/* eslint-disable import/no-extraneous-dependencies */
 import '@testing-library/jest-dom';
 import { setLogger } from 'react-query';
 import { server } from './mockServer';

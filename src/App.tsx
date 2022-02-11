@@ -11,8 +11,11 @@ import ProductEdit from './views/ProductDetail/ProductEdit';
 import ProductList from './views/ProductList/ProductList';
 import GlobalStyle from './theme/globalStyle';
 import ProductAdd from './views/ProductDetail/ProductAdd';
+import config from './config';
 
 const queryClient = new QueryClient();
+
+console.log('config', config);
 
 function App() {
   return (

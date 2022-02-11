@@ -1,12 +1,9 @@
 ## TO-DO's
 
-- [x] toevoegen van mutation voor basket en vervangen in Home.tsx (ipv useUpdate)
-- [x] testing van useMutation
-- [x] config file voor jest
-- [x] vervang await waitFor(() => getByRole) door await findByRole
-- [x] finalizeren unit testing ProductList,
-- [x] test Home component
-- [ ] Appollo GraphQL tutorial (youtube, egghead)
+- custom render hook die een functie accepteert
+- custom render functie met providers https://github.com/testing-library/react-testing-library/issues/634
+- urls overal aanpassen
+- getUrl voor basket
 
 ## Vragen
 
