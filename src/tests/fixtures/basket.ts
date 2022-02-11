@@ -1,12 +1,11 @@
-/* eslint-disable function-paren-newline */
-/* eslint-disable implicit-arrow-linebreak */
 import { rest } from 'msw';
+import { getBaseUrl, getUpdateUrl } from '../../api/basketApi';
 
 //
 // GET REQUESTS
 //
 
-export const getBasket = rest.get('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) =>
+export const getBasket = rest.get(getBaseUrl(), (req, res, ctx) =>
   res(
     ctx.status(200),
     ctx.json([
@@ -30,72 +29,59 @@ export const getBasket = rest.get('https://euricom-test-api.herokuapp.com/api/ba
 );
 
 export const getBasketFailed = (errorCode = 404) =>
-  rest.get('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) => res(ctx.status(errorCode)));
+  rest.get(getBaseUrl(), (req, res, ctx) => res(ctx.status(errorCode)));
 
 //
 // POST REQUESTS
 //
 
-export const postItemToBasket = rest.post(
-  'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
-  (req, res, ctx) =>
-    res(
-      ctx.status(201),
-      ctx.json([
-        {
-          id: 1,
-          productId: 1,
-          quantity: 1,
-        },
-      ]),
-    ),
+export const postItemToBasket = rest.post(getUpdateUrl(`/product/:productId`), (req, res, ctx) =>
+  res(
+    ctx.status(201),
+    ctx.json([
+      {
+        id: 1,
+        productId: 1,
+        quantity: 1,
+      },
+    ]),
+  ),
 );
 
 export const postItemToBasketFailed = (errorCode = 404) =>
-  rest.post('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
-    res(ctx.status(errorCode)),
-  );
+  rest.post(getUpdateUrl(`/product/:productId`), (req, res, ctx) => res(ctx.status(errorCode)));
 
 //
 // DELETE REQUESTS
 //
 
-export const removeItemFromBasket = rest.delete(
-  'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
-  (req, res, ctx) => res(ctx.json([])),
-);
-
-export const removeItemFromBasketFailed = (errorCode = 404) =>
-  rest.delete('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
-    res(ctx.status(errorCode)),
-  );
-
-export const clearBasket = rest.delete('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) =>
+export const removeItemFromBasket = rest.delete(getUpdateUrl(`/product/:productId`), (req, res, ctx) =>
   res(ctx.json([])),
 );
 
+export const removeItemFromBasketFailed = (errorCode = 404) =>
+  rest.delete(getUpdateUrl(`/product/:productId`), (req, res, ctx) => res(ctx.status(errorCode)));
+
+export const clearBasket = rest.delete(getBaseUrl(), (req, res, ctx) => res(ctx.json([])));
+
 export const clearBasketFailed = (errorCode = 404) =>
-  rest.delete('https://euricom-test-api.herokuapp.com/api/basket/xyz', (req, res, ctx) => res(ctx.status(errorCode)));
+  rest.delete(getBaseUrl(), (req, res, ctx) => res(ctx.status(errorCode)));
 
 //
 // PATCH REQUESTS
 //
 
-export const patchBasket = rest.patch(
-  'https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId',
-  (req, res, ctx) =>
-    res(
-      ctx.json([
-        {
-          id: 1,
-          productId: 1,
-          quantity: 2,
-        },
-      ]),
-    ),
+export const patchBasket = rest.patch(getUpdateUrl(`/product/:productId`), (req, res, ctx) =>
+  res(
+    ctx.json([
+      {
+        id: 1,
+        productId: 1,
+        quantity: 2,
+      },
+    ]),
+  ),
 );
 
 export const patchBasketFailed = (errorCode = 404) =>
-  rest.patch('https://euricom-test-api.herokuapp.com/api/basket/xyz/product/:productId', (req, res, ctx) =>
-    res(ctx.status(errorCode)),
-  );
+  rest.patch(getUpdateUrl(`/product/:productId`), (req, res, ctx) => res(ctx.status(errorCode)));

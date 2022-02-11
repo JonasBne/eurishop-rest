@@ -21,14 +21,14 @@ const products = [
   },
 ];
 
-export const getSingleProduct = rest.get(getUrl(`/:productId`), (req, res, ctx) => {
+export const getSingleProduct = rest.get(getUrl(`:productId`), (req, res, ctx) => {
   const product = products.find((item) => item.id === parseInt(req.params.productId as string, 10));
   if (!product) return res(ctx.status(404));
   return res(ctx.status(200), ctx.json(product));
 });
 
 export const getSingleProductFailed = (errorCode = 404) =>
-  rest.get(getUrl('/:productId'), (req, res, ctx) => res(ctx.status(errorCode)));
+  rest.get(getUrl(':productId'), (req, res, ctx) => res(ctx.status(errorCode)));
 
 export const getAllProducts = rest.get(getUrl(), (req, res, ctx) =>
   res(
@@ -46,7 +46,5 @@ export const getAllProductsEmpty = rest.get(getUrl(), (req, res, ctx) =>
   ),
 );
 
-export const getAllProductsFailed = (errorCode = 404) => {
-  console.log(getUrl());
-  return rest.get(getUrl(), (req, res, ctx) => res(ctx.status(errorCode)));
-};
+export const getAllProductsFailed = (errorCode = 404) =>
+  rest.get(getUrl(), (req, res, ctx) => res(ctx.status(errorCode)));

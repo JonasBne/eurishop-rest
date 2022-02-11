@@ -1,6 +1,3 @@
-/* eslint-disable function-paren-newline */
-/* eslint-disable implicit-arrow-linebreak */
-/* eslint-disable object-curly-newline */
 import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
@@ -64,7 +61,6 @@ describe('basket mapper', () => {
   });
 });
 
-// TODO: is this ok?
 describe('useGetBasket', () => {
   test('succesful query returns a basket', async () => {
     server.resetHandlers(getSingleProduct, getBasket);
@@ -79,7 +75,6 @@ describe('useGetBasket', () => {
   });
 });
 
-// TODO: are these tests ok?
 describe('useMutation', () => {
   test('succesful post of product', async () => {
     server.use(postItemToBasket);
