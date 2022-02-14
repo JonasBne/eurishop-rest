@@ -2,23 +2,19 @@ import { useState } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
 
-export type UpdateMethods = 'POST' | 'PUT' | 'DELETE';
+type UpdateMethods = 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
-function useUpdate<T>(url: string) {
+function useUpdate<T>() {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<Error>();
   const [updatedData, setUpdatedData] = useState<T>();
 
-  const update = async (
-    method: UpdateMethods,
-    data: T | undefined,
-    id: number | string = '',
-  ) => {
+  const sendHttpRequest = async (method: UpdateMethods, url: string, data?: T | null) => {
     try {
       setLoading(true);
-      const response = await fetch(`${url}/${id}`, {
+      const response = await fetch(url, {
         method,
-        headers: data && {
+        headers: {
           'Content-Type': 'application/json',
         },
         body: data && JSON.stringify(data),
@@ -35,10 +31,21 @@ function useUpdate<T>(url: string) {
     }
   };
 
+  const post = (data: any, url: string) => sendHttpRequest('POST', url, data);
+
+  const put = (data: any, url: string) => sendHttpRequest('PUT', url, data);
+
+  const patch = (data: any, url: string) => sendHttpRequest('PATCH', url, data);
+
+  const remove = (url: string) => sendHttpRequest('DELETE', url, null);
+
   return {
     loading,
     error,
-    update,
+    post,
+    put,
+    patch,
+    remove,
     data: updatedData,
   };
 }

@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/require-default-props */
@@ -39,9 +40,9 @@ function Table({
 }: TableProps) {
   return (
     <>
-      <StyledTable {...space}>
+      <StyledTable {...space} role="table">
         <thead>
-          <TableRow>
+          <TableRow role="row">
             {columns.map((col, index) => (
               <SortableTableHead
                 title={col.label}
@@ -55,11 +56,12 @@ function Table({
             ))}
           </TableRow>
         </thead>
-        <tbody>
+        <tbody role="tablebody">
           {data.map((item: any, dataIndex) => (
-            <TableRow key={item.id}>
+            <TableRow key={item.id} role="row">
               {Object.keys(data[0]).map((title: any, index) => (
                 <TableData
+                  role="cell"
                   key={`item${index}${dataIndex}`}
                   onClick={() => {
                     if (onRowClick !== undefined) {
@@ -70,8 +72,10 @@ function Table({
                   {item[title]}
                 </TableData>
               ))}
-              <TableData>
+              <TableData role="cell">
                 <FaIcon
+                  role="img"
+                  aria-label="trash-bin"
                   icon={faTrash}
                   px="0.25rem"
                   color="red"
@@ -88,7 +92,9 @@ function Table({
         </tbody>
       </StyledTable>
       <FlexBox justifyContent="center">
-        <Button type="button" variant="primary" mb="2rem" mx="1rem" onClick={onLoadData}>Load more</Button>
+        <Button type="button" variant="primary" mb="2rem" mx="1rem" onClick={onLoadData}>
+          LOAD MORE...
+        </Button>
       </FlexBox>
     </>
   );

@@ -5,12 +5,12 @@ const sortBy = (data: any[], sortExpression: string | null | undefined) => {
 
   const sortedData = [...data];
   sortedData.sort((a: any, b: any) => {
-    if (sortExpression?.includes("+")) {
+    if (sortExpression?.includes('+')) {
       if (a[sortExpression.substring(1)] < b[sortExpression.substring(1)]) {
         return -1;
       }
     }
-    if (sortExpression?.includes("-")) {
+    if (sortExpression?.includes('-')) {
       if (b[sortExpression.substring(1)] < a[sortExpression.substring(1)]) {
         return -1;
       }

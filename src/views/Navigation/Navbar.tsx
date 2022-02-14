@@ -1,9 +1,9 @@
-import React, { useState, createRef } from "react";
-import styled from "styled-components";
-import Burger from "./Burger/Burger";
-import Menu from "./Menu/Menu";
-import Header from "../../components/Header";
-import useOnClickOutside from "../../hooks/useOnClickOutside";
+import React, { useState, createRef } from 'react';
+import styled from 'styled-components';
+import Burger from './Burger/Burger';
+import Menu from './Menu/Menu';
+import Header from '../../components/Header';
+import useOnClickOutside from '../../hooks/useOnClickOutside';
 
 const StyledNav = styled.nav`
   background: #005f73;

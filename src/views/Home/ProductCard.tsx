@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react/jsx-props-no-spreading */
 import React from 'react';
 import { SpaceProps } from 'styled-system';
@@ -9,13 +10,13 @@ import Product from '../../domain/product';
 
 interface ProductCardProps extends SpaceProps {
   product: Product;
-  onBuy: (product: Product) => void;
+  onBuy: (productId: string | number) => void;
 }
 
 function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
   const handleBuy = (event: React.MouseEvent) => {
     event.preventDefault();
-    onBuy(product);
+    onBuy(product.id!);
   };
 
   return (
@@ -27,14 +28,7 @@ function ProductCard({ product, onBuy, ...space }: ProductCardProps) {
       {...space}
     >
       {product.stocked ? (
-        <Button
-          type="button"
-          variant="primary"
-          my="1rem"
-          mx="6rem"
-          px="1rem"
-          onClick={handleBuy}
-        >
+        <Button type="button" variant="primary" my="1rem" mx="6rem" px="1rem" onClick={handleBuy}>
           ADD
           <FaIcon icon={faShoppingCart} mx=".25rem" />
         </Button>

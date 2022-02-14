@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { space, SpaceProps } from "styled-system";
+import styled from 'styled-components';
+import { space, SpaceProps } from 'styled-system';
 
 const StyledTable = styled.table<SpaceProps>`
   ${space}
@@ -35,4 +35,6 @@ const TableData = styled.td`
   background: ${({ theme }) => theme.colors.whites.primaryWhite};
 `;
 
-export { StyledTable, TableHead, TableRow, TableData };
+export {
+  StyledTable, TableHead, TableRow, TableData,
+};

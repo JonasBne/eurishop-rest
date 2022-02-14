@@ -1,9 +1,9 @@
 /* eslint-disable import/no-cycle */
-import rootUrl from './rootUrl';
-import useFetch from '../hooks/useFetch';
-import useUpdate from '../hooks/useUpdate';
+import { useMutation, useQueries, useQuery, useQueryClient } from 'react-query';
+import api from './fetchHelper';
 import Product from '../domain/product';
-import useUpdate2 from '../hooks/useUpdate2';
+
+import config from '../config';
 
 export interface ProductDTO {
   id: number;
@@ -23,7 +23,27 @@ export interface ProductsDTO {
   selectedProducts: ProductDTO[];
 }
 
-const url = 'api/products';
+export interface PutProductVariables {
+  productId: string | number;
+  product: ProductDTO;
+}
+
+export interface RemoveProductVariables {
+  productId: string | number;
+}
+
+export const productUrl = 'api/products';
+
+export const getUrl = (path?: string | number) => {
+  if (path) return `${config.serverUrl}api/products/${path}`;
+  return `${config.serverUrl}api/products`;
+};
+
+export const productKeys = {
+  all: ['products'],
+  paged: (page: number) => [...productKeys.all, { page }],
+  detail: (productId: string | number) => [...productKeys.all, { productId }],
+};
 
 const productMapper = (dto?: ProductDTO): Product | undefined => {
   if (!dto) return undefined;
@@ -32,58 +52,92 @@ const productMapper = (dto?: ProductDTO): Product | undefined => {
   };
 };
 
+const postProduct = async (data: any) => api.post(getUrl(), data);
+
+const putProduct = async (productId: string | number, data: any) =>
+  api.put(`${config.serverUrl}${productUrl}/${productId}`, data);
+
+const removeProduct = async (productId: string | number) => api.remove(getUrl(productId));
+
 export const useGetProduct = (productId: string) => {
-  const { loading, error, data } = useFetch<ProductDTO>(
-    `${rootUrl}${url}/${productId}`,
+  const url = `${config.serverUrl}${productUrl}/${productId}`;
+
+  const { isLoading, isError, data, error } = useQuery<ProductDTO, Error>(
+    [productKeys.detail(productId), productId],
+    () => api.get(url),
+    { keepPreviousData: true },
   );
+
   return {
-    loading,
+    isLoading,
+    isError,
     error,
     product: productMapper(data),
   };
 };
 
-export const useGetProducts = () => {
-  const {
-    loading, error, data, refetch, fetchDataNextPage,
-  } = useFetch<ProductsDTO>(`${rootUrl}${url}`);
+export const useGetProducts = (page = 0) => {
+  const url = getUrl(`?page=${page}`);
+  const { isLoading, isError, data, error, refetch } = useQuery<ProductsDTO, Error>(
+    [productKeys.paged(page), page],
+    () => api.get(url),
+  );
+
   return {
-    loading,
+    isLoading,
+    isError,
     error,
-    products: data?.selectedProducts.map(
-      (product: ProductDTO) => productMapper(product)!,
-    ),
+    products: data?.selectedProducts.map((product: ProductDTO) => productMapper(product)!),
     refetch,
-    fetchDataNextPage,
   };
 };
 
-export const useUpdateProduct = () => {
-  const {
-    loading, error, data, update,
-  } = useUpdate<ProductDTO>(
-    `${rootUrl}${url}`,
+export const useGetMultipleProducts = (productIds: string[] | number[], enabled: boolean) => {
+  const urls = productIds.map((productId) => getUrl(productId));
+
+  const productQueries = useQueries(
+    urls.map((url) => ({
+      queryKey: ['product', url],
+      queryFn: () => api.get(url),
+      enabled,
+    })),
   );
+
+  const products = productQueries.map((product) => product.data);
   return {
-    loading,
-    error,
-    data,
-    update,
+    isLoading: !!productQueries.some((query) => query.isLoading),
+    isError: !!productQueries.some((query) => query.isError),
+    error: productQueries.find((query) => query.error !== undefined),
+    products: productQueries.some((query) => query.isLoading) ? [] : products,
   };
 };
 
-export const useUpdateProduct2 = () => {
-  const {
-    loading, error, post, put, remove, data,
-  } = useUpdate2<ProductDTO>(
-    `${rootUrl}${url}`,
+export const useMutationProductPost = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ProductDTO, Error, ProductDTO>((product) => postProduct(product), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(productKeys.all);
+    },
+  });
+};
+
+export const useMutationProductPut = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ProductDTO, Error, PutProductVariables>(
+    ({ productId, product }) => putProduct(productId, product),
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(productKeys.all);
+      },
+    },
   );
-  return {
-    loading,
-    error,
-    post,
-    put,
-    remove,
-    data,
-  };
+};
+
+export const useMutationProductRemove = () => {
+  const queryClient = useQueryClient();
+  return useMutation<ProductDTO, Error, RemoveProductVariables>(({ productId }) => removeProduct(productId), {
+    onSuccess: () => {
+      queryClient.invalidateQueries(productKeys.all);
+    },
+  });
 };

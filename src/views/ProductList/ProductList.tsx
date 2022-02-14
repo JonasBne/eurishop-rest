@@ -1,6 +1,7 @@
+/* eslint-disable object-curly-newline */
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
-import { useGetProducts, useUpdateProduct2 } from '../../api/productsApi';
+import { useGetProducts, useMutationProductRemove } from '../../api/productsApi';
 import Table from '../../components/Table/Table';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import sortBy from '../../utils/sortBy';
@@ -9,13 +10,13 @@ import Button from '../../components/Button';
 import toasts from '../../components/toasts';
 
 function ProductList() {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [page, setPage] = useState<number>(0);
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  const {
-    loading, error, products, refetch, fetchDataNextPage,
-  } = useGetProducts();
+  const { isLoading, error, products, refetch } = useGetProducts(page);
 
-  const { error: deleteError, data: deletedData, remove } = useUpdateProduct2();
+  const { mutate, error: deleteError, data: deletedData } = useMutationProductRemove();
 
   const [sortExpression, setSortExpression] = useState<string>('');
 
@@ -34,10 +35,8 @@ function ProductList() {
   };
 
   const handleAction = (productId: string) => {
-    remove(productId);
+    mutate({ productId });
   };
-
-  // TODO: issue with sorting on Product ID and Product Number (order changes)
 
   const sortedProducts = sortBy(products ?? [], sortExpression);
 
@@ -102,18 +101,17 @@ function ProductList() {
     navigate('/products/new');
   };
 
+  const handleLoadMoreData = () => {
+    setPage((prePage) => prePage + 1);
+  };
+
   return (
     <>
-      {loading && !error && <LoadingSpinner />}
+      {isLoading && !error && <LoadingSpinner />}
       {error && <ErrorModal name={error.name} message={error.message} />}
       {products && (
         <>
-          <Button
-            m="2rem 0 0 2rem"
-            p="0.5rem 2rem"
-            variant="primary"
-            onClick={handleAddProductClick}
-          >
+          <Button m="2rem 0 0 2rem" p="0.5rem 2rem" variant="primary" onClick={handleAddProductClick}>
             Add product +
           </Button>
           <Table
@@ -123,7 +121,7 @@ function ProductList() {
             setSortExpression={setSortExpression}
             onRowClick={handleRedirect}
             onActionClick={handleAction}
-            onLoadData={fetchDataNextPage}
+            onLoadData={handleLoadMoreData}
             my="2.5rem"
             mx="2rem"
           />

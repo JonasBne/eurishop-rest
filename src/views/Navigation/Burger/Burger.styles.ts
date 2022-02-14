@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface StyledBurgerProps {
   open: boolean;
@@ -26,7 +26,7 @@ const StyledBurger = styled.button`
   div {
     width: 2rem;
     height: 0.25rem;
-    background: ${({ open }: StyledBurgerProps) => (open ? "#0D0C1D" : "#FFF")};
+    background: ${({ open }: StyledBurgerProps) => (open ? '#0D0C1D' : '#FFF')};
     border-radius: 10px;
     transition: all 0.3s linear;
     position: relative;

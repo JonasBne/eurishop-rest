@@ -1,15 +1,13 @@
 import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import toasts from '../../components/toasts';
-import { ProductDTO, useUpdateProduct2 } from '../../api/productsApi';
+import { ProductDTO, useMutationProductPost } from '../../api/productsApi';
 import ProductForm, { ProductFormValues } from './ProductForm';
 
 function ProductAdd() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
-  const {
-    error: postError, data: postedData, post,
-  } = useUpdateProduct2();
+  const { mutate, error: postError, data: postedProduct } = useMutationProductPost();
 
   const gridTemplateAreas = `
   "title sku"
@@ -22,11 +20,15 @@ function ProductAdd() {
     if (postError) {
       failToast(postError);
     }
-    if (postedData) {
-      succesToast(`New product with id: ${postedData.id} added!`);
+    if (postedProduct) {
+      succesToast(`New product with id ${postedProduct.id} added!`);
       navigate('/products/admin');
     }
-  }, [postError, postedData]);
+  }, [postError, postedProduct]);
+
+  const handleCancel = () => {
+    navigate('/products/admin');
+  };
 
   const handleSubmit = (formValues: ProductFormValues) => {
     const product: ProductDTO = {
@@ -35,13 +37,14 @@ function ProductAdd() {
       price: +formValues.price,
       id: 0,
     };
-    post(product);
+    mutate(product);
   };
 
   return (
     <ProductForm
       title="NEW PRODUCT"
       gridTemplateAreas={gridTemplateAreas}
+      onCancel={handleCancel}
       onSubmit={handleSubmit}
       mt="2rem"
       mx="auto"

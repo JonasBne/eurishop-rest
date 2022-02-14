@@ -1,9 +1,11 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable jsx-a11y/aria-role */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { ReactNode, useContext } from "react";
-import styled, { ThemeContext } from "styled-components";
-import { SpaceProps } from "styled-system";
-import Box from "./Box";
-import Header from "./Header";
+import React, { ReactNode, useContext } from 'react';
+import styled, { ThemeContext } from 'styled-components';
+import { SpaceProps } from 'styled-system';
+import Box from './Box';
+import Header from './Header';
 
 const CardMedia = styled.img`
   width: 60%;
@@ -28,8 +30,7 @@ const CardFooter = styled.p`
   font-style: italic;
 `;
 
-export interface CardProps
-  extends Omit<SpaceProps, "p" | "pl" | "pr" | "px" | "py"> {
+export interface CardProps extends Omit<SpaceProps, 'p' | 'pl' | 'pr' | 'px' | 'py'> {
   title: string;
   image: string;
   content: string;
@@ -37,14 +38,7 @@ export interface CardProps
   children?: ReactNode;
 }
 
-function Card({
-  title,
-  image,
-  content,
-  footerContent,
-  children,
-  ...space
-}: CardProps) {
+function Card({ title, image, content, footerContent, children, ...space }: CardProps) {
   const theme = useContext(ThemeContext);
 
   return (
@@ -54,6 +48,7 @@ function Card({
       backgroundColor={theme.colors.whites.primaryWhite}
       boxShadow="rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;"
       {...space}
+      role="card"
     >
       <Header as="h3" variant="secondary">
         {title}

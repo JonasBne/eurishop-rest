@@ -1,10 +1,8 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable max-len */
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import {
-  useGetProduct,
-  ProductDTO,
-  useUpdateProduct2,
-} from '../../api/productsApi';
+import { useGetProduct, ProductDTO, useMutationProductPut } from '../../api/productsApi';
 import LoadingSpinner from '../../components/LoadingSpinner';
 import ErrorModal from '../../components/ErrorModal/ErrorModal';
 import ProductForm, { ProductFormValues } from './ProductForm';
@@ -14,8 +12,8 @@ function ProductEdit() {
   const { succesToast, failToast } = toasts();
   const navigate = useNavigate();
   const { productId } = useParams<string>();
-  const { loading, error, product } = useGetProduct(productId!);
-  const { error: putError, data: puttedData, put } = useUpdateProduct2();
+  const { isLoading, error, product } = useGetProduct(productId!);
+  const { mutate, error: putError, data: puttedData } = useMutationProductPut();
 
   const gridTemplateAreas = `
   "title sku"
@@ -29,10 +27,14 @@ function ProductEdit() {
       failToast(putError);
     }
     if (puttedData) {
-      succesToast(`Item with id: ${puttedData.id} updated!`);
+      succesToast(`Item with id ${puttedData.id} updated!`);
       navigate('/products/admin');
     }
   }, [putError, puttedData]);
+
+  const handleCancel = () => {
+    navigate('/products/admin');
+  };
 
   const handleSubmit = (formValues: ProductFormValues) => {
     const item: ProductDTO = {
@@ -42,18 +44,19 @@ function ProductEdit() {
       price: +formValues.price,
     };
 
-    put(item, item.id);
+    mutate({ productId: item.id, product: item });
   };
 
   return (
     <>
-      {loading && <LoadingSpinner />}
+      {isLoading && <LoadingSpinner />}
       {error && <ErrorModal name={error.name} message={error.message} />}
       {product && (
         <ProductForm
           title="EDIT PRODUCT"
           gridTemplateAreas={gridTemplateAreas}
           initialProduct={product}
+          onCancel={handleCancel}
           onSubmit={handleSubmit}
           mt="2rem"
           mx="auto"

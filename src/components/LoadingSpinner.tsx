@@ -1,6 +1,7 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
-import { space, SpaceProps } from "styled-system";
+/* eslint-disable jsx-a11y/aria-role */
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import { space, SpaceProps } from 'styled-system';
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -18,7 +19,7 @@ const Loader = styled.div<SpaceProps>`
 `;
 
 function LoadingSpinner() {
-  return <Loader mx="auto" mt="3rem" />;
+  return <Loader mx="auto" mt="3rem" role="loading" aria-busy="true" />;
 }
 
 export default LoadingSpinner;
