@@ -26,16 +26,6 @@ describe('product form', () => {
     await waitFor(() => userEvent.click(button));
 
     expect(mockOnSubmit).toHaveBeenCalledTimes(1);
-
-    // TODO: dieper testen door te checken of de onClick ook de juiste data meegeeft
-
-    //   expect(mockOnSubmit).toHaveBeenCalled();
-    //   const arg = mockOnSubmit.mock.calls[0][0];
-    //   expect(arg.title).toBe('hhh');
-
-    //   expect(mockOnSubmit).toHaveBeenCalledWith(expect.objectContaining({
-    //     title: 'hhh'
-    //   })
   });
 });
 
@@ -123,7 +113,7 @@ describe('edit existing product', () => {
     expect(descInput).toHaveValue('custom product');
   });
 
-  test('form values take into account changes by user', () => {
+  test('form values take into account changes by user', async () => {
     customRender(
       <ProductForm
         title={title}
@@ -142,8 +132,11 @@ describe('edit existing product', () => {
 
     userEvent.click(stockedInput);
 
-    const form = screen.getByRole('form');
-    expect(form).toHaveFormValues({
+    const button = screen.getByRole('button', { name: /save/i });
+
+    await waitFor(() => userEvent.click(button));
+
+    expect(mockOnSubmit.mock.calls[0][0]).toMatchObject({
       title: 'new title',
       sku: 'AAA-BBB',
       basePrice: '10',
