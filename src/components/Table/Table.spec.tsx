@@ -1,10 +1,9 @@
 import React from 'react';
-import { render, screen, within } from '@testing-library/react';
-import { ThemeProvider } from 'styled-components';
+import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Product from '../../domain/product';
 import Table from './Table';
-import theme from '../../theme/theme';
+import { customRender } from '../../tests/utils/utils';
 
 describe('product list', () => {
   let sortExpression: string;
@@ -101,18 +100,16 @@ describe('product list', () => {
   });
 
   test('number of columns matches the number of columns passed to table', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Table
-          data={products}
-          columns={columns}
-          onLoadData={mockOnLoad}
-          onRowClick={mockOnRowClick}
-          onActionClick={mockOnActionClick}
-          sortExpression={sortExpression}
-          setSortExpression={mockSetSortExpression}
-        />
-      </ThemeProvider>,
+    customRender(
+      <Table
+        data={products}
+        columns={columns}
+        onLoadData={mockOnLoad}
+        onRowClick={mockOnRowClick}
+        onActionClick={mockOnActionClick}
+        sortExpression={sortExpression}
+        setSortExpression={mockSetSortExpression}
+      />,
     );
 
     const tableHead = screen.getByRole('rowgroup');
@@ -122,18 +119,16 @@ describe('product list', () => {
   });
 
   test('number of table rows matches number of products', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Table
-          data={products}
-          columns={columns}
-          onLoadData={mockOnLoad}
-          onRowClick={mockOnRowClick}
-          onActionClick={mockOnActionClick}
-          sortExpression={sortExpression}
-          setSortExpression={mockSetSortExpression}
-        />
-      </ThemeProvider>,
+    customRender(
+      <Table
+        data={products}
+        columns={columns}
+        onLoadData={mockOnLoad}
+        onRowClick={mockOnRowClick}
+        onActionClick={mockOnActionClick}
+        sortExpression={sortExpression}
+        setSortExpression={mockSetSortExpression}
+      />,
     );
 
     const tableBody = screen.getByRole('tablebody');
@@ -143,18 +138,16 @@ describe('product list', () => {
   });
 
   test('click fires onRowClick event', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Table
-          data={products}
-          columns={columns}
-          onLoadData={mockOnLoad}
-          onRowClick={mockOnRowClick}
-          onActionClick={mockOnActionClick}
-          sortExpression={sortExpression}
-          setSortExpression={mockSetSortExpression}
-        />
-      </ThemeProvider>,
+    customRender(
+      <Table
+        data={products}
+        columns={columns}
+        onLoadData={mockOnLoad}
+        onRowClick={mockOnRowClick}
+        onActionClick={mockOnActionClick}
+        sortExpression={sortExpression}
+        setSortExpression={mockSetSortExpression}
+      />,
     );
 
     userEvent.click(screen.getAllByRole('cell')[0]);
@@ -162,18 +155,16 @@ describe('product list', () => {
     expect(mockOnRowClick).toBeCalledTimes(1);
   });
   test('click fires onLoadData event', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Table
-          data={products}
-          columns={columns}
-          onLoadData={mockOnLoad}
-          onRowClick={mockOnRowClick}
-          onActionClick={mockOnActionClick}
-          sortExpression={sortExpression}
-          setSortExpression={mockSetSortExpression}
-        />
-      </ThemeProvider>,
+    customRender(
+      <Table
+        data={products}
+        columns={columns}
+        onLoadData={mockOnLoad}
+        onRowClick={mockOnRowClick}
+        onActionClick={mockOnActionClick}
+        sortExpression={sortExpression}
+        setSortExpression={mockSetSortExpression}
+      />,
     );
 
     userEvent.click(screen.getByRole('button', { name: /load more/i }));
@@ -182,18 +173,16 @@ describe('product list', () => {
   });
 
   test('click fires onActionClick event', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Table
-          data={products}
-          columns={columns}
-          onLoadData={mockOnLoad}
-          onRowClick={mockOnRowClick}
-          onActionClick={mockOnActionClick}
-          sortExpression={sortExpression}
-          setSortExpression={mockSetSortExpression}
-        />
-      </ThemeProvider>,
+    customRender(
+      <Table
+        data={products}
+        columns={columns}
+        onLoadData={mockOnLoad}
+        onRowClick={mockOnRowClick}
+        onActionClick={mockOnActionClick}
+        sortExpression={sortExpression}
+        setSortExpression={mockSetSortExpression}
+      />,
     );
 
     userEvent.click(screen.getAllByLabelText('trash-bin')[0]);
@@ -202,18 +191,16 @@ describe('product list', () => {
   });
 
   test('click fires setSortExpression', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <Table
-          data={products}
-          columns={columns}
-          onLoadData={mockOnLoad}
-          onRowClick={mockOnRowClick}
-          onActionClick={mockOnActionClick}
-          sortExpression={sortExpression}
-          setSortExpression={mockSetSortExpression}
-        />
-      </ThemeProvider>,
+    customRender(
+      <Table
+        data={products}
+        columns={columns}
+        onLoadData={mockOnLoad}
+        onRowClick={mockOnRowClick}
+        onActionClick={mockOnActionClick}
+        sortExpression={sortExpression}
+        setSortExpression={mockSetSortExpression}
+      />,
     );
 
     userEvent.click(screen.getAllByLabelText('sort-icon')[0]);
