@@ -19,41 +19,6 @@ const mockOnCancel = jest.fn();
 const mockOnSubmit = jest.fn();
 
 describe('product form', () => {
-  test('labels match their inputs', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ProductForm title={title} gridTemplateAreas={gridTemplateAreas} onSubmit={mockOnSubmit} />
-      </ThemeProvider>,
-    );
-
-    screen.getByLabelText(/title/i);
-    screen.getByLabelText(/serial number/i);
-    screen.getByLabelText('Base price');
-    screen.getByLabelText('Unit price');
-    screen.getByLabelText(/in stock/i);
-    screen.getByLabelText(/image url/i);
-    screen.getByLabelText(/description/i);
-  });
-
-  test('click fires onCancel', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ProductForm
-          title={title}
-          gridTemplateAreas={gridTemplateAreas}
-          onCancel={mockOnCancel}
-          onSubmit={mockOnSubmit}
-        />
-      </ThemeProvider>,
-    );
-
-    const button = screen.getByRole('button', { name: /cancel/i });
-
-    userEvent.click(button);
-
-    expect(mockOnCancel).toBeCalledTimes(1);
-  });
-
   test('click fires onSubmit', async () => {
     render(
       <ThemeProvider theme={theme}>
