@@ -1,5 +1,5 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor, within } from '@testing-library/react';
 import ProductList from './ProductList';
 import { customRender } from '../../tests/utils/utils';
 import { server } from '../../mockServer';
@@ -28,5 +28,11 @@ describe('succesful query', () => {
     // TODO: test aantal rijen
     const table = await screen.findByRole('table');
     expect(table).toBeInTheDocument();
+
+    const tableRows = await waitFor(() => within(table).findAllByRole('row'));
+    expect(tableRows.length).toBeGreaterThan(0);
+
+    const tableColumns = await waitFor(() => within(table).findAllByRole('columnheader'));
+    expect(tableColumns.length).toBeGreaterThan(0);
   });
 });
