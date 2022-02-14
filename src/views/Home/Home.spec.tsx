@@ -1,14 +1,10 @@
-/* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
-import { ThemeProvider } from 'styled-components';
+import { screen } from '@testing-library/react';
 import Home from './Home';
 import { customRender } from '../../tests/utils/utils';
 import { server } from '../../mockServer';
 import { getAllProducts, getAllProductsFailed, getSingleProduct } from '../../tests/fixtures/product';
-import theme from '../../theme/theme';
 import { getBasket, getBasketFailed } from '../../tests/fixtures/basket';
 
 describe('failed query', () => {
@@ -23,30 +19,13 @@ describe('failed query', () => {
   });
 });
 
-// TODO: check
-
-/*
-
-Test slaagt maar error over keys. getSingleProduct geeft altijd product terug met id 1.
-Hoe te vermijden?
-*/
-
 describe('succesful query', () => {
   test('renders a loading spinner, product cards and basket', async () => {
     server.use(getAllProducts);
     server.use(getSingleProduct);
     server.use(getBasket);
 
-    render(
-      <BrowserRouter>
-        <ThemeProvider theme={theme}>
-          <Home />
-        </ThemeProvider>
-      </BrowserRouter>,
-      {
-        wrapper: createWrapper(),
-      },
-    );
+    customRender(<Home />);
 
     const loadingSpinner = screen.getByRole('loading');
     expect(loadingSpinner).toBeInTheDocument();
