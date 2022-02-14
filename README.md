@@ -4,7 +4,7 @@
 
 I developed this application during my onboarding at Euricom. The main goal of doing so, was to familiarze myself with different tools, techniques and programming concepts in order to deliver a fully operational CRUD application. A lot of attention was spent towards clean code.
 
-Data is fictional and fetched from https://euricom-test-api.herokuapp.com/.
+Data is fictional and fetched from https://euricom-test-api.herokuapp.com/graphql.
 
 ## Getting Started
 
@@ -56,18 +56,18 @@ See the section about https://facebook.github.io/create-react-app/docs/deploymen
 - Routing: [React Router](https://reactrouter.com/)
 - Feedback: [React-hot-toast](https://react-hot-toast.com/)
 - API:
-  - [react-query](https://react-query.tanstack.com/)
+  - [Apollo Client](https://www.apollographql.com/)
 - Dev Server: [Webpack](https://webpack.js.org/)
 
 ## Tech Stack
 
 - [x] Basic Webpack app setup with TS transpiling and bundeling
-- [x] Npm Scripts: start, build, lint, test
+- [x] Yarn Scripts: start, build, lint, test
 - [x] VSCode recommended extensions and settings for auto save
 - [x] ES linting with ESLint and [AirBnb Style Guide](https://github.com/airbnb/javascript)
 - [x] Jest with babel-jest & @testing-library
 - [x] VSCode launch (debug) config for Chrome & Jest
-- [x] React-query setup & Sample
+- [x] Apollo Client setup
 
 ## Features
 
@@ -79,10 +79,3 @@ See the section about https://facebook.github.io/create-react-app/docs/deploymen
 - [x] New product form
 - [x] Edit contract form
 
-### Future improvements
-
-- Improve mobile experience
-
-- Add form validation
-
-- Host website on Netflify
