@@ -14,10 +14,6 @@ interface WrapperProps {
   children: ReactNode;
 }
 
-interface CustomRenderProps {
-  children: ReactElement;
-}
-
 const createWrapper = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -34,7 +30,7 @@ const createWrapper = () => {
   };
 };
 
-export const customRender = (children: CustomRenderProps) =>
+export const customRender = (children: ReactElement) =>
   render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
