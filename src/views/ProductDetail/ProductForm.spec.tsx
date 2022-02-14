@@ -40,7 +40,7 @@ describe('product form', () => {
 });
 
 describe('add new product', () => {
-  test('form values are correctly stored', () => {
+  test('form values are correctly passed to the onSubmit event', async () => {
     customRender(
       <ProductForm
         title={title}
@@ -66,8 +66,11 @@ describe('add new product', () => {
     userEvent.type(imageInput, 'https://dummyimage.com/');
     userEvent.type(descInput, 'My custom product description');
 
-    const form = screen.getByRole('form');
-    expect(form).toHaveFormValues({
+    const button = screen.getByRole('button', { name: /save/i });
+
+    await waitFor(() => userEvent.click(button));
+
+    expect(mockOnSubmit.mock.calls[0][0]).toMatchObject({
       title: 'My Product',
       sku: 'AAA',
       basePrice: '10.00',
