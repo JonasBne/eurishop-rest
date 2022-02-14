@@ -1,7 +1,7 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable function-paren-newline */
 /* eslint-disable implicit-arrow-linebreak */
-import React, { ReactNode } from 'react';
+import React, { ReactElement, ReactNode } from 'react';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react-hooks';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -15,7 +15,7 @@ interface WrapperProps {
 }
 
 interface CustomRenderProps {
-  children: ReactNode;
+  children: ReactElement;
 }
 
 const createWrapper = () => {
@@ -34,12 +34,15 @@ const createWrapper = () => {
   };
 };
 
-export const customRenderHook = <T extends unknown>(callbackfn: () => T) =>
-  renderHook(callbackfn, { wrapper: createWrapper() });
-
-export const customRender = ({ children }: CustomRenderProps) =>
+export const customRender = (children: CustomRenderProps) =>
   render(
     <BrowserRouter>
       <ThemeProvider theme={theme}>{children}</ThemeProvider>
     </BrowserRouter>,
+    {
+      wrapper: createWrapper(),
+    },
   );
+
+export const customRenderHook = <T extends unknown>(callbackfn: () => T) =>
+  renderHook(callbackfn, { wrapper: createWrapper() });

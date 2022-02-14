@@ -5,7 +5,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
 import { ThemeProvider } from 'styled-components';
 import Home from './Home';
-import { createWrapper } from '../../tests/utils/utils';
+import { customRender } from '../../tests/utils/utils';
 import { server } from '../../mockServer';
 import { getAllProducts, getAllProductsFailed, getSingleProduct } from '../../tests/fixtures/product';
 import theme from '../../theme/theme';
@@ -16,14 +16,7 @@ describe('failed query', () => {
     server.use(getAllProductsFailed(404));
     server.use(getBasketFailed(404));
 
-    render(
-      <BrowserRouter>
-        <Home />
-      </BrowserRouter>,
-      {
-        wrapper: createWrapper(),
-      },
-    );
+    customRender(<Home />);
 
     const errorModal = await screen.findByRole('alert');
     expect(errorModal).toBeInTheDocument();
