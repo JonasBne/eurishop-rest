@@ -1,6 +1,3 @@
-/* eslint-disable import/prefer-default-export */
-/* eslint-disable function-paren-newline */
-/* eslint-disable implicit-arrow-linebreak */
 import React, { ReactElement, ReactNode } from 'react';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react-hooks';
