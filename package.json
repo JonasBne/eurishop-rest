@@ -9,7 +9,7 @@
     "test:watch": "react-scripts test --watchAll",
     "test:coverage": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject",
-    "lint": "eslint --ext .ts --ext .tsx .",
+    "lint": "eslint --ext .js --ext .jsx --ext .ts --ext .tsx .",
     "lint:types": "tsc --noEmit"
   },
   "jest": {
