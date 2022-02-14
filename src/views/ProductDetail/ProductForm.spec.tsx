@@ -19,11 +19,13 @@ const mockOnSubmit = jest.fn();
 
 describe('product form', () => {
   test('click fires onSubmit', async () => {
-    customRender(<ProductForm title={title} gridTemplateAreas={gridTemplateAreas} onCancel={mockOnCancel} />);
+    customRender(<ProductForm title={title} gridTemplateAreas={gridTemplateAreas} onSubmit={mockOnSubmit} />);
 
     const button = screen.getByRole('button', { name: /save/i });
 
     await waitFor(() => userEvent.click(button));
+
+    expect(mockOnSubmit).toHaveBeenCalledTimes(1);
 
     // TODO: dieper testen door te checken of de onClick ook de juiste data meegeeft
 
@@ -38,20 +40,6 @@ describe('product form', () => {
 });
 
 describe('add new product', () => {
-  test('form is rendered with empty input values', () => {
-    customRender(<ProductForm title={title} gridTemplateAreas={gridTemplateAreas} />);
-
-    const form = screen.getByRole('form');
-    expect(form).toHaveFormValues({
-      title: '',
-      sku: '',
-      basePrice: '',
-      price: '',
-      stocked: false,
-      image: '',
-      desc: '',
-    });
-  });
   test('form values are correctly stored', () => {
     customRender(
       <ProductForm
