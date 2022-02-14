@@ -1,22 +1,32 @@
 import { rest } from 'msw';
 import { getUrl } from '../../api/productsApi';
 
-// TODO: uitbreiden zodat ze volledig zijn
 const products = [
   {
     id: 1,
     title: 'pellentesque',
+    sku: 'AAA',
     price: 10.0,
+    basePrice: 10.0,
+    image: 'https://dummyimage.com',
+    desc: 'product 1 description',
   },
   {
     id: 2,
     title: 'ut',
+    sku: 'BBB',
     price: 10.0,
+    basePrice: 10.0,
+    image: 'https://dummyimage.com',
+    desc: 'product 2 description',
   },
   {
     id: 3,
-    title: 'vera',
+    sku: 'CCC',
     price: 10.0,
+    basePrice: 10.0,
+    image: 'https://dummyimage.com',
+    desc: 'product 3 description',
   },
 ];
 

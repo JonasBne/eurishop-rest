@@ -11,8 +11,6 @@ function Menu({ open, setOpen }: MenuProps) {
     setOpen(!open);
   };
 
-  // TODO: bug in link to home?
-
   return (
     <StyledMenu open={open}>
       <StyledLink to="home" onClick={handleClick}>
