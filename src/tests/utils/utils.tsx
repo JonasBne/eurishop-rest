@@ -10,7 +10,7 @@ interface WrapperProps {
   children: ReactNode;
 }
 
-export const createWrapper = () => {
+const createWrapper = () => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
