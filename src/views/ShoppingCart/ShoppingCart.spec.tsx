@@ -1,13 +1,10 @@
-/* eslint-disable object-curly-newline */
-/* eslint-disable max-len */
 import React from 'react';
-import { screen, render, within, waitFor } from '@testing-library/react';
+import { screen, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
 import ShoppingCart from './ShoppingCart';
 import Product from '../../domain/product';
-import theme from '../../theme/theme';
 import { CartItem, calculateTotalCartCost } from '../../domain/shoppingCart';
+import { customRender } from '../../tests/utils/utils';
 
 const mockOnUpdate = jest.fn();
 const mockOnClear = jest.fn();
@@ -36,22 +33,14 @@ describe('shopping cart', () => {
   });
 
   test('renders a total cost', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
-      </ThemeProvider>,
-    );
+    customRender(<ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />);
 
     const totalCost = parseInt(calculateTotalCartCost(cartItems), 10);
     expect(totalCost).toBe(15);
   });
 
   test('click fires onClear event', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
-      </ThemeProvider>,
-    );
+    customRender(<ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />);
 
     const clearBtn = screen.getByRole('button', { name: /clear/i });
     userEvent.click(clearBtn);
@@ -60,11 +49,7 @@ describe('shopping cart', () => {
   });
 
   test('renders two cart items', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
-      </ThemeProvider>,
-    );
+    customRender(<ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />);
 
     const items = screen.getAllByRole('cart-item');
 
@@ -72,11 +57,7 @@ describe('shopping cart', () => {
   });
 
   test('click fires onUpdate event with action decrement quantity 0 and productId 1', async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
-      </ThemeProvider>,
-    );
+    customRender(<ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />);
 
     const items = screen.getAllByRole('cart-item');
     const button = await waitFor(() => within(items[0]).findByRole('button', { name: '-' }));
@@ -88,11 +69,7 @@ describe('shopping cart', () => {
   });
 
   test('click fires onUpdate event with action increment quantity 2 and productId 1', async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />
-      </ThemeProvider>,
-    );
+    customRender(<ShoppingCart cartItems={cartItems} onUpdate={mockOnUpdate} onClear={mockOnClear} />);
 
     const items = screen.getAllByRole('cart-item');
     const button = await waitFor(() => within(items[0]).findByRole('button', { name: '+' }));
