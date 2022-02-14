@@ -36,8 +36,6 @@ function ProductEdit() {
     navigate('/products/admin');
   };
 
-  // TODO: think about a way to clear cache because when you edit a product and reopen the stale data is shown so you have to refresh
-
   const handleSubmit = (formValues: ProductFormValues) => {
     const item: ProductDTO = {
       ...formValues,

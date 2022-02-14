@@ -25,7 +25,6 @@ function BasketItem({ item, onUpdate }: BasketItemProps) {
   };
 
   return (
-    // TODO: have a look at this role and ARIA roles in general
     // eslint-disable-next-line jsx-a11y/aria-role
     <div role="cart-item">
       <Header as="h4" role="heading">
