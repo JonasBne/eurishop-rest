@@ -5,8 +5,16 @@ import React, { ReactNode } from 'react';
 import '@testing-library/jest-dom';
 import { renderHook } from '@testing-library/react-hooks';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { render } from '@testing-library/react';
+import { BrowserRouter } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+import theme from '../../theme/theme';
 
 interface WrapperProps {
+  children: ReactNode;
+}
+
+interface CustomRenderProps {
   children: ReactNode;
 }
 
@@ -28,3 +36,10 @@ const createWrapper = () => {
 
 export const customRenderHook = <T extends unknown>(callbackfn: () => T) =>
   renderHook(callbackfn, { wrapper: createWrapper() });
+
+export const customRender = ({ children }: CustomRenderProps) =>
+  render(
+    <BrowserRouter>
+      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+    </BrowserRouter>,
+  );
