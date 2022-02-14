@@ -8,5 +8,3 @@ export default class CommunicationError extends Error {
     this.error = error;
   }
 }
-
-// TODO: add unit test for errors

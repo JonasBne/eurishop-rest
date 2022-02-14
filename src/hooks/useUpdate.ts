@@ -1,6 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-useless-return */
-/* eslint-disable no-nested-ternary */
 import { useState } from 'react';
 import RequestError from '../errors/RequestError';
 import CommunicationError from '../errors/CommunicationError';
@@ -34,8 +31,6 @@ function useUpdate<T>() {
     }
   };
 
-  // TODO: useCallback
-  // TODO: removeid
   const post = (data: any, url: string) => sendHttpRequest('POST', url, data);
 
   const put = (data: any, url: string) => sendHttpRequest('PUT', url, data);
