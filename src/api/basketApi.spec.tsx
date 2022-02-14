@@ -1,4 +1,3 @@
-import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import {
@@ -23,7 +22,7 @@ import {
   removeItemFromBasket,
   removeItemFromBasketFailed,
 } from '../tests/fixtures/basket';
-import createWrapper from '../tests/utils/utils';
+import { customRenderHook } from '../tests/utils/utils';
 import { getSingleProduct } from '../tests/fixtures/product';
 
 describe('basket mapper', () => {
@@ -65,11 +64,10 @@ describe('useGetBasket', () => {
   test('succesful query returns a basket', async () => {
     server.use(getSingleProduct, getBasket);
 
-    const { result } = renderHook(() => useGetBasket(), { wrapper: createWrapper() });
+    const { result } = customRenderHook(() => useGetBasket());
 
-    await waitFor(() => expect(result.current.cart).toBeDefined());
+    await waitFor(() => expect(result.current.cart?.items.length).toBeGreaterThan(0));
 
-    expect(result.current.cart?.items.length).toBeGreaterThan(0);
     expect(result.current.cart?.items[0]).toHaveProperty('product');
     expect(result.current.cart?.items[0]).toHaveProperty('quantity');
   });
@@ -79,9 +77,7 @@ describe('useMutation', () => {
   test('succesful post of product', async () => {
     server.use(postItemToBasket);
 
-    const { result } = renderHook(() => useMutationBasketPost(), {
-      wrapper: createWrapper(),
-    });
+    const { result } = customRenderHook(() => useMutationBasketPost());
 
     act(() =>
       result.current.mutate({
@@ -106,9 +102,7 @@ describe('useMutation', () => {
   test('failed post of product', async () => {
     server.use(postItemToBasketFailed());
 
-    const { result } = renderHook(() => useMutationBasketPost(), {
-      wrapper: createWrapper(),
-    });
+    const { result } = customRenderHook(() => useMutationBasketPost());
 
     act(() =>
       result.current.mutate({
@@ -125,9 +119,7 @@ describe('useMutation', () => {
   test('succesful patch of product', async () => {
     server.use(patchBasket);
 
-    const { result } = renderHook(() => useMutationBasketPatch(), {
-      wrapper: createWrapper(),
-    });
+    const { result } = customRenderHook(() => useMutationBasketPatch());
 
     act(() =>
       result.current.mutate({
@@ -152,9 +144,7 @@ describe('useMutation', () => {
   test('failed patch of product', async () => {
     server.use(patchBasketFailed());
 
-    const { result } = renderHook(() => useMutationBasketPatch(), {
-      wrapper: createWrapper(),
-    });
+    const { result } = customRenderHook(() => useMutationBasketPatch());
 
     act(() =>
       result.current.mutate({
@@ -171,9 +161,7 @@ describe('useMutation', () => {
   test('remove item from basket', async () => {
     server.use(removeItemFromBasket);
 
-    const { result } = renderHook(() => useMutationBasketRemoveItem(), {
-      wrapper: createWrapper(),
-    });
+    const { result } = customRenderHook(() => useMutationBasketRemoveItem());
 
     act(() =>
       result.current.mutate({
@@ -189,9 +177,7 @@ describe('useMutation', () => {
   test('failed remove item from basket', async () => {
     server.use(removeItemFromBasketFailed());
 
-    const { result } = renderHook(() => useMutationBasketRemoveItem(), {
-      wrapper: createWrapper(),
-    });
+    const { result } = customRenderHook(() => useMutationBasketRemoveItem());
 
     act(() =>
       result.current.mutate({
@@ -205,9 +191,7 @@ describe('useMutation', () => {
   test('clear basket', async () => {
     server.use(clearBasket);
 
-    const { result } = renderHook(() => useMutationBasketClear(), {
-      wrapper: createWrapper(),
-    });
+    const { result } = customRenderHook(() => useMutationBasketClear());
 
     act(() => result.current.mutate());
 
@@ -219,9 +203,7 @@ describe('useMutation', () => {
   test('failed clear basket', async () => {
     server.use(clearBasketFailed());
 
-    const { result } = renderHook(() => useMutationBasketClear(), {
-      wrapper: createWrapper(),
-    });
+    const { result } = customRenderHook(() => useMutationBasketClear());
 
     act(() => result.current.mutate());
 

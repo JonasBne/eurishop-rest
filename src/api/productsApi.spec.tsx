@@ -3,7 +3,7 @@ import { renderHook } from '@testing-library/react-hooks';
 import { waitFor } from '@testing-library/react';
 import { useGetMultipleProducts, useGetProduct, useGetProducts } from './productsApi';
 import { server } from '../mockServer';
-import createWrapper from '../tests/utils/utils';
+import { createWrapper } from '../tests/utils/utils';
 import RequestError from '../errors/RequestError';
 import {
   getAllProducts,
