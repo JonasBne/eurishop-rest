@@ -1,10 +1,9 @@
 import React from 'react';
-import { render, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ThemeProvider } from 'styled-components';
 import Product from '../../domain/product';
-import theme from '../../theme/theme';
 import ProductForm from './ProductForm';
+import { customRender } from '../../tests/utils/utils';
 
 const title = 'product form';
 
@@ -20,16 +19,7 @@ const mockOnSubmit = jest.fn();
 
 describe('product form', () => {
   test('click fires onSubmit', async () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ProductForm
-          title={title}
-          gridTemplateAreas={gridTemplateAreas}
-          onCancel={mockOnCancel}
-          onSubmit={mockOnSubmit}
-        />
-      </ThemeProvider>,
-    );
+    customRender(<ProductForm title={title} gridTemplateAreas={gridTemplateAreas} onCancel={mockOnCancel} />);
 
     const button = screen.getByRole('button', { name: /save/i });
 
@@ -49,16 +39,7 @@ describe('product form', () => {
 
 describe('add new product', () => {
   test('form is rendered with empty input values', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ProductForm
-          title={title}
-          gridTemplateAreas={gridTemplateAreas}
-          onCancel={mockOnCancel}
-          onSubmit={mockOnSubmit}
-        />
-      </ThemeProvider>,
-    );
+    customRender(<ProductForm title={title} gridTemplateAreas={gridTemplateAreas} />);
 
     const form = screen.getByRole('form');
     expect(form).toHaveFormValues({
@@ -72,15 +53,13 @@ describe('add new product', () => {
     });
   });
   test('form values are correctly stored', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ProductForm
-          title={title}
-          gridTemplateAreas={gridTemplateAreas}
-          onCancel={mockOnCancel}
-          onSubmit={mockOnSubmit}
-        />
-      </ThemeProvider>,
+    customRender(
+      <ProductForm
+        title={title}
+        gridTemplateAreas={gridTemplateAreas}
+        onCancel={mockOnCancel}
+        onSubmit={mockOnSubmit}
+      />,
     );
 
     const titleInput = screen.getByLabelText(/title/i);
@@ -126,16 +105,14 @@ describe('edit existing product', () => {
     } as Product;
   });
   test('inputs have default values', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ProductForm
-          initialProduct={initialProduct}
-          title={title}
-          gridTemplateAreas={gridTemplateAreas}
-          onCancel={mockOnCancel}
-          onSubmit={mockOnSubmit}
-        />
-      </ThemeProvider>,
+    customRender(
+      <ProductForm
+        title={title}
+        gridTemplateAreas={gridTemplateAreas}
+        initialProduct={initialProduct}
+        onCancel={mockOnCancel}
+        onSubmit={mockOnSubmit}
+      />,
     );
 
     const titleInput = screen.getByLabelText(/title/i);
@@ -156,16 +133,14 @@ describe('edit existing product', () => {
   });
 
   test('form values take into account changes by user', () => {
-    render(
-      <ThemeProvider theme={theme}>
-        <ProductForm
-          initialProduct={initialProduct}
-          title={title}
-          gridTemplateAreas={gridTemplateAreas}
-          onCancel={mockOnCancel}
-          onSubmit={mockOnSubmit}
-        />
-      </ThemeProvider>,
+    customRender(
+      <ProductForm
+        title={title}
+        gridTemplateAreas={gridTemplateAreas}
+        initialProduct={initialProduct}
+        onCancel={mockOnCancel}
+        onSubmit={mockOnSubmit}
+      />,
     );
 
     const titleInput = screen.getByLabelText(/title/i);
