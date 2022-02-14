@@ -2,8 +2,6 @@ import RequestError from '../errors/RequestError';
 
 type HttpRequestType = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
 
-// TODO: find way to avoid any
-
 const request = async (requestType: HttpRequestType, url: string, data?: any) => {
   const response = await fetch(url, {
     method: requestType,
@@ -19,9 +17,9 @@ const request = async (requestType: HttpRequestType, url: string, data?: any) =>
 };
 
 const get = (url: string) => request('GET', url);
-const post = (url: string, data: any) => request('POST', url, data);
-const put = (url: string, data: any) => request('PUT', url, data);
-const patch = (url: string, data: any) => request('PATCH', url, data);
+const post = <T>(url: string, data: T) => request('POST', url, data);
+const put = <T>(url: string, data: T) => request('PUT', url, data);
+const patch = <T>(url: string, data: T) => request('PATCH', url, data);
 const remove = (url: string) => request('DELETE', url);
 
 export default {

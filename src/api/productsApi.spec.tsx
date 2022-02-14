@@ -71,10 +71,3 @@ describe('useQuery', () => {
     });
   });
 });
-
-// TODO: add tests for mutation (use act() from React Testing Library)
-describe('useMutation', () => {
-  describe('post', () => {
-    test('post product', () => {});
-  });
-});

@@ -1,6 +1,5 @@
 ## TO-DO's
 
-- test rijen tabel productList.spec
 - alle openstaande to-do's oplossen
 
 ### next steps
