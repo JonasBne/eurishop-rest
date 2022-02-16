@@ -22,7 +22,11 @@ describe('useQuery', () => {
       expect(result.current.product).toEqual({
         id: 1,
         title: 'pellentesque',
+        sku: 'AAA',
         price: 10.0,
+        basePrice: 10.0,
+        image: 'https://dummyimage.com',
+        desc: 'product 1 description',
       });
     });
 
