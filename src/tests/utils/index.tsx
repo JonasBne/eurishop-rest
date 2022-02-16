@@ -1,14 +1,15 @@
+/* eslint-disable react/require-default-props */
 import React, { ReactElement, ReactNode } from 'react';
 import '@testing-library/jest-dom';
-import { renderHook } from '@testing-library/react-hooks';
+import { render as rtlRender, RenderOptions as rtlRenderHookOptions } from '@testing-library/react';
+import { renderHook as rtlRenderHook } from '@testing-library/react-hooks';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { render } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 import theme from '../../theme/theme';
 
 interface WrapperProps {
-  children: ReactNode;
+  children?: ReactNode;
 }
 
 const createWrapper = () => {
@@ -27,15 +28,27 @@ const createWrapper = () => {
   };
 };
 
-export const customRender = (children: ReactElement) =>
-  render(
+export const render = (children: ReactElement, options?: any) =>
+  rtlRender(
     <BrowserRouter>
-      <ThemeProvider theme={theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={options.theme || theme}>{children}</ThemeProvider>
     </BrowserRouter>,
     {
       wrapper: createWrapper(),
     },
   );
 
-export const customRenderHook = <T extends unknown>(callbackfn: () => T) =>
-  renderHook(callbackfn, { wrapper: createWrapper() });
+interface RenderHookOptions extends Omit<rtlRenderHookOptions, 'wrapper'> {
+  // no extends
+}
+
+export const renderHook = <TProps, TResult>(
+  callback: (props: TProps) => TResult,
+  options: RenderHookOptions | undefined,
+) =>
+  rtlRenderHook(callback, {
+    ...options,
+    wrapper: createWrapper(),
+  });
+
+export * from '@testing-library/react';
