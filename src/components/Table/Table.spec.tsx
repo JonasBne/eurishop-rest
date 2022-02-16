@@ -1,9 +1,8 @@
 import React from 'react';
-import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Product from '../../domain/product';
 import Table from './Table';
-import { customRender } from '../../tests/utils';
+import { render, screen, within } from '../../tests/utils';
 
 describe('product list', () => {
   let sortExpression: string;
@@ -100,7 +99,7 @@ describe('product list', () => {
   });
 
   test('number of columns matches the number of columns passed to table', () => {
-    customRender(
+    render(
       <Table
         data={products}
         columns={columns}
@@ -119,7 +118,7 @@ describe('product list', () => {
   });
 
   test('number of table rows matches number of products', () => {
-    customRender(
+    render(
       <Table
         data={products}
         columns={columns}
@@ -138,7 +137,7 @@ describe('product list', () => {
   });
 
   test('click fires onRowClick event', () => {
-    customRender(
+    render(
       <Table
         data={products}
         columns={columns}
@@ -155,7 +154,7 @@ describe('product list', () => {
     expect(mockOnRowClick).toBeCalledTimes(1);
   });
   test('click fires onLoadData event', () => {
-    customRender(
+    render(
       <Table
         data={products}
         columns={columns}
@@ -173,7 +172,7 @@ describe('product list', () => {
   });
 
   test('click fires onActionClick event', () => {
-    customRender(
+    render(
       <Table
         data={products}
         columns={columns}
@@ -191,7 +190,7 @@ describe('product list', () => {
   });
 
   test('click fires setSortExpression', () => {
-    customRender(
+    render(
       <Table
         data={products}
         columns={columns}
