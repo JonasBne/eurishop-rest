@@ -1,8 +1,7 @@
 import 'whatwg-fetch';
-import { waitFor } from '@testing-library/react';
 import { useGetMultipleProducts, useGetProduct, useGetProducts } from './productsApi';
 import { server } from '../mockServer';
-import { customRenderHook } from '../tests/utils';
+import { renderHook, waitFor } from '../tests/utils';
 import RequestError from '../errors/RequestError';
 import {
   getAllProducts,
@@ -16,7 +15,7 @@ describe('useQuery', () => {
     test('succesful query returns product', async () => {
       server.use(getSingleProduct);
 
-      const { result } = customRenderHook(() => useGetProduct('1'));
+      const { result } = renderHook(() => useGetProduct('1'));
 
       await waitFor(() => expect(result.current.product).toBeDefined());
       expect(result.current.product).toEqual({
@@ -33,7 +32,7 @@ describe('useQuery', () => {
     test('failed query returns RequestError ', async () => {
       server.use(getSingleProductFailed(404));
 
-      const { result } = customRenderHook(() => useGetProduct('aaaa'));
+      const { result } = renderHook(() => useGetProduct('aaaa'));
 
       await waitFor(() => expect(result.current.isError).toBeTruthy());
 
@@ -45,7 +44,7 @@ describe('useQuery', () => {
     test('succesful query returns an array with multiple products', async () => {
       server.use(getSingleProduct);
 
-      const { result } = customRenderHook(() => useGetMultipleProducts(['1', '2', '3'], true));
+      const { result } = renderHook(() => useGetMultipleProducts(['1', '2', '3'], true));
 
       await waitFor(() => expect(result.current.isLoading).toBeFalsy());
 
@@ -57,7 +56,7 @@ describe('useQuery', () => {
     test('succesful query returns array with all products', async () => {
       server.use(getAllProducts);
 
-      const { result } = customRenderHook(() => useGetProducts());
+      const { result } = renderHook(() => useGetProducts());
 
       await waitFor(() => expect(result.current.products).toBeDefined());
 
@@ -67,7 +66,7 @@ describe('useQuery', () => {
     test('failed query returns RequestError', async () => {
       server.use(getAllProductsFailed(404));
 
-      const { result } = customRenderHook(() => useGetProducts());
+      const { result } = renderHook(() => useGetProducts());
 
       await waitFor(() => expect(result.current.isError).toBeTruthy());
 
