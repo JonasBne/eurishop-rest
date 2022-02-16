@@ -1,8 +1,7 @@
 /* eslint-disable implicit-arrow-linebreak */
 import React from 'react';
-import { screen } from '@testing-library/react';
 import Home from './Home';
-import { customRender } from '../../tests/utils';
+import { render, screen } from '../../tests/utils';
 import { server } from '../../mockServer';
 import { getAllProducts, getAllProductsFailed, getSingleProduct } from '../../tests/fixtures/product';
 import { getBasket, getBasketFailed } from '../../tests/fixtures/basket';
@@ -12,7 +11,7 @@ describe('failed query', () => {
     server.use(getAllProductsFailed(404));
     server.use(getBasketFailed(404));
 
-    customRender(<Home />);
+    render(<Home />);
 
     const errorModal = await screen.findByRole('alert');
     expect(errorModal).toBeInTheDocument();
@@ -25,7 +24,7 @@ describe('succesful query', () => {
     server.use(getSingleProduct);
     server.use(getBasket);
 
-    customRender(<Home />);
+    render(<Home />);
 
     const loadingSpinner = screen.getByRole('loading');
     expect(loadingSpinner).toBeInTheDocument();
