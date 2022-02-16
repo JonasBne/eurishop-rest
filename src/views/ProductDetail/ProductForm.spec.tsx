@@ -1,9 +1,8 @@
 import React from 'react';
-import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Product from '../../domain/product';
 import ProductForm from './ProductForm';
-import { customRender } from '../../tests/utils';
+import { render, screen, waitFor } from '../../tests/utils';
 
 const title = 'product form';
 
@@ -19,7 +18,7 @@ const mockOnSubmit = jest.fn();
 
 describe('product form', () => {
   test('click fires onSubmit', async () => {
-    customRender(<ProductForm title={title} gridTemplateAreas={gridTemplateAreas} onSubmit={mockOnSubmit} />);
+    render(<ProductForm title={title} gridTemplateAreas={gridTemplateAreas} onSubmit={mockOnSubmit} />);
 
     const button = screen.getByRole('button', { name: /save/i });
 
@@ -31,7 +30,7 @@ describe('product form', () => {
 
 describe('add new product', () => {
   test('form values are correctly passed to the onSubmit event', async () => {
-    customRender(
+    render(
       <ProductForm
         title={title}
         gridTemplateAreas={gridTemplateAreas}
@@ -86,7 +85,7 @@ describe('edit existing product', () => {
     } as Product;
   });
   test('inputs have default values', () => {
-    customRender(
+    render(
       <ProductForm
         title={title}
         gridTemplateAreas={gridTemplateAreas}
@@ -114,7 +113,7 @@ describe('edit existing product', () => {
   });
 
   test('form values take into account changes by user', async () => {
-    customRender(
+    render(
       <ProductForm
         title={title}
         gridTemplateAreas={gridTemplateAreas}
