@@ -62,7 +62,7 @@ See the section about https://facebook.github.io/create-react-app/docs/deploymen
 ## Tech Stack
 
 - [x] Basic Webpack app setup with TS transpiling and bundeling
-- [x] Npm Scripts: start, build, lint, test
+- [x] Yarn Scripts: start, build, lint, test
 - [x] VSCode recommended extensions and settings for auto save
 - [x] ES linting with ESLint and [AirBnb Style Guide](https://github.com/airbnb/javascript)
 - [x] Jest with babel-jest & @testing-library

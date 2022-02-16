@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import ShoppingCart from './ShoppingCart';
 import Product from '../../domain/product';
 import { CartItem, calculateTotalCartCost } from '../../domain/shoppingCart';
-import { customRender } from '../../tests/utils/utils';
+import { customRender } from '../../tests/utils';
 
 const mockOnUpdate = jest.fn();
 const mockOnClear = jest.fn();

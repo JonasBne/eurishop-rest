@@ -2,7 +2,7 @@ import 'whatwg-fetch';
 import { waitFor } from '@testing-library/react';
 import { useGetMultipleProducts, useGetProduct, useGetProducts } from './productsApi';
 import { server } from '../mockServer';
-import { customRenderHook } from '../tests/utils/utils';
+import { customRenderHook } from '../tests/utils';
 import RequestError from '../errors/RequestError';
 import {
   getAllProducts,

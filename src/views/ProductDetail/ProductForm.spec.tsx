@@ -3,7 +3,7 @@ import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Product from '../../domain/product';
 import ProductForm from './ProductForm';
-import { customRender } from '../../tests/utils/utils';
+import { customRender } from '../../tests/utils';
 
 const title = 'product form';
 

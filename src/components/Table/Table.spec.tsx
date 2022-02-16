@@ -3,7 +3,7 @@ import { screen, within } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import Product from '../../domain/product';
 import Table from './Table';
-import { customRender } from '../../tests/utils/utils';
+import { customRender } from '../../tests/utils';
 
 describe('product list', () => {
   let sortExpression: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen, waitFor, within } from '@testing-library/react';
 import ProductList from './ProductList';
-import { customRender } from '../../tests/utils/utils';
+import { customRender } from '../../tests/utils';
 import { server } from '../../mockServer';
 import { getAllProducts, getAllProductsFailed } from '../../tests/fixtures/product';
 

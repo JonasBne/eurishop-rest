@@ -22,7 +22,7 @@ import {
   removeItemFromBasket,
   removeItemFromBasketFailed,
 } from '../tests/fixtures/basket';
-import { customRenderHook } from '../tests/utils/utils';
+import { customRenderHook } from '../tests/utils';
 import { getSingleProduct } from '../tests/fixtures/product';
 
 describe('basket mapper', () => {

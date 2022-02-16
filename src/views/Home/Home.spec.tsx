@@ -2,7 +2,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import Home from './Home';
-import { customRender } from '../../tests/utils/utils';
+import { customRender } from '../../tests/utils';
 import { server } from '../../mockServer';
 import { getAllProducts, getAllProductsFailed, getSingleProduct } from '../../tests/fixtures/product';
 import { getBasket, getBasketFailed } from '../../tests/fixtures/basket';
