@@ -5,7 +5,7 @@ import { render as rtlRender, RenderOptions as rtlRenderHookOptions } from '@tes
 import { renderHook as rtlRenderHook } from '@testing-library/react-hooks';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from 'styled-components';
+import { DefaultTheme, ThemeProvider } from 'styled-components';
 import theme from '../../theme/theme';
 
 interface WrapperProps {
@@ -28,10 +28,14 @@ const createWrapper = () => {
   };
 };
 
-export const render = (children: ReactElement, options?: any) =>
+interface RenderOptions {
+  theme: DefaultTheme;
+}
+
+export const render = (children: ReactElement, options?: RenderOptions) =>
   rtlRender(
     <BrowserRouter>
-      <ThemeProvider theme={options.theme || theme}>{children}</ThemeProvider>
+      <ThemeProvider theme={theme || options?.theme}>{children}</ThemeProvider>
     </BrowserRouter>,
     {
       wrapper: createWrapper(),
