@@ -1,4 +1,3 @@
-import { waitFor } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
 import {
   BasketDTO,
@@ -22,7 +21,7 @@ import {
   removeItemFromBasket,
   removeItemFromBasketFailed,
 } from '../tests/fixtures/basket';
-import { customRenderHook } from '../tests/utils';
+import { renderHook, waitFor } from '../tests/utils';
 import { getSingleProduct } from '../tests/fixtures/product';
 
 describe('basket mapper', () => {
@@ -64,7 +63,7 @@ describe('useGetBasket', () => {
   test('succesful query returns a basket', async () => {
     server.use(getSingleProduct, getBasket);
 
-    const { result } = customRenderHook(() => useGetBasket());
+    const { result } = renderHook(() => useGetBasket());
 
     await waitFor(() => expect(result.current.cart?.items.length).toBeGreaterThan(0));
 
@@ -77,7 +76,7 @@ describe('useMutation', () => {
   test('succesful post of product', async () => {
     server.use(postItemToBasket);
 
-    const { result } = customRenderHook(() => useMutationBasketPost());
+    const { result } = renderHook(() => useMutationBasketPost());
 
     act(() =>
       result.current.mutate({
@@ -102,7 +101,7 @@ describe('useMutation', () => {
   test('failed post of product', async () => {
     server.use(postItemToBasketFailed());
 
-    const { result } = customRenderHook(() => useMutationBasketPost());
+    const { result } = renderHook(() => useMutationBasketPost());
 
     act(() =>
       result.current.mutate({
@@ -119,7 +118,7 @@ describe('useMutation', () => {
   test('succesful patch of product', async () => {
     server.use(patchBasket);
 
-    const { result } = customRenderHook(() => useMutationBasketPatch());
+    const { result } = renderHook(() => useMutationBasketPatch());
 
     act(() =>
       result.current.mutate({
@@ -144,7 +143,7 @@ describe('useMutation', () => {
   test('failed patch of product', async () => {
     server.use(patchBasketFailed());
 
-    const { result } = customRenderHook(() => useMutationBasketPatch());
+    const { result } = renderHook(() => useMutationBasketPatch());
 
     act(() =>
       result.current.mutate({
@@ -161,7 +160,7 @@ describe('useMutation', () => {
   test('remove item from basket', async () => {
     server.use(removeItemFromBasket);
 
-    const { result } = customRenderHook(() => useMutationBasketRemoveItem());
+    const { result } = renderHook(() => useMutationBasketRemoveItem());
 
     act(() =>
       result.current.mutate({
@@ -177,7 +176,7 @@ describe('useMutation', () => {
   test('failed remove item from basket', async () => {
     server.use(removeItemFromBasketFailed());
 
-    const { result } = customRenderHook(() => useMutationBasketRemoveItem());
+    const { result } = renderHook(() => useMutationBasketRemoveItem());
 
     act(() =>
       result.current.mutate({
@@ -191,7 +190,7 @@ describe('useMutation', () => {
   test('clear basket', async () => {
     server.use(clearBasket);
 
-    const { result } = customRenderHook(() => useMutationBasketClear());
+    const { result } = renderHook(() => useMutationBasketClear());
 
     act(() => result.current.mutate());
 
@@ -203,7 +202,7 @@ describe('useMutation', () => {
   test('failed clear basket', async () => {
     server.use(clearBasketFailed());
 
-    const { result } = customRenderHook(() => useMutationBasketClear());
+    const { result } = renderHook(() => useMutationBasketClear());
 
     act(() => result.current.mutate());
 

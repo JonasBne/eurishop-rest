@@ -42,10 +42,7 @@ interface RenderHookOptions extends Omit<rtlRenderHookOptions, 'wrapper'> {
   // no extends
 }
 
-export const renderHook = <TProps, TResult>(
-  callback: (props: TProps) => TResult,
-  options: RenderHookOptions | undefined,
-) =>
+export const renderHook = <TProps, TResult>(callback: (props: TProps) => TResult, options?: RenderHookOptions) =>
   rtlRenderHook(callback, {
     ...options,
     wrapper: createWrapper(),
