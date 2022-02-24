@@ -4,11 +4,16 @@
 
 I developed this application during my onboarding at Euricom. The main goal of doing so, was to familiarze myself with different tools, techniques and programming concepts in order to deliver a fully operational CRUD application. A lot of attention was spent towards clean code.
 
-Data is fictional and fetched from https://euricom-test-api.herokuapp.com/.
+Data is fictional and fetched from https://euricom-test-api.herokuapp.com.
 
 ## Getting Started
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Prerequisites
+
+- [Visual Studio Code](https://code.visualstudio.com/) (or an alternative IDE such as Intellij)
+- [Yarn](https://yarnpkg.com/) (an alternative to NPM)
 
 ## Available Scripts
 
@@ -56,33 +61,22 @@ See the section about https://facebook.github.io/create-react-app/docs/deploymen
 - Routing: [React Router](https://reactrouter.com/)
 - Feedback: [React-hot-toast](https://react-hot-toast.com/)
 - API:
-  - [react-query](https://react-query.tanstack.com/)
+  - [React-Query](https://react-query.tanstack.com/)
 - Dev Server: [Webpack](https://webpack.js.org/)
 
 ## Tech Stack
 
 - [x] Basic Webpack app setup with TS transpiling and bundeling
 - [x] Yarn Scripts: start, build, lint, test
-- [x] VSCode recommended extensions and settings for auto save
 - [x] ES linting with ESLint and [AirBnb Style Guide](https://github.com/airbnb/javascript)
-- [x] Jest with babel-jest & @testing-library
-- [x] VSCode launch (debug) config for Chrome & Jest
+- [x] Jest with babel-jest & React-testing-library
 - [x] React-query setup & Sample
 
 ## Features
 
 - [x] Main layout and navigation
-- [x] Localisation
-- [x] Authentication with Auth0
+- [x] Data fetching and manipulation based on GraphQL
 - [x] Product list (including sorting)
 - [x] Product actions (new, edit existing, details, remove)
 - [x] New product form
-- [x] Edit contract form
-
-### Future improvements
-
-- Improve mobile experience
-
-- Add form validation
-
-- Host website on Netflify
+- [x] Edit product form
